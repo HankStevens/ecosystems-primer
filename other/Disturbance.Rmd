@@ -1,0 +1,108 @@
+---
+title: "Modeling of Bormann et al. (1977)"
+author: "hank"
+date: "April 18, 2016"
+output: html_document
+---
+
+
+# Disturbance
+
+## the Bormann model
+```{r}
+library(deSolve)
+setwd("~/Documents/Courses/672/Modeling")
+#########################################
+## the ODE model
+#########################################
+source("BormannLogistic.R")
+bormann2
+```
+
+```{r}
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a32 = 0.1188, a23 = 0.0148,
+          a02 = 0.15, a03 = 2.128e-5, K = 600, r=.01)
+y <- c(V = 532, A = 26, U = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+out <- ode(y = y, times = t, func = bormann2, parms = p)
+plot( out )
+```
+
+# Disturbance
+
+Discrete disturbances, where state variables jump instantaneously from one value to another, can be tricky to deal with systems of ODE's because ODEs are continuous functions. Nonetheless, we can implement them fairly easily, in a variety of ways.
+
+#### Approach 1, Event with a data frame
+Here we use an **event** to mimic disturbance. We use the logistic Bormann model and our standard paramterization, but add a disturbance as an event.
+
+In this first approach, we create the disturbances externally, and put the information in a data frame. We create a data frame in which each row describes an event, and columns contain information about the necessary computation. 
+
+The data frame below indicates that variable ```V``` is altered every 50 years, and the value of 100 replaces ("rep") the current value of ```V``` at those times. This particular scenario mimics a harvest that removes most of the vegetation, resetting succession.
+
+Disturbance frequency or return time, and the duration of the time series combine to determine how we specify disturbance events. Here we set disturbance or harvest intervals to be every 100 years. If we do that for 500 years, then we need five harvests, and a data frame 5 rows long.
+```{r}
+rows <- 5
+eventdat <- data.frame(var = rep("V", rows), 
+                       time = seq(100, 500, length=rows),
+                       value = rep(100, rows),
+                       method = rep("rep", rows)
+                       )
+eventdat
+```
+
+Next we integrate as before. This time, however, *we tell \code{ode} that we have data we want to use for events.*
+```{r}
+t <- 0:max(eventdat$time)
+initial = y
+out1 <- ode(initial, times=t, fun=bormann2, parms=p, 
+events=list(data=eventdat) # EVENTS as a data frame
+)
+  plot(out1)
+```
+  
+A different plot.
+```{r}
+  matplot(out1[,1], out1[,-1], type="l", xlab="Time", ylab="N", log="y")
+  legend('right', colnames(out1[,-1]), lty=1:5, col=1:5, bty="n") 
+```
+  
+#### Approach 2, Event with a function.
+  
+Here we create a function which causes something to happen. In this case, we mimic a fire that reduces vegetation, and transfer some nutrients to both soil pools and includes atmospheric loss from the system.
+```{r}
+# the function has the same arguments as our derivatives (t, y, p)
+
+event.func <- function(t, y, p){
+  # What ecology do these lines of code represent?
+  reduction <- .5
+  air <- .3 * reduction
+  bound <- .5 * reduction
+  available <- reduction - (air + bound)
+  y[1] <- (1-reduction) * y[1]
+  y[2] <- y[2] + available * y[1]
+  y[3] <- y[3] + bound * y[1]
+  return(y)
+  }
+  
+  
+```
+  
+  Next we create a vector of times at which to implement the function.
+```{r}
+  # try these times first 
+  fire <- round( seq(from=100, to=500, by = 100), 0)
+  # try these times next
+  # see ?runif for a description
+  # fire <- sort( round( runif(10, 0, 500) ) )
+```
+  
+  Last we integrate the functions, telling ode that we have a function and times for events to happen.
+  
+```{r}
+  out2 <- ode(initial, times=t, fun=bormann2, parms=p, 
+  events=list(func = event.func, time=fire) 
+  # Events as a function and times 
+  )
+  plot(out2)
+```
+

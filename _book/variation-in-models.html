@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Variation in models | A Primer of Ecosystem Modeling</title>
+  <meta name="description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Variation in models | A Primer of Ecosystem Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This provides a part of foundation in understanding ecosystem models." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Variation in models | A Primer of Ecosystem Modeling" />
+  
+  <meta name="twitter:description" content="This provides a part of foundation in understanding ecosystem models." />
+  
+
+<meta name="author" content="Hank Stevens, BIO 672" />
+
+
+<meta name="date" content="2021-01-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sensitivity-analysis.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to ecosystem modeling</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.1</b> What’s a model?</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#some-useful-terminology"><i class="fa fa-check"></i><b>2.2</b> Some useful terminology</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#model-making"><i class="fa fa-check"></i><b>2.3</b> Model making</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
+<li class="chapter" data-level="3.1" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.1</b> First mathematical form for plant uptake</a></li>
+<li class="chapter" data-level="3.2" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#paramaterization"><i class="fa fa-check"></i><b>3.2</b> Paramaterization</a></li>
+<li class="chapter" data-level="3.3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#mathematical-solution"><i class="fa fa-check"></i><b>3.3</b> Mathematical solution</a></li>
+<li class="chapter" data-level="3.4" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#calibration-take-1"><i class="fa fa-check"></i><b>3.4</b> Calibration, take 1</a></li>
+<li class="chapter" data-level="3.5" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#budget-take-ii"><i class="fa fa-check"></i><b>3.5</b> Budget, take II</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html"><i class="fa fa-check"></i><b>4</b> Bring Data Into A Model to Address a Question or Two</a><ul>
+<li class="chapter" data-level="4.1" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#what-data"><i class="fa fa-check"></i><b>4.1</b> What data?</a></li>
+<li class="chapter" data-level="4.2" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#bringing-data-into-r-and-wrangling-it"><i class="fa fa-check"></i><b>4.2</b> Bringing data into R, and wrangling it</a></li>
+<li class="chapter" data-level="4.3" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#stream-chemistry-data-for-the-hubbard-brook-lter"><i class="fa fa-check"></i><b>4.3</b> Stream chemistry data, for the Hubbard Brook LTER</a></li>
+<li class="chapter" data-level="4.4" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#adding-climate-change"><i class="fa fa-check"></i><b>4.4</b> Adding climate change</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#annual-data"><i class="fa fa-check"></i><b>4.4.1</b> Annual data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html"><i class="fa fa-check"></i><b>5</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#model-sensitivity"><i class="fa fa-check"></i><b>5.1</b> Model Sensitivity</a></li>
+<li class="chapter" data-level="5.2" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#graphical-approach-to-sensitivity"><i class="fa fa-check"></i><b>5.2</b> Graphical approach to sensitivity</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#sensititivies-with-oscillations"><i class="fa fa-check"></i><b>5.2.1</b> Sensititivies with oscillations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variation-in-models.html"><a href="variation-in-models.html"><i class="fa fa-check"></i><b>6</b> Variation in models</a><ul>
+<li class="chapter" data-level="6.1" data-path="variation-in-models.html"><a href="variation-in-models.html#a-real-trial"><i class="fa fa-check"></i><b>6.1</b> a real trial</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="variation-in-models.html"><a href="variation-in-models.html#uncertainty"><i class="fa fa-check"></i><b>6.1.1</b> Uncertainty</a></li>
+<li class="chapter" data-level="6.1.2" data-path="variation-in-models.html"><a href="variation-in-models.html#selected-details-about-distributions"><i class="fa fa-check"></i><b>6.1.2</b> Selected details about distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer of Ecosystem Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="variation-in-models" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Variation in models</h1>
+<p>There many occasions when we want to include uncertainty in a model of ecosystem dynamics.</p>
+<p>One source of uncertainty is parameter estimates. Let’s consider the case in which we have a variety of estimates for a flux or a parameter, and we are not sure which is the best one. We can take a couple of different approaches.</p>
+<ul>
+<li>run the model for each different parameter value, and then summarize the outputs.</li>
+<li>change the parameter value in each time step so that parameter values change frequently through a time series.</li>
+</ul>
+<p>If we are going to use parameter values at random, in some sense, then another question we should address is whether to use only the parameter values we gathered, or to use those values to create a distribution from which to draw new values.</p>
+<p>For instance, imagine that we have atmospheric N deposition of 2, 5, and 14 kg N / ha / y. We could</p>
+<ul>
+<li>use 2, 5, and 14, drawing them at random each time.</li>
+<li>assume a uniform distribution from 2 to 14 (or 1 to 15), <span class="math inline">\(y \backsim \mathrm{Unif}(2,14)\)</span>.</li>
+<li>assume a unimodal distribution (e.g., normal, Gamma, Poisson) that meets key assumptions of your process, such as being positive, and either continuous or discrete.</li>
+</ul>
+<p>The shape of a probability distribution is determined by its <em>parameters</em>. The parameters of the Normal (or Gaussian) distribution happen to be the mean (<span class="math inline">\(\mu\)</span>) and the variance (<span class="math inline">\(\sigma^2\)</span>), and it describes the probability density of a random variable <span class="math inline">\(x\)</span> that ranges between <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>. Most distributions are determined by different parameters amnd may support different ranges. For instance, the Gamma distribution is also a continuous distribution, but it is determined by parameters we call <em>shape</em>, <span class="math inline">\(a\)</span>, and <em>scale</em>, <span class="math inline">\(s\)</span>, and supports values <span class="math inline">\(0 &lt; x \infty\)</span>, so it only works for variables that are greater than zero. While the Gamma distribution is determined by parameters other than the mean and variance, we can find a relation between its parameters and the mean and the variance, for instance</p>
+<p><span class="math display">\[\mu = as; \quad  \sigma^2 = as^2\]</span></p>
+<p>If we know the mean and the variance, we can calculate <span class="math inline">\(a\)</span> and <span class="math inline">\(s\)</span>.</p>
+<p><span class="math display">\[a = \frac{\mu}{s} = \frac{\sigma^2}{s^2}\]</span>
+<span class="math display">\[s = \frac{\sigma^2}{\mu}\]</span>
+Given that, we find that
+<span class="math display">\[a = \frac{\mu^2}{\sigma^2}\]</span>
+Now let’s work through this with R’s help.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="variation-in-models.html#cb79-1"></a>deposition &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">14</span>)</span>
+<span id="cb79-2"><a href="variation-in-models.html#cb79-2"></a>m &lt;-<span class="st"> </span><span class="kw">mean</span>(deposition) <span class="co"># estimate of mu</span></span>
+<span id="cb79-3"><a href="variation-in-models.html#cb79-3"></a>v &lt;-<span class="st"> </span><span class="kw">var</span>(deposition) <span class="co"># estimate of sigma^2</span></span>
+<span id="cb79-4"><a href="variation-in-models.html#cb79-4"></a>s &lt;-<span class="st"> </span>v<span class="op">/</span>m</span>
+<span id="cb79-5"><a href="variation-in-models.html#cb79-5"></a>a &lt;-<span class="st"> </span>m<span class="op">^</span><span class="dv">2</span><span class="op">/</span>v <span class="co"># we could also say that a = m/s</span></span></code></pre></div>
+<p>For our data above, we have <span class="math inline">\(\bar{x}= 7; \quad \hat{\sigma}^2 = 39\)</span> and so we have approximate values for shape and scale of <span class="math inline">\(a = 1.26; \quad s=5.57\)</span>. To use the Gamma distribution we would say that we will “make random draws from a Gamma distribution with shape equal 1.26 and scale = 5.57,” or
+(<span class="math inline">\(y \backsim \mathrm{Gamma}(a,s)\)</span>, <span class="math inline">\(a=1.26\)</span>, <span class="math inline">\(s=5.57\)</span>).</p>
+<p>Here we can graph these to visually compare our options.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="variation-in-models.html#cb80-1"></a>{</span>
+<span id="cb80-2"><a href="variation-in-models.html#cb80-2"></a>  <span class="kw">curve</span>(<span class="kw">dgamma</span>(x, <span class="dt">shape=</span><span class="fl">1.26</span>, <span class="dt">scale=</span><span class="fl">5.57</span>), <span class="dv">0</span>, <span class="dv">30</span>, <span class="dt">n=</span><span class="dv">1001</span>, <span class="dt">ylab=</span><span class="st">&quot;Probability density of N depositions&quot;</span>)</span>
+<span id="cb80-3"><a href="variation-in-models.html#cb80-3"></a>  <span class="kw">curve</span>(<span class="kw">dunif</span>(x, <span class="dt">min=</span><span class="fl">1.5</span>, <span class="dt">max=</span><span class="fl">14.5</span>), <span class="dv">0</span>, <span class="dv">30</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">n=</span><span class="dv">1001</span>)</span>
+<span id="cb80-4"><a href="variation-in-models.html#cb80-4"></a>  <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">14</span>), <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb80-5"><a href="variation-in-models.html#cb80-5"></a>  <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;Unif(1.5, 14.5)&quot;</span>, <span class="st">&quot;Gamma(1.26, 5.57)&quot;</span>),</span>
+<span id="cb80-6"><a href="variation-in-models.html#cb80-6"></a>         <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">bty=</span><span class="st">&#39;n&#39;</span>)</span>
+<span id="cb80-7"><a href="variation-in-models.html#cb80-7"></a>}</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-38"></span>
+<img src="figs/unnamed-chunk-38-1.png" alt="Data, and two distributions that could be used to represent the data. The flat distribution is the Uniform distribution, and the other is the Gamma distribution." width="90%" />
+<p class="caption">
+Figure 6.1: Data, and two distributions that could be used to represent the data. The flat distribution is the Uniform distribution, and the other is the Gamma distribution.
+</p>
+</div>
+<p>So, how do we do this?</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="variation-in-models.html#cb81-1"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">a20 =</span> <span class="fl">6.5</span>, <span class="dt">a30 =</span> <span class="fl">14.2</span>, <span class="dt">a12 =</span> <span class="fl">79.6</span><span class="op">/</span>(<span class="dv">532</span><span class="op">*</span><span class="dv">26</span>), <span class="dt">a21 =</span> (<span class="fl">6.6</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.8</span>)<span class="op">/</span><span class="dv">532</span>, </span>
+<span id="cb81-2"><a href="variation-in-models.html#cb81-2"></a>        <span class="dt">a31 =</span> (<span class="fl">54.2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">6.2</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>)<span class="op">/</span><span class="dv">532</span>,</span>
+<span id="cb81-3"><a href="variation-in-models.html#cb81-3"></a>        <span class="dt">a23 =</span> <span class="fl">69.6</span><span class="op">/</span><span class="dv">4700</span>, <span class="dt">a02 =</span> <span class="fl">3.9</span><span class="op">/</span><span class="dv">26</span>, <span class="dt">a03 =</span> <span class="fl">0.1</span><span class="op">/</span><span class="dv">4700</span>,</span>
+<span id="cb81-4"><a href="variation-in-models.html#cb81-4"></a>        <span class="dt">K =</span> <span class="dv">600</span>)</span>
+<span id="cb81-5"><a href="variation-in-models.html#cb81-5"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span></code></pre></div>
+<p>Let’s create a parameter matrix filled with values we already have. The next step will be filling in other values using our uncertainty.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="variation-in-models.html#cb82-1"></a>model.runs &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb82-2"><a href="variation-in-models.html#cb82-2"></a>p.n &lt;-<span class="st"> </span><span class="kw">length</span>(p)</span>
+<span id="cb82-3"><a href="variation-in-models.html#cb82-3"></a>par.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>model.runs, <span class="dt">ncol=</span>p.n)</span>
+<span id="cb82-4"><a href="variation-in-models.html#cb82-4"></a><span class="kw">colnames</span>(par.mat) &lt;-<span class="st"> </span><span class="kw">names</span>(p)</span>
+<span id="cb82-5"><a href="variation-in-models.html#cb82-5"></a></span>
+<span id="cb82-6"><a href="variation-in-models.html#cb82-6"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>p.n){</span>
+<span id="cb82-7"><a href="variation-in-models.html#cb82-7"></a>  par.mat[ ,j] &lt;-<span class="st"> </span>p[j]</span>
+<span id="cb82-8"><a href="variation-in-models.html#cb82-8"></a>}</span>
+<span id="cb82-9"><a href="variation-in-models.html#cb82-9"></a></span>
+<span id="cb82-10"><a href="variation-in-models.html#cb82-10"></a>par.mat[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<pre><code>##      a20  a30         a12        a21      a31        a23  a02         a03   K
+## [1,] 6.5 14.2 0.005754772 0.01390977 0.118797 0.01480851 0.15 2.12766e-05 600
+## [2,] 6.5 14.2 0.005754772 0.01390977 0.118797 0.01480851 0.15 2.12766e-05 600
+## [3,] 6.5 14.2 0.005754772 0.01390977 0.118797 0.01480851 0.15 2.12766e-05 600</code></pre>
+<p>Now let’s change one of these using an estimate drawn at random from a distribution.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="variation-in-models.html#cb84-1"></a>random.dep &lt;-<span class="st"> </span><span class="kw">runif</span>(model.runs, <span class="fl">1.5</span>, <span class="fl">14.5</span>)</span>
+<span id="cb84-2"><a href="variation-in-models.html#cb84-2"></a>random.dep &lt;-<span class="st"> </span><span class="kw">rgamma</span>(model.runs, <span class="fl">1.26</span>, <span class="fl">5.57</span>)</span>
+<span id="cb84-3"><a href="variation-in-models.html#cb84-3"></a>random.dep[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 0.5724517 0.1811963 0.5343894</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="variation-in-models.html#cb86-1"></a>par.mat[, <span class="st">&quot;a20&quot;</span>] &lt;-<span class="st"> </span>random.dep</span></code></pre></div>
+<p>Next we run the model <code>model.runs</code> times, and hang on to the output we are interested.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="variation-in-models.html#cb87-1"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">501</span>, <span class="dt">length=</span><span class="dv">11</span>)</span>
+<span id="cb87-2"><a href="variation-in-models.html#cb87-2"></a>y.init &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb87-3"><a href="variation-in-models.html#cb87-3"></a></span>
+<span id="cb87-4"><a href="variation-in-models.html#cb87-4"></a><span class="co"># Path to the file that is unique to your computer</span></span>
+<span id="cb87-5"><a href="variation-in-models.html#cb87-5"></a><span class="co"># here is my path</span></span>
+<span id="cb87-6"><a href="variation-in-models.html#cb87-6"></a><span class="kw">source</span>(<span class="st">&quot;code/BormannLogistic.R&quot;</span>)</span>
+<span id="cb87-7"><a href="variation-in-models.html#cb87-7"></a><span class="co"># bormann.logistic returns V, A, B, and loss to stream</span></span>
+<span id="cb87-8"><a href="variation-in-models.html#cb87-8"></a></span>
+<span id="cb87-9"><a href="variation-in-models.html#cb87-9"></a>output &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>model.runs, <span class="dt">ncol=</span><span class="dv">4</span>)</span>
+<span id="cb87-10"><a href="variation-in-models.html#cb87-10"></a></span>
+<span id="cb87-11"><a href="variation-in-models.html#cb87-11"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>model.runs){</span>
+<span id="cb87-12"><a href="variation-in-models.html#cb87-12"></a>  tmp &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y=</span>y.init, <span class="dt">times=</span>times, <span class="dt">func=</span>bormann.logistic, </span>
+<span id="cb87-13"><a href="variation-in-models.html#cb87-13"></a>             <span class="dt">parms=</span>par.mat[i,] )</span>
+<span id="cb87-14"><a href="variation-in-models.html#cb87-14"></a>  last.row &lt;-<span class="st"> </span><span class="kw">nrow</span>(tmp)</span>
+<span id="cb87-15"><a href="variation-in-models.html#cb87-15"></a>  output[i,] &lt;-<span class="st"> </span>tmp[ last.row, <span class="dv">2</span><span class="op">:</span><span class="dv">5</span>] <span class="co"># not time</span></span>
+<span id="cb87-16"><a href="variation-in-models.html#cb87-16"></a>}</span>
+<span id="cb87-17"><a href="variation-in-models.html#cb87-17"></a>output[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<pre><code>##          [,1]     [,2]     [,3]     [,4]
+## [1,] 582.8123 23.74959 5580.927 3.681181
+## [2,] 578.6438 23.65391 5546.386 3.666095
+## [3,] 582.4370 23.74002 5577.770 3.679679
+## [4,] 583.8361 23.77683 5589.589 3.685452
+## [5,] 580.8201 23.70112 5564.285 3.673557</code></pre>
+<div id="a-real-trial" class="section level2">
+<h2><span class="header-section-number">6.1</span> a real trial</h2>
+<p>Now that you have worked through the process, let’s see what happens when we do a larger sample. Instead of doing ten runs, let’s do 1000. Copy and paste code from above, and set <code>model.runs &lt;- 1000</code>, and rerun the simulations.</p>
+<p>After having run 1000 simulations, collect the output and the random input into one dataframe.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="variation-in-models.html#cb89-1"></a>outdf &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>( <span class="kw">cbind</span>(output, par.mat[, <span class="st">&quot;a20&quot;</span>]) )</span>
+<span id="cb89-2"><a href="variation-in-models.html#cb89-2"></a><span class="kw">names</span>(outdf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;Loss&quot;</span>, <span class="st">&quot;Deposition&quot;</span>)</span></code></pre></div>
+<div id="uncertainty" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Uncertainty</h3>
+<p>Now we are in a position to return to our orignial goal of understanding uncertainty in our predictions. We have described the uncertainty in atmosperic N deposition in a particular way, and gernated simulations that incorporate that uncertainty. Now let’s ask these questions:</p>
+<ul>
+<li>How uncertain are our estimates of state variables relative to the variation in deposition?</li>
+<li>What is the shape of the relation between deposition and an output of our choice?</li>
+</ul>
+<p>We will quantify the variability in our state variables in two ways, using the standard deviation, and the coefficient of variation, which is the ratio of the standard deviation to the mean, expressed as a percentage. Before we do that, write down what you expect to happen – how will the variaiotn in the state variables compare to that of the deposition into the available pool?</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="variation-in-models.html#cb90-1"></a><span class="co"># standard deviation of each</span></span>
+<span id="cb90-2"><a href="variation-in-models.html#cb90-2"></a><span class="kw">apply</span>(outdf, <span class="dv">2</span>, <span class="cf">function</span>(x) { <span class="kw">sd</span>(x) })</span></code></pre></div>
+<pre><code>##            V            A            B         Loss   Deposition 
+##  2.100734516  0.049209516 17.430782367  0.007750459  0.199991561</code></pre>
+<p>From these, we see that vegetation and the bound pools will vary more than the deposition itself, whereas the available pool and the export (loss) will vary less.</p>
+<p>In nature, variables with larger means tend to vary more than those with smaller means. Now let’s account for that by using the coefficient of variation (CV).</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="variation-in-models.html#cb92-1"></a><span class="co"># CV of each</span></span>
+<span id="cb92-2"><a href="variation-in-models.html#cb92-2"></a><span class="kw">apply</span>(outdf, <span class="dv">2</span>, <span class="cf">function</span>(x) { <span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">mean</span>(x) <span class="op">*</span><span class="st"> </span><span class="dv">100</span> })</span></code></pre></div>
+<pre><code>##          V          A          B       Loss Deposition 
+##  0.3627841  0.2079404  0.3140730  0.2113072 88.7254609</code></pre>
+<p>Here we see that the variation in deposition is vastly greater than that of the rest of the system. Oddly, the available pool, which receives directly the deposition is less variable than that of the vegetation.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="variation-in-models.html#cb94-1"></a>panel.hist &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...)</span>
+<span id="cb94-2"><a href="variation-in-models.html#cb94-2"></a>{</span>
+<span id="cb94-3"><a href="variation-in-models.html#cb94-3"></a>    usr &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="kw">on.exit</span>(<span class="kw">par</span>(usr))</span>
+<span id="cb94-4"><a href="variation-in-models.html#cb94-4"></a>    <span class="kw">par</span>(<span class="dt">usr =</span> <span class="kw">c</span>(usr[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">0</span>, <span class="fl">1.5</span>) )</span>
+<span id="cb94-5"><a href="variation-in-models.html#cb94-5"></a>    h &lt;-<span class="st"> </span><span class="kw">hist</span>(x, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb94-6"><a href="variation-in-models.html#cb94-6"></a>    breaks &lt;-<span class="st"> </span>h<span class="op">$</span>breaks; nB &lt;-<span class="st"> </span><span class="kw">length</span>(breaks)</span>
+<span id="cb94-7"><a href="variation-in-models.html#cb94-7"></a>    y &lt;-<span class="st"> </span>h<span class="op">$</span>counts; y &lt;-<span class="st"> </span>y<span class="op">/</span><span class="kw">max</span>(y)</span>
+<span id="cb94-8"><a href="variation-in-models.html#cb94-8"></a>    <span class="kw">rect</span>(breaks[<span class="op">-</span>nB], <span class="dv">0</span>, breaks[<span class="op">-</span><span class="dv">1</span>], y, <span class="dt">col =</span> <span class="st">&quot;cyan&quot;</span>, ...)</span>
+<span id="cb94-9"><a href="variation-in-models.html#cb94-9"></a>}</span>
+<span id="cb94-10"><a href="variation-in-models.html#cb94-10"></a><span class="kw">pairs</span>(outdf, <span class="dt">diag.panel=</span>panel.hist)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-45"></span>
+<img src="figs/unnamed-chunk-45-1.png" alt="Variation in deposition causes various patterns of correlation between state variables." width="90%" />
+<p class="caption">
+Figure 6.2: Variation in deposition causes various patterns of correlation between state variables.
+</p>
+</div>
+<p>What else might we want to ask?</p>
+</div>
+<div id="selected-details-about-distributions" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Selected details about distributions</h3>
+<p>[You might skip this on the first time through.]
+When we use distributions to represent a universe of possible values, we make assumptions about that universe. The most obvious of these is the probability of different values–we would like those probabilities to convey both what we know and what we don’t know about the values we would like.</p>
+<p>To select a candidate distribution, we have to know what is available to us. Here are three types:</p>
+<ul>
+<li>Empirical distributions - these are just a pile of actual values that we have gleaned from data. Our example above is one of those (y = {2, 5, 14}). If we had 5o values of N deposition, we would start to see a pattern emerge, and we could have some confidence in drawing random values from that distribution.</li>
+<li>Continuous probability distributions - these tie together a range of values (“random variates”) with probabilities associated with those random variates. [Technically, it ties together probability <em>densities</em> with the random variates.]. The Normal distribution is the most famous of these, but many others exist.</li>
+<li>Discrete probability distributions -</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sensitivity-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["primer-of-ecosystem-ecology.pdf", "primer-of-ecosystem-ecology.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,21 +1,52 @@
-# Introduction {#intro}
+# Introduction to ecosystem modeling{#intro}
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+In this course, we'll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+* become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;
+* understand and describe the quantitative and qualitative features of ecosystem dynamics and models of those dynamics;
+* assess the relative merits of different modeling approaches and different mathematical formalisms of those apporaches;
+* create models of ecosystem dynamics of your own;
+* write R code to implement ecosystem models.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
+
+To do all this, the following text relies heavily on selected secondary sources including @Soetaert2009 and @Haefner1996. I also cite selected primary soruces werhe appropriate.
+
+## What's a model?
+```{r anpp, echo=FALSE, fig.cap="A statistical model of aboveground plant biomass as a function of available soil nitrogen." }
+Soil_N <- runif(100, .1, 2.1)
+Abovegrd_plant_biomass <- Soil_N * .5 + Soil_N*rnorm(length(Soil_N), sd=.1)
+qplot(Soil_N, Abovegrd_plant_biomass, geom=c("point") ) + geom_smooth(method = "lm")
 ```
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
+```{r compartment2, fig.cap="Compartment models of other stuff", out.width="100%"}
+knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
+```
+```{r compartment2b, fig.cap="Compartment models of other stuff", out.width="50%"}
+knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
 ```
 
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.
+
+
+Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these *mechanistic* models.
+
+
+A theory is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows [@Marquet2014]. *Efficient* theory is based to as much as possible on first principles, and relies on as few assumptins as possible.
+
+In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, *all models are wrong, but some are useful*^[Box, G. E. P. (1979), "Robustness in the strategy of scientific model building", in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.]. 
+
+
+## Some useful terminology
+
+
+* Domain and boundaries - the spatial, temporal and conceptual limits on a theory or model.
+* Spatial and temporal scale 
+* State *factors* are forcing functions, constraints, and outside influences
+* State *variables* are pools or stocks, have one currency (e.g., kg, individuals), vary through time; stuff whose variation we model.
+* Flows = processes. They may be exchange between state variables (ecological, biogeochemical) such as ingestion, respiration, nutrient uptake; exchange with the external world we often refer to as transport, import, or export.
+* Parameters are typically fixed rate constants governing process/flows
+
+**You might pause now**, and ask yourself "is a lake a carbon sink or a source?" Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you've made about the temporal and spatial scales. What mechanisms have you included? Why?
+
+
+## Model making

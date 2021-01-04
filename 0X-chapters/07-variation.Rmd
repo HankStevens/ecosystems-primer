@@ -1,0 +1,167 @@
+# Variation in models
+
+There many occasions when we want to include uncertainty in a model of ecosystem dynamics. 
+
+One source of uncertainty is parameter estimates. Let's consider the case in which we have a variety of estimates for a flux or a parameter, and we are not sure which is the best one. We can take a couple of different approaches. 
+
+* run the model for each different parameter value, and then summarize the outputs.
+* change the parameter value in each time step so that parameter values change frequently through a time series.
+
+
+If we are going to use parameter values at random, in some sense, then another question we should address is whether to use only the parameter values we gathered, or to use those values to create a distribution from which to draw new values. 
+
+For instance, imagine that we have atmospheric N deposition of 2, 5, and 14 kg N / ha / y. We could 
+
+* use 2, 5, and 14, drawing them at random each time.
+* assume a uniform distribution from 2 to 14 (or 1 to 15), $y \backsim \mathrm{Unif}(2,14)$.
+* assume a unimodal distribution (e.g., normal, Gamma, Poisson) that meets key assumptions of your process, such as being positive, and either continuous or discrete. 
+
+The shape of a probability distribution is determined by its *parameters*. The parameters of the Normal (or Gaussian) distribution happen to be the mean ($\mu$) and the variance ($\sigma^2$), and it describes the probability density of a random variable $x$ that ranges between $-\infty < x < \infty$. Most distributions are determined by different parameters amnd may support different ranges. For instance, the Gamma distribution is also a continuous distribution, but it is determined by parameters we call *shape*, $a$, and *scale*, $s$, and supports values $0 < x \infty$, so it only works for variables that are greater than zero. While the Gamma distribution is determined by parameters other than the mean and variance, we can find a relation between its parameters and the mean and the variance, for instance
+
+$$\mu = as; \quad  \sigma^2 = as^2$$ 
+
+If we know the mean and the variance, we can calculate $a$ and $s$.
+
+$$a = \frac{\mu}{s} = \frac{\sigma^2}{s^2}$$
+$$s = \frac{\sigma^2}{\mu}$$
+Given that, we find that
+$$a = \frac{\mu^2}{\sigma^2}$$
+Now let's work through this with R's help.
+```{r}
+deposition <- c(2,5,14)
+m <- mean(deposition) # estimate of mu
+v <- var(deposition) # estimate of sigma^2
+s <- v/m
+a <- m^2/v # we could also say that a = m/s
+```
+
+For our data above, we have $\bar{x}= 7; \quad \hat{\sigma}^2 = 39$ and so we have approximate values for shape and scale of $a = 1.26; \quad s=5.57$. To use the Gamma distribution we would say that we will "make random draws from a Gamma distribution with shape equal 1.26 and scale = 5.57," or
+($y \backsim \mathrm{Gamma}(a,s)$, $a=1.26$, $s=5.57$).
+
+Here we can graph these to visually compare our options.
+```{r fig.cap="Data, and two distributions that could be used to represent the data. The flat distribution is the Uniform distribution, and the other is the Gamma distribution.", fig.width=6, fig.height=4}
+{
+  curve(dgamma(x, shape=1.26, scale=5.57), 0, 30, n=1001, ylab="Probability density of N depositions")
+  curve(dunif(x, min=1.5, max=14.5), 0, 30, add=TRUE, lty=2, n=1001)
+  abline(v=c(2,5,14), col="grey", lwd=2)
+  legend("topright", legend=c("data","Unif(1.5, 14.5)", "Gamma(1.26, 5.57)"),
+         lty=c(1,1,2), lwd=c(2,1,1), col=c("grey", 1, 1), bty='n')
+}
+
+```
+
+So, how do we do this?
+
+```{r parameters}
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, a02 = 3.9/26, a03 = 0.1/4700,
+        K = 600)
+y <- c(V = 532, A = 26, B = 4700)
+```
+
+Let's create a parameter matrix filled with values we already have. The next step will be filling in other values using our uncertainty.
+```{r}
+model.runs <- 1000
+p.n <- length(p)
+par.mat <- matrix(NA, nrow=model.runs, ncol=p.n)
+colnames(par.mat) <- names(p)
+
+for(j in 1:p.n){
+  par.mat[ ,j] <- p[j]
+}
+
+par.mat[1:3,]
+```
+
+Now let's change one of these using an estimate drawn at random from a distribution.
+```{r}
+random.dep <- runif(model.runs, 1.5, 14.5)
+random.dep <- rgamma(model.runs, 1.26, 5.57)
+random.dep[1:3]
+par.mat[, "a20"] <- random.dep
+```
+
+Next we run the model `model.runs` times, and hang on to the output we are interested.
+
+```{r}
+times <- seq(0, 501, length=11)
+y.init <- c( V = 532, A = 26, B = 4700)
+
+# Path to the file that is unique to your computer
+# here is my path
+source("code/BormannLogistic.R")
+# bormann.logistic returns V, A, B, and loss to stream
+
+output <- matrix(NA, nrow=model.runs, ncol=4)
+
+for(i in 1:model.runs){
+  tmp <- ode(y=y.init, times=times, func=bormann.logistic, 
+             parms=par.mat[i,] )
+  last.row <- nrow(tmp)
+  output[i,] <- tmp[ last.row, 2:5] # not time
+}
+output[1:5,]
+```
+
+## a real trial
+
+Now that you have worked through the process, let's see what happens when we do a larger sample. Instead of doing ten runs, let's do 1000. Copy and paste code from above, and set `model.runs <- 1000`, and rerun the simulations. 
+
+After having run 1000 simulations, collect the output and the random input into one dataframe.
+
+```{r}
+outdf <- as.data.frame( cbind(output, par.mat[, "a20"]) )
+names(outdf) <- c("V", "A", "B", "Loss", "Deposition")
+```
+
+### Uncertainty
+Now we are in a position to return to our orignial goal of understanding uncertainty in our predictions. We have described the uncertainty in atmosperic N deposition in a particular way, and gernated simulations that incorporate that uncertainty. Now let's ask these questions:
+
+* How uncertain are our estimates of state variables relative to the variation in deposition?
+* What is the shape of the relation between deposition and an output of our choice?
+
+We will quantify the variability in our state variables in two ways, using the standard deviation, and the coefficient of variation, which is the ratio of the standard deviation to the mean, expressed as a percentage. Before we do that, write down what you expect to happen -- how will the variaiotn in the state variables compare to that of the deposition into the available pool?
+
+```{r}
+# standard deviation of each
+apply(outdf, 2, function(x) { sd(x) })
+```
+From these, we see that vegetation and the bound pools will vary more than the deposition itself, whereas the available pool and the export (loss) will vary less. 
+
+In nature, variables with larger means tend to vary more than those with smaller means. Now let's account for that by using the coefficient of variation (CV).
+```{r}
+# CV of each
+apply(outdf, 2, function(x) { sd(x)/mean(x) * 100 })
+```
+
+Here we see that the variation in deposition is vastly greater than that of the rest of the system. Oddly, the available pool, which receives directly the deposition is less variable than that of the vegetation. 
+
+```{r fig.cap="Variation in deposition causes various patterns of correlation between state variables.", fig.width=6, fig.height=6}
+panel.hist <- function(x, ...)
+{
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(usr[1:2], 0, 1.5) )
+    h <- hist(x, plot = FALSE)
+    breaks <- h$breaks; nB <- length(breaks)
+    y <- h$counts; y <- y/max(y)
+    rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
+}
+pairs(outdf, diag.panel=panel.hist)
+```
+
+What else might we want to ask?
+
+
+### Selected details about distributions
+[You might skip this on the first time through.]
+When we use distributions to represent a universe of possible values, we make assumptions about that universe. The most obvious of these is the probability of different values--we would like those probabilities to convey both what we know and what we don't know about the values we would like. 
+
+To select a candidate distribution, we have to know what is available to us. Here are three types:
+
+* Empirical distributions - these are just a pile of actual values that we have gleaned from data. Our example above is one of those (y = {2, 5, 14}). If we had 5o values of N deposition, we would start to see a pattern emerge, and we could have some confidence in drawing random values from that distribution.
+* Continuous probability distributions - these tie together a range of values ("random variates") with probabilities associated with those random variates. [Technically, it ties together probability *densities* with the random variates.]. The Normal distribution is the most famous of these, but many others exist.
+* Discrete probability distributions - 
+
+
+

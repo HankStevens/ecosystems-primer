@@ -1,34 +1,36 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "A Primer of Ecosystem Modeling"
+author: "Hank Stevens, BIO 672"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output:
+    bookdown::tufte_html_book:
+      toc: yes
+      css: toc.css
+      includes:
+         in_header: analytics_tag_preface.html
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [bibliography: [/Users/stevenmh/MyDrive/library.bib, book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "This provides a part of foundation in understanding ecosystem models."
+github-repo: HankStevens/ecosystems-primer
+output_dir: "docs"
+clean: FALSE
 ---
 
 # Prerequisites
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
-
-The **bookdown** package can be installed from CRAN or Github:
-
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
 ```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results='markup', warning=FALSE, message=FALSE, fig.path = "/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/", knitr.graphics.auto_pdf = TRUE,
+                      message=FALSE, out.width="90%")
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
+
+library(deSolve)
+library(tidyverse)
 ```
+
+

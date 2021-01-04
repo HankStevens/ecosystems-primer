@@ -1,0 +1,172 @@
+# Sensitivity Analysis
+
+Broadly speaking, sensitivity analysis is the process of determining how much the outputs of a model vary as a result of small changes to the parameters or the state variables. After a bit of context, we work through the logic and computation of a *local* sensitivity analysis.  By the end of this section, you should be able to (i) explain the goal of sensitivity analysis and the differences between a graphical and a quanitative sensitivity analysis, (ii) the local of how a local sensitivity analysis is computed, and (iii) use such an analysis to create a plan to improve your model of a nitrogen budget.
+
+**From Soetart and Herman (2009), p. 309**
+
+*By now we have the necessary background to transform an ecological problem in mathematical form, to solve the resulting equations and to investigate their stability properties. How can we be sure that our creation is meaningful?
+There is no easy way to be sure. Models that are conceptually wrong or that are not carefully solved will produce results, albeit bad ones. This is not different from other scientific work. A badly designed or badly performed experiment will also yield results, but one will not learn anything useful from it.
+Very early in the book, we already introduced the technique of checking whether the model equations make sense, i.e. whether they are dimensionally correct and whether they conserve energy and mass (Section 2.1.3).
+Here we outline a number of other principles and tools that can be used to check the correctness of the model solution, the model logic and its realism. We also discuss methods to explore model behaviour, other than exploring the stability properties of previous chapters, in order to obtain a better insight into the dynamics of the model.*
+
+These authors suggest asking yourself these questions about your model. 
+
+*Testing Solution Correctness*
+
+* Is there an analytical solution against which we can check the model output?
+* Is there known data with which we can compare the output?
+
+*Internal Logic *
+
+* Are the dimensions of the state variables and the parameters logically and mathematically consistent?
+* Do the state variables remain in their expected range (e.g., biomass >= 0)?
+* If it is a closed system, do the state variables remain at zero if they are all set to zero?
+* Is mass balance preserved? 
+
+*Model Verification and Validity*
+
+What if our data and model don't agree -- how do we proceed?
+
+* Are the *data* accurate and/or precise?
+* Does the *structure* of the model approximate the important processes?
+* Do the parameter values correspond to actual rates?
+
+Answering these questions will help you create the most *useful* model you can.
+
+## Model Sensitivity
+
+How robust or stable is our model to inevitable untruths? Is our model likely to give approximately correct answers given only approximately correct structure and parameters?
+
+There are two forms of global and local stabilities:
+
+* Global
+    1. broad, systematic variation in a parameter
+    2. permanence - do all state values remain > 0?
+* Local
+    1. response to very small changes in parameters. This is probably the most common meaning of the term *sensitivity analysis.* 
+    2. responses to very small changes to state variables at equilibria. This is often referred to as *local stability analysis.*
+    
+Below, we will perform a *local sensitivity analysis* on a model of a nitrogen budget of a nothern hardwoods forest.
+
+## Graphical approach to sensitivity
+
+Code to run the ODE model. First we "source" the model and look at it.
+
+```{r}
+rm( list = ls() ) # clean the workspace.
+
+# The next line of code loads and runs a file. It requires that this script
+#   is in R's working directory.
+# Alternatively, you could include the entire path in the file name.
+# getwd() # will tell you what the working directory is.
+# Only you can know where the file actually is.
+source("code/BormannLogistic.R")
+```
+
+After you successfully load (aka *source*) this file, you can run `ls()` at your R prompt, and see that it added the function to your working environment.
+```{r}
+ls()
+```
+
+To measure the local sensitivity of our model, we will use functions that will, 
+
+1. create a standard run of the model as our reference point, and save the output as our *reference output*;
+2. vary each parameter a little bit, rerun the model, and save the output as our *perturbed output*;
+3. examine the difference between the perturbed output and the reference output.
+
+**Exercise** Open `sens_fig.R` and 
+Here we examine the sensitivity of model output of one state variable to small changes in each of the parameters. I picked the available soil nitrogen pool, $A$, to gauge the sensitivities. The graph will display, for each parameter, the unaltered (reference) model time series for $A$. It will also display a line showing what $A$ would do if we *increased* the parameter by a little bit ('large.p'). Last, it will also display a line showing what $A$ would do if we *decreased* the parameter by a little bit ('small.p'). These increases and decreases that occur at each time point are referred to as *deviates*.
+```{r fig.cap="Graphical display of sensitivity dynamics.", fig.width=7, fig.height=4, fig.fullwidth=TRUE}
+source("code/sens_fig.R")
+args(sens_fig)
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, a02 = 3.9/26, a03 = 0.1/4700,
+        K = 600)
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 1000, by = 1)
+fig.data <- sens_fig(variable="A", times = t, y.initial = y,
+                     func=bormann.logistic, parms=p, burnin=0)
+ggplot(data=fig.data, aes(x=Time, y=y, colour=Perturbation, linetype=Perturbation)) +
+  geom_line() + facet_wrap(~ Parameter)
+```
+Sometimes when we increase a rate constant, a state variable will increase also, but sometimes it will have the opposite effect. Use this example to identify parameters for which an increase leads to a corresponding increase in $A$.
+
+Now we'll make a little change to the estimate of sensitivity -- we allow a *burn-in* period. This is the number of time steps at the beginning of the time series that we will throw away. We do this to allow the system to settle into its long term dynamics. We wouldn't want to do that if we were interested in the dynamics over a particular time interval, for instance, if we were including weather events from particular years.
+
+```{r}
+source("code/sens.R")
+sns <- sens(variable="A",  y.initial = y, times = t, func=bormann.logistic, parms=p, burnin=NULL, tiny=0.01, type='normalized')
+names(sns)
+```
+This function returns a list with four objects. The first, `sens`, is the matrix of sensitivities at each time step in the model run. There is one column for each parameter, and one row for each time step. 
+
+The second object is a data frame of summaries of the deviations. These are (i) the mean sensitivity across all time steps (one mean for parameter), (ii) the mean of the absolute values of the sensitivities, and (iii) the geometric mean or the "root mean squared errors", *RMSE*.
+
+The third object is the name of the type of sensitivity. This may be the simple 'deviate' (dy), which was graphed in the above time series, which is the amount of change in a state variable given a proportional change in a parameter (our default is 1%). It may also be the approximate 'derivative' which is the deviate divided by the amount of change in the parameter (dy/dp), 'normalized', which is the proportional change in the state variable divided by the proportion by which the parameter was changed ( [dy/y] / [dp/p]), or, last, the Soetaert and Herman (ch. 11) sensitivity, 'SH' (dy / dp * p). The default in `sens` is 'normalized'.
+
+Each of these sensitivities has different units. These normalized sensitivities are are dimensionless, because it is the proportional change in a state variable, given a proportional change in a parameter. For instance, consider $a_{20}$, atmospheric deposition of nitrogen (kg N ha$^{-1}$ y$^{-1}$. In our sensitity analysis, we increased $a_{20}$ by one percent (our default), that is by $dp = 0.01\,a_{20}$. Using the mean (column 2), the sensitivity of the available pool to $a_{20}$ is 
+
+$$\frac{(A_p - A_{r})/A_r}{(a_{20,p}-a_{20,r})/a_{20,r}}$$
+with units 
+$$\frac{kg\,N\,ha^{-1} / kg\,N\,ha^{-1}}{y^{-1} /y^{-1} } = \frac{1}{1} = \mathrm{dimensionless}$$
+
+The fourth object returned by `sens` is the (`tiny`) proportion by which each parameter was changed.
+
+Last, we'll make a faceted bar graph of the didfferent types of summaries to show what they reveal. 
+```{r fig.cap="Different types of sensitivities reveal different information.", fig.width=6, fig.height=4}
+snsg <- gather(sns$sens.sum, key=metric, value=change, -parameters,
+              factor_key=TRUE)
+ggplot(snsg, aes(parameters, change)) + geom_col() + facet_grid(metric ~ ., scale="free_y")  + coord_flip()
+```
+
+The first facet of our sensitivities (mean) are literally the average proportional change in the state variable, $A$, for a one percent change in the parameters. If we consider this as a percentage, then we can say that we see a less than 10% increase in $A$ for a 1\% increase in atmospheric deposition. We have to be careful extrapolating beyond that because these sensitivities depend on the nonlinearities in the model, and the time series over which we assess it. 
+
+### Sensititivies with oscillations
+
+When we calculate sensitivities in this manner, our results depend to a great extent on the dynamics of the model. For instance, for models that oscillate, increasing a parameter might cause the output to oscillate more severely, in which case the *mean* change may be quite small, while the mean absolute value or squared value may be quite large.
+
+Consider the Rosenzweig-MacArthur model of enemy-victim interactions. This model was used to illustrate the paradox of enrichment, where providing the victim interactions more resources can lead to the *collapse* of the victim population (Rosenzweig and MacArthur 1973) due to increasingly large oscillations.
+```{r}
+rosenzweig <- function(time, state, parameters){
+  with(as.list( c(state, parameters) ), {
+    ## victim grows logistically and is consumed according to
+    ## a type II predator functional response (Michaelis-Menten dynamics)
+    dV.dt <- r*V*(1-V/K) - a*E*V/(k + V)
+    
+    ## The enemy grows according to Michaelis-Menten dynamics 
+    ## with assimilation efficiency e, and dies at a constant rate d.
+    dE.dt <- e*a*E*V/(k + V) - d*E
+return( list(c( dV.dt, dE.dt ) ))} )
+}
+```
+
+Here we illustrate the dynamics of the two populations through time.
+```{r fig.cap="Predator-prey dynamics with logistic growth in prey, and a type II predator functional response."}
+y.init <- c(V=10, E=100) # V = victim, E = enemy
+t <- seq(0,100, by=.5)
+p <- c(r=1, K=1000, a=5, k=400, e=.1, d=.2)
+
+out <- as.data.frame( ode(y.init, times=t, func=rosenzweig, parms=p) )
+outg <- gather(out, key=population, value=N, -time)
+ggplot(outg, aes(time, N, colour=population)) + geom_line()
+```
+
+```{r fig.cap="The signs and magnitudes of sensitivities depend strongly on the dynamics of the system.", fig.width=7, fig.height=7}
+long.t <- seq(0, 200, by=1)
+fig.data <- sens_fig(variable="V", times = long.t, y.initial = y.init,
+                     func=rosenzweig, parms=p, burnin=NULL)
+ggplot(data=fig.data, aes(x=Time, y=y, colour=Perturbation, linetype=Perturbation)) +
+  geom_line() + facet_wrap(~ Parameter)
+```
+
+```{r fig.cap="The signs and magnitudes of sensitivities depend strongly on the dynamics of the system.", fig.width=7, fig.height=5}
+sRM <- sens(variable="V",  y.initial = y.init, times = long.t, func=rosenzweig, parms=p, burnin=NULL, tiny=0.01)
+saved.times <- as.numeric(rownames(sRM$sens))
+matplot(saved.times, sRM$sens, type='l')
+sRMg <- gather(sRM$sens.sum, key=metric, value=change, -parameters)
+ggplot(sRMg, aes(parameters, change)) + geom_col() + 
+  facet_grid(metric ~ ., scale="free_y")  + coord_flip()
+```
+
+

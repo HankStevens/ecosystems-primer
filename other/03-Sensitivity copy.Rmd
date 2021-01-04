@@ -1,0 +1,139 @@
+# Sensitivity Analysis
+
+Broadly speaking, sensitivity analysis is the process of determining how much the outputs of a model vary as a result of small changes to the parameters or the state variables. After a bit of context, we work through the logic and computation of a *local* sensitivity analysis.  By the end of this section, you should be able to (i) explain the goal of sensitivity analysis and the differences between a graphical and a quanitative sensitivity analysis, (ii) the local of how a local sensitivity analysis is computed, and (iii) use such an analysis to create a plan to improve your model of a nitrogen budget.
+
+**From Soetart and Herman (2009), p. 309**
+
+*By now we have the necessary background to transform an ecological problem in mathematical form, to solve the resulting equations and to investigate their stability properties. How can we be sure that our creation is meaningful?
+There is no easy way to be sure. Models that are conceptually wrong or that are not carefully solved will produce results, albeit bad ones. This is not different from other scientific work. A badly designed or badly performed experiment will also yield results, but one will not learn anything useful from it.
+Very early in the book, we already introduced the technique of checking whether the model equations make sense, i.e. whether they are dimensionally correct and whether they conserve energy and mass (Section 2.1.3).
+Here we outline a number of other principles and tools that can be used to check the correctness of the model solution, the model logic and its realism. We also discuss methods to explore model behaviour, other than exploring the stability properties of previous chapters, in order to obtain a better insight into the dynamics of the model.*
+
+These authors suggest asking yourself these questions about your model. 
+
+*Testing Solution Correctness*
+
+* Is there an analytical solution against which we can check the model output?
+* Is there known data with which we can compare the output?
+
+*Internal Logic *
+
+* Are the dimensions of the state variables and the parameters logically and mathematically consistent?
+* Do the state variables remain in their expected range (e.g., biomass >= 0)?
+* If it is a closed system, do the state variables remain at zero if they are all set to zero?
+* Is mass balance preserved? 
+
+*Model Verification and Validity*
+
+What if our data and model don't agree -- how do we proceed?
+
+* Are the *data* accurate and/or precise?
+* Does the *structure* of the model approximate the important processes?
+* Do the parameter values correspond to actual rates?
+
+Answering these questions will help you create the most *useful* model you can.
+
+## Model Sensitivity
+
+How robust or stable is our model to inevitable untruths? Is our model likely to give approximately correct answers given only approximately correct structure and parameters?
+
+There are two forms of global and local stabilities:
+
+* Global
+    1. broad, systematic variation in a parameter
+    2. permanence - do all state values remain > 0?
+* Local
+    1. response to very small changes in parameters. This is probably the most common meaning of the term *sensitivity analysis.* 
+    2. responses to very small changes to state variables at equilibria. This is often referred to as *local stability analysis.*
+    
+Below, we will perform a *local sensitivity analysis* on a model of a nitrogen budget of a nothern hardwoods forest.
+
+## Graphical approach to sensitivity
+
+Code to run the ODE model. First we "source" the model and look at it.
+
+```{r}
+rm( list = ls() ) # clean the workspace.
+
+# The next line of code loads and runs a file. It requires that this script
+#   is in R's working directory.
+# Alternatively, you could include the entire path in the file name.
+# getwd() # will tell you what the working directory is.
+# Only you can know where the file actually is.
+source("code/BormannLogistic.R")
+```
+
+After you successfully load (aka *source*) this file, you can run `ls()` at your R prompt, and see that it added the function to your working environment.
+```{r}
+ls()
+```
+
+To measure the local sensitivity of our model, we will 
+
+1. create a standard run of the model as our reference point, and save the output as our *reference output*;
+2. vary each parameter a little bit, rerun the model, and save the output as our *perturbed output*;
+3. examine the difference between the perturbed output and the reference output.
+
+*Creating the reference output* 
+
+Here we use the following parameters, developed in earlier sections. It is common practice to run the model for a long time to get past *transient* dynamics that we may not be interested in.
+```{r,  fig.width = 7, fig.height = 5, fig.fullwidth = TRUE, fig.cap = "Our model -- looks pretty steady-state-ish to me. We will drop the first 500 years to create our reference."}
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, a02 = 3.9/26, a03 = 0.1/4700,
+        K = 600)
+y <- c(V = 532, A = 26, B = 4700)
+last.t = 1000
+t <- seq(from = 0, to = last.t, by = 1)
+out <- ode(y = y, times = t, func = bormann.logistic, parms = p)
+outg <- gather(as.data.frame(out), key=State.var, value=kg.N, 
+              V, A, B, -time,
+              factor_key=TRUE)
+ggplot(outg, aes(time, kg.N)) + geom_line() + facet_wrap(~State.var, scale="free_y")
+```
+
+We can actually quantify the relative change in each state variable, and track its change through time. For each state variable, we will find the difference of each value and its preceding value, and then divide by the mean of that state variable. This provides a measure of relative change at each time point.
+```{r}
+# use the last 501 values
+out.last <- out[501:1001,] 
+
+# find the relative change
+delta_out <- as.data.frame( apply( out.last[,2:4], 2, function(x) {
+  diff(x)/mean(x)
+}) )
+
+# add time back on
+delta_out <- mutate(delta_out,
+                     time = 501:1000 )
+# rearrange, and plot
+outd <- gather(delta_out, key=State.var, value=change, 
+              V, A, B, -time, factor_key=TRUE)
+ggplot(outd, aes(time, change)) + geom_line() + facet_wrap(~State.var, scale="free_y")
+```
+
+It looks as though we have reached a steady state, long past transient dynamics.
+
+
+Here we write code for the sensitivities and figure. We will be examining the sensitivity of model output of one state variable to small changes in each of the parameters. I picked the bound soil nitrogen pool, $B$, to gauge the sensitivities.
+```{r fig.cap="Graphical display of sensitivity dynamics.", fig.fullwidth=TRUE}
+source("code/sens_fig.R")
+args(sens_fig)
+fig.data <- sens_fig(variable="A", times = t, y.initial = y, func=bormann.logistic, 
+                     parms=p, burnin=0)
+ggplot(data=fig.data, aes(x=Time, y=y, colour=Perturbation, linetype=Perturbation)) +
+  geom_line() + facet_wrap(~ Parameter)
+```
+```{r}
+source("code/sens.R")
+sns <- sens(variable="A",  y.initial = y, times = t, func=bormann.logistic, parms=p, burnin=0)
+sns
+```
+
+And...make a picture.
+```{r fig.fullwidth=TRUE, fig.cap="Different types of sensitivities reveal different information."}
+snsg <- gather(sns, key=metric, value=change, mean, mean.abs, rmse,
+              factor_key=TRUE)
+ggplot(snsg, aes(parameters, change)) + geom_col() + facet_wrap(~metric, scale="free_y")
+```
+

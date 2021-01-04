@@ -1,0 +1,136 @@
+---
+title: "Sensitivity analysis"
+author: "hank"
+date: "April 9, 2016"
+output: word_document
+
+---
+
+# Graphical approach to sensitivity
+
+Code to run the model.
+
+```{r,  fig.width = 7, fig.height = 7, fig.fullwidth = TRUE, fig.cap = "Our model."}
+
+rm( list = ls() )
+library(deSolve)
+
+# The next line of code loads and runs a file. It requires that this script
+#   is in R's working directory.
+# Alternatively, you could include the entire path in the file name.
+# getwd() # will tell you what the working directory is.
+
+source("BormannLogistic.R")
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a32 = 0.1188, a23 = 0.0148,
+          a02 = 0.15, a03 = 2.128e-5, K = 600, r=.01)
+
+
+y <- c(V = 532, A = 26, U = 4700)
+t <- seq(from = 0, to = 1000, by = 1)
+out <- ode(y = y, times = t, func = bormann2, parms = p)
+plot( out )
+```
+
+What shall we study?
+
+```{r,  fig.width = 7, fig.height = 7, fig.fullwidth = TRUE, fig.cap = "Our model."}
+last <- as.numeric( out[nrow(out),] )
+last
+y <- c(V = last[2], A = last[3], U = last[4])
+t <- seq(from = 0, to = 1000, by = 1)
+out <- ode(y = y, times = t, func = bormann2, parms = p)
+plot( out )
+Reference <- as.data.frame(out[-(1:500),])
+class(Reference)
+```
+
+Code for the sensitivities and figure.
+
+```{r, fig.width = 7, fig.height = 7, fig.fullwidth = TRUE, fig.cap = "Ten percent deviations in some parameters cause substantial variation."}
+
+pp <- unlist(p) 
+tiny <- 0.1 
+par(mfrow=c(3,4))
+
+for (i in 1:(length(p)) ) {
+ 
+  p[i]  <- pp[i]*(1+tiny)
+  outp <- as.data.frame(
+   ode(y = y, times=t, fun=bormann2, parms = p) 
+   )[ -(1:500), ]
+ 
+ p[i]  <- pp[i]*(1-tiny)
+ outm <- as.data.frame(
+   ode(y = y, times=t, fun=bormann2, parms = p) 
+   )[ -(1:500), ]
+ 
+ my.max <- max( c(outp$U, outm$U, Reference$U) )
+ my.min <- min( c(outp$U, outm$U, Reference$U) )
+
+par(mar = c(2,2,2,2))
+
+ plot( x = Reference$time, y = Reference$U,  # xlab="year", ylab="kg/m2",
+      type="l", main=names(p)[i],
+      ylim = c(my.min, my.max))
+
+lines(outp$time, outp$U, lty = 2, col = "blue")
+
+lines(outm$time, outm$U, lty=3, col="red") 
+
+p[i] <- pp[i]
+
+}
+
+# add an empty plot with a legend
+plot(0,axes=FALSE,xlab="",ylab="",type="n")
+legend("center",c("increase","reference","decrease"), lty = c(2,1,3), 
+       col = c( "blue", "black", "red") )
+```
+
+# Numerical approaches to sensitivity
+
+```{r}
+out <- as.data.frame(
+   ode(y = y, times=t, fun=bormann2, parms = p) 
+   )
+reference <- out[-(1:500),]
+dim(reference)
+
+
+head(out)
+pp <- unlist(p) 
+state   <- y
+yRef    <- reference$U
+pp      <- unlist(p)
+nout    <- length(yRef)
+npar    <- length(p)
+tiny    <- 1e-8
+dp      <- pp*tiny
+Sens    <- matrix(nrow=nout,ncol=npar,NA)
+
+for (i in 1:npar)
+{
+  dval    <- pp[i] + dp[i]
+  p[i] <- dval
+  state   <- y
+  yPert   <- as.data.frame(ode(state, t, fun = bormann2, p))$U[-(1:500)] 
+  Sens[,i]<- (yPert-yRef)/dp[i]*pp[i]
+  p[i] <- pp[i]
+}
+colnames(Sens) <- names(p)
+rownames(Sens) <- t[-(1:500)]
+format(as.data.frame(Sens[c(1, 61, 121, 181, 241),]), digits=2)
+```
+
+Summarize sensitivities
+```{r, fig.width = 10, fig.height = 8, fig.fullwidth = TRUE, fig.cap = "Sensitivities often vary with time."}
+matplot(as.numeric(row.names(Sens)), Sens, type = 'l', 
+        xlab = "Days", ylab = "Sensitivities")
+legend("right", legend = colnames(Sens), lty =  1:5, col = 1:6  )
+
+mabs <- colMeans( abs(Sens) ) # or apply( Sens, 2, function(x) mean( abs( x ) ) )
+msqr <- sqrt( colSums( Sens * Sens ) / nout ) 
+format(data.frame(msqr,mabs),digits=2)
+```
+
+Try rerunning, with `pp[i] - dp[i]`.

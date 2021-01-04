@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Bring Data Into A Model to Address a Question or Two | A Primer of Ecosystem Modeling</title>
+  <meta name="description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Bring Data Into A Model to Address a Question or Two | A Primer of Ecosystem Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This provides a part of foundation in understanding ecosystem models." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Bring Data Into A Model to Address a Question or Two | A Primer of Ecosystem Modeling" />
+  
+  <meta name="twitter:description" content="This provides a part of foundation in understanding ecosystem models." />
+  
+
+<meta name="author" content="Hank Stevens, BIO 672" />
+
+
+<meta name="date" content="2021-01-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="describing-a-nitrogen-budget.html"/>
+<link rel="next" href="sensitivity-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to ecosystem modeling</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.1</b> What’s a model?</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#some-useful-terminology"><i class="fa fa-check"></i><b>2.2</b> Some useful terminology</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#model-making"><i class="fa fa-check"></i><b>2.3</b> Model making</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
+<li class="chapter" data-level="3.1" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.1</b> First mathematical form for plant uptake</a></li>
+<li class="chapter" data-level="3.2" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#paramaterization"><i class="fa fa-check"></i><b>3.2</b> Paramaterization</a></li>
+<li class="chapter" data-level="3.3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#mathematical-solution"><i class="fa fa-check"></i><b>3.3</b> Mathematical solution</a></li>
+<li class="chapter" data-level="3.4" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#calibration-take-1"><i class="fa fa-check"></i><b>3.4</b> Calibration, take 1</a></li>
+<li class="chapter" data-level="3.5" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#budget-take-ii"><i class="fa fa-check"></i><b>3.5</b> Budget, take II</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html"><i class="fa fa-check"></i><b>4</b> Bring Data Into A Model to Address a Question or Two</a><ul>
+<li class="chapter" data-level="4.1" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#what-data"><i class="fa fa-check"></i><b>4.1</b> What data?</a></li>
+<li class="chapter" data-level="4.2" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#bringing-data-into-r-and-wrangling-it"><i class="fa fa-check"></i><b>4.2</b> Bringing data into R, and wrangling it</a></li>
+<li class="chapter" data-level="4.3" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#stream-chemistry-data-for-the-hubbard-brook-lter"><i class="fa fa-check"></i><b>4.3</b> Stream chemistry data, for the Hubbard Brook LTER</a></li>
+<li class="chapter" data-level="4.4" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#adding-climate-change"><i class="fa fa-check"></i><b>4.4</b> Adding climate change</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="bring-data-into-a-model-to-address-a-question-or-two.html"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#annual-data"><i class="fa fa-check"></i><b>4.4.1</b> Annual data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html"><i class="fa fa-check"></i><b>5</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#model-sensitivity"><i class="fa fa-check"></i><b>5.1</b> Model Sensitivity</a></li>
+<li class="chapter" data-level="5.2" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#graphical-approach-to-sensitivity"><i class="fa fa-check"></i><b>5.2</b> Graphical approach to sensitivity</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#sensititivies-with-oscillations"><i class="fa fa-check"></i><b>5.2.1</b> Sensititivies with oscillations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variation-in-models.html"><a href="variation-in-models.html"><i class="fa fa-check"></i><b>6</b> Variation in models</a><ul>
+<li class="chapter" data-level="6.1" data-path="variation-in-models.html"><a href="variation-in-models.html#a-real-trial"><i class="fa fa-check"></i><b>6.1</b> a real trial</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="variation-in-models.html"><a href="variation-in-models.html#uncertainty"><i class="fa fa-check"></i><b>6.1.1</b> Uncertainty</a></li>
+<li class="chapter" data-level="6.1.2" data-path="variation-in-models.html"><a href="variation-in-models.html#selected-details-about-distributions"><i class="fa fa-check"></i><b>6.1.2</b> Selected details about distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer of Ecosystem Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bring-data-into-a-model-to-address-a-question-or-two" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Bring Data Into A Model to Address a Question or Two</h1>
+<p><em>A curious thing</em> is happening to Hubbard Brook and to many forests–nutrient exports have continued to decline. We would expect that as a forest aggrades, nutrient exports decline, but that once it reaches something like an equilibrium, nutrient exports start to come back up.</p>
+<p>To investigate this, and other questions, we will use real data. To do that, we need to (i) bring it into R, (ii) clean it up and wrangle it a bit, (iii) reveal observed trends, and (iv) incorporate data into our model.</p>
+<p>We might organize our thinking in a semi-structured manner:</p>
+<ul>
+<li>What data would we like? To determine that, we have to revisit a model, perhaps the original description by Bormann and colleagues (1977), or something else. We need data to
+<ul>
+<li>verify patterns, such as N deposition</li>
+<li>model hypothesized mechanisms, such as the effect of temperature.</li>
+</ul></li>
+<li>With these ideas in mind, we can move out to find relevant online public data. As we do so, we will need to consider whether we should use annual, monthly, or daily averages.</li>
+<li>Once we have data sets, to use it, we will start with simple steps.
+<ul>
+<li>import it into R.</li>
+<li>clean data (arrange, filter)</li>
+<li>convert to appropriate units</li>
+<li>display with graphs (perhaps summarize with statistics)</li>
+</ul></li>
+<li>To model hypothesized mechanisms,
+<ul>
+<li>we will learn how to use data in <code>ode()</code> (<code>deSolve</code> package),</li>
+<li>parameterize our model, and calibrate it.</li>
+</ul></li>
+</ul>
+<div id="what-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> What data?</h2>
+<p>We would like data relevant to the rates of fluxes in the Hubbard Brook nitrogen cycle. Let’s start with annual precipitation and N deposition, and stream export.</p>
+</div>
+<div id="bringing-data-into-r-and-wrangling-it" class="section level2">
+<h2><span class="header-section-number">4.2</span> Bringing data into R, and wrangling it</h2>
+<p>Good science is replicable. Best practice in modeling and data analysis recommends using publicly available data, and using publicly availble code to manipulate the data. We should avoid introducing unreplicable errors that occur when we make one-time changes to a spreadsheet by hand, through user intervention. We should find data in a public repository, download it, and make any adjustments to it using an R script.</p>
+<p>A great deal of data that we use is saved in ASCII format or as a text file. This format is very widely used and very simple, and so can be opened in many different kinds of applications, including any word processor or spreadsheet application. Such data may have different <em>delimiters</em>, that is, symbols that separate values in adjacent columns. A very common delimiter is the comma, which results in a CSV file. A CSV file is an ASCII file in which Values are Separated by Commas. Spaces or tabs may also be used. Another format is <em>fixed width</em>, in which each variable or column is allocated a particular number of characters.</p>
+<p>R has lots of ways to import data. Here, we’ll use one such function, <code>read.csv</code>. If we had a data set named “myfile.csv”, we could import it (or “read it”) into R thus:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb14-1"></a><span class="co"># read.csv()</span></span>
+<span id="cb14-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb14-2"></a>realData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;myfile.csv&quot;</span>)</span></code></pre></div>
+<p>If your data do not column headers (i.e. column labels), then you should tell R.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb15-1"></a>realData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;myfile.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>If your data file begins with two lines of notes that you shouldn’t include, then you should tell R.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb16-1"></a>realData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;myfile.csv&quot;</span>, <span class="dt">skip=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><strong>Let’s assume</strong> that you brought some data in, and are ready to investigate it. In lieu of real data, we will just make some up: 30 years worth of annual total N deposition and precipitation.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb17-1"></a>myDat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb17-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb17-2"></a>  <span class="dt">year=</span><span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, </span>
+<span id="cb17-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb17-3"></a>  <span class="dt">Ndep =</span> <span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">30</span>, <span class="dt">min=</span>.<span class="dv">2</span>, <span class="dt">max=</span><span class="fl">1.2</span>), </span>
+<span id="cb17-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb17-4"></a>  <span class="dt">precip=</span><span class="kw">rgamma</span>(<span class="dt">n=</span><span class="dv">30</span>, <span class="dt">shape=</span><span class="dv">2</span>, <span class="dt">scale=</span><span class="dv">4</span>)</span>
+<span id="cb17-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb17-5"></a>)</span></code></pre></div>
+<p>In order to help make sure the data set is in the form we expect, we can run a few functions to see if it the expected number of rows and columns, and that the variables are of the type we expect. For instance, if the raw data were formatted in a manner we did not expect, it may import as a single column, instead of many, or as a bunch of character vectors, rather than numeric or whatever we intended.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb18-1"></a><span class="kw">dim</span>(myDat) <span class="co"># dimensions (rows, columns)</span></span></code></pre></div>
+<pre><code>## [1] 30  3</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb20-1"></a><span class="kw">names</span>(myDat) <span class="co"># column names</span></span></code></pre></div>
+<pre><code>## [1] &quot;year&quot;   &quot;Ndep&quot;   &quot;precip&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb22-1"></a><span class="kw">str</span>(myDat) <span class="co"># structure of data (types of variables, and size)</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    30 obs. of  3 variables:
+##  $ year  : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Ndep  : num  0.996 0.525 0.738 1.063 0.394 ...
+##  $ precip: num  6.11 6.67 2.12 7.73 3.61 ...</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb24-1"></a><span class="kw">summary</span>(myDat) <span class="co"># summaries of each column</span></span></code></pre></div>
+<pre><code>##       year            Ndep            precip      
+##  Min.   : 1.00   Min.   :0.2213   Min.   : 1.524  
+##  1st Qu.: 8.25   1st Qu.:0.4906   1st Qu.: 3.403  
+##  Median :15.50   Median :0.7782   Median : 5.116  
+##  Mean   :15.50   Mean   :0.7151   Mean   : 8.962  
+##  3rd Qu.:22.75   3rd Qu.:0.9206   3rd Qu.:14.566  
+##  Max.   :30.00   Max.   :1.1848   Max.   :29.101</code></pre>
+<p>As always, if you need more more information about R, you can ask for it.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb26-1"></a><span class="co">## get help on a function using ? or help()</span></span>
+<span id="cb26-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb26-2"></a>?dim</span>
+<span id="cb26-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb26-3"></a><span class="kw">help</span>(<span class="st">&quot;$&quot;</span>)</span></code></pre></div>
+<p>In addition to numerical descriptions, we often would like to look at visual displays of data, including, for instance, histograms and scatter plots.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb27-1"></a><span class="co">## graph stuff using the ggplot2 package</span></span>
+<span id="cb27-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb27-2"></a><span class="co">## Google &#39;ggplot2&#39; for good help pages</span></span>
+<span id="cb27-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb27-3"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>myDat, <span class="kw">aes</span>(<span class="dt">x=</span>precip)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-14-1.png" width="90%" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb28-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>myDat, <span class="kw">aes</span>(<span class="dt">x=</span>precip, <span class="dt">y=</span>Ndep) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="figs/unnamed-chunk-14-2.png" width="90%" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb29-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>myDat, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>Ndep) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>precip)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() </span></code></pre></div>
+<p><img src="figs/unnamed-chunk-14-3.png" width="90%" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb30-1"></a><span class="co">## and save a graph (default dimnesions in inches)</span></span>
+<span id="cb30-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb30-2"></a><span class="kw">ggsave</span>(<span class="st">&quot;myGraph.jpg&quot;</span>, <span class="dt">width=</span><span class="dv">5</span>, <span class="dt">height=</span><span class="dv">5</span>)</span></code></pre></div>
+<p>We can add a column using <code>mutate()</code> from the <code>dplyr</code> package. This allows us to make changes (mutate) a data frame by transforming columns already in the data frame to make new columns.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb31-1"></a>myDat &lt;-<span class="st"> </span><span class="kw">mutate</span>(myDat, </span>
+<span id="cb31-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb31-2"></a>                 <span class="dt">export =</span> (Ndep <span class="op">*</span><span class="st"> </span>precip) <span class="op">/</span><span class="st"> </span><span class="dv">20</span>)</span></code></pre></div>
+<p>This added a variable called <code>export</code>, and kept all of the original variables as well.</p>
+<p>This is particularly handy if we need to transform the units of data we bring in, for example, from g<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^-2\)</span> to kg<span class="math inline">\(\cdot\)</span>ha<span class="math inline">\(^-1\)</span></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-1"></a><span class="co">## Convert units</span></span>
+<span id="cb32-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-2"></a><span class="co">## Step 1. figure out what the conversion factor is</span></span>
+<span id="cb32-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-3"></a><span class="co">## grams to kilograms: how many kilograms per gram? 1/1000 kg/g</span></span>
+<span id="cb32-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-4"></a><span class="co">## 5 g = 5 g x 1/1000 kg/g = 0.005 kg</span></span>
+<span id="cb32-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-5"></a><span class="co">## </span></span>
+<span id="cb32-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-6"></a><span class="co">## convert area?</span></span>
+<span id="cb32-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-7"></a><span class="co">## 1 m^2 = ?? ha ? 1 ha = 100 m x 100 m; 1 ha = 10^4 m^2</span></span>
+<span id="cb32-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-8"></a></span>
+<span id="cb32-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-9"></a><span class="co">## imagine our deposition data is in g/m^2</span></span>
+<span id="cb32-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-10"></a><span class="co">## convert to kg / ha</span></span>
+<span id="cb32-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-11"></a>myDat &lt;-<span class="st"> </span><span class="kw">mutate</span>(myDat,</span>
+<span id="cb32-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-12"></a>                <span class="dt">Ndep.kg =</span> Ndep <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>,</span>
+<span id="cb32-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-13"></a>                <span class="dt">Ndep.kg.ha =</span> Ndep.kg <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span>)</span>
+<span id="cb32-14"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-14"></a>)</span>
+<span id="cb32-15"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb32-15"></a><span class="kw">summary</span>(myDat)</span></code></pre></div>
+<pre><code>##       year            Ndep            precip           export       
+##  Min.   : 1.00   Min.   :0.2213   Min.   : 1.524   Min.   :0.02075  
+##  1st Qu.: 8.25   1st Qu.:0.4906   1st Qu.: 3.403   1st Qu.:0.12123  
+##  Median :15.50   Median :0.7782   Median : 5.116   Median :0.18677  
+##  Mean   :15.50   Mean   :0.7151   Mean   : 8.962   Mean   :0.30621  
+##  3rd Qu.:22.75   3rd Qu.:0.9206   3rd Qu.:14.566   3rd Qu.:0.38420  
+##  Max.   :30.00   Max.   :1.1848   Max.   :29.101   Max.   :1.32728  
+##     Ndep.kg            Ndep.kg.ha    
+##  Min.   :0.0002213   Min.   : 2.213  
+##  1st Qu.:0.0004906   1st Qu.: 4.906  
+##  Median :0.0007782   Median : 7.782  
+##  Mean   :0.0007151   Mean   : 7.151  
+##  3rd Qu.:0.0009206   3rd Qu.: 9.206  
+##  Max.   :0.0011848   Max.   :11.848</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb34-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>myDat, <span class="kw">aes</span>(<span class="dt">x=</span>Ndep.kg.ha, <span class="dt">y=</span>export) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="figs/unnamed-chunk-16-1.png" width="90%" /></p>
+</div>
+<div id="stream-chemistry-data-for-the-hubbard-brook-lter" class="section level2">
+<h2><span class="header-section-number">4.3</span> Stream chemistry data, for the Hubbard Brook LTER</h2>
+<p>Source: <a href="http://data.hubbardbrook.org/data/dataset.php?id=2">Hubbard Brook LTER</a></p>
+<p>Likens G. 2016. Chemistry of Streamwater at the Hubbard Brook Experimental Forest, Watershed 6, 1963 - present. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/87be2e19d30e4e1c60abf129d34a9af6" class="uri">https://doi.org/10.6073/pasta/87be2e19d30e4e1c60abf129d34a9af6</a>. Dataset accessed 3/08/2019.</p>
+<p>Units of chemistry are mg/L, units of stream flow are mm/month over the entire watershed.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-1"></a><span class="co"># read data</span></span>
+<span id="cb35-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-2"></a>wc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/w6_stream_chem.txt&quot;</span>)</span>
+<span id="cb35-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-3"></a><span class="co"># names(wc) # show names</span></span>
+<span id="cb35-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-4"></a><span class="co"># combine year with month so ym = years and fractions of year</span></span>
+<span id="cb35-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-5"></a>wc<span class="op">$</span>ym &lt;-<span class="st"> </span>wc<span class="op">$</span>year <span class="op">+</span><span class="st"> </span>wc<span class="op">$</span>mo<span class="op">/</span><span class="dv">12</span></span>
+<span id="cb35-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-6"></a></span>
+<span id="cb35-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-7"></a><span class="co"># rearrange data in the long format (&#39;gather&#39; variables into one col.</span></span>
+<span id="cb35-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-8"></a>wcg &lt;-<span class="st"> </span><span class="kw">gather</span>(wc, <span class="dt">key=</span>variable, <span class="dt">value=</span>value, flow<span class="op">:</span>SiO2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(value <span class="op">!=</span><span class="st"> </span><span class="dv">-3</span>)</span>
+<span id="cb35-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-9"></a></span>
+<span id="cb35-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-10"></a><span class="co"># show names</span></span>
+<span id="cb35-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-11"></a><span class="co">#names(wcg)</span></span>
+<span id="cb35-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-12"></a></span>
+<span id="cb35-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-13"></a><span class="co">#plot it</span></span>
+<span id="cb35-14"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb35-14"></a><span class="kw">ggplot</span>(wcg, <span class="kw">aes</span>(ym, value) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, <span class="dt">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figs/str-chem-1.png" width="90%" /></p>
+<p>These data are monthly - I want annual data, and only certain years and only the nitrogen.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb36-1"></a><span class="co">## -3 is a placeholder for missing data in these data. </span></span>
+<span id="cb36-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb36-2"></a><span class="co"># remove those, and use just NO3 and NH4 in certian years</span></span>
+<span id="cb36-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb36-3"></a>wcf &lt;-<span class="st"> </span><span class="kw">filter</span>(wc, (NO3 <span class="op">!=</span><span class="st"> </span><span class="dv">-3</span> <span class="op">|</span><span class="st"> </span>NH4 <span class="op">!=</span><span class="st"> </span><span class="dv">-3</span>) <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1970</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;</span><span class="st"> </span><span class="dv">2018</span>)</span></code></pre></div>
+<p>Make sure I use the mass of N only not the mass of NO<span class="math inline">\(_3\)</span> and NH<span class="math inline">\(_4\)</span>. Also, I want kg N / ha. From the Hubbard Brook website, we get “Daily export values (in g/ha-mo) are derived by multiplying daily streamflow amounts (in mm) for watershed 6, by the concentration of solutes (in mg/L)…. Measured and estimated daily values are summed to produce monthly export….”</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-1"></a>wcf &lt;-<span class="st"> </span><span class="kw">mutate</span>(wcf, </span>
+<span id="cb37-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-2"></a>              <span class="dt">N =</span> <span class="dv">14</span><span class="op">/</span><span class="dv">18</span><span class="op">*</span>NH4 <span class="op">+</span><span class="st"> </span><span class="dv">14</span><span class="op">/</span><span class="dv">62</span> <span class="op">*</span><span class="st"> </span>NO3,</span>
+<span id="cb37-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-3"></a>              <span class="dt">mo.TN =</span>  N <span class="op">*</span><span class="st"> </span>flow <span class="op">/</span><span class="st"> </span><span class="dv">1000</span> <span class="co"># to convert g to kg</span></span>
+<span id="cb37-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-4"></a>)</span>
+<span id="cb37-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-5"></a><span class="co"># flow is PER MONTH</span></span>
+<span id="cb37-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-6"></a><span class="co"># group by year and then summarize data by year</span></span>
+<span id="cb37-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-7"></a>wcfg &lt;-<span class="st"> </span><span class="kw">group_by</span>(wcf, year)</span>
+<span id="cb37-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-8"></a>wcfy &lt;-<span class="st"> </span><span class="kw">summarise</span>(wcfg, </span>
+<span id="cb37-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-9"></a>                  <span class="dt">ann.exp.TN.kg.y =</span> <span class="kw">sum</span>(mo.TN<span class="op">*</span><span class="dv">12</span>),</span>
+<span id="cb37-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-10"></a>                  <span class="dt">ann.flow.mm.y =</span> <span class="kw">sum</span>( flow ) )</span>
+<span id="cb37-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-11"></a></span>
+<span id="cb37-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-12"></a><span class="kw">ggplot</span>(wcfy, <span class="kw">aes</span>(year, ann.exp.TN.kg.y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb37-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb37-13"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Why is N export going down?&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-18-1.png" width="90%" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-1"></a>snt &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/env_data_HB.csv&quot;</span>)</span>
+<span id="cb38-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-2"></a>snts &lt;-<span class="st"> </span><span class="kw">spread</span>(snt, <span class="dt">key=</span>factor, <span class="dt">value=</span>value)</span>
+<span id="cb38-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-3"></a>snts &lt;-<span class="st"> </span><span class="kw">mutate</span>(snts, </span>
+<span id="cb38-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-4"></a>               <span class="dt">retention =</span> atmos.kgN.ha <span class="op">-</span><span class="st"> </span>ann.exp.TN.kg.y)\</span>
+<span id="cb38-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-5"></a>snt &lt;-<span class="st"> </span><span class="kw">gather</span>(snts, <span class="dt">key =</span> factor, <span class="dt">value=</span>value, <span class="op">-</span>year)</span>
+<span id="cb38-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-6"></a>snt &lt;-<span class="st"> </span><span class="kw">na.omit</span>(snt)</span>
+<span id="cb38-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb38-7"></a><span class="kw">ggplot</span>(snt, <span class="kw">aes</span>(<span class="dt">x=</span>year,  <span class="dt">y=</span>value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">span=</span>.<span class="dv">9</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>factor, <span class="dt">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+</div>
+<div id="adding-climate-change" class="section level2">
+<h2><span class="header-section-number">4.4</span> Adding climate change</h2>
+<p>In this section we address in a small way these questions:</p>
+<ul>
+<li>What will climate change do in this forest?</li>
+<li>What will these changes do?</li>
+<li>How do we model the changes?</li>
+<li>How do we model the effects of these changes?</li>
+</ul>
+<p>What will climate change do in this forest? Here is a short list of candidates:</p>
+<ul>
+<li>increase average temprature (or warmer winters or warmer summers).</li>
+<li>increase average annual precipitation.</li>
+<li>increase magnitude of extreme precipitation events.</li>
+<li>create more (or fewer?) ice storms.</li>
+</ul>
+<p>Note that some of these changes are annual averages and some are
+discrete events. In this course, we will cover forcings that exert of
+continuous effect, such as an annual average, as well as discrete events.</p>
+<p>Here we will focus on temperature and its effects.</p>
+<p><strong>Respiration</strong> is generally more sensitive to temperature than photosynthesis, across a wide range of temperatures. Therefore, any microbial process is likely to be more sensitive to changes in temperature than is carbon fixation, .</p>
+<p>Which rates in the Hubbard Brook model might be most sensitive to temperature changes? Below, we’ll work through one example of how to use observed temperatures to alter net N mineralization rate.</p>
+<p>We can start by bringing in daily temperature data from the Hubbard Brook LTER website. (Campbell, J. and Bailey, A. 2019. Hubbard Brook Experimental Forest (USDA Forest Service): Daily Mean Temperature Data, 1955-present.)</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-1"></a>mdt &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/tdm_all.txt&quot;</span>)</span>
+<span id="cb39-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-2"></a>mdt &lt;-<span class="st"> </span><span class="kw">select</span>(mdt, DATE, STA_<span class="dv">6</span>)</span>
+<span id="cb39-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-3"></a><span class="co"># convert to true dates and years using the dplyr and lubridate packages </span></span>
+<span id="cb39-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-4"></a><span class="co"># for mutuate() and ymd() and year() and define a new col, degC</span></span>
+<span id="cb39-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-5"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb39-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-6"></a>mdt &lt;-<span class="st"> </span><span class="kw">mutate</span>(mdt, </span>
+<span id="cb39-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-7"></a>              <span class="co"># convert format to Date</span></span>
+<span id="cb39-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-8"></a>              <span class="dt">date =</span> <span class="kw">ymd</span>(DATE),</span>
+<span id="cb39-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-9"></a>              <span class="co"># express days as fractions of years</span></span>
+<span id="cb39-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-10"></a>              <span class="dt">year.pr =</span> <span class="kw">decimal_date</span>(date),</span>
+<span id="cb39-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-11"></a>              <span class="co"># integer years</span></span>
+<span id="cb39-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-12"></a>              <span class="dt">year =</span> <span class="kw">year</span>(date),</span>
+<span id="cb39-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-13"></a>              <span class="co"># add temps with new name</span></span>
+<span id="cb39-14"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-14"></a>              <span class="dt">degC =</span> STA_<span class="dv">6</span>)</span>
+<span id="cb39-15"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-15"></a></span>
+<span id="cb39-16"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-16"></a><span class="co"># remove the col named STA_6 and DATE</span></span>
+<span id="cb39-17"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-17"></a>mdt &lt;-<span class="st"> </span><span class="kw">select</span>(mdt, <span class="op">-</span>STA_<span class="dv">6</span>, <span class="op">-</span>DATE)</span>
+<span id="cb39-18"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-18"></a></span>
+<span id="cb39-19"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-19"></a><span class="co"># filter out only the parts we want</span></span>
+<span id="cb39-20"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-20"></a>mdt &lt;-<span class="st"> </span><span class="kw">filter</span>(mdt, degC <span class="op">!=</span><span class="st"> </span><span class="dv">-99</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&gt;</span><span class="st"> </span><span class="dv">1971</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;</span><span class="st"> </span><span class="dv">2013</span> ) </span>
+<span id="cb39-21"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-21"></a></span>
+<span id="cb39-22"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb39-22"></a><span class="kw">ggplot</span>(mdt, <span class="kw">aes</span>(year.pr, degC) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<p><img src="figs/tdm-1.png" width="90%" /></p>
+<p>Much of the data we see is presented on an annual b asis. We can organize our data around that as well.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-1"></a><span class="co"># summarize the data by year (group, then summarize)</span></span>
+<span id="cb40-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-2"></a>mdtg &lt;-<span class="st"> </span><span class="kw">group_by</span>(mdt, year)</span>
+<span id="cb40-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-3"></a>mdt2 &lt;-<span class="st"> </span><span class="kw">summarize</span>(mdtg,</span>
+<span id="cb40-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-4"></a>                  <span class="dt">meandegC =</span> <span class="kw">mean</span>(degC)</span>
+<span id="cb40-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-5"></a>)</span>
+<span id="cb40-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-6"></a><span class="co"># plot</span></span>
+<span id="cb40-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb40-7"></a><span class="kw">ggplot</span>(mdt2, <span class="kw">aes</span>(year, meandegC)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-19-1.png" width="90%" /></p>
+<p>How do we model the changes? Many ways, and we will model these as
+functions of time. Below, we will use observed temperatures and model how these alter fluxes. Alternatively, we could model constant rates. For instance, if the average annual rate of temperature increase is <span class="math inline">\(\Delta T = 0.01\)</span>,C<span class="math inline">\(^\circ\)</span>,y<span class="math inline">\(^{-1}\)</span> and our time unit, <span class="math inline">\(t\)</span>, is
+a year, then <span class="math inline">\(dT/dt = 0.01\)</span>. If we think that that rate is
+accelerating, then we could model it as an exponential increase,
+<span class="math inline">\(dT/dt = 0.1 + rT\)</span>, where <span class="math inline">\(rT\)</span> is factor of acceleration.</p>
+<p>One way that we might model the effect of this on biological rates is
+through the use of <span class="math inline">\(Q_{10}\)</span> which is the multiplicative increase in
+metabolic rate as a function of a 10,C<span class="math inline">\(^\circ\)</span> increase in
+temperature. <span class="math inline">\(Q_{10}\)</span> varies a bit, but it seems to be centered
+around 2. The effect of this is easily
+modeled <span class="citation">(<span class="citeproc-not-found" data-reference-id="Soetaert2009"><strong>???</strong></span>)</span> as</p>
+<p><span class="math display">\[\Delta r = \exp\left( \frac{T - T_{ref}}{10}
+                                \log_e\left(Q_{10}\right) \right)\]</span></p>
+<p>where <span class="math inline">\(r\)</span> is the temperature-sensitive rate. The new rate, <span class="math inline">\(r_2\)</span>, is simply <span class="math inline">\(r_2 = \Delta r \cdot r_1\)</span></p>
+<p>Alternatively, we can represent it this way:</p>
+<p><span class="math display">\[r_2 = r_1 Q_{10}^\frac{T-T_{ref}}{10}\]</span></p>
+<p>Next we will create a function that can estimate temperatures at time points in between our observations. We did this before, but there we created a function built on the same annual change each year. This time, we rely on annual observations, and estimate only from one year to the next.</p>
+<div id="annual-data" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Annual data</h3>
+<p>Step 1: Let time start at zero.
+We have to convert our dates to numeric time.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb41-1"></a>temps &lt;-<span class="st"> </span>mdt2 <span class="co"># change the name of our data set </span></span>
+<span id="cb41-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb41-2"></a><span class="co"># reset time to start at 0.</span></span>
+<span id="cb41-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb41-3"></a>temps<span class="op">$</span>time &lt;-<span class="st"> </span>temps<span class="op">$</span>year <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(temps<span class="op">$</span>year) </span>
+<span id="cb41-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb41-4"></a><span class="kw">summary</span>(temps)</span></code></pre></div>
+<pre><code>##       year         meandegC          time   
+##  Min.   :1972   Min.   :3.224   Min.   : 0  
+##  1st Qu.:1982   1st Qu.:3.836   1st Qu.:10  
+##  Median :1992   Median :4.533   Median :20  
+##  Mean   :1992   Mean   :4.591   Mean   :20  
+##  3rd Qu.:2002   3rd Qu.:5.221   3rd Qu.:30  
+##  Max.   :2012   Max.   :6.137   Max.   :40</code></pre>
+<p>Now create a function to approximate temperature for an arbitrary time point. We plot values to show you - points are data, and the line is drawn using one of our functions that interpolates from observed data.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-1"></a><span class="co"># linear interpolation</span></span>
+<span id="cb43-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-2"></a>temp.funL &lt;-<span class="st"> </span><span class="kw">approxfun</span>(<span class="dt">x =</span> temps<span class="op">$</span>time, <span class="dt">y =</span> temps<span class="op">$</span>meandegC, </span>
+<span id="cb43-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-3"></a>                  <span class="dt">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="dt">rule =</span> <span class="dv">2</span>)</span>
+<span id="cb43-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-4"></a><span class="co"># OR curvilinear interpolation</span></span>
+<span id="cb43-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-5"></a>temp.funC &lt;-<span class="st"> </span><span class="kw">splinefun</span>(<span class="dt">x =</span> temps<span class="op">$</span>time, <span class="dt">y =</span> temps<span class="op">$</span>meandegC)</span>
+<span id="cb43-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-6"></a></span>
+<span id="cb43-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-7"></a><span class="co"># Show these for forty years</span></span>
+<span id="cb43-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-8"></a>t &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">40</span>, <span class="dt">by=</span>.<span class="dv">1</span>)</span>
+<span id="cb43-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-9"></a>sample.temps &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">time =</span> t,</span>
+<span id="cb43-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-10"></a>                           <span class="dt">linear.temps =</span> <span class="kw">temp.funL</span>(t),</span>
+<span id="cb43-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-11"></a>                           <span class="dt">spline.temps =</span> <span class="kw">temp.funC</span>(t))</span>
+<span id="cb43-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-12"></a></span>
+<span id="cb43-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-13"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>temps, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> meandegC) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb43-14"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb43-14"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data=</span>sample.temps, <span class="kw">aes</span>(time, spline.temps), <span class="dt">linetype=</span><span class="dv">1</span> )</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-21-1.png" width="90%" /></p>
+<p>Now use these in a slightly different version of our ODE function, which interpolates observed temperatures and uses those to alter mineralization rates.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-1"></a>bormann5 &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, p) {</span>
+<span id="cb44-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-2"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
+<span id="cb44-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-3"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
+<span id="cb44-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-4"></a>  <span class="co"># a1 = uptake</span></span>
+<span id="cb44-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-5"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
+<span id="cb44-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-6"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
+<span id="cb44-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-7"></a>  <span class="co"># a4 = net mineralization</span></span>
+<span id="cb44-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-8"></a>  <span class="co"># a5 = export from avail</span></span>
+<span id="cb44-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-9"></a>  <span class="co"># a6 = export from bound</span></span>
+<span id="cb44-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-10"></a>  </span>
+<span id="cb44-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-11"></a>  <span class="kw">with</span>( <span class="kw">as.list</span>(<span class="kw">c</span>(y, p)), {</span>
+<span id="cb44-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-12"></a>    </span>
+<span id="cb44-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-13"></a>    <span class="co">## use our temp approximation function.</span></span>
+<span id="cb44-14"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-14"></a>    T &lt;-<span class="st"> </span><span class="kw">temp.funC</span>(t)</span>
+<span id="cb44-15"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-15"></a>    <span class="co">## caculuate delta r</span></span>
+<span id="cb44-16"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-16"></a>    Dr &lt;-<span class="st"> </span><span class="kw">exp</span>( (T<span class="op">-</span>Tref)<span class="op">/</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(Q10) )</span>
+<span id="cb44-17"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-17"></a>    <span class="co">## calculate the new mineralization rate</span></span>
+<span id="cb44-18"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-18"></a>    new.a4 &lt;-<span class="st"> </span>Dr <span class="op">*</span><span class="st"> </span>a4</span>
+<span id="cb44-19"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-19"></a>    dV.dt &lt;-<span class="st"> </span>( a1 <span class="op">*</span><span class="st"> </span>A  <span class="op">-</span><span class="st"> </span>a2 <span class="op">-</span><span class="st"> </span>a3 ) <span class="op">*</span><span class="st"> </span>V <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>V<span class="op">/</span>K)</span>
+<span id="cb44-20"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-20"></a>    dA.dt &lt;-<span class="st"> </span>i1 <span class="op">+</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">+</span><span class="st"> </span>new.a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>V <span class="op">*</span><span class="st"> </span>A <span class="op">-</span><span class="st"> </span>a5 <span class="op">*</span><span class="st"> </span>A </span>
+<span id="cb44-21"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-21"></a>    dB.dt &lt;-<span class="st"> </span>i2 <span class="op">+</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>new.a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a6 <span class="op">*</span><span class="st"> </span>B </span>
+<span id="cb44-22"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-22"></a>    loss &lt;-<span class="st"> </span>a6<span class="op">*</span>B <span class="op">+</span><span class="st"> </span>a5<span class="op">*</span>A</span>
+<span id="cb44-23"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-23"></a>    </span>
+<span id="cb44-24"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-24"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
+<span id="cb44-25"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-25"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
+<span id="cb44-26"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-26"></a>    <span class="co"># in the same order as the state variables in y</span></span>
+<span id="cb44-27"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-27"></a>    <span class="co"># The second element is the total N in the system</span></span>
+<span id="cb44-28"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-28"></a>    <span class="kw">return</span>(<span class="kw">list</span>( <span class="kw">c</span>(dV.dt, dA.dt, dB.dt), <span class="co"># first element </span></span>
+<span id="cb44-29"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-29"></a>                 <span class="dt">totalN =</span> V <span class="op">+</span><span class="st"> </span>A <span class="op">+</span><span class="st"> </span>B, <span class="dt">export=</span>loss,</span>
+<span id="cb44-30"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-30"></a>                 <span class="dt">degC=</span>T <span class="co"># second element</span></span>
+<span id="cb44-31"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-31"></a>    )</span>
+<span id="cb44-32"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-32"></a>    )</span>
+<span id="cb44-33"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-33"></a>  })</span>
+<span id="cb44-34"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-34"></a>  </span>
+<span id="cb44-35"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-35"></a>}</span>
+<span id="cb44-36"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-36"></a>params &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip,</span></span>
+<span id="cb44-37"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-37"></a>            <span class="dt">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
+<span id="cb44-38"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-38"></a>            <span class="dt">a1 =</span> <span class="fl">79.6</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">26</span> <span class="op">*</span><span class="st"> </span><span class="dv">532</span>), <span class="co"># uptake</span></span>
+<span id="cb44-39"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-39"></a>            <span class="dt">a2 =</span> (<span class="fl">6.6</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">/</span><span class="st"> </span><span class="dv">532</span>, <span class="co"># throughfall and exudates (inorganic)</span></span>
+<span id="cb44-40"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-40"></a>        <span class="dt">a3 =</span> (<span class="fl">54.2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">+</span><span class="st"> </span><span class="fl">6.2</span> ) <span class="op">/</span><span class="st"> </span><span class="dv">532</span>, <span class="co"># litter, etc. to bound pool</span></span>
+<span id="cb44-41"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-41"></a>        <span class="dt">a4 =</span> <span class="fl">69.6</span> <span class="op">/</span><span class="st"> </span><span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
+<span id="cb44-42"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-42"></a>        <span class="dt">a5 =</span> <span class="fl">3.9</span> <span class="op">/</span><span class="dv">26</span>, <span class="co"># export from available</span></span>
+<span id="cb44-43"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-43"></a>        <span class="dt">a6 =</span> <span class="fl">0.1</span><span class="op">/</span><span class="dv">4700</span>, <span class="co">#export from bound</span></span>
+<span id="cb44-44"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-44"></a>        <span class="dt">K=</span><span class="dv">600</span>, <span class="co"># vegetation max</span></span>
+<span id="cb44-45"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-45"></a>        <span class="dt">Tref =</span> <span class="dv">5</span>, <span class="co"># reference temp</span></span>
+<span id="cb44-46"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-46"></a>        <span class="dt">Q10 =</span> <span class="dv">2</span>)</span>
+<span id="cb44-47"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-47"></a></span>
+<span id="cb44-48"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-48"></a>inits5 &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb44-49"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-49"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> inits5, <span class="dt">times=</span>temps<span class="op">$</span>time, <span class="dt">func=</span>bormann5, <span class="dt">parms =</span> params) </span>
+<span id="cb44-50"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-50"></a>out.df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>( out )</span>
+<span id="cb44-51"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-51"></a></span>
+<span id="cb44-52"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-52"></a>outm &lt;-<span class="st"> </span><span class="kw">gather</span>(out.df,  <span class="dt">key=</span>state.var,  <span class="dt">value=</span>value, <span class="op">-</span>time)</span>
+<span id="cb44-53"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb44-53"></a><span class="kw">ggplot</span>(outm, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>value) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>state.var, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-22-1.png" width="90%" /></p>
+<p>Now we’ll do the soemthing similar using daily data.
+### Daily data</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb45-1"></a>temps &lt;-<span class="st"> </span>mdt <span class="co"># the original daily temps</span></span>
+<span id="cb45-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb45-2"></a><span class="co"># reset time to start at 0.</span></span>
+<span id="cb45-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb45-3"></a>temps<span class="op">$</span>time &lt;-<span class="st"> </span>temps<span class="op">$</span>year.pr <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(temps<span class="op">$</span>year.pr) </span>
+<span id="cb45-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb45-4"></a><span class="kw">summary</span>(temps)</span></code></pre></div>
+<pre><code>##       date               year.pr          year           degC        
+##  Min.   :1972-01-01   Min.   :1972   Min.   :1972   Min.   :-30.000  
+##  1st Qu.:1982-04-01   1st Qu.:1982   1st Qu.:1982   1st Qu.: -4.000  
+##  Median :1992-07-01   Median :1992   Median :1992   Median :  5.000  
+##  Mean   :1992-07-01   Mean   :1992   Mean   :1992   Mean   :  4.591  
+##  3rd Qu.:2002-10-01   3rd Qu.:2003   3rd Qu.:2002   3rd Qu.: 14.000  
+##  Max.   :2012-12-31   Max.   :2013   Max.   :2012   Max.   : 27.000  
+##       time      
+##  Min.   : 0.00  
+##  1st Qu.:10.25  
+##  Median :20.50  
+##  Mean   :20.50  
+##  3rd Qu.:30.75  
+##  Max.   :41.00</code></pre>
+<p>Now create a function to approximate temperature for an arbitrary time point. We plot values to show you - points are data, and the line is drawn using one of our functions that interpolates from observed data.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-1"></a><span class="co"># linear interpolation</span></span>
+<span id="cb47-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-2"></a>temp.funL &lt;-<span class="st"> </span><span class="kw">approxfun</span>(<span class="dt">x =</span> temps<span class="op">$</span>time, <span class="dt">y =</span> temps<span class="op">$</span>degC, </span>
+<span id="cb47-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-3"></a>                  <span class="dt">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="dt">rule =</span> <span class="dv">2</span>)</span>
+<span id="cb47-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-4"></a><span class="co"># OR curvilinear interpolation</span></span>
+<span id="cb47-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-5"></a>temp.funC &lt;-<span class="st"> </span><span class="kw">splinefun</span>(<span class="dt">x =</span> temps<span class="op">$</span>time, <span class="dt">y =</span> temps<span class="op">$</span>degC)</span>
+<span id="cb47-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-6"></a><span class="co"># Show these for two years</span></span>
+<span id="cb47-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-7"></a>t &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>, <span class="dt">by=</span>.<span class="dv">001</span>)</span>
+<span id="cb47-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-8"></a>sample.temps &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">time =</span> t,</span>
+<span id="cb47-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-9"></a>                           <span class="dt">linear.temps =</span> <span class="kw">temp.funL</span>(t),</span>
+<span id="cb47-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-10"></a>                           <span class="dt">spline.temps =</span> <span class="kw">temp.funC</span>(t))</span>
+<span id="cb47-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-11"></a>twoyrs &lt;-<span class="st"> </span><span class="kw">filter</span>(temps, time <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb47-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-12"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>twoyrs, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> degC) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb47-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb47-13"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data=</span>sample.temps, <span class="kw">aes</span>(time, spline.temps), <span class="dt">linetype=</span><span class="dv">1</span> )</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-24-1.png" width="90%" /></p>
+<p>We can use the same function and parameters as before. This is because the units of our daily data are fractions of one year. Thus, our time unit has not changed.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb48-1"></a>inits5 &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb48-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb48-2"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> inits5, <span class="dt">times=</span>temps<span class="op">$</span>time, <span class="dt">func=</span>bormann5, <span class="dt">parms =</span> params) </span>
+<span id="cb48-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb48-3"></a>out.df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>( out )</span>
+<span id="cb48-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb48-4"></a></span>
+<span id="cb48-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb48-5"></a>outm &lt;-<span class="st"> </span><span class="kw">gather</span>(out.df,  <span class="dt">key=</span>state.var,  <span class="dt">value=</span>value, <span class="op">-</span>time)</span>
+<span id="cb48-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb48-6"></a><span class="kw">ggplot</span>(outm, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>value) ) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>state.var, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-25-1.png" width="90%" /></p>
+<p><strong>Nitrogen deposition</strong></p>
+<p>NTN-NH02-cydep.csv - Annual depositions (kg/ha) (National Atmospheric Deposition Program, Hubbard Brook site [] )</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-1"></a>depN &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/NTN-NH02-cydep.csv&quot;</span>)</span>
+<span id="cb49-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-2"></a><span class="co">## inorganics = kg/ha</span></span>
+<span id="cb49-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-3"></a>dept &lt;-<span class="st"> </span>depN <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transmute</span>(<span class="dt">N =</span> NH4<span class="op">*</span><span class="dv">14</span><span class="op">/</span><span class="dv">18</span> <span class="op">+</span><span class="st"> </span>NO3<span class="op">*</span><span class="dv">14</span><span class="op">/</span>(<span class="dv">48</span><span class="op">+</span><span class="dv">14</span>), </span>
+<span id="cb49-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-4"></a>                           <span class="dt">atmos.kgN.ha =</span> N,</span>
+<span id="cb49-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-5"></a>                           <span class="dt">year=</span>yr) </span>
+<span id="cb49-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-6"></a></span>
+<span id="cb49-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-7"></a>dept &lt;-<span class="st"> </span><span class="kw">filter</span>(dept, year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1970</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;</span><span class="st"> </span><span class="dv">2018</span>)</span>
+<span id="cb49-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-8"></a>depg &lt;-<span class="st"> </span><span class="kw">group_by</span>(dept, year)</span>
+<span id="cb49-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-9"></a>deps &lt;-<span class="st"> </span><span class="kw">summarize</span>(depg,</span>
+<span id="cb49-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-10"></a>                  <span class="dt">atmos.kgN.ha =</span> <span class="kw">sum</span>(atmos.kgN.ha)</span>
+<span id="cb49-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-11"></a>)</span>
+<span id="cb49-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-12"></a></span>
+<span id="cb49-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb49-13"></a><span class="kw">ggplot</span>(deps, <span class="kw">aes</span>(<span class="dt">x=</span>year,  <span class="dt">y=</span>atmos.kgN.ha)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;dep.mg/L&quot;</span>) </span></code></pre></div>
+<div class="figure"><span id="fig:ndep"></span>
+<img src="figs/ndep-1.png" alt="N deposition is going down" width="90%" />
+<p class="caption">
+Figure 4.1: N deposition is going down
+</p>
+</div>
+<p>I would like to bring together all my annual data thus far, so I “join” them (aka merge). So, first a primer on "_join()" funcitons in <code>dplyr</code>. We join or merge datasets to combine columns of different data sets by aligning the rows according to shared criteria.</p>
+<p>Imgaine we have two datasets, annual precipitation from 1974 to 1978, and annual atmospheric deposition from 1977 to 1981. To combine the the data <em>by year</em>, we will use the <code>join</code> family of functions in <code>dplyr</code>. Intuitively, a <em>full</em> join keeps all rows of both data sets, <em>inner</em> join keeps only rows of years that are shared, <em>left</em> join keeps all rows in the left (first) data set, and <em>right</em> join keeps all rows of the second data set. Try it out.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb50-1"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">yr =</span> <span class="dv">1974</span><span class="op">:</span><span class="dv">1978</span>, <span class="dt">precip=</span><span class="kw">runif</span>(<span class="dv">5</span>))</span>
+<span id="cb50-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb50-2"></a>y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">yr=</span> <span class="dv">1977</span><span class="op">:</span><span class="dv">1981</span>, <span class="dt">ndep=</span><span class="kw">runif</span>(<span class="dv">5</span>) )</span>
+<span id="cb50-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb50-3"></a><span class="co"># do we need to &quot;filter&quot; rows we want or &quot;select&quot; columns we want? </span></span>
+<span id="cb50-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb50-4"></a><span class="kw">full_join</span>(x, y, <span class="dt">by=</span><span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<pre><code>##     yr    precip       ndep
+## 1 1974 0.3494251         NA
+## 2 1975 0.6594611         NA
+## 3 1976 0.6643160         NA
+## 4 1977 0.7782007 0.07425844
+## 5 1978 0.4096013 0.97793922
+## 6 1979        NA 0.24308486
+## 7 1980        NA 0.92268465
+## 8 1981        NA 0.89306928</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb52-1"></a><span class="kw">inner_join</span>(x, y, <span class="dt">by=</span><span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<pre><code>##     yr    precip       ndep
+## 1 1977 0.7782007 0.07425844
+## 2 1978 0.4096013 0.97793922</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb54-1"></a><span class="kw">left_join</span>(x,y, <span class="dt">by=</span><span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<pre><code>##     yr    precip       ndep
+## 1 1974 0.3494251         NA
+## 2 1975 0.6594611         NA
+## 3 1976 0.6643160         NA
+## 4 1977 0.7782007 0.07425844
+## 5 1978 0.4096013 0.97793922</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb56-1"></a><span class="kw">right_join</span>(x,y, <span class="dt">by=</span><span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<pre><code>##     yr    precip       ndep
+## 1 1977 0.7782007 0.07425844
+## 2 1978 0.4096013 0.97793922
+## 3 1979        NA 0.24308486
+## 4 1980        NA 0.92268465
+## 5 1981        NA 0.89306928</code></pre>
+<p>Finally, we will join our real data sets.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-1"></a>SN &lt;-<span class="st"> </span><span class="kw">full_join</span>(wcfy, dept)</span>
+<span id="cb58-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-2"></a>SNT &lt;-<span class="st"> </span><span class="kw">full_join</span>(SN, mdt2)</span>
+<span id="cb58-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-3"></a><span class="co">## rearrange to the long format</span></span>
+<span id="cb58-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-4"></a>snt &lt;-<span class="st"> </span><span class="kw">gather</span>(SNT, <span class="dt">key=</span>factor, <span class="dt">value=</span>value, <span class="op">-</span>year)</span>
+<span id="cb58-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-5"></a><span class="co">## save it if I like</span></span>
+<span id="cb58-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-6"></a><span class="co">#write.csv(snt, &quot;data/env_data_HB.csv&quot;, row.names=FALSE)</span></span>
+<span id="cb58-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-7"></a><span class="co"># plot them</span></span>
+<span id="cb58-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb58-8"></a><span class="kw">ggplot</span>(snt, <span class="kw">aes</span>(<span class="dt">x=</span>year,  <span class="dt">y=</span>value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">span=</span>.<span class="dv">9</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>factor, <span class="dt">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figs/combine-1.png" width="90%" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb59-1"></a><span class="co"># save the figure</span></span>
+<span id="cb59-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb59-2"></a><span class="kw">ggsave</span>(<span class="st">&quot;envs.pdf&quot;</span>)</span></code></pre></div>
+<p>Now we model the effects of the N deposition.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-1"></a>ndep &lt;-<span class="st"> </span><span class="kw">subset</span>(deps, <span class="op">!</span><span class="kw">is.na</span>(atmos.kgN.ha))</span>
+<span id="cb60-2"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-2"></a>ndep<span class="op">$</span>time &lt;-<span class="st"> </span>ndep<span class="op">$</span>year <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(ndep<span class="op">$</span>year)</span>
+<span id="cb60-3"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-3"></a></span>
+<span id="cb60-4"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-4"></a><span class="co"># create a function to approximate temperature for an arbitrary time point.</span></span>
+<span id="cb60-5"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-5"></a>ndep.func &lt;-<span class="st"> </span><span class="kw">splinefun</span>(<span class="dt">x =</span> ndep<span class="op">$</span>time, <span class="dt">y =</span> ndep<span class="op">$</span>atmos.kgN.ha)</span>
+<span id="cb60-6"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-6"></a></span>
+<span id="cb60-7"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-7"></a>bormann6 &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, p) {</span>
+<span id="cb60-8"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-8"></a>  <span class="kw">with</span>( <span class="kw">as.list</span>(<span class="kw">c</span>(y, p)), {</span>
+<span id="cb60-9"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-9"></a>    <span class="co">## new N deposition</span></span>
+<span id="cb60-10"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-10"></a>    new.i1 &lt;-<span class="st"> </span><span class="kw">ndep.func</span>(t)</span>
+<span id="cb60-11"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-11"></a>    T &lt;-<span class="st"> </span><span class="kw">temp.funC</span>(t)</span>
+<span id="cb60-12"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-12"></a>    Dr &lt;-<span class="st"> </span><span class="kw">exp</span>( (T<span class="op">-</span>Tref)<span class="op">/</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(Q10) )</span>
+<span id="cb60-13"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-13"></a>    new.a4 &lt;-<span class="st"> </span>Dr <span class="op">*</span><span class="st"> </span>a4</span>
+<span id="cb60-14"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-14"></a>    dV.dt &lt;-<span class="st"> </span>( a1 <span class="op">*</span><span class="st"> </span>A  <span class="op">-</span><span class="st"> </span>a2 <span class="op">-</span><span class="st"> </span>a3 ) <span class="op">*</span><span class="st"> </span>V <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>V<span class="op">/</span>K)</span>
+<span id="cb60-15"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-15"></a>    dA.dt &lt;-<span class="st"> </span>new.i1 <span class="op">+</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">+</span><span class="st"> </span>new.a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>V <span class="op">*</span><span class="st"> </span>A <span class="op">-</span><span class="st"> </span>a5 <span class="op">*</span><span class="st"> </span>A </span>
+<span id="cb60-16"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-16"></a>    dB.dt &lt;-<span class="st"> </span>i2 <span class="op">+</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>new.a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a6 <span class="op">*</span><span class="st"> </span>B </span>
+<span id="cb60-17"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-17"></a>    loss &lt;-<span class="st"> </span>a6<span class="op">*</span>B <span class="op">+</span><span class="st"> </span>a5<span class="op">*</span>A</span>
+<span id="cb60-18"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-18"></a>  </span>
+<span id="cb60-19"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-19"></a>    <span class="kw">return</span>(<span class="kw">list</span>( <span class="kw">c</span>(dV.dt, dA.dt, dB.dt), <span class="co"># first element </span></span>
+<span id="cb60-20"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-20"></a>                 <span class="dt">totalN =</span> V <span class="op">+</span><span class="st"> </span>A <span class="op">+</span><span class="st"> </span>B, <span class="dt">export=</span>loss,</span>
+<span id="cb60-21"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-21"></a>                 <span class="dt">Ndep=</span>new.i1 ))</span>
+<span id="cb60-22"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-22"></a>  })}</span>
+<span id="cb60-23"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-23"></a></span>
+<span id="cb60-24"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-24"></a>inits6 &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb60-25"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-25"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> inits6, <span class="dt">times=</span>ndep<span class="op">$</span>time, <span class="dt">func=</span>bormann6, <span class="dt">parms =</span> params) </span>
+<span id="cb60-26"><a href="bring-data-into-a-model-to-address-a-question-or-two.html#cb60-26"></a><span class="kw">plot</span>(out)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-27-1.png" width="90%" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="describing-a-nitrogen-budget.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sensitivity-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["primer-of-ecosystem-ecology.pdf", "primer-of-ecosystem-ecology.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
