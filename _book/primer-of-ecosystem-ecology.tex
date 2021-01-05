@@ -109,7 +109,7 @@
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage[]{natbib}
-\bibliographystyle{apalike}
+\bibliographystyle{plain}
 
 \title{A Primer of Ecosystem Modeling}
 \author{Hank Stevens, BIO 672}
@@ -150,7 +150,7 @@ To do all this, the following text relies heavily on selected secondary sources 
 \section{What's a model?}\label{whats-a-model}}
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/anpp-1} \caption{A statistical model of aboveground plant biomass as a function of available soil nitrogen.}\label{fig:anpp}
+\includegraphics[width=0.9\linewidth]{/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/anpp-1} \caption{*A statistical model of aboveground plant biomass as a function of available soil nitrogen.*}\label{fig:anpp}
 \end{figure}
 
 \begin{Shaded}
@@ -160,17 +160,7 @@ To do all this, the following text relies heavily on selected secondary sources 
 \end{Shaded}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{figs/LakeEcosystemCarpenteretal1992} \caption{Compartment models of other stuff}\label{fig:compartment2}
-\end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"figs/LakeEcosystemCarpenteretal1992.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{figs/LakeEcosystemCarpenteretal1992} \caption{Compartment models of other stuff}\label{fig:compartment2b}
+\includegraphics[width=1\linewidth]{figs/LakeEcosystemCarpenteretal1992} \caption{*Compartment models of other stuff*}\label{fig:compartment2}
 \end{figure}
 
 We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.
@@ -208,21 +198,12 @@ In contrast to theory, models are specific implementations of theory and specifi
 \hypertarget{describing-a-nitrogen-budget}{%
 \chapter{Describing a nitrogen budget}\label{describing-a-nitrogen-budget}}
 
-Make sure you've loaded these packages:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(deSolve)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
-\includegraphics[width=1\linewidth]{figs/BormannF2} \caption{Nitrogen bugdget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).}\label{fig:hbnb}
+\includegraphics[width=1\linewidth]{figs/BormannF2} \caption{*Nitrogen bugdget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*}\label{fig:hbnb}
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{figs/model3} \caption{A simpler compartment model for Hubbard Brook Watershed 6, based on Bormann et al. (1977).}\label{fig:hbnb3}
+\includegraphics[width=0.9\linewidth]{figs/model3} \caption{*A simpler compartment model for Hubbard Brook Watershed 6, based on Bormann et al. (1977).*}\label{fig:hbnb3}
 \end{figure}
 
 \hypertarget{first-mathematical-form-for-plant-uptake}{%
@@ -407,7 +388,7 @@ Use \texttt{gather()} and \texttt{ggplot()} to make a graph. We use \texttt{gath
 \end{Shaded}
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-6-1} \caption{Dynamics of a simple N budget, based on Bormann et al. (1977).}\label{fig:unnamed-chunk-6}
+\includegraphics[width=0.9\linewidth]{/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-5-1} \caption{Dynamics of a simple N budget, based on Bormann et al. (1977).}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 In some ways, we have been moderately successful in our first pass at
@@ -481,7 +462,7 @@ We can add a new parameter to our vector of parameters, and then solve our new f
 \end{Shaded}
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-7-1} \caption{Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977).}\label{fig:unnamed-chunk-7}
+\includegraphics[width=0.9\linewidth]{/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-6-1} \caption{Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977).}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in \citet{Bormann1977} and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.

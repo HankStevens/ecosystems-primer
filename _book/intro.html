@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Introduction to ecosystem modeling | A Primer of Ecosystem Modeling</title>
+  <title>2 Introduction to ecosystem modeling | A Primer of Ecosystem Modeling</title>
   <meta name="description" content="This provides a part of foundation in understanding ecosystem models." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Introduction to ecosystem modeling | A Primer of Ecosystem Modeling" />
+  <meta property="og:title" content="2 Introduction to ecosystem modeling | A Primer of Ecosystem Modeling" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This provides a part of foundation in understanding ecosystem models." />
-  
+  <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Introduction to ecosystem modeling | A Primer of Ecosystem Modeling" />
+  <meta name="twitter:title" content="2 Introduction to ecosystem modeling | A Primer of Ecosystem Modeling" />
   
   <meta name="twitter:description" content="This provides a part of foundation in understanding ecosystem models." />
   
@@ -51,6 +51,10 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -118,7 +122,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -131,26 +134,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to ecosystem modeling</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.1</b> What’s a model?</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#some-useful-terminology"><i class="fa fa-check"></i><b>2.2</b> Some useful terminology</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#model-making"><i class="fa fa-check"></i><b>2.3</b> Model making</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.1</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.2</b> What’s a model?</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.2.1</b> Other ideas</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
-<li class="chapter" data-level="3.1" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.1</b> First mathematical form for plant uptake</a></li>
-<li class="chapter" data-level="3.2" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#paramaterization"><i class="fa fa-check"></i><b>3.2</b> Paramaterization</a></li>
-<li class="chapter" data-level="3.3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#mathematical-solution"><i class="fa fa-check"></i><b>3.3</b> Mathematical solution</a></li>
-<li class="chapter" data-level="3.4" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#calibration-take-1"><i class="fa fa-check"></i><b>3.4</b> Calibration, take 1</a></li>
-<li class="chapter" data-level="3.5" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#budget-take-ii"><i class="fa fa-check"></i><b>3.5</b> Budget, take II</a></li>
+<li class="chapter" data-level="3.1" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
+<li class="chapter" data-level="3.2" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.2</b> First mathematical form for plant uptake</a></li>
+<li class="chapter" data-level="3.3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
+<li class="chapter" data-level="3.4" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="3.5" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#calibration-take-1"><i class="fa fa-check"></i><b>3.5</b> Calibration, take 1</a></li>
+<li class="chapter" data-level="3.6" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#budget-take-ii"><i class="fa fa-check"></i><b>3.6</b> Budget, take II</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -169,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Introduction to ecosystem modeling</h1>
+<h1><span class="header-section-number">2</span> Introduction to ecosystem modeling</h1>
 <p>In this course, we’ll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,</p>
 <ul>
 <li>become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;</li>
@@ -178,49 +177,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>create models of ecosystem dynamics of your own;</li>
 <li>write R code to implement ecosystem models.</li>
 </ul>
-<p>To do all this, the following text relies heavily on selected secondary sources including <span class="citation">(<span class="citeproc-not-found" data-reference-id="Soetaert2009"><strong>???</strong></span>)</span> and <span class="citation">(<span class="citeproc-not-found" data-reference-id="Haefner1996"><strong>???</strong></span>)</span>. I also cite selected primary soruces werhe appropriate.</p>
+<p>To do all this, the following text relies heavily on selected secondary sources including <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> and <span class="citation">Haefner (<a href="#ref-Haefner1996" role="doc-biblioref">1996</a>)</span>. I also cite selected primary soruces where appropriate.</p>
+<p>Reading: pp. 1-20, (Soetaert and Hermann 2009)</p>
+<div id="whats-an-ecosystem" class="section level2">
+<h2><span class="header-section-number">2.1</span> What’s an ecosystem?</h2>
+You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">2.1</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (aka pools, stocks) are connected by <em>fluxes</em>, or flows, the transfer of some mass of the element. When these transfers come from outside the ecosystem entirely, we refer to them as <em>imports</em>. When the transfer exits the system entirely, we refer to it as an <em>exports</em>.
+<div class="figure"><span id="fig:lake"></span>
+<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.*" width="66%" />
+<p class="caption">
+Figure 2.1: <em>An ecosystem perspective of lake <span class="citation">(Carpenter et al. <a href="#ref-Carpenter1992" role="doc-biblioref">1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.</em>
+</p>
+</div>
+<p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">2.2</a>).</p>
+<div class="figure"><span id="fig:statefactors"></span>
+<img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2002].*" width="66%" />
+<p class="caption">
+Figure 2.2: <em>The current state of an ecosystem depends on state factors <span class="citation">(Chapin III, Matson, and Mooney <a href="#ref-Chapin2002" role="doc-biblioref">2002</a>)</span>.</em>
+</p>
+</div>
+</div>
 <div id="whats-a-model" class="section level2">
-<h2><span class="header-section-number">2.1</span> What’s a model?</h2>
-<div class="figure"><span id="fig:anpp"></span>
-<img src="figs/anpp-1.png" alt="A statistical model of aboveground plant biomass as a function of available soil nitrogen." width="90%" />
-<p class="caption">
-Figure 2.1: A statistical model of aboveground plant biomass as a function of available soil nitrogen.
-</p>
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;figs/LakeEcosystemCarpenteretal1992.png&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:compartment2"></span>
-<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="Compartment models of other stuff" width="100%" />
-<p class="caption">
-Figure 2.2: Compartment models of other stuff
-</p>
-</div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;figs/LakeEcosystemCarpenteretal1992.png&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:compartment2b"></span>
-<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="Compartment models of other stuff" width="50%" />
-<p class="caption">
-Figure 2.3: Compartment models of other stuff
-</p>
-</div>
-<p>We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.</p>
+<h2><span class="header-section-number">2.2</span> What’s a model?</h2>
+<p>You’ve already seen ecosystem models. In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.</p>
+<p>An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes. State factors also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in a parameter that controls the loss of soil nitrogen into the atmosphere. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em></p>
+<p>To review: variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
+<p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
+<div id="other-ideas" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Other ideas</h3>
 <p>Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these <em>mechanistic</em> models.</p>
-<p>A theory is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(<span class="citeproc-not-found" data-reference-id="Marquet2014"><strong>???</strong></span>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
+<div class="figure"><span id="fig:anpp"></span>
+<img src="figs/anpp-1.png" alt="*A statistical model of aboveground plant biomass as a function of available soil nitrogen.*" width="66%" />
+<p class="caption">
+Figure 2.3: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
+</p>
+</div>
+<p>A <em>theory</em> is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(Marquet et al. <a href="#ref-Marquet2014" role="doc-biblioref">2014</a>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
 <p>In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, <em>all models are wrong, but some are useful</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-</div>
-<div id="some-useful-terminology" class="section level2">
-<h2><span class="header-section-number">2.2</span> Some useful terminology</h2>
-<ul>
-<li>Domain and boundaries - the spatial, temporal and conceptual limits on a theory or model.</li>
-<li>Spatial and temporal scale</li>
-<li>State <em>factors</em> are forcing functions, constraints, and outside influences</li>
-<li>State <em>variables</em> are pools or stocks, have one currency (e.g., kg, individuals), vary through time; stuff whose variation we model.</li>
-<li>Flows = processes. They may be exchange between state variables (ecological, biogeochemical) such as ingestion, respiration, nutrient uptake; exchange with the external world we often refer to as transport, import, or export.</li>
-<li>Parameters are typically fixed rate constants governing process/flows</li>
-</ul>
 <p><strong>You might pause now</strong>, and ask yourself “is a lake a carbon sink or a source?” Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you’ve made about the temporal and spatial scales. What mechanisms have you included? Why?</p>
-</div>
-<div id="model-making" class="section level2">
-<h2><span class="header-section-number">2.3</span> Model making</h2>
 
+</div>
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references">
+<div id="ref-Carpenter1992">
+<p>Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. “Resilience and resistance of lake phosphorus cycle before and after food web manipulation.” <em>Am. Nat.</em> 140: 781–98.</p>
+</div>
+<div id="ref-Chapin2002">
+<p>Chapin III, F S, P A Matson, and H A Mooney. 2002. <em>Principles of Terrestrial Ecosystem Ecology</em>. Springer.</p>
+</div>
+<div id="ref-Haefner1996">
+<p>Haefner, J W. 1996. <em>Modeling Biological Systems: Principles and Applications</em>. New York: Chapman &amp; Hall.</p>
+</div>
+<div id="ref-Marquet2014">
+<p>Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. “On theory in ecology.” <em>BioScience</em> 64 (8): 701–10.</p>
+</div>
+<div id="ref-Soetaert2009">
+<p>Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -277,7 +290,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["primer-of-ecosystem-ecology.pdf", "primer-of-ecosystem-ecology.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

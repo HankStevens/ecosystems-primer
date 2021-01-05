@@ -4,14 +4,10 @@ author: "Hank Stevens, BIO 672"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
-    bookdown::tufte_html_book:
-      toc: yes
-      css: toc.css
-      includes:
-         in_header: analytics_tag_preface.html
+    bookdown::gitbook
 documentclass: book
-bibliography: [bibliography: [/Users/stevenmh/MyDrive/library.bib, book.bib, packages.bib]
-biblio-style: apalike
+bibliography: [ecosystems.bib, book.bib, packages.bib]
+biblio-style: plain
 link-citations: yes
 description: "This provides a part of foundation in understanding ecosystem models."
 github-repo: HankStevens/ecosystems-primer
@@ -23,7 +19,7 @@ clean: FALSE
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, results='markup', warning=FALSE, message=FALSE, fig.path = "/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/", knitr.graphics.auto_pdf = TRUE,
-                      message=FALSE, out.width="90%")
+                      message=FALSE, out.width="66%")
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
@@ -31,6 +27,7 @@ knitr::write_bib(c(
 
 library(deSolve)
 library(tidyverse)
+library(kableExtra) #kbl
 ```
 
-
+For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 

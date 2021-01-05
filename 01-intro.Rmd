@@ -1,4 +1,4 @@
-# Introduction to ecosystem modeling{#intro}
+# Introduction to ecosystem modeling {#intro}
 
 In this course, we'll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,
 
@@ -9,44 +9,44 @@ In this course, we'll cover the very basics of ecosystem modeling. There are sev
 * write R code to implement ecosystem models.
 
 
-To do all this, the following text relies heavily on selected secondary sources including @Soetaert2009 and @Haefner1996. I also cite selected primary soruces werhe appropriate.
+To do all this, the following text relies heavily on selected secondary sources including @Soetaert2009 and @Haefner1996. I also cite selected primary soruces where appropriate.
+
+Reading: pp. 1-20, (Soetaert and Hermann 2009)
+
+## What's an ecosystem?
+You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. \@ref(fig:lake)). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the *currency* of the ecosystem. These compartments (aka pools, stocks) are connected by *fluxes*, or flows, the transfer of some mass of the element. When these transfers come from outside the ecosystem entirely, we refer to them as *imports*. When the transfer exits the system entirely, we refer to it as an *exports*. 
+```{r lake, echo=FALSE, fig.cap="*An ecosystem perspective of lake [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.*"}
+knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
+```
+
+Ecosystem fluxes or flows are influenced by *state factors* such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. \@ref(fig:statefactors)). 
+
+```{r statefactors, echo=FALSE, fig.cap="*The current state of an ecosystem depends on state factors [@Chapin2002].*"}
+knitr::include_graphics("figs/Chapin_f1-5.png")
+```
 
 ## What's a model?
-```{r anpp, echo=FALSE, fig.cap="A statistical model of aboveground plant biomass as a function of available soil nitrogen." }
+You've already seen ecosystem models. In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.
+
+An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. State factors also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in a parameter that controls the loss of soil nitrogen into the atmosphere. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.*
+
+To review: variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.
+
+
+No models apply everywhere, all the time. All models are limited for a specific *domain* and with specific *boundaries*. These are the spatial, temporal and conceptual limits on a model. 
+
+### Other ideas
+Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these *mechanistic* models.
+
+```{r anpp, echo=FALSE, fig.cap="*A statistical model of aboveground plant biomass as a function of available soil nitrogen.*" }
 Soil_N <- runif(100, .1, 2.1)
 Abovegrd_plant_biomass <- Soil_N * .5 + Soil_N*rnorm(length(Soil_N), sd=.1)
 qplot(Soil_N, Abovegrd_plant_biomass, geom=c("point") ) + geom_smooth(method = "lm")
 ```
 
-```{r compartment2, fig.cap="Compartment models of other stuff", out.width="100%"}
-knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
-```
-```{r compartment2b, fig.cap="Compartment models of other stuff", out.width="50%"}
-knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
-```
+A *theory* is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows [@Marquet2014]. *Efficient* theory is based to as much as possible on first principles, and relies on as few assumptins as possible.
 
-We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.
+In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, *all models are wrong, but some are useful*^[Box, G. E. P. (1979), "Robustness in the strategy of scientific model building", in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.].
 
-
-Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these *mechanistic* models.
-
-
-A theory is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows [@Marquet2014]. *Efficient* theory is based to as much as possible on first principles, and relies on as few assumptins as possible.
-
-In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, *all models are wrong, but some are useful*^[Box, G. E. P. (1979), "Robustness in the strategy of scientific model building", in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.]. 
-
-
-## Some useful terminology
-
-
-* Domain and boundaries - the spatial, temporal and conceptual limits on a theory or model.
-* Spatial and temporal scale 
-* State *factors* are forcing functions, constraints, and outside influences
-* State *variables* are pools or stocks, have one currency (e.g., kg, individuals), vary through time; stuff whose variation we model.
-* Flows = processes. They may be exchange between state variables (ecological, biogeochemical) such as ingestion, respiration, nutrient uptake; exchange with the external world we often refer to as transport, import, or export.
-* Parameters are typically fixed rate constants governing process/flows
 
 **You might pause now**, and ask yourself "is a lake a carbon sink or a source?" Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you've made about the temporal and spatial scales. What mechanisms have you included? Why?
-
-
-## Model making

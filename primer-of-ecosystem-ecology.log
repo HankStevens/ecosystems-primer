@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.7)  4 JAN 2021 17:28
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.7)  4 JAN 2021 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -826,12 +826,10 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 158.
 File: figs/LakeEcosystemCarpenteretal1992.png Graphic file (type bmp)
 <figs/LakeEcosystemCarpenteretal1992.png>
-File: figs/LakeEcosystemCarpenteretal1992.png Graphic file (type bmp)
-<figs/LakeEcosystemCarpenteretal1992.png>
 [7]
 
 Package natbib Warning: Citation `Marquet2014' on page 8 undefined on input lin
-e 180.
+e 170.
 
 [8] [9] [10]
 Chapter 3.
@@ -839,41 +837,41 @@ File: figs/BormannF2.png Graphic file (type bmp)
 <figs/BormannF2.png>
 File: figs/model3.pdf Graphic file (type pdf)
 <use figs/model3.pdf>
-
-Underfull \vbox (badness 2856) has occurred while \output is active []
-
 [11
 
-] [12]
-Overfull \hbox (49.94458pt too wide) in paragraph at lines 262--275
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[12]
+Overfull \hbox (49.94458pt too wide) in paragraph at lines 243--256
 [][] 
  []
 
 [13]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 312--312
+Overfull \hbox (75.0pt too wide) in paragraph at lines 293--293
 []\TU/lmtt/m/n/10 ##           a1           a2           a3           a4       
     a5           a6[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 312--312
+Overfull \hbox (75.0pt too wide) in paragraph at lines 293--293
 []\TU/lmtt/m/n/10 ## 5.754772e-03 1.390977e-02 1.187970e-01 1.480851e-02 1.5000
 00e-01 2.127660e-05[] 
  []
 
 [14]
+File: /Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-5-1
+.pdf Graphic file (type pdf)
+<use /Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-5-1.
+pdf>
+[15] [16]
 File: /Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-6-1
 .pdf Graphic file (type pdf)
 <use /Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-6-1.
 pdf>
-[15] [16]
-File: /Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-7-1
-.pdf Graphic file (type pdf)
-<use /Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/unnamed-chunk-7-1.
-pdf>
 
 Package natbib Warning: Citation `Bormann1977' on page 17 undefined on input li
-ne 487.
+ne 468.
 
 [17] [18]
 Chapter 4.
@@ -889,18 +887,18 @@ Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 494.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 475.
 [21]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 494.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 475.
 (./primer-of-ecosystem-ecology.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 494.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 494.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 475.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 475.
  ) 
 Here is how much of TeX's memory you used:
- 19053 strings out of 479418
- 338931 string characters out of 5884586
- 778106 words of memory out of 5000000
- 36262 multiletter control sequences out of 15000+600000
+ 19051 strings out of 479418
+ 338896 string characters out of 5884586
+ 778055 words of memory out of 5000000
+ 36260 multiletter control sequences out of 15000+600000
  538845 words of font info for 84 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  58i,11n,118p,826b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
