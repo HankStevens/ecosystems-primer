@@ -48,5 +48,4 @@ A *theory* is a well supported hierarchical framework that contains clearly form
 
 In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, *all models are wrong, but some are useful*^[Box, G. E. P. (1979), "Robustness in the strategy of scientific model building", in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.].
 
-
 **You might pause now**, and ask yourself "is a lake a carbon sink or a source?" Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you've made about the temporal and spatial scales. What mechanisms have you included? Why?

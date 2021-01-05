@@ -1,0 +1,16 @@
+title: "A Primer of Ecosystem Modeling"
+author: "Hank Stevens, BIO 672"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+delete_merged_file: true
+output:
+  bookdown::gitbook
+# bookdown::tufte_book:
+#  includes:
+#    in_header:preamble.tex
+documentclass: book
+bibliography: [/Volumes/GoogleDrive/My Drive/library.bib, book.bib, packages.bib]
+biblio-style: plain
+link-citations: yes
+github-repo: HankStevens/ecosystems-primer
+output_dir: "docs"
