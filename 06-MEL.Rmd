@@ -2,7 +2,7 @@
 
 ## Rastetter et al. 1997
 
-@Rastetter1992ab proposed a model of multiple-element limitation of vegetation growth (MEL). @Rastetter1997aa extended that to include soil pools. We replicate this here. It is similar to our model of [@Bormann1977], but now includes both carbon and nitrogen.^[Rastetter et al. introduce a couple terms that make my skin crawl, and I will do my best to explain them, and avoid them where I can.]
+@Rastetter:1992ab proposed a model of multiple-element limitation of vegetation growth (MEL). @Rastetter:1997aa extended that to include soil pools. We replicate this here. It is similar to our model of [@Bormann1977], but now includes both carbon and nitrogen.^[Rastetter et al. introduce a couple terms that make my skin crawl, and I will do my best to explain them, and avoid them where I can.]
 
 By now, you've had some practice working with models, so take a gander at this one (Fig. \@ref(fig:rf1)). 
 
