@@ -1,8 +1,8 @@
-# Describing a nitrogen budget
+# Describing a nitrogen budget {#N}
 
 Readings:
 
-* pp. 20-35 (Soetaert and Hermann 2009)
+* pp. 17-35 (Soetaert and Hermann 2009)
 * Bormann et al. 1977
 
 ```{r hbnb, echo=FALSE, fig.cap="*Nitrogen bugdget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*", out.width = '100%'}
@@ -14,15 +14,40 @@ knitr::include_graphics("figs/model3.png")
 ```
 
 ## Getting started
-For any ecosystem, we want to start with paper and pencil and **sketch out the pools and the fluxes** that we think are important. Don't sweat the details yet -- you'll revise it anyway. Go ahead an label the compartments and the fluxes with some simple abstract notation. 
 
-For each flux, we want to decide **which pools diorectly influence the flux**. In  a forest, the flux of nitrogen from vegetation to soil will depend enormously on the amount of vegetation present as leaves senesce and fall, fine roots die back, and water leaches nutrients out of leaves and bark. The flux is very unlikely to depend directly on the amount of nitrogen already in the soil. In a lake, the flux of phosphorous from the water column into phytoplankton depends on the amounts of both the amount of phytoplankton and the amount of phosphate in the water at any given instant.
+1. (S&H 15-17) For any ecosystem, we want to start with paper and pencil and **sketch out the pools and the fluxes** that we think are important (see example, Fig. \@ref(fig:hbnb3)). Don't sweat the details yet -- you'll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation. 
 
-Next, we want to represent the fluxes in a mathematical form
+2. **Write balance equations** (S&H, 3, 17-20). For each flux, identify the underlying biological and physical processes. If you don't completely know, don't sweat it. Here are the balance equations for Fig. \@ref(fig:hbnb3):
+
+Rate of change of vegetation = uptake - exudates and through fall - leaf and root litter loss 
+$$\frac{dV}{dt} = f_1 - f_2 - f_3$$
+
+Rate of change in available pool in soil solution = bulk precip + exudates and through fall + net mineralization - uptake - stream export
+$$\frac{dA}{dt} = I_1 + f_2 + f_4 - f_1 - E_1$$
+
+Rate of change in the bound pool = net N fixation + leaf and root litter loss - net mineralization - stream export
+$$\frac{dB}{dt} = I_2 + f_3 - f_4 - E_2$$
+
+3. Assess the total load or mass budget (S&H, 19-22). For Fig. \@ref(fig:hbnb3), we have 
+$$\frac{d\left(V+A+B\right)}{dt} = \frac{dV}{dt} + \frac{dA}{dt} + \frac{dB}{dt} = (f_1 - f_2 - f_3) + (I_1 + f_2 + f_4 - f_1 - E_1) + (I_2 + f_3 - f_4 - E_2)$$
+$$\frac{d\left(V+A+B\right)}{dt} = I_1 + I_2 + f_1 - f_1 + f_2 - f_2 + f_3 - f_3  + f_4 - f_4 - E_1 - E_2$$
+
+$$\frac{d\left(V+A+B\right)}{dt} = I_1 + I_2 - E_1 - E_2$$
+From this we see that the total mass budget for this watershed depends simply on import or inputs, and exports or outputs.
+
+3. For each flux, **decide which pools directly influence the flux**. In  a forest, the flux of nitrogen from vegetation to soil will depend enormously on the amount of vegetation present as leaves senesce and fall, fine roots die back, and water leaches nutrients out of leaves and bark. The flux is very unlikely to depend directly on the amount of nitrogen already in the soil. In a lake, the flux of phosphorous from the water column into phytoplankton depends on the amounts of both the amount of phytoplankton and the amount of phosphate in the water at any given instant.
+
+For the vegetation pool in Fig. \@ref(fig:hbnb3), we see each flux ($f$) is a *Function* ($F()$) of one or two pools:
+
+* Uptake: $f_1 = F(V,A)$
+* Leaf and root litter, and  throughfall: $f_3 = F(V)$
+* Root exudates, and throughfall: $f_4 = F(V)$
+
+Next, we want to represent these fluxes in a mathematical form.
 
 ## First mathematical form for plant uptake
 
-A common starting point for dynamics depending on two pools is the law of *mass action*. This states that the reaction rate is proportional the product of the pools. In the case of plant uptake of N, which depends on the amounts of N in the available pool and the vegetation pool, this would be $aVA$, where $a$ is a proportionality constant. In some circumstances, these pools might also have exponents different than one, or $aVA^2$. This occurs in chemistry when a reaction requires two molecules of "A" for each molecule of "V". It might occur in ecology if a rate depends differentially on A and B. 
+A common starting point for dynamics depending on two pools is the law of *mass action*. This states that the reaction rate is proportional the product of the pools. In the case of plant uptake of N, which depends on the amounts of N in the available pool and the vegetation pool, this would be $aVA$, where $a$ is a proportionality constant. In some circumstances, these pools might also have exponents different than one ($aV^1A^1$), such as $aVA^2$. This occurs in chemistry when a reaction requires two molecules of "A" for each molecule of "V". It might occur in ecology if a rate depends differentially on A and B. 
 
 Using the law of mass action for plant uptake, we will describe the fluxes in the simple N budget above (Fig. \@ref(fig:hbnb3)) with the following expressions. 
 

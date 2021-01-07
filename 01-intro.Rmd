@@ -1,5 +1,9 @@
 # Introduction to ecosystem modeling {#intro}
 
+Reading: 
+
+* pp. 1-17, (Chapters 1, 2; Soetaert and Hermann 2009)
+
 In this course, we'll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,
 
 * become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;
@@ -8,10 +12,14 @@ In this course, we'll cover the very basics of ecosystem modeling. There are sev
 * create models of ecosystem dynamics of your own;
 * write R code to implement ecosystem models.
 
-
 To do all this, the following text relies heavily on selected secondary sources including @Soetaert2009 and @Haefner1996. I also cite selected primary soruces where appropriate.
 
-Reading: pp. 1-20, (Soetaert and Hermann 2009)
+## Why models?
+In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. \@ref(fig:SH1-3)). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations [@Soetaert2009].
+
+```{r SH1-3, echo=FALSE, fig.cap="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*"}
+knitr::include_graphics("figs/SH_F-1.3.png")
+```
 
 ## What's an ecosystem?
 You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. \@ref(fig:lake)). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the *currency* of the ecosystem. These compartments (aka pools, stocks) are connected by *fluxes*, or flows, the transfer of some mass of the element. When these transfers come from outside the ecosystem entirely, we refer to them as *imports*. When the transfer exits the system entirely, we refer to it as an *exports*. 
@@ -26,12 +34,9 @@ knitr::include_graphics("figs/Chapin_f1-5.png")
 ```
 
 ## What's a model?
-You've already seen ecosystem models. In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon. We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations.
-
-An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. State factors also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in a parameter that controls the loss of soil nitrogen into the atmosphere. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.*
+You've already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. State factors also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in a parameter that controls the loss of soil nitrogen into the atmosphere. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.*
 
 To review: variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.
-
 
 No models apply everywhere, all the time. All models are limited for a specific *domain* and with specific *boundaries*. These are the spatial, temporal and conceptual limits on a model. 
 
@@ -48,4 +53,12 @@ A *theory* is a well supported hierarchical framework that contains clearly form
 
 In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, *all models are wrong, but some are useful*^[Box, G. E. P. (1979), "Robustness in the strategy of scientific model building", in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.].
 
-**You might pause now**, and ask yourself "is a lake a carbon sink or a source?" Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you've made about the temporal and spatial scales. What mechanisms have you included? Why?
+**Exercise:** Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you've made about the temporal and spatial scales. What mechanisms have you included? Why?
+
+## Steps in modeling
+@Soetaert2009 identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. \@ref(fig:SH1-7)).
+```{r SH1-7, echo=FALSE, fig.cap="*It is helpful to use a series of steps in improving our models. (Figure 1.7 in Soetaert and Hermann, 2009).*", fig.show='hold', out.width='45%'}
+knitr::include_graphics("figs/SH_F-1.7a.png")
+knitr::include_graphics("figs/SH_F-1.7b.png")
+```
+

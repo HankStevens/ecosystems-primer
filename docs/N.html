@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-01-06" />
+<meta name="date" content="2021-01-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -143,15 +143,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
-<li class="chapter" data-level="3.1" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
-<li class="chapter" data-level="3.2" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.2</b> First mathematical form for plant uptake</a></li>
-<li class="chapter" data-level="3.3" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
-<li class="chapter" data-level="3.4" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="3.5" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#calibration-take-1"><i class="fa fa-check"></i><b>3.5</b> Calibration, take 1</a></li>
-<li class="chapter" data-level="3.6" data-path="describing-a-nitrogen-budget.html"><a href="describing-a-nitrogen-budget.html#budget-take-ii"><i class="fa fa-check"></i><b>3.6</b> Budget, take II</a></li>
+<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
+<li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
+<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.2</b> First mathematical form for plant uptake</a></li>
+<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
+<li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#calibration-take-1"><i class="fa fa-check"></i><b>3.5</b> Calibration, take 1</a></li>
+<li class="chapter" data-level="3.6" data-path="N.html"><a href="N.html#budget-take-ii"><i class="fa fa-check"></i><b>3.6</b> Budget, take II</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a><ul>
+<li class="chapter" data-level="5.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>5.1</b> Rastetter et al. 1997</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -169,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="describing-a-nitrogen-budget" class="section level1">
+<div id="N" class="section level1">
 <h1><span class="header-section-number">3</span> Describing a nitrogen budget</h1>
 <p>Readings:</p>
 <ul>
@@ -191,8 +194,8 @@ Figure 3.2: <em>A simpler compartment model for Hubbard Brook Watershed 6, based
 <div id="getting-started" class="section level2">
 <h2><span class="header-section-number">3.1</span> Getting started</h2>
 <ol style="list-style-type: decimal">
-<li><p>(S&amp;H 15-17) For any ecosystem, we want to start with paper and pencil and <strong>sketch out the pools and the fluxes</strong> that we think are important (see example, Fig. <a href="describing-a-nitrogen-budget.html#fig:hbnb3">3.2</a>). Don’t sweat the details yet – you’ll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation.</p></li>
-<li><p><strong>Write balance equations</strong> (S&amp;H, 3, 17-20). For each flux, identify the underlying biological and physical processes. If you don’t completely know, don’t sweat it. Here are the balance equations for Fig. <a href="describing-a-nitrogen-budget.html#fig:hbnb3">3.2</a>:</p></li>
+<li><p>(S&amp;H 15-17) For any ecosystem, we want to start with paper and pencil and <strong>sketch out the pools and the fluxes</strong> that we think are important (see example, Fig. <a href="N.html#fig:hbnb3">3.2</a>). Don’t sweat the details yet – you’ll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation.</p></li>
+<li><p><strong>Write balance equations</strong> (S&amp;H, 3, 17-20). For each flux, identify the underlying biological and physical processes. If you don’t completely know, don’t sweat it. Here are the balance equations for Fig. <a href="N.html#fig:hbnb3">3.2</a>:</p></li>
 </ol>
 <p>Rate of change of vegetation = uptake - exudates and through fall - leaf and root litter loss
 <span class="math display">\[\frac{dV}{dt} = f_1 - f_2 - f_3\]</span></p>
@@ -201,7 +204,7 @@ Figure 3.2: <em>A simpler compartment model for Hubbard Brook Watershed 6, based
 <p>Rate of change in the bound pool = net N fixation + leaf and root litter loss - net mineralization - stream export
 <span class="math display">\[\frac{dB}{dt} = I_2 + f_3 - f_4 - E_2\]</span></p>
 <ol start="3" style="list-style-type: decimal">
-<li>Assess the total load or mass budget (S&amp;H, 19-22). For Fig. <a href="describing-a-nitrogen-budget.html#fig:hbnb3">3.2</a>, we have
+<li>Assess the total load or mass budget (S&amp;H, 19-22). For Fig. <a href="N.html#fig:hbnb3">3.2</a>, we have
 <span class="math display">\[\frac{d\left(V+A+B\right)}{dt} = \frac{dV}{dt} + \frac{dA}{dt} + \frac{dB}{dt} = (f_1 - f_2 - f_3) + (I_1 + f_2 + f_4 - f_1 - E_1) + (I_2 + f_3 - f_4 - E_2)\]</span>
 <span class="math display">\[\frac{d\left(V+A+B\right)}{dt} = I_1 + I_2 + f_1 - f_1 + f_2 - f_2 + f_3 - f_3  + f_4 - f_4 - E_1 - E_2\]</span></li>
 </ol>
@@ -210,7 +213,7 @@ From this we see that the total mass budget for this watershed depends simply on
 <ol start="3" style="list-style-type: decimal">
 <li>For each flux, <strong>decide which pools directly influence the flux</strong>. In a forest, the flux of nitrogen from vegetation to soil will depend enormously on the amount of vegetation present as leaves senesce and fall, fine roots die back, and water leaches nutrients out of leaves and bark. The flux is very unlikely to depend directly on the amount of nitrogen already in the soil. In a lake, the flux of phosphorous from the water column into phytoplankton depends on the amounts of both the amount of phytoplankton and the amount of phosphate in the water at any given instant.</li>
 </ol>
-<p>For the vegetation pool in Fig. <a href="describing-a-nitrogen-budget.html#fig:hbnb3">3.2</a>, we see each flux (<span class="math inline">\(f\)</span>) is a <em>Function</em> (<span class="math inline">\(F()\)</span>) of one or two pools:</p>
+<p>For the vegetation pool in Fig. <a href="N.html#fig:hbnb3">3.2</a>, we see each flux (<span class="math inline">\(f\)</span>) is a <em>Function</em> (<span class="math inline">\(F()\)</span>) of one or two pools:</p>
 <ul>
 <li>Uptake: <span class="math inline">\(f_1 = F(V,A)\)</span></li>
 <li>Leaf and root litter, and throughfall: <span class="math inline">\(f_3 = F(V)\)</span></li>
@@ -221,7 +224,7 @@ From this we see that the total mass budget for this watershed depends simply on
 <div id="first-mathematical-form-for-plant-uptake" class="section level2">
 <h2><span class="header-section-number">3.2</span> First mathematical form for plant uptake</h2>
 <p>A common starting point for dynamics depending on two pools is the law of <em>mass action</em>. This states that the reaction rate is proportional the product of the pools. In the case of plant uptake of N, which depends on the amounts of N in the available pool and the vegetation pool, this would be <span class="math inline">\(aVA\)</span>, where <span class="math inline">\(a\)</span> is a proportionality constant. In some circumstances, these pools might also have exponents different than one (<span class="math inline">\(aV^1A^1\)</span>), such as <span class="math inline">\(aVA^2\)</span>. This occurs in chemistry when a reaction requires two molecules of “A” for each molecule of “V”. It might occur in ecology if a rate depends differentially on A and B.</p>
-<p>Using the law of mass action for plant uptake, we will describe the fluxes in the simple N budget above (Fig. <a href="describing-a-nitrogen-budget.html#fig:hbnb3">3.2</a>) with the following expressions.</p>
+<p>Using the law of mass action for plant uptake, we will describe the fluxes in the simple N budget above (Fig. <a href="N.html#fig:hbnb3">3.2</a>) with the following expressions.</p>
 <p><span class="math display">\[\begin{align}
 \frac{dV}{dt} &amp;= a_{1}AV - a_{2}V - a_3 V\\
 \frac{dA}{dt} &amp;= I_1 + a_{2}V +  a_{4}B - a_{5}A - a_{1}AV\\
@@ -364,29 +367,29 @@ kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-
 </tbody>
 </table>
 <p>Enter parameters into R.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="describing-a-nitrogen-budget.html#cb1-1"></a><span class="co"># Atmospheric inputs</span></span>
-<span id="cb1-2"><a href="describing-a-nitrogen-budget.html#cb1-2"></a><span class="co">##  Precip</span></span>
-<span id="cb1-3"><a href="describing-a-nitrogen-budget.html#cb1-3"></a>i1 &lt;-<span class="st"> </span><span class="fl">6.5</span></span>
-<span id="cb1-4"><a href="describing-a-nitrogen-budget.html#cb1-4"></a><span class="co">## fixation</span></span>
-<span id="cb1-5"><a href="describing-a-nitrogen-budget.html#cb1-5"></a>i2 &lt;-<span class="st"> </span><span class="fl">14.2</span></span>
-<span id="cb1-6"><a href="describing-a-nitrogen-budget.html#cb1-6"></a><span class="co"># uptake</span></span>
-<span id="cb1-7"><a href="describing-a-nitrogen-budget.html#cb1-7"></a>a1 &lt;-<span class="st"> </span><span class="fl">79.6</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">26</span> <span class="op">*</span><span class="st"> </span><span class="dv">532</span>)</span>
-<span id="cb1-8"><a href="describing-a-nitrogen-budget.html#cb1-8"></a><span class="co"># throughfall and exudates (inorganic)</span></span>
-<span id="cb1-9"><a href="describing-a-nitrogen-budget.html#cb1-9"></a>a2 &lt;-<span class="st"> </span>(<span class="fl">6.6</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">/</span><span class="st"> </span><span class="dv">532</span></span>
-<span id="cb1-10"><a href="describing-a-nitrogen-budget.html#cb1-10"></a><span class="co"># litter, throughfall, exudates (organic)</span></span>
-<span id="cb1-11"><a href="describing-a-nitrogen-budget.html#cb1-11"></a>a3 &lt;-<span class="st"> </span>(<span class="fl">54.2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">+</span><span class="st"> </span><span class="fl">6.2</span> ) <span class="op">/</span><span class="st"> </span><span class="dv">532</span></span>
-<span id="cb1-12"><a href="describing-a-nitrogen-budget.html#cb1-12"></a><span class="co"># net mineralization</span></span>
-<span id="cb1-13"><a href="describing-a-nitrogen-budget.html#cb1-13"></a>a4 &lt;-<span class="st"> </span><span class="fl">69.6</span> <span class="op">/</span><span class="st"> </span><span class="dv">4700</span></span>
-<span id="cb1-14"><a href="describing-a-nitrogen-budget.html#cb1-14"></a><span class="co"># export from available</span></span>
-<span id="cb1-15"><a href="describing-a-nitrogen-budget.html#cb1-15"></a>a5 &lt;-<span class="st"> </span><span class="fl">3.9</span> <span class="op">/</span><span class="dv">26</span></span>
-<span id="cb1-16"><a href="describing-a-nitrogen-budget.html#cb1-16"></a><span class="co">#export from bound</span></span>
-<span id="cb1-17"><a href="describing-a-nitrogen-budget.html#cb1-17"></a>a6 &lt;-<span class="st"> </span><span class="fl">0.1</span><span class="op">/</span><span class="dv">4700</span></span>
-<span id="cb1-18"><a href="describing-a-nitrogen-budget.html#cb1-18"></a></span>
-<span id="cb1-19"><a href="describing-a-nitrogen-budget.html#cb1-19"></a><span class="co"># make a vector</span></span>
-<span id="cb1-20"><a href="describing-a-nitrogen-budget.html#cb1-20"></a>params &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">a1 =</span> a1, <span class="dt">a2 =</span> a2, <span class="dt">a3 =</span> a3, <span class="dt">a4 =</span> a4, </span>
-<span id="cb1-21"><a href="describing-a-nitrogen-budget.html#cb1-21"></a>            <span class="dt">a5 =</span> a5, <span class="dt">a6 =</span> a6, <span class="dt">i1 =</span> i1, <span class="dt">i2 =</span> i2)</span>
-<span id="cb1-22"><a href="describing-a-nitrogen-budget.html#cb1-22"></a><span class="co">#...and look at it.</span></span>
-<span id="cb1-23"><a href="describing-a-nitrogen-budget.html#cb1-23"></a>params</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="N.html#cb1-1"></a><span class="co"># Atmospheric inputs</span></span>
+<span id="cb1-2"><a href="N.html#cb1-2"></a><span class="co">##  Precip</span></span>
+<span id="cb1-3"><a href="N.html#cb1-3"></a>i1 &lt;-<span class="st"> </span><span class="fl">6.5</span></span>
+<span id="cb1-4"><a href="N.html#cb1-4"></a><span class="co">## fixation</span></span>
+<span id="cb1-5"><a href="N.html#cb1-5"></a>i2 &lt;-<span class="st"> </span><span class="fl">14.2</span></span>
+<span id="cb1-6"><a href="N.html#cb1-6"></a><span class="co"># uptake</span></span>
+<span id="cb1-7"><a href="N.html#cb1-7"></a>a1 &lt;-<span class="st"> </span><span class="fl">79.6</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">26</span> <span class="op">*</span><span class="st"> </span><span class="dv">532</span>)</span>
+<span id="cb1-8"><a href="N.html#cb1-8"></a><span class="co"># throughfall and exudates (inorganic)</span></span>
+<span id="cb1-9"><a href="N.html#cb1-9"></a>a2 &lt;-<span class="st"> </span>(<span class="fl">6.6</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">/</span><span class="st"> </span><span class="dv">532</span></span>
+<span id="cb1-10"><a href="N.html#cb1-10"></a><span class="co"># litter, throughfall, exudates (organic)</span></span>
+<span id="cb1-11"><a href="N.html#cb1-11"></a>a3 &lt;-<span class="st"> </span>(<span class="fl">54.2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">+</span><span class="st"> </span><span class="fl">6.2</span> ) <span class="op">/</span><span class="st"> </span><span class="dv">532</span></span>
+<span id="cb1-12"><a href="N.html#cb1-12"></a><span class="co"># net mineralization</span></span>
+<span id="cb1-13"><a href="N.html#cb1-13"></a>a4 &lt;-<span class="st"> </span><span class="fl">69.6</span> <span class="op">/</span><span class="st"> </span><span class="dv">4700</span></span>
+<span id="cb1-14"><a href="N.html#cb1-14"></a><span class="co"># export from available</span></span>
+<span id="cb1-15"><a href="N.html#cb1-15"></a>a5 &lt;-<span class="st"> </span><span class="fl">3.9</span> <span class="op">/</span><span class="dv">26</span></span>
+<span id="cb1-16"><a href="N.html#cb1-16"></a><span class="co">#export from bound</span></span>
+<span id="cb1-17"><a href="N.html#cb1-17"></a>a6 &lt;-<span class="st"> </span><span class="fl">0.1</span><span class="op">/</span><span class="dv">4700</span></span>
+<span id="cb1-18"><a href="N.html#cb1-18"></a></span>
+<span id="cb1-19"><a href="N.html#cb1-19"></a><span class="co"># make a vector</span></span>
+<span id="cb1-20"><a href="N.html#cb1-20"></a>params &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">a1 =</span> a1, <span class="dt">a2 =</span> a2, <span class="dt">a3 =</span> a3, <span class="dt">a4 =</span> a4, </span>
+<span id="cb1-21"><a href="N.html#cb1-21"></a>            <span class="dt">a5 =</span> a5, <span class="dt">a6 =</span> a6, <span class="dt">i1 =</span> i1, <span class="dt">i2 =</span> i2)</span>
+<span id="cb1-22"><a href="N.html#cb1-22"></a><span class="co">#...and look at it.</span></span>
+<span id="cb1-23"><a href="N.html#cb1-23"></a>params</span></code></pre></div>
 <pre><code>##           a1           a2           a3           a4           a5           a6 
 ## 5.754772e-03 1.390977e-02 1.187970e-01 1.480851e-02 1.500000e-01 2.127660e-05 
 ##           i1           i2 
@@ -401,30 +404,30 @@ solutions. For most ecosystem models, we have to solve the models
 numerically using <em>numerical integration</em>.</p>
 <p>Here we write a function that includes our system of differential
 equations. This will allow R to integrate change through time.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="describing-a-nitrogen-budget.html#cb3-1"></a>bormann1 &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, p) {</span>
-<span id="cb3-2"><a href="describing-a-nitrogen-budget.html#cb3-2"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
-<span id="cb3-3"><a href="describing-a-nitrogen-budget.html#cb3-3"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
-<span id="cb3-4"><a href="describing-a-nitrogen-budget.html#cb3-4"></a>  <span class="co"># a1 = uptake</span></span>
-<span id="cb3-5"><a href="describing-a-nitrogen-budget.html#cb3-5"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
-<span id="cb3-6"><a href="describing-a-nitrogen-budget.html#cb3-6"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
-<span id="cb3-7"><a href="describing-a-nitrogen-budget.html#cb3-7"></a>  <span class="co"># a4 = net mineralization</span></span>
-<span id="cb3-8"><a href="describing-a-nitrogen-budget.html#cb3-8"></a>  <span class="co"># a5 = export from avail</span></span>
-<span id="cb3-9"><a href="describing-a-nitrogen-budget.html#cb3-9"></a>  <span class="co"># a6 = export from bound</span></span>
-<span id="cb3-10"><a href="describing-a-nitrogen-budget.html#cb3-10"></a>  <span class="kw">with</span>( <span class="kw">as.list</span>( <span class="kw">c</span>(y, p) ), {</span>
-<span id="cb3-11"><a href="describing-a-nitrogen-budget.html#cb3-11"></a>    dV.dt &lt;-<span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V</span>
-<span id="cb3-12"><a href="describing-a-nitrogen-budget.html#cb3-12"></a>    dA.dt &lt;-<span class="st"> </span>i1 <span class="op">+</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">+</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a5 <span class="op">*</span><span class="st"> </span>A </span>
-<span id="cb3-13"><a href="describing-a-nitrogen-budget.html#cb3-13"></a>    dB.dt &lt;-<span class="st"> </span>i2 <span class="op">+</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a6 <span class="op">*</span><span class="st"> </span>B </span>
-<span id="cb3-14"><a href="describing-a-nitrogen-budget.html#cb3-14"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
-<span id="cb3-15"><a href="describing-a-nitrogen-budget.html#cb3-15"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
-<span id="cb3-16"><a href="describing-a-nitrogen-budget.html#cb3-16"></a>    <span class="co"># in the same order as the state variables in y</span></span>
-<span id="cb3-17"><a href="describing-a-nitrogen-budget.html#cb3-17"></a>    <span class="co"># The second element is the total N in the system</span></span>
-<span id="cb3-18"><a href="describing-a-nitrogen-budget.html#cb3-18"></a>    <span class="kw">return</span>(<span class="kw">list</span>( <span class="kw">c</span>(dV.dt, dA.dt, dB.dt), </span>
-<span id="cb3-19"><a href="describing-a-nitrogen-budget.html#cb3-19"></a>                 <span class="dt">total =</span> V <span class="op">+</span><span class="st"> </span>A <span class="op">+</span><span class="st"> </span>B </span>
-<span id="cb3-20"><a href="describing-a-nitrogen-budget.html#cb3-20"></a>                 )  )})</span>
-<span id="cb3-21"><a href="describing-a-nitrogen-budget.html#cb3-21"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="N.html#cb3-1"></a>bormann1 &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, p) {</span>
+<span id="cb3-2"><a href="N.html#cb3-2"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
+<span id="cb3-3"><a href="N.html#cb3-3"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
+<span id="cb3-4"><a href="N.html#cb3-4"></a>  <span class="co"># a1 = uptake</span></span>
+<span id="cb3-5"><a href="N.html#cb3-5"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
+<span id="cb3-6"><a href="N.html#cb3-6"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
+<span id="cb3-7"><a href="N.html#cb3-7"></a>  <span class="co"># a4 = net mineralization</span></span>
+<span id="cb3-8"><a href="N.html#cb3-8"></a>  <span class="co"># a5 = export from avail</span></span>
+<span id="cb3-9"><a href="N.html#cb3-9"></a>  <span class="co"># a6 = export from bound</span></span>
+<span id="cb3-10"><a href="N.html#cb3-10"></a>  <span class="kw">with</span>( <span class="kw">as.list</span>( <span class="kw">c</span>(y, p) ), {</span>
+<span id="cb3-11"><a href="N.html#cb3-11"></a>    dV.dt &lt;-<span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V</span>
+<span id="cb3-12"><a href="N.html#cb3-12"></a>    dA.dt &lt;-<span class="st"> </span>i1 <span class="op">+</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">+</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a5 <span class="op">*</span><span class="st"> </span>A </span>
+<span id="cb3-13"><a href="N.html#cb3-13"></a>    dB.dt &lt;-<span class="st"> </span>i2 <span class="op">+</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a6 <span class="op">*</span><span class="st"> </span>B </span>
+<span id="cb3-14"><a href="N.html#cb3-14"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
+<span id="cb3-15"><a href="N.html#cb3-15"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
+<span id="cb3-16"><a href="N.html#cb3-16"></a>    <span class="co"># in the same order as the state variables in y</span></span>
+<span id="cb3-17"><a href="N.html#cb3-17"></a>    <span class="co"># The second element is the total N in the system</span></span>
+<span id="cb3-18"><a href="N.html#cb3-18"></a>    <span class="kw">return</span>(<span class="kw">list</span>( <span class="kw">c</span>(dV.dt, dA.dt, dB.dt), </span>
+<span id="cb3-19"><a href="N.html#cb3-19"></a>                 <span class="dt">total =</span> V <span class="op">+</span><span class="st"> </span>A <span class="op">+</span><span class="st"> </span>B </span>
+<span id="cb3-20"><a href="N.html#cb3-20"></a>                 )  )})</span>
+<span id="cb3-21"><a href="N.html#cb3-21"></a>}</span></code></pre></div>
 <p>Now that we have the function, we tell R what to do with it. We will define the <em>initial state of the system</em>, and then tell R which time point we want it to return.</p>
 <p>The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in <span class="citation">Bormann, Likens, and Melillo (<a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="describing-a-nitrogen-budget.html#cb4-1"></a>initial.state &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="N.html#cb4-1"></a>initial.state &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">V =</span> <span class="dv">532</span>, <span class="dt">A =</span> <span class="dv">26</span>, <span class="dt">B =</span> <span class="dv">4700</span>)</span></code></pre></div>
 </div>
 <div id="calibration-take-1" class="section level2">
 <h2><span class="header-section-number">3.5</span> Calibration, take 1</h2>
@@ -434,9 +437,9 @@ by using independent data to estimates parameters directly.</p>
 <p>If we take a look at the model output (above), we see both differences
 and similarities with Bormann et al. What are they?</p>
 <p>What if we run it out longer, say, 100 years?</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="describing-a-nitrogen-budget.html#cb5-1"></a>time &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">250</span></span>
-<span id="cb5-2"><a href="describing-a-nitrogen-budget.html#cb5-2"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> initial.state, <span class="dt">times=</span>time, <span class="dt">func=</span>bormann1, <span class="dt">parms =</span> params)</span>
-<span id="cb5-3"><a href="describing-a-nitrogen-budget.html#cb5-3"></a><span class="kw">head</span>(<span class="kw">round</span>(out,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="N.html#cb5-1"></a>time &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">250</span></span>
+<span id="cb5-2"><a href="N.html#cb5-2"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> initial.state, <span class="dt">times=</span>time, <span class="dt">func=</span>bormann1, <span class="dt">parms =</span> params)</span>
+<span id="cb5-3"><a href="N.html#cb5-3"></a><span class="kw">head</span>(<span class="kw">round</span>(out,<span class="dv">1</span>))</span></code></pre></div>
 <pre><code>##      time     V    A      B  total
 ## [1,]    0 532.0 26.0 4700.0 5258.0
 ## [2,]    1 540.8 25.8 4708.2 5274.7
@@ -444,13 +447,13 @@ and similarities with Bormann et al. What are they?</p>
 ## [4,]    3 556.0 25.2 4727.0 5308.3
 ## [5,]    4 562.6 25.0 4737.5 5325.1
 ## [6,]    5 568.6 24.8 4748.6 5342.0</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="describing-a-nitrogen-budget.html#cb7-1"></a><span class="co">#plot(out)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="N.html#cb7-1"></a><span class="co">#plot(out)</span></span></code></pre></div>
 <p>Use <code>gather()</code> and <code>ggplot()</code> to make a graph. We use <code>gather()</code> gather multiple columns into one with a new name (<code>value=kg.N</code>), keeping track of the names of the original columns in a new column (<code>key=State.var</code>). We can use <code>spread()</code> if we ever want to spread those columns back out.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="describing-a-nitrogen-budget.html#cb8-1"></a>outL &lt;-<span class="st"> </span>out <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-2"><a href="describing-a-nitrogen-budget.html#cb8-2"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-3"><a href="describing-a-nitrogen-budget.html#cb8-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>( <span class="dt">cols=</span><span class="op">-</span>time, <span class="dt">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="dt">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
-<span id="cb8-4"><a href="describing-a-nitrogen-budget.html#cb8-4"></a></span>
-<span id="cb8-5"><a href="describing-a-nitrogen-budget.html#cb8-5"></a><span class="kw">ggplot</span>(outL, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>kg.N)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State.var, <span class="dt">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="N.html#cb8-1"></a>outL &lt;-<span class="st"> </span>out <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="N.html#cb8-2"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-3"><a href="N.html#cb8-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>( <span class="dt">cols=</span><span class="op">-</span>time, <span class="dt">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="dt">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
+<span id="cb8-4"><a href="N.html#cb8-4"></a></span>
+<span id="cb8-5"><a href="N.html#cb8-5"></a><span class="kw">ggplot</span>(outL, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>kg.N)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State.var, <span class="dt">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-6"></span>
 <img src="figs/unnamed-chunk-6-1.png" alt="Dynamics of a simple N budget, based on Bormann et al. (1977)." width="66%" />
 <p class="caption">
@@ -480,35 +483,35 @@ If we add self-limitation, we get
 <span class="math display">\[\frac{dV}{dt} = \left(a_{1}A - a_{2} - a_3\right) V \left(1-\frac{V}{K}\right)\]</span>
 where <span class="math inline">\(K\)</span> is the maximum amount of live vegetation that the ecosystem can sustain, in kg,N,ha<span class="math inline">\(^{-1}\)</span>. We don’t know exactly what that is yet, but we may be able to get estimates from the literature. For know we can pretend that it is just a bit more than was there in the mid-1970s, say, <span class="math inline">\(K=600\)</span>.</p>
 <p>Now we rewrite the R function with self-limitation.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="describing-a-nitrogen-budget.html#cb9-1"></a>bormann2 &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, p) {</span>
-<span id="cb9-2"><a href="describing-a-nitrogen-budget.html#cb9-2"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
-<span id="cb9-3"><a href="describing-a-nitrogen-budget.html#cb9-3"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
-<span id="cb9-4"><a href="describing-a-nitrogen-budget.html#cb9-4"></a>  <span class="co"># a1 = uptake</span></span>
-<span id="cb9-5"><a href="describing-a-nitrogen-budget.html#cb9-5"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
-<span id="cb9-6"><a href="describing-a-nitrogen-budget.html#cb9-6"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
-<span id="cb9-7"><a href="describing-a-nitrogen-budget.html#cb9-7"></a>  <span class="co"># a4 = net mineralization</span></span>
-<span id="cb9-8"><a href="describing-a-nitrogen-budget.html#cb9-8"></a>  <span class="co"># a5 = export from avail</span></span>
-<span id="cb9-9"><a href="describing-a-nitrogen-budget.html#cb9-9"></a>  <span class="co"># a6 = export from bound</span></span>
-<span id="cb9-10"><a href="describing-a-nitrogen-budget.html#cb9-10"></a>  <span class="kw">with</span>( <span class="kw">as.list</span>( <span class="kw">c</span>(y, p) ), {</span>
-<span id="cb9-11"><a href="describing-a-nitrogen-budget.html#cb9-11"></a>    dV.dt &lt;-<span class="st"> </span>(a1 <span class="op">*</span><span class="st"> </span>A  <span class="op">-</span><span class="st"> </span>a2  <span class="op">-</span><span class="st"> </span>a3) <span class="op">*</span><span class="st"> </span>V <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>V<span class="op">/</span>K)</span>
-<span id="cb9-12"><a href="describing-a-nitrogen-budget.html#cb9-12"></a>    dA.dt &lt;-<span class="st"> </span>i1 <span class="op">+</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">+</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a5 <span class="op">*</span><span class="st"> </span>A </span>
-<span id="cb9-13"><a href="describing-a-nitrogen-budget.html#cb9-13"></a>    dB.dt &lt;-<span class="st"> </span>i2 <span class="op">+</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a6 <span class="op">*</span><span class="st"> </span>B </span>
-<span id="cb9-14"><a href="describing-a-nitrogen-budget.html#cb9-14"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
-<span id="cb9-15"><a href="describing-a-nitrogen-budget.html#cb9-15"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
-<span id="cb9-16"><a href="describing-a-nitrogen-budget.html#cb9-16"></a>    <span class="co"># in the same order as the state variables in y</span></span>
-<span id="cb9-17"><a href="describing-a-nitrogen-budget.html#cb9-17"></a>    <span class="co"># The second element is the total N in the system</span></span>
-<span id="cb9-18"><a href="describing-a-nitrogen-budget.html#cb9-18"></a>    <span class="kw">return</span>(<span class="kw">list</span>( <span class="kw">c</span>(dV.dt, dA.dt, dB.dt), </span>
-<span id="cb9-19"><a href="describing-a-nitrogen-budget.html#cb9-19"></a>                 <span class="dt">total =</span> V <span class="op">+</span><span class="st"> </span>A <span class="op">+</span><span class="st"> </span>B </span>
-<span id="cb9-20"><a href="describing-a-nitrogen-budget.html#cb9-20"></a>                 )  )})</span>
-<span id="cb9-21"><a href="describing-a-nitrogen-budget.html#cb9-21"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="N.html#cb9-1"></a>bormann2 &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, p) {</span>
+<span id="cb9-2"><a href="N.html#cb9-2"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
+<span id="cb9-3"><a href="N.html#cb9-3"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
+<span id="cb9-4"><a href="N.html#cb9-4"></a>  <span class="co"># a1 = uptake</span></span>
+<span id="cb9-5"><a href="N.html#cb9-5"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
+<span id="cb9-6"><a href="N.html#cb9-6"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
+<span id="cb9-7"><a href="N.html#cb9-7"></a>  <span class="co"># a4 = net mineralization</span></span>
+<span id="cb9-8"><a href="N.html#cb9-8"></a>  <span class="co"># a5 = export from avail</span></span>
+<span id="cb9-9"><a href="N.html#cb9-9"></a>  <span class="co"># a6 = export from bound</span></span>
+<span id="cb9-10"><a href="N.html#cb9-10"></a>  <span class="kw">with</span>( <span class="kw">as.list</span>( <span class="kw">c</span>(y, p) ), {</span>
+<span id="cb9-11"><a href="N.html#cb9-11"></a>    dV.dt &lt;-<span class="st"> </span>(a1 <span class="op">*</span><span class="st"> </span>A  <span class="op">-</span><span class="st"> </span>a2  <span class="op">-</span><span class="st"> </span>a3) <span class="op">*</span><span class="st"> </span>V <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>V<span class="op">/</span>K)</span>
+<span id="cb9-12"><a href="N.html#cb9-12"></a>    dA.dt &lt;-<span class="st"> </span>i1 <span class="op">+</span><span class="st"> </span>a2 <span class="op">*</span><span class="st"> </span>V <span class="op">+</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a1 <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a5 <span class="op">*</span><span class="st"> </span>A </span>
+<span id="cb9-13"><a href="N.html#cb9-13"></a>    dB.dt &lt;-<span class="st"> </span>i2 <span class="op">+</span><span class="st"> </span>a3 <span class="op">*</span><span class="st"> </span>V <span class="op">-</span><span class="st"> </span>a4 <span class="op">*</span><span class="st"> </span>B <span class="op">-</span><span class="st"> </span>a6 <span class="op">*</span><span class="st"> </span>B </span>
+<span id="cb9-14"><a href="N.html#cb9-14"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
+<span id="cb9-15"><a href="N.html#cb9-15"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
+<span id="cb9-16"><a href="N.html#cb9-16"></a>    <span class="co"># in the same order as the state variables in y</span></span>
+<span id="cb9-17"><a href="N.html#cb9-17"></a>    <span class="co"># The second element is the total N in the system</span></span>
+<span id="cb9-18"><a href="N.html#cb9-18"></a>    <span class="kw">return</span>(<span class="kw">list</span>( <span class="kw">c</span>(dV.dt, dA.dt, dB.dt), </span>
+<span id="cb9-19"><a href="N.html#cb9-19"></a>                 <span class="dt">total =</span> V <span class="op">+</span><span class="st"> </span>A <span class="op">+</span><span class="st"> </span>B </span>
+<span id="cb9-20"><a href="N.html#cb9-20"></a>                 )  )})</span>
+<span id="cb9-21"><a href="N.html#cb9-21"></a>}</span></code></pre></div>
 <p>We can add a new parameter to our vector of parameters, and then solve our new function <code>bormann2</code> for the same time interval, and plot it.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="describing-a-nitrogen-budget.html#cb10-1"></a>params[<span class="st">&quot;K&quot;</span>] &lt;-<span class="st"> </span><span class="dv">600</span></span>
-<span id="cb10-2"><a href="describing-a-nitrogen-budget.html#cb10-2"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> initial.state, <span class="dt">times=</span>time, <span class="dt">func=</span>bormann2, <span class="dt">parms =</span> params)</span>
-<span id="cb10-3"><a href="describing-a-nitrogen-budget.html#cb10-3"></a>outL2 &lt;-<span class="st"> </span>out <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb10-4"><a href="describing-a-nitrogen-budget.html#cb10-4"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
-<span id="cb10-5"><a href="describing-a-nitrogen-budget.html#cb10-5"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="op">-</span>time, <span class="dt">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="dt">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
-<span id="cb10-6"><a href="describing-a-nitrogen-budget.html#cb10-6"></a></span>
-<span id="cb10-7"><a href="describing-a-nitrogen-budget.html#cb10-7"></a><span class="kw">ggplot</span>(outL2, <span class="kw">aes</span>(time, kg.N)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State.var, <span class="dt">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="N.html#cb10-1"></a>params[<span class="st">&quot;K&quot;</span>] &lt;-<span class="st"> </span><span class="dv">600</span></span>
+<span id="cb10-2"><a href="N.html#cb10-2"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y =</span> initial.state, <span class="dt">times=</span>time, <span class="dt">func=</span>bormann2, <span class="dt">parms =</span> params)</span>
+<span id="cb10-3"><a href="N.html#cb10-3"></a>outL2 &lt;-<span class="st"> </span>out <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-4"><a href="N.html#cb10-4"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="N.html#cb10-5"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="op">-</span>time, <span class="dt">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="dt">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
+<span id="cb10-6"><a href="N.html#cb10-6"></a></span>
+<span id="cb10-7"><a href="N.html#cb10-7"></a><span class="kw">ggplot</span>(outL2, <span class="kw">aes</span>(time, kg.N)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State.var, <span class="dt">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-7"></span>
 <img src="figs/unnamed-chunk-7-1.png" alt="Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977)." width="66%" />
 <p class="caption">
@@ -519,7 +522,7 @@ Figure 3.4: Dynamics of an N budget, assuming density-dependence in vegetation w
 
 </div>
 </div>
-<h3> References</h3>
+<h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-Bormann1977">
 <p>Bormann, F H, G E Likens, and J M Melillo. 1977. “Nitrogen budget for an aggrading northern hardwood forest ecosystem.” <em>Science (New York, N.Y.)</em> 196 (4293): 981–3.</p>
