@@ -6,7 +6,7 @@
 
 By now, you've had some practice working with models, so take a gander at this one (Fig. \@ref(fig:rf1)). 
 
-```{r rf1, echo=FALSE, fig.cap="*Fig. 1 from Rastetter et al. 1997. Variables $B$, $E$, and $D$ elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO$_2$), and organic form in soil detritus. Variable $V_i$ is allocation related to nutrient acquistion. $U$ is uptake by vegetation or microbes in detritus (broadly defined), $R_N$ is deposition, and $L_N$ is loss via leaching or denitrification. $R$ is renewal into the inorganic pools. Other terms are explained in the Table below.*", out.width='100%' }
+```{r rf1, echo=FALSE, fig.cap="*Fig. 1 from Rastetter et al. 1997. Variables $B$, $E$, and $D$ elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO$_2$), and organic form in soil detritus. Variable $V_i$ is allocation related to nutrient acquistion. $U$ is uptake by vegetation or microbes in detritus (broadly defined), $R_N$ is deposition, and $L_N$ is loss via leaching or denitrification. $R$ is renewal into the inorganic pools. The little triangles or bowties on fluxes refer to some rate-controlling function; $B$ and $V$ exchange information (dotted lines) that influences fluxes. Other terms are explained in the Table below.*", out.width='100%' }
 knitr::include_graphics("figs/Rastetter97-F1.png")
 ```
 
@@ -15,20 +15,22 @@ knitr::include_graphics("figs/Rastetter97-T1a.png")
 knitr::include_graphics("figs/Rastetter97-T1b.png")
 ```
 
-MEL uses the parameter $A$ for "acclimation", which we can think of as *compensation* by vegetation. *Acclimation* has a perfectly good meaning in ecophysiology, which is short- to near-term reversible physiological adjustment in response to changing conditions. In MEL "acclimation" means shifts in the relative rates of C and N accumulation in vegetation, resulting in and from changes in the C:N ratio of vegetation. This could happen through physiological, ecological, and evolutionary changes in plant species composition, ratios of root, stem, leaves and reproductive structures, or changes in tissue C:N ratios. "Acclimation" covers a range of responses with very different time scales.
+MEL uses the parameter $A$ for "acclimation", which we can think of as *compensation* by vegetation that is associated with homeostatic responses to resource supply rates that differ from a stoichiometric ideal. *Acclimation* has a perfectly good meaning in ecophysiology, which is short- to near-term reversible physiological adjustment in response to changing conditions. In MEL, "acclimation" is much broader, and this early version, it means shifts in the relative rates of C and N accumulation in vegetation, resulting in and from changes in the C:N ratio of vegetation. This occurs due to the ratio of wood to non-woody tissue, defined by $q$.
 
-MEL uses the state variables, $V_C$ and $V_N$, to represent *allocation* of uptake of C and N respectively. They use the anthropomorphic term "effort" for this pattern of allocation, as in "...increasing uptake effort to acquire limiting soil nutrients." 
+Compensatory dynamics by vegetation, or "acclimation", is a very important part of this model. "Vegetation" is a complex adaptive system that undergoes diverse changes across many time scales. This could happen through physiological, ecological, and evolutionary changes in plant species composition, ratios of root, stem, leaves and reproductive structures, or changes in tissue C:N ratios. "Acclimation" covers a range of responses with very different time scales, and the variable $A$ is how these changes are incorporated into this ecosystem model. In a later section, we explore the meaning and implications of MEL acclimation.
 
-Starting with the parameters.
-```{r rt2, echo=FALSE, fig.cap="*Table 2 (Rastetter et al 1997).*", out.width="90%"}
+In MEL, vegetation "acclimates" through differential allocation to carbon vs. nitrogen uptake functions. Rastetter et al. refers to this as uptake "effort". They use this anthropomorphic term "effort" for a pattern of allocation, as in "...increasing uptake effort to acquire limiting soil nutrients." MEL uses the state variables, $V_C$ and $V_N$, to represent this "effort" or allocation of uptake of C and N respectively. In a later section, we explore the meaning and implications of MEL effort.
+
+```{r rt2, eval=FALSE, echo=FALSE, fig.cap="*Table 2 (Rastetter et al 1997).*", out.width="90%"}
 knitr::include_graphics("figs/Rastetter97-T2.png")
 ```
 
+Here we start with a vector of model parameters whose description and units are found in Table 1 above. The numeric values come from Table 2 in Rastetter et al. (1997). You should copy these into your own script, and then add your own comments to each parameter, as I started to.
 ```{r}
 p <- c(
   # carbon, nitrogen
-  Rce=0, Rne=1,
-  Rcm=452, Rnm=17.68,
+  Rce=0, Rne=1, # renewal from outside the ecosystem (e.g., atmospheric deposition)
+  Rcm=452, Rnm=17.68, # C respiration, N mineralization 
   Rcv=452, Rnv=2.151,
   gc=1116, gn =23.77,
   rc=0.02055, rn=0.01955,
@@ -56,13 +58,15 @@ states <- c(Ec=1, En=1, Bc=1, Bn=1, Dc=1, Dn=1, Vc=1, Vn=1)
 
 ```
 
-The model.
+Next we write out the model nearly as written in Rastetter et al. (1997), but with some reordering. By default, R is an *interpreted language* rather than a *compiled language*. What that means for us is that R processes commands one line at a time. Therefore, if a function F requires parameter x, we have to make sure parameter x is defined before we define F. In our implementation of MEL below, `Mc` requires `Ucm`, so `Ucm` needs to be defined before `Mc`.  
+
+As you did for the parameters, copy this into your own script and add more comments to those I started.
 ```{r}
 mel2 <- function(time, y, p){
   with(as.list(c(y,p)), {
     
-    ## Carbon is 1
-    ## Nitrogen is 2
+    ## Carbon is 1 and Nitrogen is 2 in 
+    ## Fig. 1 of Rastetter et al. (1997)
    
     ##  UPTAKE by Microbes
     Ucm <- psi*alpha_c*theta*Dn^2 * Ec/(Dc*(k_cm + Ec)) 
@@ -125,22 +129,28 @@ mel2 <- function(time, y, p){
     return(list(c(dE_C, dE_N, dB_C, dB_N, dD_C, dD_N, dV_C, dV_N)))
   })
 }
+```
+
+Here we define the initial conditions of the ecosystem, taken from Table 2 [@Rastetter:1997aa]. We then run the model for 50 years
+```{r}
 states <- c(Ec=350, En=1, # Inorganic nutrients g/m^2
             Bc=22000, Bn=110, # Biomass nutrients g/m^2
             Dc=13000, Dn=521, # Detritus nutrients g/m^2
             Vc=0.5, Vn=0.5 # allocation "effort" unitless
             )
-t=seq(0,100, by=1)
+t=seq(0,50, by=.5)
 out <- ode(states, t, func=mel2, parms=p)
-#out
-plot(out)
 
+# plot(out) # graphics generated with R base graphics
+
+# graphics generated with tidyr and ggplot2
+# create "tidy" data
 outL <- out %>% as.data.frame() %>%
   pivot_longer(cols=-time, names_to="State_var", values_to="g.sq.m")
+# plot
 ggplot(outL, aes(x=time, y=g.sq.m)) + geom_line() + 
   facet_wrap(~State_var, nrow=2, scales="free")
 ```
 
-
-
+Cool, right? 
 

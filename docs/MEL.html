@@ -176,12 +176,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">4</span> Multiple Element Limitation</h1>
 <div id="rastetter-et-al.-1997" class="section level2">
 <h2><span class="header-section-number">4.1</span> Rastetter et al. 1997</h2>
-<p><span class="citation">E. B. Rastetter and Shaver (<a href="#ref-Rastetter:1992ab" role="doc-biblioref">n.d.</a>)</span> proposed a model of multiple-element limitation of vegetation growth (MEL). <span class="citation">E. Rastetter, Agren, and Shaver (<a href="#ref-Rastetter:1997aa" role="doc-biblioref">n.d.</a>)</span> extended that to include soil pools. We replicate this here. It is similar to our model of <span class="citation">(Bormann, Likens, and Melillo <a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span>, but now includes both carbon and nitrogen.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p><span class="citation">Rastetter and Shaver (<a href="#ref-Rastetter:1992ab" role="doc-biblioref">1992</a>)</span> proposed a model of multiple-element limitation of vegetation growth (MEL). <span class="citation">Rastetter, Agren, and Shaver (<a href="#ref-Rastetter:1997aa" role="doc-biblioref">1997</a>)</span> extended that to include soil pools. We replicate this here. It is similar to our model of <span class="citation">(Bormann, Likens, and Melillo <a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span>, but now includes both carbon and nitrogen.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>By now, you’ve had some practice working with models, so take a gander at this one (Fig. <a href="MEL.html#fig:rf1">4.1</a>).</p>
 <div class="figure"><span id="fig:rf1"></span>
-<img src="figs/Rastetter97-F1.png" alt="*Fig. 1 from Rastetter et al. 1997. Variables $B$, $E$, and $D$ elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO$_2$), and organic form in soil detritus. Variable $V_i$ is allocation related to nutrient acquistion. $U$ is uptake by vegetation or microbes in detritus (broadly defined), $R_N$ is deposition, and $L_N$ is loss via leaching or denitrification. $R$ is renewal into the inorganic pools. Other terms are explained in the Table below.*" width="100%" />
+<img src="figs/Rastetter97-F1.png" alt="*Fig. 1 from Rastetter et al. 1997. Variables $B$, $E$, and $D$ elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO$_2$), and organic form in soil detritus. Variable $V_i$ is allocation related to nutrient acquistion. $U$ is uptake by vegetation or microbes in detritus (broadly defined), $R_N$ is deposition, and $L_N$ is loss via leaching or denitrification. $R$ is renewal into the inorganic pools. The little triangles or bowties on fluxes refer to some rate-controlling function; $B$ and $V$ exchange information (dotted lines) that influences fluxes. Other terms are explained in the Table below.*" width="100%" />
 <p class="caption">
-Figure 4.1: <em>Fig. 1 from Rastetter et al. 1997. Variables <span class="math inline">\(B\)</span>, <span class="math inline">\(E\)</span>, and <span class="math inline">\(D\)</span> elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO<span class="math inline">\(_2\)</span>), and organic form in soil detritus. Variable <span class="math inline">\(V_i\)</span> is allocation related to nutrient acquistion. <span class="math inline">\(U\)</span> is uptake by vegetation or microbes in detritus (broadly defined), <span class="math inline">\(R_N\)</span> is deposition, and <span class="math inline">\(L_N\)</span> is loss via leaching or denitrification. <span class="math inline">\(R\)</span> is renewal into the inorganic pools. Other terms are explained in the Table below.</em>
+Figure 4.1: <em>Fig. 1 from Rastetter et al. 1997. Variables <span class="math inline">\(B\)</span>, <span class="math inline">\(E\)</span>, and <span class="math inline">\(D\)</span> elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO<span class="math inline">\(_2\)</span>), and organic form in soil detritus. Variable <span class="math inline">\(V_i\)</span> is allocation related to nutrient acquistion. <span class="math inline">\(U\)</span> is uptake by vegetation or microbes in detritus (broadly defined), <span class="math inline">\(R_N\)</span> is deposition, and <span class="math inline">\(L_N\)</span> is loss via leaching or denitrification. <span class="math inline">\(R\)</span> is renewal into the inorganic pools. The little triangles or bowties on fluxes refer to some rate-controlling function; <span class="math inline">\(B\)</span> and <span class="math inline">\(V\)</span> exchange information (dotted lines) that influences fluxes. Other terms are explained in the Table below.</em>
 </p>
 </div>
 <div class="figure"><span id="fig:rt1"></span>
@@ -190,19 +190,14 @@ Figure 4.1: <em>Fig. 1 from Rastetter et al. 1997. Variables <span class="math 
 Figure 4.2: <em>Table 1 (Rastetter et al 1997).</em>
 </p>
 </div>
-<p>MEL uses the parameter <span class="math inline">\(A\)</span> for “acclimation”, which we can think of as <em>compensation</em> by vegetation. <em>Acclimation</em> has a perfectly good meaning in ecophysiology, which is short- to near-term reversible physiological adjustment in response to changing conditions. In MEL “acclimation” means shifts in the relative rates of C and N accumulation in vegetation, resulting in and from changes in the C:N ratio of vegetation. This could happen through physiological, ecological, and evolutionary changes in plant species composition, ratios of root, stem, leaves and reproductive structures, or changes in tissue C:N ratios. “Acclimation” covers a range of responses with very different time scales.</p>
-<p>MEL uses the state variables, <span class="math inline">\(V_C\)</span> and <span class="math inline">\(V_N\)</span>, to represent <em>allocation</em> of uptake of C and N respectively. They use the anthropomorphic term “effort” for this pattern of allocation, as in “…increasing uptake effort to acquire limiting soil nutrients.”</p>
-Starting with the parameters.
-<div class="figure"><span id="fig:rt2"></span>
-<img src="figs/Rastetter97-T2.png" alt="*Table 2 (Rastetter et al 1997).*" width="90%" />
-<p class="caption">
-Figure 4.3: <em>Table 2 (Rastetter et al 1997).</em>
-</p>
-</div>
+<p>MEL uses the parameter <span class="math inline">\(A\)</span> for “acclimation”, which we can think of as <em>compensation</em> by vegetation that is associated with homeostatic responses to resource supply rates that differ from a stoichiometric ideal. <em>Acclimation</em> has a perfectly good meaning in ecophysiology, which is short- to near-term reversible physiological adjustment in response to changing conditions. In MEL, “acclimation” is much broader, and this early version, it means shifts in the relative rates of C and N accumulation in vegetation, resulting in and from changes in the C:N ratio of vegetation. This occurs due to the ratio of wood to non-woody tissue, defined by <span class="math inline">\(q\)</span>.</p>
+<p>Compensatory dynamics by vegetation, or “acclimation”, is a very important part of this model. “Vegetation” is a complex adaptive system that undergoes diverse changes across many time scales. This could happen through physiological, ecological, and evolutionary changes in plant species composition, ratios of root, stem, leaves and reproductive structures, or changes in tissue C:N ratios. “Acclimation” covers a range of responses with very different time scales, and the variable <span class="math inline">\(A\)</span> is how these changes are incorporated into this ecosystem model. In a later section, we explore the meaning and implications of MEL acclimation.</p>
+<p>In MEL, vegetation “acclimates” through differential allocation to carbon vs. nitrogen uptake functions. Rastetter et al. refers to this as uptake “effort”. They use this anthropomorphic term “effort” for a pattern of allocation, as in “…increasing uptake effort to acquire limiting soil nutrients.” MEL uses the state variables, <span class="math inline">\(V_C\)</span> and <span class="math inline">\(V_N\)</span>, to represent this “effort” or allocation of uptake of C and N respectively. In a later section, we explore the meaning and implications of MEL effort.</p>
+<p>Here we start with a vector of model parameters whose description and units are found in Table 1 above. The numeric values come from Table 2 in Rastetter et al. (1997). You should copy these into your own script, and then add your own comments to each parameter, as I started to.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="MEL.html#cb11-1"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
 <span id="cb11-2"><a href="MEL.html#cb11-2"></a>  <span class="co"># carbon, nitrogen</span></span>
-<span id="cb11-3"><a href="MEL.html#cb11-3"></a>  <span class="dt">Rce=</span><span class="dv">0</span>, <span class="dt">Rne=</span><span class="dv">1</span>,</span>
-<span id="cb11-4"><a href="MEL.html#cb11-4"></a>  <span class="dt">Rcm=</span><span class="dv">452</span>, <span class="dt">Rnm=</span><span class="fl">17.68</span>,</span>
+<span id="cb11-3"><a href="MEL.html#cb11-3"></a>  <span class="dt">Rce=</span><span class="dv">0</span>, <span class="dt">Rne=</span><span class="dv">1</span>, <span class="co"># renewal from outside the ecosystem (e.g., atmospheric deposition)</span></span>
+<span id="cb11-4"><a href="MEL.html#cb11-4"></a>  <span class="dt">Rcm=</span><span class="dv">452</span>, <span class="dt">Rnm=</span><span class="fl">17.68</span>, <span class="co"># C respiration, N mineralization </span></span>
 <span id="cb11-5"><a href="MEL.html#cb11-5"></a>  <span class="dt">Rcv=</span><span class="dv">452</span>, <span class="dt">Rnv=</span><span class="fl">2.151</span>,</span>
 <span id="cb11-6"><a href="MEL.html#cb11-6"></a>  <span class="dt">gc=</span><span class="dv">1116</span>, <span class="dt">gn =</span><span class="fl">23.77</span>,</span>
 <span id="cb11-7"><a href="MEL.html#cb11-7"></a>  <span class="dt">rc=</span><span class="fl">0.02055</span>, <span class="dt">rn=</span><span class="fl">0.01955</span>,</span>
@@ -227,12 +222,13 @@ Figure 4.3: <em>Table 2 (Rastetter et al 1997).</em>
 <span id="cb11-26"><a href="MEL.html#cb11-26"></a></span>
 <span id="cb11-27"><a href="MEL.html#cb11-27"></a>states &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">Ec=</span><span class="dv">0</span>, <span class="dt">En=</span><span class="dv">0</span>, <span class="dt">Bc=</span><span class="dv">0</span>, <span class="dt">Bn=</span><span class="dv">0</span>, <span class="dt">Dc=</span><span class="dv">0</span>, <span class="dt">Dn=</span><span class="dv">0</span>, <span class="dt">Vc=</span><span class="dv">0</span>, <span class="dt">Vn=</span><span class="dv">0</span>)</span>
 <span id="cb11-28"><a href="MEL.html#cb11-28"></a>states &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">Ec=</span><span class="dv">1</span>, <span class="dt">En=</span><span class="dv">1</span>, <span class="dt">Bc=</span><span class="dv">1</span>, <span class="dt">Bn=</span><span class="dv">1</span>, <span class="dt">Dc=</span><span class="dv">1</span>, <span class="dt">Dn=</span><span class="dv">1</span>, <span class="dt">Vc=</span><span class="dv">1</span>, <span class="dt">Vn=</span><span class="dv">1</span>)</span></code></pre></div>
-<p>The model.</p>
+<p>Next we write out the model nearly as written in Rastetter et al. (1997), but with some reordering. By default, R is an <em>interpreted language</em> rather than a <em>compiled language</em>. What that means for us is that R processes commands one line at a time. Therefore, if a function F requires parameter x, we have to make sure parameter x is defined before we define F. In our implementation of MEL below, <code>Mc</code> requires <code>Ucm</code>, so <code>Ucm</code> needs to be defined before <code>Mc</code>.</p>
+<p>As you did for the parameters, copy this into your own script and add more comments to those I started.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="MEL.html#cb12-1"></a>mel2 &lt;-<span class="st"> </span><span class="cf">function</span>(time, y, p){</span>
 <span id="cb12-2"><a href="MEL.html#cb12-2"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(y,p)), {</span>
 <span id="cb12-3"><a href="MEL.html#cb12-3"></a>    </span>
-<span id="cb12-4"><a href="MEL.html#cb12-4"></a>    <span class="co">## Carbon is 1</span></span>
-<span id="cb12-5"><a href="MEL.html#cb12-5"></a>    <span class="co">## Nitrogen is 2</span></span>
+<span id="cb12-4"><a href="MEL.html#cb12-4"></a>    <span class="co">## Carbon is 1 and Nitrogen is 2 in </span></span>
+<span id="cb12-5"><a href="MEL.html#cb12-5"></a>    <span class="co">## Fig. 1 of Rastetter et al. (1997)</span></span>
 <span id="cb12-6"><a href="MEL.html#cb12-6"></a>   </span>
 <span id="cb12-7"><a href="MEL.html#cb12-7"></a>    <span class="co">##  UPTAKE by Microbes</span></span>
 <span id="cb12-8"><a href="MEL.html#cb12-8"></a>    Ucm &lt;-<span class="st"> </span>psi<span class="op">*</span>alpha_c<span class="op">*</span>theta<span class="op">*</span>Dn<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>Ec<span class="op">/</span>(Dc<span class="op">*</span>(k_cm <span class="op">+</span><span class="st"> </span>Ec)) </span>
@@ -294,22 +290,27 @@ Figure 4.3: <em>Table 2 (Rastetter et al 1997).</em>
 <span id="cb12-64"><a href="MEL.html#cb12-64"></a>    </span>
 <span id="cb12-65"><a href="MEL.html#cb12-65"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dE_C, dE_N, dB_C, dB_N, dD_C, dD_N, dV_C, dV_N)))</span>
 <span id="cb12-66"><a href="MEL.html#cb12-66"></a>  })</span>
-<span id="cb12-67"><a href="MEL.html#cb12-67"></a>}</span>
-<span id="cb12-68"><a href="MEL.html#cb12-68"></a>states &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">Ec=</span><span class="dv">350</span>, <span class="dt">En=</span><span class="dv">1</span>, <span class="co"># Inorganic nutrients g/m^2</span></span>
-<span id="cb12-69"><a href="MEL.html#cb12-69"></a>            <span class="dt">Bc=</span><span class="dv">22000</span>, <span class="dt">Bn=</span><span class="dv">110</span>, <span class="co"># Biomass nutrients g/m^2</span></span>
-<span id="cb12-70"><a href="MEL.html#cb12-70"></a>            <span class="dt">Dc=</span><span class="dv">13000</span>, <span class="dt">Dn=</span><span class="dv">521</span>, <span class="co"># Detritus nutrients g/m^2</span></span>
-<span id="cb12-71"><a href="MEL.html#cb12-71"></a>            <span class="dt">Vc=</span><span class="fl">0.5</span>, <span class="dt">Vn=</span><span class="fl">0.5</span> <span class="co"># allocation &quot;effort&quot; unitless</span></span>
-<span id="cb12-72"><a href="MEL.html#cb12-72"></a>            )</span>
-<span id="cb12-73"><a href="MEL.html#cb12-73"></a>t=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb12-74"><a href="MEL.html#cb12-74"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(states, t, <span class="dt">func=</span>mel2, <span class="dt">parms=</span>p)</span>
-<span id="cb12-75"><a href="MEL.html#cb12-75"></a><span class="co">#out</span></span>
-<span id="cb12-76"><a href="MEL.html#cb12-76"></a><span class="kw">plot</span>(out)</span>
-<span id="cb12-77"><a href="MEL.html#cb12-77"></a></span>
-<span id="cb12-78"><a href="MEL.html#cb12-78"></a>outL &lt;-<span class="st"> </span>out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
-<span id="cb12-79"><a href="MEL.html#cb12-79"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="op">-</span>time, <span class="dt">names_to=</span><span class="st">&quot;State_var&quot;</span>, <span class="dt">values_to=</span><span class="st">&quot;g.sq.m&quot;</span>)</span>
-<span id="cb12-80"><a href="MEL.html#cb12-80"></a><span class="kw">ggplot</span>(outL, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>g.sq.m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb12-81"><a href="MEL.html#cb12-81"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State_var, <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-9-1.png" width="66%" /></p>
+<span id="cb12-67"><a href="MEL.html#cb12-67"></a>}</span></code></pre></div>
+<p>Here we define the initial conditions of the ecosystem, taken from Table 2 <span class="citation">(Rastetter, Agren, and Shaver <a href="#ref-Rastetter:1997aa" role="doc-biblioref">1997</a>)</span>. We then run the model</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="MEL.html#cb13-1"></a>states &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">Ec=</span><span class="dv">350</span>, <span class="dt">En=</span><span class="dv">1</span>, <span class="co"># Inorganic nutrients g/m^2</span></span>
+<span id="cb13-2"><a href="MEL.html#cb13-2"></a>            <span class="dt">Bc=</span><span class="dv">22000</span>, <span class="dt">Bn=</span><span class="dv">110</span>, <span class="co"># Biomass nutrients g/m^2</span></span>
+<span id="cb13-3"><a href="MEL.html#cb13-3"></a>            <span class="dt">Dc=</span><span class="dv">13000</span>, <span class="dt">Dn=</span><span class="dv">521</span>, <span class="co"># Detritus nutrients g/m^2</span></span>
+<span id="cb13-4"><a href="MEL.html#cb13-4"></a>            <span class="dt">Vc=</span><span class="fl">0.5</span>, <span class="dt">Vn=</span><span class="fl">0.5</span> <span class="co"># allocation &quot;effort&quot; unitless</span></span>
+<span id="cb13-5"><a href="MEL.html#cb13-5"></a>            )</span>
+<span id="cb13-6"><a href="MEL.html#cb13-6"></a>t=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dt">by=</span><span class="dv">1</span>)</span>
+<span id="cb13-7"><a href="MEL.html#cb13-7"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(states, t, <span class="dt">func=</span>mel2, <span class="dt">parms=</span>p)</span>
+<span id="cb13-8"><a href="MEL.html#cb13-8"></a></span>
+<span id="cb13-9"><a href="MEL.html#cb13-9"></a><span class="co"># plot(out) # graphics generated with R base graphics</span></span>
+<span id="cb13-10"><a href="MEL.html#cb13-10"></a></span>
+<span id="cb13-11"><a href="MEL.html#cb13-11"></a><span class="co"># graphics generated with tidyr and ggplot2</span></span>
+<span id="cb13-12"><a href="MEL.html#cb13-12"></a><span class="co"># create &quot;tidy&quot; data</span></span>
+<span id="cb13-13"><a href="MEL.html#cb13-13"></a>outL &lt;-<span class="st"> </span>out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb13-14"><a href="MEL.html#cb13-14"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="op">-</span>time, <span class="dt">names_to=</span><span class="st">&quot;State_var&quot;</span>, <span class="dt">values_to=</span><span class="st">&quot;g.sq.m&quot;</span>)</span>
+<span id="cb13-15"><a href="MEL.html#cb13-15"></a><span class="co"># plot</span></span>
+<span id="cb13-16"><a href="MEL.html#cb13-16"></a><span class="kw">ggplot</span>(outL, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>g.sq.m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-17"><a href="MEL.html#cb13-17"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>State_var, <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-10-1.png" width="66%" /></p>
+<p>Cool, right?</p>
 
 </div>
 </div>
@@ -319,10 +320,10 @@ Figure 4.3: <em>Table 2 (Rastetter et al 1997).</em>
 <p>Bormann, F H, G E Likens, and J M Melillo. 1977. “Nitrogen budget for an aggrading northern hardwood forest ecosystem.” <em>Science (New York, N.Y.)</em> 196 (4293): 981–3.</p>
 </div>
 <div id="ref-Rastetter:1997aa">
-<p>Rastetter, EB, GI Agren, and GR Shaver. n.d. “Responses of N-limited ecosystems to increased CO2: A balanced-nutrition, coupled-element-cycles model.” <em>ECOLOGICAL APPLICATIONS</em> 7 (2): 444–60.</p>
+<p>Rastetter, E. B., G. I. Agren, and G. R. Shaver. 1997. “Responses of N-Limited Ecosystems to Increased Co2: A Balanced-Nutrition, Coupled-Element-Cycles Model.” <em>Ecological Applications</em> 7 (2): 444–60.</p>
 </div>
 <div id="ref-Rastetter:1992ab">
-<p>Rastetter, E. B., and G. R. Shaver. n.d. “A Model of Multiple-Element Limitation for Acclimating Vegetation.” <em>Ecology</em> 73 (4): 1157–74. <a href="https://doi.org/%7B10.2307/1940666%7D">https://doi.org/{10.2307/1940666}</a>.</p>
+<p>Rastetter, E. B., and G. R. Shaver. 1992. “A Model of Multiple-Element Limitation for Acclimating Vegetation.” <em>Ecology</em> 73 (4): 1157–74. <a href="https://doi.org/%7B10.2307/1940666%7D">https://doi.org/{10.2307/1940666}</a>.</p>
 </div>
 </div>
 <div class="footnotes">

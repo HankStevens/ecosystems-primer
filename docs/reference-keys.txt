@@ -10,7 +10,6 @@ fig:unnamed-chunk-6
 fig:unnamed-chunk-7
 fig:rf1
 fig:rt1
-fig:rt2
 prerequisites
 intro
 why-models
