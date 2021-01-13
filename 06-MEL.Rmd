@@ -2,6 +2,14 @@
 
 ## Rastetter et al. 1997
 
+Readings: 
+
+* Chapters 1, 2
+* @Bormann1977
+* @Rastetter:1997aa
+* @Soetaert2009, pages ...
+
+
 @Rastetter:1992ab proposed a model of multiple-element limitation of vegetation growth (MEL). @Rastetter:1997aa extended that to include soil pools. We replicate this here. It is similar to our model of [@Bormann1977], but now includes both carbon and nitrogen.^[Rastetter et al. introduce a couple terms that make my skin crawl, and I will do my best to explain them, and avoid them where I can.]
 
 By now, you've had some practice working with models, so take a gander at this one (Fig. \@ref(fig:rf1)). 
@@ -21,69 +29,38 @@ Compensatory dynamics by vegetation, or "acclimation", is a very important part 
 
 In MEL, vegetation "acclimates" through differential allocation to carbon vs. nitrogen uptake functions. Rastetter et al. refers to this as uptake "effort". They use this anthropomorphic term "effort" for a pattern of allocation, as in "...increasing uptake effort to acquire limiting soil nutrients." MEL uses the state variables, $V_C$ and $V_N$, to represent this "effort" or allocation of uptake of C and N respectively. In a later section, we explore the meaning and implications of MEL effort.
 
+Both vegetation and microbes acclimate in MEL, in a manner inversely proportion to the relative concentrations of nutrients. In both vegetation and microbes, this results in a tendency toward maintenance of optimal C:N ratios. However, the model handles them differently. It assumes that the acclimation in vegetation is slow while the acclimation in microbes is instantaneous. 
+
 ```{r rt2, eval=FALSE, echo=FALSE, fig.cap="*Table 2 (Rastetter et al 1997).*", out.width="90%"}
 knitr::include_graphics("figs/Rastetter97-T2.png")
 ```
 
-Here we start with a vector of model parameters whose description and units are found in Table 1 above. The numeric values come from Table 2 in Rastetter et al. (1997). You should copy these into your own script, and then add your own comments to each parameter, as I started to.
-```{r}
-p <- c(
-  # carbon, nitrogen
-  Rce=0, Rne=1, # renewal from outside the ecosystem (e.g., atmospheric deposition)
-  Rcm=452, Rnm=17.68, # C respiration, N mineralization 
-  Rcv=452, Rnv=2.151,
-  gc=1116, gn =23.77,
-  rc=0.02055, rn=0.01955,
-  mc=0.02055, mn=0.08009,
-  kc=350, kn=5,
-  zc=0.11, zn=0.16,
-  epsilon_c=0.6, epsilon_n=0.6471,
-  alpha_c=0, alpha_n = 0.01092,
-  k_cm = 0, k_nm=1,
-  beta_ce=0, beta_ne=0,
-  
-  # Other
-  a=5, 
-  tau=3,
-  q_w=439,
-  k_q=26290,
-  theta=8.628,
-  psi=0.04321,
-  beta_d=0
-)
+Here we write out the model nearly as written in Rastetter et al. (1997), but with some reordering. By default, R is an *interpreted language* rather than a *compiled language*. What that means for us is that R processes commands one line at a time. Therefore, if a function F requires parameter x, we have to make sure parameter x is defined before we define F. In our implementation of MEL below, `Mc` requires `Ucm`, so `Ucm` needs to be defined before `Mc`.  
 
-
-states <- c(Ec=0, En=0, Bc=0, Bn=0, Dc=0, Dn=0, Vc=0, Vn=0)
-states <- c(Ec=1, En=1, Bc=1, Bn=1, Dc=1, Dn=1, Vc=1, Vn=1)
-
-```
-
-Next we write out the model nearly as written in Rastetter et al. (1997), but with some reordering. By default, R is an *interpreted language* rather than a *compiled language*. What that means for us is that R processes commands one line at a time. Therefore, if a function F requires parameter x, we have to make sure parameter x is defined before we define F. In our implementation of MEL below, `Mc` requires `Ucm`, so `Ucm` needs to be defined before `Mc`.  
-
-As you did for the parameters, copy this into your own script and add more comments to those I started.
+Copy this into a new script and name it 'mel2.R'. In that script, add more comments to those I started. When you save that script, you can use `source('mel2.R')` to load the function.
 ```{r}
 mel2 <- function(time, y, p){
   with(as.list(c(y,p)), {
-    
     ## Carbon is 1 and Nitrogen is 2 in 
+    ## E - inorganic; D - soil organic w/ microbes; B - veg biomass;  
+    ## V - acclimation
     ## Fig. 1 of Rastetter et al. (1997)
    
-    ##  UPTAKE by Microbes
-    Ucm <- psi*alpha_c*theta*Dn^2 * Ec/(Dc*(k_cm + Ec)) 
-    Unm <- psi*alpha_n*Dc^2*En/(theta*Dn*(k_nm + En))
+    ## Gross UPTAKE of inorganic nutrients by Microbes
+    ## Note rearrangement of terms (cf. Rastetter et al. 1997)
+    ## (uptake) X (carbon availability) X (stoichiometric optimization) 
+    Unm <- alpha_n*En/(k_nm + En) * psi*Dc * Dc/(theta*Dn) 
+    Ucm <- alpha_c*Ec/(k_cm + Ec) * psi*Dn * (theta*Dn)/Dc  # alpha_c=0
     
+    ## Microbial consumption
+    ## nutrient availability + gross uptake
     Mc <- psi*Dc + Ucm
     Mn <- psi*Dn + Unm
     
-    Alpha_c <- epsilon_c*theta*Mn/(Mc + theta*Mn)
-    Alpha_n <- epsilon_n*Mc/(Mc + theta*Mn)
+    Alpha_c <- epsilon_c * theta*Mn/(Mc + theta*Mn)
+    Alpha_n <- epsilon_n * Mc/(Mc + theta*Mn)
     
-    ## REPLENISHMENT (R)
-    Rcm <- Mc*(1-Alpha_c)
-    Rnm <- Mn*(1-Alpha_n)
-    Rcv <- rc*Bc
-    Rnv <- rn*Bn
-    
+  
     ## C:N ratio (units of C)
     q <- q_w*Bc/(k_q + Bc)
     
@@ -92,65 +69,160 @@ mel2 <- function(time, y, p){
     Sn <- (Bc + q*Bn)^zn
     
     ## UPTAKE by Vegetation
+    ## uptake constant X rel. effort X Surface area X resource conc.
     Ucv <- gc * Vc * Sc * Ec/(kc + Ec)
-    Unv <- gn*Vn* Sn * En/(kn + En)
+    Unv <- gn * Vn * Sn * En/(kn + En)
     
     ## LOSSES
-    Lcv <- mc*Bc
+    Lcv <- mc*Bc 
     Lnv <- mn*Bn
-    Lce <- beta_ce * Ec 
+    
+    Lce <- beta_ce * Ec # beta_ce = 0 # export = 0
     Lne <- beta_ne * En # leaching or denitrification
+    
     Lcd <- beta_d * Dc
     Lnd <- beta_d * Dn
     
+    ## REPLENISHMENT to the inorganic pools (R) 
+    Rcm <- Mc*(1-Alpha_c) # C respiration
+    Rnm <- Mn*(1-Alpha_n) # N mineralization
+    Rcv <- rc*Bc
+    Rnv <- rn*Bn
+    
     ## Available elemental nutrients
-    dE_C <- Rce + Rcm + Rcv - Lce - Ucm - Ucv
+    ## Set dE_i/dt = 0 to control the inorganic pools externally
     dE_N <- Rne + Rnm + Rnv - Lne - Unm - Unv
+    ## dE_C <- Rce + Rcm + Rcv - Lce - Ucm - Ucv
+    dE_C <- 0 
     
     ## Nutrients in vegetation BIOMASS
     dB_C <- Ucv - Rcv - Lcv
     dB_N <- Unv - Rnv - Lnv
-    Grc <- dB_C/Bc
-    Grn <- dB_N/Bn
     
     ## Nutrients in DETRITUS
     dD_C <- Lcv + Ucm - Lcd - Rcm
     dD_N <- Lnv + Unm - Lnd - Rnm
     
-    ## Acclimation tendency
-    A <- log(Bc/(q*Bn)) + tau * ( Grc - Grn)
+    ## Acclimation (compensation) potential
+    ## mass-specific growth rates
+    Grc <- dB_C/Bc
+    Grn <- dB_N/Bn
+    ## symmetric C:N differential plus relative growth difference
+    A <- log(Bc/(q*Bn)) + tau * (Grc - Grn)
     
-    ## Compensation (A="acclimation")
-    ## If A>0 then Vc else Vn
+    ## Relative effort toward compensation
+    ## if(A>0) Vstar <- Vc else Vstar <- Vn
     Vstar <- (A > 0) * Vc + (A < 0) * Vn 
-    dV_C <- -a*A*Vstar
-    dV_N <- -dV_C
+    dV_C <- -1*a*A*Vstar
+    dV_N <- -1 * dV_C
     
-    return(list(c(dE_C, dE_N, dB_C, dB_N, dD_C, dD_N, dV_C, dV_N)))
+    ## Auxiliary ecosystem variables
+    NPP <- Ucv - Rcv
+    Net_N_uptake <- Unv - Rnv
+    Ecosystem_N=Bn+En+Dn
+    Ecosystem_C=Bc+Ec+Dc
+    
+    return(list(c(dE_C, dE_N, dB_C, dB_N, dD_C, dD_N, dV_C, dV_N),
+                NPP=NPP, Net_N_uptake=Net_N_uptake,
+                Ecosystem_C=Ecosystem_C) )
   })
 }
 ```
 
-Here we define the initial conditions of the ecosystem, taken from Table 2 [@Rastetter:1997aa]. We then run the model for 50 years
+Here we start with a vector of model parameters whose description and units are found in Table 1 above. The numeric values come from Table 2 in Rastetter et al. (1997). You should copy these into your own script, and then add your own comments to each parameter, as I started to.
 ```{r}
-states <- c(Ec=350, En=1, # Inorganic nutrients g/m^2
+## Parameter set for a closed ecosystem
+p.c <- c(
+  # carbon, nitrogen
+  Rce=0, Rne=0, # no renewal from outside the ecosystem 
+  gc=1116, gn =23.77,
+  rc=0.02055, rn=0.01955, 
+  mc=0.02055, mn=0.08009,
+  kc=350, kn=5,
+  zc=0.11, zn=0.16,
+  epsilon_c=0.6, epsilon_n=0.6471,
+  alpha_c=0, alpha_n = 0.01092,
+  k_cm = 1, k_nm=1, 
+  beta_ce = 0, 
+  beta_ne = 0,
+  
+  # Other
+  a=5, 
+  tau=3, # damping coef
+  q_w=439, 
+  k_q=26290,
+  theta=8.628,
+  psi=0.04321,
+  beta_d=0
+)
+```
+
+**Exercise** To help you better grasp what is going on in the model, redraw Fig. \@ref(fig:rf1) on a chalkboard or a larger piece of paper and add as much detail as you can fit. Include model parameters and definitions and explanations -- whatever helps you make sense of the processes, and their mathematical representation.
+
+## Implementing MEL
+Table 2 of Rastetter et al. also include initial values for the state variables, which we include here.
+```{r}
+init.states <- c(Ec=350, En=1, # Inorganic nutrients g/m^2
             Bc=22000, Bn=110, # Biomass nutrients g/m^2
             Dc=13000, Dn=521, # Detritus nutrients g/m^2
             Vc=0.5, Vn=0.5 # allocation "effort" unitless
             )
-t=seq(0,50, by=.5)
-out <- ode(states, t, func=mel2, parms=p)
+```
 
-# plot(out) # graphics generated with R base graphics
+In addition to initial values of state variables, @Rastetter:1997aa (Table 2) list initial fluxes. We don't have to worry about those; the model calculates the initial fluxes from parameters and from initial values of the state variables.
 
-# graphics generated with tidyr and ggplot2
-# create "tidy" data
-outL <- out %>% as.data.frame() %>%
-  pivot_longer(cols=-time, names_to="State_var", values_to="g.sq.m")
-# plot
-ggplot(outL, aes(x=time, y=g.sq.m)) + geom_line() + 
-  facet_wrap(~State_var, nrow=2, scales="free")
+### Increasing atmospheric carbon with events in `ode()`
+Rastetter et al. (1997) double CO$_2$ concemntrations at an early time point in their simulations. We do that using an `events` in the `ode()` function. 
+
+An "event" in an `ode()` model the value of a state variable changes suddenly at a one or more time points. In one sense, these are like ecological disturbances. For instance, we could add 1 kilogram of phosphorus to a lake in a one-time pulse, or halve primary producer biomass at 10 random times over a one hundred year interval. 
+
+We can create events using either a function, or with a data frame. Here we create a data frame, using the required four variables: 
+
+* 'var' selects the state variable to change. 
+* 'time' is the time at which the event occurs.
+* 'value' is the numeric value associated with the change.
+* 'method' is the operator that operates on the 'value' and the state variable: 'add' will add the value to the state variable, 'mult' will multiply the state variable by the value, and 'replace' will simply replace the state variable with the value (the value can be a positive or negative number).
+```{r}
+event.df <- data.frame(var="Ec", time=0.005, value=2, method="mult")
+```
+This event will double atmospheric carbon concentration very shortly after the start of the simulation.
+
+We will run the model for 1000 years as in Rastetter et al. (1997), and specify that R return values for a logarithm series of time steps.
+```{r, fig.height=4, fig.width=4}
+## 10^3 = 1000 years
+t=10^seq(-3, 3, by=.001)
+```
+
+Next we run the model using parameters for a closed ecosystem, and a partly open system [@Rastetter:1997aa]. 
+```{r}
+## Closed ecosystem 
+out.c <- ode(init.states, t, func=mel2, parms=p.c,
+          events=list(data=event.df) )
+
+## Partly open
+p.o <- p.c
+p.o["Rne"] <- 1
+p.o["beta_ne"] <- 1
+out.o <- ode(init.states, t, func=mel2, parms=p.o, 
+          events = list(data = event.df) )
+```
+
+You will probably get a warning message that R has included our event time into the integration procedure. That is a good thing.
+
+Next we convert the simulation data sets, add variables, combine, rearrange, and plot the results.  
+```{r, fig.cap="*Simulated dynamics of carbon and nitrogen in an ecosystem with both C- and N-limitation, in a closed and partly open ecosystem. Recreates Fig. 3 from Rastetter et al. (1997), in part.*", out.width="100%"}
+out.c <- out.c %>% as.data.frame() %>% mutate(N.cycle = "closed")
+out.o <- out.o %>% as.data.frame() %>% mutate(N.cycle = "open")
+
+out.all <- rbind(out.c, out.o)
+
+outL <- pivot_longer(out.all, cols=-c(time, N.cycle),
+                     names_to="State_var", values_to="g.sq.m")
+
+ggplot(outL, aes(x=time, y=g.sq.m, colour=N.cycle)) + geom_line() + 
+  scale_x_log10() + facet_wrap(~State_var, ncol=3, scales="free")
 ```
 
 Cool, right? 
+
 

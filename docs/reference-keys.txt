@@ -10,6 +10,7 @@ fig:unnamed-chunk-6
 fig:unnamed-chunk-7
 fig:rf1
 fig:rt1
+fig:unnamed-chunk-14
 prerequisites
 intro
 why-models
@@ -26,4 +27,6 @@ calibration-take-1
 budget-take-ii
 MEL
 rastetter-et-al.-1997
+implementing-mel
+increasing-atmospheric-carbon-with-events-in-ode
 references
