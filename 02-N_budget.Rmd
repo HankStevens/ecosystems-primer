@@ -15,7 +15,7 @@ knitr::include_graphics("figs/model3.png")
 
 ## Getting started
 
-1. (S&H 15-17) For any ecosystem, we want to start with paper and pencil and **sketch out the pools and the fluxes** that we think are important (see example, Fig. \@ref(fig:hbnb3)). Don't sweat the details yet -- you'll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation. 
+1. (S&H 15-17) For any ecosystem, we want to start with paper and pencil and **sketch out the pools and the fluxes** that we think are important (see example, Fig. \@ref(fig:hbnb3)). Don't sweat the details yet -- you'll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation.
 
 2. **Write balance equations** (S&H, 3, 17-20). For each flux, identify the underlying biological and physical processes. If you don't completely know, don't sweat it. Here are the balance equations for Fig. \@ref(fig:hbnb3):
 

@@ -1,0 +1,129 @@
+# Lake Metabolism
+
+In this chapter, you'll study how lakes breath. You'll get real data from Acton Lake, look it, and measure the rate of an inhale and an exhale. You'll do that by hand, by hand with a spreadsheet, by hand with R, and finally using an R package, `LakeMetabolizer`, which is designed to do that and much more.
+
+## Estimating Productivity
+
+Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O$_2$ is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.
+
+We mesure ecosystem metabolic rate as net primary productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
+$$NPP = GPP - R$$
+If we assume that water column oxygen is correlated with the rates of photosynthesis, respiration, and net primary production, then we can think of the slopes of O vs. time as rates of respiration and net primary production.  If we assume that respiration is constant throughout the 24 h cycle, we calculate GPP as the sum of NPP and R. 
+
+## By hand, in R
+Let's practice R by importing, wrangling, and graphing data, then calculating slopes and estimating respiration, NPP, and GPP.
+
+
+```{r}
+acton <- read_csv("data/acton.csv", 
+         col_types = cols(date_time = 
+                            col_datetime(format = "%m/%d/%y %H:%M")), 
+    skip = 1# skips the first line of metadata
+    )
+summary(acton)
+```
+Let's check our understanding of lake oxygen dynamics by plotting the time series. Ggplot understands what to do with dates.
+```{r, fig.cap="*Oxygen dynamics from Acton Lake."}
+ggplot(acton, aes(x=date_time, y=O_mg.L)) + geom_path() 
+```
+
+If we want to calculate the slope of the night time oxygen concentration, then we should identify what the endpoints of "day time" are so that we can do analyses on just daylight or nighttime data.
+
+Working with times is a little tricky, because times and dates, periods, durations, and intervals are inherently tricky. The `date_time` variable contains all the information, and we extra tidbits from it.
+```{r}
+# determine day/night intervals
+## Start of day
+morning <- 7
+## end of day
+evening <- 19
+
+acton <- mutate(acton,
+                date = as.factor( format(date_time, "%Y-%m-%d") ),
+                ## hour decimal format
+                hour.d = as.integer( format(date_time, "%H")) + 
+                  as.numeric(format(date_time, "%M"))/60,
+                day.d = 
+                  ifelse(hour.d >= morning & hour.d < evening, hour.d - morning, NA),
+                night.d = 
+                  ifelse( hour.d >= evening, hour.d-evening, 
+                          ifelse(hour.d < morning, 
+                                 24 - evening + hour.d, NA)),
+                daylight = as.factor(
+                  ifelse(hour.d >= morning & hour.d < evening, "day", "night"))
+                )
+## with lubridate date(), hour(), minute()
+library(lubridate)
+acton <- mutate(acton,
+                date = as.factor( date(date_time) ),
+                ## hour decimal format
+                hour.d = hour(date_time) + minute(date_time)/60,
+                day.d = 
+                  ifelse(hour.d >= morning & hour.d < evening, hour.d - morning, NA),
+                night.d = 
+                  ifelse( hour.d >= evening, hour.d-evening, 
+                          ifelse(hour.d < morning, 
+                                 24 - evening + hour.d, NA)),
+                daylight = as.factor(
+                  ifelse(hour.d >= morning & hour.d < evening, "day", "night"))
+                )
+
+# check
+# filter(acton, hour.d==3) 
+```
+
+
+
+The slope of oxygen concentration at night is respiration.
+
+Next we will pull out one day's worth of data.
+```{r}
+acton2 <- subset(acton,  date_time > "2013-06-27 21:00:00" & date_time < "2013-06-28 06:15:00") 
+
+qplot(x = date_time, O_mg.L, data=acton2, geom = "path")
+```
+
+Here is what each night looks like. 
+```{r}
+nights <- filter(acton, daylight=="night")
+qplot(night.d, O_mg.L, data=nights, geom="point", colour=date) + geom_smooth(method="lm", se=FALSE)
+```
+
+We can calculate the average slope for all nights, forcing a straight line through each night's data. The estimates of uncertainty and the P values won't make sense because the data are horribly autocorrelated, but we can rely on the estimates of the coefficients, and the average slope, in particular.
+```{r}
+m.resp <- lm(O_mg.L ~ night.d + date, data=acton)
+summary(m.resp)
+```
+The estimate for `night.d`, ``` r round(coef(m.resp)[2],3)```, is our estimate of the respiration rate. 
+
+If you would like you could perform similar analyses on a subset of the data.
+```{r}
+acton2 <- acton %>% filter(date %in% c("2013-06-28", "2013-06-29") )
+m.resp2 <- lm(O_mg.L ~ night.d + date, data=acton2)
+summary(m.resp2)
+```
+
+```{r eval=FALSE}
+# install.packages("LakeMetabolizer", dep=TRUE)
+library(LakeMetabolizer)
+names(acton)
+k.gas <- 0.4
+z.mix <- 1
+irr 
+acton.LM <- acton %>% mutate(z.mix = z.mix, k.gas = k.gas ) %>%
+  select(datetime=date_time, do.obs=O_mg.L, do.sat=O_perc, 
+         k.gas=k.gas, z.mix=z.mix )
+str(acton.LM)
+summary(acton.LM)
+write.csv(acton.LM, "act.csv", row.names=FALSE)
+
+acton.L <- read.csv("act.csv", colClasses=c("POSIXct", rep("numeric", 3)))
+n <- nrow(acton.L)
+acton.LM <- acton.L %>% mutate(k.gas = k.gas, z.mix = 1,  ) 
+irr <- (1500*sin(2*pi*(1/n )*(1:(n*2))+1.5*pi) + 650 + rnorm(n*2, 0, 0.25)) *
+     ifelse(is.day(acton.L$datetime, 39.5668), 1, 0)
+plot(irr)
+acton.LM <- acton.L %>% mutate(k.gas = k.gas, z.mix = 1,  irr=irr) 
+str(acton.LM)
+out <- metab(acton.LM, method="bookkeep")
+```
+

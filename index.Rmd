@@ -31,3 +31,10 @@ library(kableExtra) #kbl
 ```
 
 For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
+
+## A couple of other useful citations
+
+@Carey2018PLoS. Ten simple rules for biologists learning to program. PLoS Computional Biology 14(1): e1005871. https://doi.org/10.1371/journal.pcbi.1005871
+
+@Bodner2021PLoS. Ten simple rules for tackling your first mathematical models: A guide for graduate students by graduate students. PLOS Computational Biology 17(1): e1008539.  https://doi.org/10.1371/journal.pcbi.1008539
+
