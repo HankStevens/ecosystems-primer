@@ -1,4 +1,4 @@
-# Introduction to ecosystem modeling {#intro}
+# Introduction ecosystem models - a work in progress {#intro}
 
 Reading: 
 
