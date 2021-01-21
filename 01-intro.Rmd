@@ -108,7 +108,7 @@ lake <- function( time, state_vars, parameters ){
 }
 ```
 
-Next, we tell R what the values of the parameters are that we want. Let's say the the import is 3 mg m$^{-2}$ d$^{-1}$, and that the fraction (or rate, really) is 0.5 d$^{-1}$, or more intuitively, mg m$^{-2} d$^{-1}$ per mg m$^{-2} in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
+Next, we tell R what the values of the parameters are that we want. Let's say the the import is 3 mg m$^{-2}$ d$^{-1}$, and that the fraction (or rate, really) is 0.5 d$^{-1}$, or more intuitively, mg m$^{-2}$ d$^{-1}$ per mg m$^{-2}$ in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
 ```{r}
 p <- c(I = 10, a = .5)
 ```

@@ -18,6 +18,7 @@ clean: FALSE
 # Prerequisites
 
 ```{r include=FALSE}
+## push code: /usr/bin/git push origin HEAD:refs/heads/main
 knitr::opts_chunk$set(echo = TRUE, results='markup', warning=FALSE, message=FALSE, fig.path = "/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/", knitr.graphics.auto_pdf = TRUE,
                       message=FALSE, out.width="66%")
 # automatically create a bib database for R packages
