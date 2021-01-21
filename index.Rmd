@@ -18,8 +18,6 @@ clean: FALSE
 # Prerequisites
 
 ```{r include=FALSE}
-## commit code: >>> /usr/bin/git commit -F /var/folders/lp/_ys06gs12dx3pk5yt8mrdpkrfsbv40/T/RtmpPYHAI7/git-commit-message-782f11cf0760.txt
-## push code: /usr/bin/git push origin HEAD:refs/heads/main
 knitr::opts_chunk$set(echo = TRUE, results='markup', warning=FALSE, message=FALSE, fig.path = "/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/", knitr.graphics.auto_pdf = TRUE,
                       message=FALSE, out.width="66%")
 # automatically create a bib database for R packages
@@ -33,6 +31,8 @@ library(kableExtra) #kbl
 ```
 
 For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
+
+I also assume that you are reading a book on ecosystem ecology such as @Chapin2011.
 
 ## A couple of other useful citations
 

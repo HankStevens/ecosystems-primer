@@ -2,17 +2,17 @@
 
 Reading: 
 
-* pp. 1-17, (Chapters 1, 2; Soetaert and Hermann 2009)
+* pp. 1-17, (in Chapters 1, 2 of Soetaert and Hermann 2009)
 
 In this course, we'll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,
 
 * become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;
 * understand and describe the quantitative and qualitative features of ecosystem dynamics and models of those dynamics;
-* assess the relative merits of different modeling approaches and different mathematical formalisms of those apporaches;
+* assess the relative merits of different modeling approaches and different mathematical formalisms of those approaches;
 * create models of ecosystem dynamics of your own;
 * write R code to implement ecosystem models.
 
-To do all this, the following text relies heavily on selected secondary sources including @Soetaert2009 and @Haefner1996. I also cite selected primary soruces where appropriate.
+To do all this, the following text relies heavily on selected secondary sources especially @Soetaert2009. I also cite selected primary soruces where appropriate.
 
 ## Why models?
 In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. \@ref(fig:SH1-3)). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations [@Soetaert2009].
@@ -29,7 +29,7 @@ knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
 
 Ecosystem fluxes or flows are influenced by *state factors* such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. \@ref(fig:statefactors)). 
 
-```{r statefactors, echo=FALSE, fig.cap="*The current state of an ecosystem depends on state factors [@Chapin2002].*"}
+```{r statefactors, echo=FALSE, fig.cap="*The current state of an ecosystem depends on state factors [@Chapin2011].*"}
 knitr::include_graphics("figs/Chapin_f1-5.png")
 ```
 
@@ -40,20 +40,20 @@ In Fig. \@ref(fig:lake), all pools are receiving imports from outside the system
 ## What's a model?
 You've already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. 
 
-We describe an ecosystem using *balance* equations for each pool. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:
+We describe an ecosystem using *balance* equations for each pool [p. 18, @Soetaert2009]. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:
 
 $$\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}$$
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. \@ref(fig:lake) might look like
 $$\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS$$
-where $D$ is the amount of P in the dissolved pool, perhaps in mg m$^{-2}$, $I$ is import, or source, from outside the system (dust? lake inflow?), and $H$, $N$, $F_1$, and $F_2$ are the other pools. The lower case letters are *parameters* or rate constants that are the mass-specific fluxes. 
+where $D$ is the amount of P in the dissolved pool, perhaps in mg$\cdot$m$^{-2}$, $I$ is import, or source, from outside the system (dust? lake inflow?), and $H$, $N$, $F_1$, and $F_2$ are the other pools. The lower case letters are *parameters* or rate constants that are the mass-specific fluxes. 
 
-The units of $dD/dt$ are mg m$^{-2}$ d$^{-1}, and so **each term (e.g., $I$ or $e_H H$) in the equation must also have these same units**. 
+The units of $dD/dt$ are mg$\cdot$m$^{-2}\cdot$d$^{-1}, and so **each term (e.g., $I$ or $e_H H$) in the equation must also have these same units**. 
 
-* units of $e_H H$ must be mg m$^{-2}$ d$^{-1}$.
-* units of $H$ are mg m$^{-2}$.
+* units of $e_H H$ must be mg$\cdot$m$^{-2}$$\cdot$d$^{-1}$.
+* units of $H$ are mg$\cdot$m$^{-2}$.
 * Ergo, units of $e_H$ are d$^{-1}$.
 
-More intuitively, the units of these rate constants are mg m$^{-2} d$^{-1}$ per mg m$^{-2} in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
+More intuitively, the units of these rate constants are mg$\cdot$m$^{-2}\cdot$d$^{-1}$ per mg$\cdot$m$^{-2}$ in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
 
 See @Soetaert2009 section 2.1.4 for further explanation. 
 
@@ -108,7 +108,7 @@ lake <- function( time, state_vars, parameters ){
 }
 ```
 
-Next, we tell R what the values of the parameters are that we want. Let's say the the import is 3 mg m$^{-2}$ d$^{-1}$, and that the fraction (or rate, really) is 0.5 d$^{-1}$, or more intuitively, mg m$^{-2}$ d$^{-1}$ per mg m$^{-2}$ in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
+Next, we tell R what the values of the parameters are that we want. Let's say the the import is 3 mg$\cdot$m$^{-2}\cdot$d$^{-1}$, and that the fraction (or rate, really) is 0.5 d$^{-1}$, or more intuitively, mg$\cdot$m$^{-2}\cdot$d$^{-1}$ per mg$\cdot$m$^{-2}$ in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
 ```{r}
 p <- c(I = 10, a = .5)
 ```

@@ -186,17 +186,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">2</span> Introduction ecosystem models</h1>
 <p>Reading:</p>
 <ul>
-<li>pp. 1-17, (Chapters 1, 2; Soetaert and Hermann 2009)</li>
+<li>pp. 1-17, (in Chapters 1, 2 of Soetaert and Hermann 2009)</li>
 </ul>
 <p>In this course, we’ll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,</p>
 <ul>
 <li>become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;</li>
 <li>understand and describe the quantitative and qualitative features of ecosystem dynamics and models of those dynamics;</li>
-<li>assess the relative merits of different modeling approaches and different mathematical formalisms of those apporaches;</li>
+<li>assess the relative merits of different modeling approaches and different mathematical formalisms of those approaches;</li>
 <li>create models of ecosystem dynamics of your own;</li>
 <li>write R code to implement ecosystem models.</li>
 </ul>
-<p>To do all this, the following text relies heavily on selected secondary sources including <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> and <span class="citation">Haefner (<a href="#ref-Haefner1996" role="doc-biblioref">1996</a>)</span>. I also cite selected primary soruces where appropriate.</p>
+<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary soruces where appropriate.</p>
 <div id="why-models" class="section level2">
 <h2><span class="header-section-number">2.1</span> Why models?</h2>
 <p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations <span class="citation">(Soetaert and Herman <a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>.</p>
@@ -218,9 +218,9 @@ Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span c
 </div>
 <p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">2.3</a>).</p>
 <div class="figure"><span id="fig:statefactors"></span>
-<img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2002].*" width="66%" />
+<img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2011].*" width="66%" />
 <p class="caption">
-Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(Chapin III, Matson, and Mooney <a href="#ref-Chapin2002" role="doc-biblioref">2002</a>)</span>.</em>
+Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(Chapin III, Matson, and Vitousek <a href="#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</em>
 </p>
 </div>
 <p>We can describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.</p>
@@ -229,18 +229,18 @@ Figure 2.3: <em>The current state of an ecosystem depends on state factors <span
 <div id="whats-a-model" class="section level2">
 <h2><span class="header-section-number">2.3</span> What’s a model?</h2>
 <p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes.</p>
-<p>We describe an ecosystem using <em>balance</em> equations for each pool. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
+<p>We describe an ecosystem using <em>balance</em> equations for each pool <span class="citation">(p. 18, Soetaert and Herman <a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
 <p><span class="math display">\[\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}\]</span>
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> might look like
 <span class="math display">\[\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
-where <span class="math inline">\(D\)</span> is the amount of P in the dissolved pool, perhaps in mg m<span class="math inline">\(^{-2}\)</span>, <span class="math inline">\(I\)</span> is import, or source, from outside the system (dust? lake inflow?), and <span class="math inline">\(H\)</span>, <span class="math inline">\(N\)</span>, <span class="math inline">\(F_1\)</span>, and <span class="math inline">\(F_2\)</span> are the other pools. The lower case letters are <em>parameters</em> or rate constants that are the mass-specific fluxes.</p>
-<p>The units of <span class="math inline">\(dD/dt\)</span> are mg m<span class="math inline">\(^{-2}\)</span> d$^{-1}, and so <strong>each term (e.g., <span class="math inline">\(I\)</span> or <span class="math inline">\(e_H H\)</span>) in the equation must also have these same units</strong>.</p>
+where <span class="math inline">\(D\)</span> is the amount of P in the dissolved pool, perhaps in mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>, <span class="math inline">\(I\)</span> is import, or source, from outside the system (dust? lake inflow?), and <span class="math inline">\(H\)</span>, <span class="math inline">\(N\)</span>, <span class="math inline">\(F_1\)</span>, and <span class="math inline">\(F_2\)</span> are the other pools. The lower case letters are <em>parameters</em> or rate constants that are the mass-specific fluxes.</p>
+<p>The units of <span class="math inline">\(dD/dt\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d$^{-1}, and so <strong>each term (e.g., <span class="math inline">\(I\)</span> or <span class="math inline">\(e_H H\)</span>) in the equation must also have these same units</strong>.</p>
 <ul>
-<li>units of <span class="math inline">\(e_H H\)</span> must be mg m<span class="math inline">\(^{-2}\)</span> d<span class="math inline">\(^{-1}\)</span>.</li>
-<li>units of <span class="math inline">\(H\)</span> are mg m<span class="math inline">\(^{-2}\)</span>.</li>
+<li>units of <span class="math inline">\(e_H H\)</span> must be mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span><span class="math inline">\(\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>.</li>
+<li>units of <span class="math inline">\(H\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>.</li>
 <li>Ergo, units of <span class="math inline">\(e_H\)</span> are d<span class="math inline">\(^{-1}\)</span>.</li>
 </ul>
-<p>More intuitively, the units of these rate constants are mg m<span class="math inline">\(^{-2} d\)</span>^{-1}$ per mg m<span class="math inline">\(^{-2} in the lake. Note the quantities cancel out, and we are left with d\)</span>^{-1}$.</p>
+<p>More intuitively, the units of these rate constants are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
 <p>See <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
 <p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them concel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
@@ -286,7 +286,7 @@ In R, we write a function for the system of differential equations.</p>
 <span id="cb1-6"><a href="intro.html#cb1-6"></a>         <span class="kw">return</span>(<span class="kw">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
 <span id="cb1-7"><a href="intro.html#cb1-7"></a>       })</span>
 <span id="cb1-8"><a href="intro.html#cb1-8"></a>}</span></code></pre></div>
-<p>Next, we tell R what the values of the parameters are that we want. Let’s say the the import is 3 mg m<span class="math inline">\(^{-2}\)</span> d<span class="math inline">\(^{-1}\)</span>, and that the fraction (or rate, really) is 0.5 d<span class="math inline">\(^{-1}\)</span>, or more intuitively, mg m<span class="math inline">\(^{-2}\)</span> d<span class="math inline">\(^{-1}\)</span> per mg m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
+<p>Next, we tell R what the values of the parameters are that we want. Let’s say the the import is 3 mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and that the fraction (or rate, really) is 0.5 d<span class="math inline">\(^{-1}\)</span>, or more intuitively, mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">I =</span> <span class="dv">10</span>, <span class="dt">a =</span> <span class="fl">.5</span>)</span></code></pre></div>
 <p>Now the exciting part. We tell R our starting point and what time points we want to integrate for, and then <em>solve</em> the differential equation and have R return the result for the time points we want. After that, we display the first five time points.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a>initial.state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">P=</span><span class="dv">1</span>)</span>
@@ -320,11 +320,8 @@ By convention, we denote the equilibrium value of <span class="math inline">\(P\
 <div id="ref-Carpenter1992">
 <p>Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. “Resilience and resistance of lake phosphorus cycle before and after food web manipulation.” <em>Am. Nat.</em> 140: 781–98.</p>
 </div>
-<div id="ref-Chapin2002">
-<p>Chapin III, F S, P A Matson, and H A Mooney. 2002. <em>Principles of Terrestrial Ecosystem Ecology</em>. Springer.</p>
-</div>
-<div id="ref-Haefner1996">
-<p>Haefner, J W. 1996. <em>Modeling Biological Systems: Principles and Applications</em>. New York: Chapman &amp; Hall.</p>
+<div id="ref-Chapin2011">
+<p>Chapin III, F. S., P. A. Matson, and P. M. Vitousek. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. Springer.</p>
 </div>
 <div id="ref-Marquet2014">
 <p>Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. “On theory in ecology.” <em>BioScience</em> 64 (8): 701–10.</p>
