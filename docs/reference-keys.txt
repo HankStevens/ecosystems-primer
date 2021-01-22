@@ -11,9 +11,10 @@ fig:unnamed-chunk-11
 fig:unnamed-chunk-13
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-26
+fig:unnamed-chunk-28
 prerequisites
-a-couple-of-other-useful-citations
+must-dos
+a-couple-of-useful-citations
 intro
 why-models
 whats-an-ecosystem
@@ -31,6 +32,7 @@ budget-take-ii
 lake-metabolism
 estimating-productivity
 by-hand-in-r
+the-lakemetabolizer-package
 MEL
 rastetter-et-al.-1997
 implementing-mel

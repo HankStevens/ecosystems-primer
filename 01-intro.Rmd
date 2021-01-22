@@ -47,7 +47,7 @@ As models increase in complexity, we usually use differential equations, or time
 $$\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS$$
 where $D$ is the amount of P in the dissolved pool, perhaps in mg$\cdot$m$^{-2}$, $I$ is import, or source, from outside the system (dust? lake inflow?), and $H$, $N$, $F_1$, and $F_2$ are the other pools. The lower case letters are *parameters* or rate constants that are the mass-specific fluxes. 
 
-The units of $dD/dt$ are mg$\cdot$m$^{-2}\cdot$d$^{-1}, and so **each term (e.g., $I$ or $e_H H$) in the equation must also have these same units**. 
+The units of $dD/dt$ are mg$\cdot$m$^{-2}\cdot$d$^{-1}$, and so **each term (e.g., $I$ or $e_H H$) in the equation must also have these same units**. 
 
 * units of $e_H H$ must be mg$\cdot$m$^{-2}$$\cdot$d$^{-1}$.
 * units of $H$ are mg$\cdot$m$^{-2}$.
@@ -62,9 +62,9 @@ $$\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt
 
 See @Soetaert2009 section 2.1.3 for further explanation. 
 
-State factors also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., $e_H$, $u_S$) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.*
+**State factors** also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., $e_H$, $u_S$) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.* We will add temperature to a model later in the book.
 
-To review: variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.
+**To review:** variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.
 
 No models apply everywhere, all the time. All models are limited for a specific *domain* and with specific *boundaries*. These are the spatial, temporal and conceptual limits on a model. 
 
@@ -85,7 +85,7 @@ In contrast to theory, models are specific implementations of theory and specifi
 
 ## Steps in modeling
 @Soetaert2009 identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. \@ref(fig:SH1-7)).
-```{r SH1-7, echo=FALSE, fig.cap="*It is helpful to use a series of steps in improving our models. (Figure 1.7 in Soetaert and Hermann, 2009).*", fig.show='hold', out.width='45%'}
+```{r SH1-7, echo=FALSE, fig.cap="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*", fig.show='hold', out.width='45%'}
 knitr::include_graphics("figs/SH_F-1.7a.png")
 knitr::include_graphics("figs/SH_F-1.7b.png")
 ```
@@ -94,17 +94,23 @@ knitr::include_graphics("figs/SH_F-1.7b.png")
 
 Here we create a simple model to illustrate some of what we've been describing.
 
-Consider our lake above, as a whole. We'll let the imports, $I$, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, $a$, is exported,
+Consider our lake above, as a whole. Just one big pool of P. We'll let the imports, $I$, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, $a$, is exported,
 $$\frac{dP}{dt} = I - a P$$
 In R, we write a function for the system of differential equations.
 ```{r}
 lake <- function( time, state_vars, parameters ){
+  
+  ## ODE function for a single pool (e.g., a lake)  with a constant
+  ## rate of import, and first-order export function (depends on the pool).
+  ## to be used with ode() in the deSolve package
+
   P <- state_vars[1] # state variable(s)
   with(as.list(parameters), # tell R to look inside 'parameters'
        {
          dP.dt <- I -a*P # the balance eq. or rate func.
          return(list(dP.dt)) # return the value of the rate function
        })
+  
 }
 ```
 
@@ -123,6 +129,7 @@ out[1:5,]
 
 Pictures are informative, so here we plot the result.
 ```{r}
+## simple graph of the time series
 plot(out)
 ```
 

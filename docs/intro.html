@@ -135,7 +135,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-couple-of-other-useful-citations"><i class="fa fa-check"></i><b>1.1</b> A couple of other useful citations</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#must-dos"><i class="fa fa-check"></i><b>1.1</b> Must do’s</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
@@ -157,6 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a><ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
 <li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
+<li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> the LakeMetabolizer package</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a><ul>
 <li class="chapter" data-level="5.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>5.1</b> Rastetter et al. 1997</a></li>
@@ -234,7 +236,7 @@ Figure 2.3: <em>The current state of an ecosystem depends on state factors <span
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> might look like
 <span class="math display">\[\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
 where <span class="math inline">\(D\)</span> is the amount of P in the dissolved pool, perhaps in mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>, <span class="math inline">\(I\)</span> is import, or source, from outside the system (dust? lake inflow?), and <span class="math inline">\(H\)</span>, <span class="math inline">\(N\)</span>, <span class="math inline">\(F_1\)</span>, and <span class="math inline">\(F_2\)</span> are the other pools. The lower case letters are <em>parameters</em> or rate constants that are the mass-specific fluxes.</p>
-<p>The units of <span class="math inline">\(dD/dt\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d$^{-1}, and so <strong>each term (e.g., <span class="math inline">\(I\)</span> or <span class="math inline">\(e_H H\)</span>) in the equation must also have these same units</strong>.</p>
+<p>The units of <span class="math inline">\(dD/dt\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and so <strong>each term (e.g., <span class="math inline">\(I\)</span> or <span class="math inline">\(e_H H\)</span>) in the equation must also have these same units</strong>.</p>
 <ul>
 <li>units of <span class="math inline">\(e_H H\)</span> must be mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span><span class="math inline">\(\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>.</li>
 <li>units of <span class="math inline">\(H\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>.</li>
@@ -245,8 +247,8 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them concel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
 <p>See <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
-<p>State factors also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., <span class="math inline">\(e_H\)</span>, <span class="math inline">\(u_S\)</span>) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em></p>
-<p>To review: variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
+<p><strong>State factors</strong> also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., <span class="math inline">\(e_H\)</span>, <span class="math inline">\(u_S\)</span>) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em> We will add temperature to a model later in the book.</p>
+<p><strong>To review:</strong> variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
 <p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
 <div id="other-ideas" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Other ideas</h3>
@@ -266,26 +268,32 @@ Figure 2.4: <em>A statistical model of aboveground plant biomass as a function o
 <h2><span class="header-section-number">2.4</span> Steps in modeling</h2>
 <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
 <div class="figure"><span id="fig:SH1-7"></span>
-<img src="figs/SH_F-1.7a.png" alt="*It is helpful to use a series of steps in improving our models. (Figure 1.7 in Soetaert and Hermann, 2009).*" width="45%" /><img src="figs/SH_F-1.7b.png" alt="*It is helpful to use a series of steps in improving our models. (Figure 1.7 in Soetaert and Hermann, 2009).*" width="45%" />
+<img src="figs/SH_F-1.7a.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" /><img src="figs/SH_F-1.7b.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" />
 <p class="caption">
-Figure 2.5: <em>It is helpful to use a series of steps in improving our models. (Figure 1.7 in Soetaert and Hermann, 2009).</em>
+Figure 2.5: <em>It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).</em>
 </p>
 </div>
 </div>
 <div id="an-example-in-r" class="section level2">
 <h2><span class="header-section-number">2.5</span> An example in R</h2>
 <p>Here we create a simple model to illustrate some of what we’ve been describing.</p>
-<p>Consider our lake above, as a whole. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, <span class="math inline">\(a\)</span>, is exported,
+<p>Consider our lake above, as a whole. Just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, <span class="math inline">\(a\)</span>, is exported,
 <span class="math display">\[\frac{dP}{dt} = I - a P\]</span>
 In R, we write a function for the system of differential equations.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a>lake &lt;-<span class="st"> </span><span class="cf">function</span>( time, state_vars, parameters ){</span>
-<span id="cb1-2"><a href="intro.html#cb1-2"></a>  P &lt;-<span class="st"> </span>state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
-<span id="cb1-3"><a href="intro.html#cb1-3"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
-<span id="cb1-4"><a href="intro.html#cb1-4"></a>       {</span>
-<span id="cb1-5"><a href="intro.html#cb1-5"></a>         dP.dt &lt;-<span class="st"> </span>I <span class="op">-</span>a<span class="op">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
-<span id="cb1-6"><a href="intro.html#cb1-6"></a>         <span class="kw">return</span>(<span class="kw">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
-<span id="cb1-7"><a href="intro.html#cb1-7"></a>       })</span>
-<span id="cb1-8"><a href="intro.html#cb1-8"></a>}</span></code></pre></div>
+<span id="cb1-2"><a href="intro.html#cb1-2"></a>  </span>
+<span id="cb1-3"><a href="intro.html#cb1-3"></a>  <span class="co">## ODE function for a single pool (e.g., a lake)  with a constant</span></span>
+<span id="cb1-4"><a href="intro.html#cb1-4"></a>  <span class="co">## rate of import, and first-order export function (depends on the pool).</span></span>
+<span id="cb1-5"><a href="intro.html#cb1-5"></a>  <span class="co">## to be used with ode() in the deSolve package</span></span>
+<span id="cb1-6"><a href="intro.html#cb1-6"></a></span>
+<span id="cb1-7"><a href="intro.html#cb1-7"></a>  P &lt;-<span class="st"> </span>state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
+<span id="cb1-8"><a href="intro.html#cb1-8"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
+<span id="cb1-9"><a href="intro.html#cb1-9"></a>       {</span>
+<span id="cb1-10"><a href="intro.html#cb1-10"></a>         dP.dt &lt;-<span class="st"> </span>I <span class="op">-</span>a<span class="op">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
+<span id="cb1-11"><a href="intro.html#cb1-11"></a>         <span class="kw">return</span>(<span class="kw">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
+<span id="cb1-12"><a href="intro.html#cb1-12"></a>       })</span>
+<span id="cb1-13"><a href="intro.html#cb1-13"></a>  </span>
+<span id="cb1-14"><a href="intro.html#cb1-14"></a>}</span></code></pre></div>
 <p>Next, we tell R what the values of the parameters are that we want. Let’s say the the import is 3 mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and that the fraction (or rate, really) is 0.5 d<span class="math inline">\(^{-1}\)</span>, or more intuitively, mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">I =</span> <span class="dv">10</span>, <span class="dt">a =</span> <span class="fl">.5</span>)</span></code></pre></div>
 <p>Now the exciting part. We tell R our starting point and what time points we want to integrate for, and then <em>solve</em> the differential equation and have R return the result for the time points we want. After that, we display the first five time points.</p>
@@ -300,7 +308,8 @@ In R, we write a function for the system of differential equations.</p>
 ## [4,] 0.12500000 2.151151
 ## [5,] 0.16666667 2.519155</code></pre>
 <p>Pictures are informative, so here we plot the result.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="kw">plot</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="co">## simple graph of the time series</span></span>
+<span id="cb5-2"><a href="intro.html#cb5-2"></a><span class="kw">plot</span>(out)</span></code></pre></div>
 <p><img src="figs/unnamed-chunk-5-1.png" width="66%" /></p>
 <p>In very simple situations, we can solve the equilibrium by hand. By definition, the equilibrium is a state at which the system stops changing, that is, its rate of change is zero. To find a value of <span class="math inline">\(P\)</span> which is an equilibrium, we set the balance equation equal to zero, and solve for <span class="math inline">\(P\)</span>:
 <span class="math display">\[\frac{dP}{dt} = 0 = I -aP\]</span>

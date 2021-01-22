@@ -5,6 +5,7 @@
 /usr/bin/git commit -F /var/folders/lp/_ys06gs12dx3pk5yt8mrdpkrfsbv40/T/RtmpPYHAI7/git-commit-message-782f11cf0760.txt
 
 - from terminal
+"add all files (new and changed) and then commit with the following message"
 git add -A && git commit -m 'staging all files'
  
 

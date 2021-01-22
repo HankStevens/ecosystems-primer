@@ -30,11 +30,23 @@ library(tidyverse)
 library(kableExtra) #kbl
 ```
 
-For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
+For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
 
 I also assume that you are reading a book on ecosystem ecology such as @Chapin2011.
 
-## A couple of other useful citations
+## Must do's
+
+Read background material as needed.
+
+* Install or update R (4.0.3, as of Jan 2021)
+* Install or update RStudio
+* Install select R packages: 'deSolve', 'tidyverse', 'LakeMetabolizer`, 'lubridate'
+
+Also, before doing most tasks in this primer, load deSolve and tidyverse with `library(deSolve); library(tidyverse)`.
+
+The R **working directory** is the place R automatically looks for files. For simplicity, I will refer to the R **working directory** as `Rwork`. Therefore, `Rwork/data` would be a folder or directory called `data` inside `Rwork`. At any point in time, you can find out what your working directory is using `getwd()`. You can set your working directory using `setwd("HD/MyStuff/Rwork")`, where "HD/MyStuff/Rwork" is the path to what you want your working directory to be. You can also use the "Session" pull-down menu in RStudio.
+
+## A couple of useful citations
 
 @Carey2018PLoS. Ten simple rules for biologists learning to program. PLoS Computional Biology 14(1): e1005871. https://doi.org/10.1371/journal.pcbi.1005871
 

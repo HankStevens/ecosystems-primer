@@ -135,7 +135,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-couple-of-other-useful-citations"><i class="fa fa-check"></i><b>1.1</b> A couple of other useful citations</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#must-dos"><i class="fa fa-check"></i><b>1.1</b> Must do’s</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
@@ -157,6 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a><ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
 <li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
+<li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> the LakeMetabolizer package</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a><ul>
 <li class="chapter" data-level="5.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>5.1</b> Rastetter et al. 1997</a></li>
@@ -189,10 +191,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="prerequisites" class="section level1">
 <h1><span class="header-section-number">1</span> Prerequisites</h1>
-<p>For this R primer, you’ll need to read several chapters of <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
+<p>For this R primer, you’ll need to read several chapters of <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
 <p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation">Chapin III, Matson, and Vitousek (<a href="#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</p>
-<div id="a-couple-of-other-useful-citations" class="section level2">
-<h2><span class="header-section-number">1.1</span> A couple of other useful citations</h2>
+<div id="must-dos" class="section level2">
+<h2><span class="header-section-number">1.1</span> Must do’s</h2>
+<p>Read background material as needed.</p>
+<ul>
+<li>Install or update R (4.0.3, as of Jan 2021)</li>
+<li>Install or update RStudio</li>
+<li>Install select R packages: ‘deSolve’, ‘tidyverse’, ‘LakeMetabolizer`, ’lubridate’</li>
+</ul>
+<p>Also, before doing most tasks in this primer, load deSolve and tidyverse with <code>library(deSolve); library(tidyverse)</code>.</p>
+<p>The R <strong>working directory</strong> is the place R automatically looks for files. For simplicity, I will refer to the R <strong>working directory</strong> as <code>Rwork</code>. Therefore, <code>Rwork/data</code> would be a folder or directory called <code>data</code> inside <code>Rwork</code>. At any point in time, you can find out what your working directory is using <code>getwd()</code>. You can set your working directory using <code>setwd("HD/MyStuff/Rwork")</code>, where “HD/MyStuff/Rwork” is the path to what you want your working directory to be. You can also use the “Session” pull-down menu in RStudio.</p>
+</div>
+<div id="a-couple-of-useful-citations" class="section level2">
+<h2><span class="header-section-number">1.2</span> A couple of useful citations</h2>
 <ol class="example" style="list-style-type: decimal">
 <li><p>Ten simple rules for biologists learning to program. PLoS Computional Biology 14(1): e1005871. <a href="https://doi.org/10.1371/journal.pcbi.1005871" class="uri">https://doi.org/10.1371/journal.pcbi.1005871</a></p></li>
 <li><p>Ten simple rules for tackling your first mathematical models: A guide for graduate students by graduate students. PLOS Computational Biology 17(1): e1008539. <a href="https://doi.org/10.1371/journal.pcbi.1008539" class="uri">https://doi.org/10.1371/journal.pcbi.1008539</a></p></li>
