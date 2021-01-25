@@ -1,0 +1,122 @@
+#Gizzard Shad Pee
+
+## A model of gizzard shad nutrient recycling
+
+Readings:
+
+@Vanni2002
+
+```{r, echo=FALSE, warning=FALSE, fig.cap="*A simple example of the role animals can play in regulating nutrient cycling.*"}
+# a digraph is a directed graph
+# the model is written in the "dot" language
+shad <-
+"digraph{
+  rankdir = LR;
+{
+node[shape='box']; T;G;S;
+node[shape='plain']; W;O;
+}
+W[label='Watershed']
+O[label='Downstream']
+T[label='Total P']
+G[label='Gizzard\nShad']
+S[label='Sediments']
+{rank=max; O;}
+{rank=min; W;}
+{rank=same; T;S;}
+
+W -> T[label='inflow'];
+T -> S[label='sedimentation                 '];
+S -> T[label='                microbes'];
+S -> G[label='ingestion'];
+G -> T[label='translocation']; 
+T -> O[label='outflow']; 
+}"
+
+grViz(shad)
+grViz(shad) %>%
+  export_svg %>% charToRaw %>% rsvg_pdf("shad.pdf")
+```
+
+## The model
+Constants
+
+* Gizzard shad excretion rate ($0.97\,\mu g$P $\,$L$^{-1}\,$d$^{-1}$)
+* Inflow from the watershed  ($1.23\,\mu g$ P$\,$L$^{-1}\,$d${-1}$)
+* Microbial release from the sediments ($0.12\,\mu g$P$\,$L$^{-1}\,$d$^{-1}$)
+
+Primary production, PR, is a linear function of total water column phosphorus, $P_T$, 
+$$ \mathrm{PR} = aP_T-b = 8.36 P_T - 115.9 $$
+Sedimentation from the water column to the benthos is a ratio of the primary production and the export ratio, scaled by the P:C ratio (0.018, by mass). The export ratio, $E$, is itself a function of primary production,
+$$E = c - d\cdot \mathrm{PR} = 0.459 - 0.000163\,\mathrm{PR} $$
+
+Sedimentation, $S$, is thus,
+$$S = \mathrm{PR}\cdot E \cdot 0.018$$
+Sedimentation rate as a function of total phosporus in the water column (and various constants).
+```{r, echo=TRUE}
+translocation = 0.97
+inflow=1.23
+release=0.12
+(inputs <- translocation+inflow+release)
+
+a=8.36
+b=115.9
+c=0.459
+d=0.000163
+
+# P:C ratio
+r = 0.018
+
+# x is total phosphorus
+
+## Sedimentation alone
+{
+par(mar=c(5,5,2,2))
+curve( ( -a^2*d*x^2 + (a*c + 2*a*b*d)*x - (b*c - b^2*d) ) * r, 25, 125, 
+       ylab=expression( "Sedimentation (" * mu *"g" * "P" * "L"^-1*"d"^-1*")"), 
+       xlab = expression( "Total P (" * italic(mu) *"g" * "P" * "L"^-1*"d"^-1*")") )
+}
+
+## Inputs minus sedimentation
+{
+  par(mar=c(5,5,2,2))
+  curve( inputs - ( -a^2*d*x^2 + (a*c + 2*a*b*d)*x - (b*c - b^2*d) ) , 25, 125, 
+       ylab=expression( "Sedimentation (" * mu *"g" * "P" * "L"^-1*"d"^-1*")"), 
+       xlab = expression( "Total P (" * italic(mu) *"g" * "P" * "L"^-1*"d"^-1*")") )
+  abline(h=0, lty=3)
+}
+x=52
+( -a^2*d*x^2 + (a*c + 2*a*b*d)*x - (b*c - b^2*d) ) * r
+```
+
+
+```{r shadmodel}
+
+params <-c(translocation = 0.97, inflow=1.23, release=0.12, P.C=0.018)
+
+y0 <- c(TP=40)
+
+acton <- function(t,y,p) {
+
+with( as.list(c(y,p)), {
+
+ PPR = 8.36 * TP - 115.9
+ ER = 0.459 - 0.000163 * PPR 
+ sedimentation = PPR * ER * P.C
+ 
+ dT.dt <- inflow + release + translocation - sedimentation 
+ 
+ lR = 1.0077 * log10(TP) + 0.7206
+ R = 10^(lR)
+ return( list(c(dT.dt), PPR = PPR, Regen = R) )
+} 
+)
+
+  
+}
+
+y0 <- c(TP=40)
+days <- 0:200
+sim.shad <- ode(y=y0, times= days, func=acton, parms=params)
+plot(sim.shad)
+```

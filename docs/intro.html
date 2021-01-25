@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-01-21" />
+<meta name="date" content="2021-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -149,11 +149,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
 <li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
-<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#first-mathematical-form-for-plant-uptake"><i class="fa fa-check"></i><b>3.2</b> First mathematical form for plant uptake</a></li>
+<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
 <li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
 <li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#calibration-take-1"><i class="fa fa-check"></i><b>3.5</b> Calibration, take 1</a></li>
-<li class="chapter" data-level="3.6" data-path="N.html"><a href="N.html#budget-take-ii"><i class="fa fa-check"></i><b>3.6</b> Budget, take II</a></li>
+<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a><ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
@@ -244,7 +243,7 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 </ul>
 <p>More intuitively, the units of these rate constants are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
 <p>See <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
-<p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them concel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
+<p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
 <p>See <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
 <p><strong>State factors</strong> also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., <span class="math inline">\(e_H\)</span>, <span class="math inline">\(u_S\)</span>) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em> We will add temperature to a model later in the book.</p>
@@ -279,28 +278,43 @@ Figure 2.5: <em>It is helpful to use a series of steps in improving our models. 
 <p>Here we create a simple model to illustrate some of what we’ve been describing.</p>
 <p>Consider our lake above, as a whole. Just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, <span class="math inline">\(a\)</span>, is exported,
 <span class="math display">\[\frac{dP}{dt} = I - a P\]</span>
-In R, we write a function for the system of differential equations.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a>lake &lt;-<span class="st"> </span><span class="cf">function</span>( time, state_vars, parameters ){</span>
-<span id="cb1-2"><a href="intro.html#cb1-2"></a>  </span>
-<span id="cb1-3"><a href="intro.html#cb1-3"></a>  <span class="co">## ODE function for a single pool (e.g., a lake)  with a constant</span></span>
-<span id="cb1-4"><a href="intro.html#cb1-4"></a>  <span class="co">## rate of import, and first-order export function (depends on the pool).</span></span>
-<span id="cb1-5"><a href="intro.html#cb1-5"></a>  <span class="co">## to be used with ode() in the deSolve package</span></span>
-<span id="cb1-6"><a href="intro.html#cb1-6"></a></span>
-<span id="cb1-7"><a href="intro.html#cb1-7"></a>  P &lt;-<span class="st"> </span>state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
-<span id="cb1-8"><a href="intro.html#cb1-8"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
-<span id="cb1-9"><a href="intro.html#cb1-9"></a>       {</span>
-<span id="cb1-10"><a href="intro.html#cb1-10"></a>         dP.dt &lt;-<span class="st"> </span>I <span class="op">-</span>a<span class="op">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
-<span id="cb1-11"><a href="intro.html#cb1-11"></a>         <span class="kw">return</span>(<span class="kw">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
-<span id="cb1-12"><a href="intro.html#cb1-12"></a>       })</span>
-<span id="cb1-13"><a href="intro.html#cb1-13"></a>  </span>
-<span id="cb1-14"><a href="intro.html#cb1-14"></a>}</span></code></pre></div>
+In R, we write a function for the system of differential equations, and include descriptive comments.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a><span class="co">## A function called lake to represent an ODE</span></span>
+<span id="cb1-2"><a href="intro.html#cb1-2"></a><span class="co">## to use in ode() in the deSolve package.</span></span>
+<span id="cb1-3"><a href="intro.html#cb1-3"></a>lake &lt;-<span class="st"> </span><span class="cf">function</span>( time, state_vars, parameters ){</span>
+<span id="cb1-4"><a href="intro.html#cb1-4"></a>  <span class="co">## ODE function for a single pool (e.g., a lake)  with a constant</span></span>
+<span id="cb1-5"><a href="intro.html#cb1-5"></a>  <span class="co">## rate of import, and first-order export function (depends on the pool).</span></span>
+<span id="cb1-6"><a href="intro.html#cb1-6"></a>  <span class="co">## The arguments time, state_vars, and parameters will be used by ode()</span></span>
+<span id="cb1-7"><a href="intro.html#cb1-7"></a>  <span class="co">## to solve (numerically integrate) the system.</span></span>
+<span id="cb1-8"><a href="intro.html#cb1-8"></a>  </span>
+<span id="cb1-9"><a href="intro.html#cb1-9"></a>  <span class="co">## I is the constant input rate</span></span>
+<span id="cb1-10"><a href="intro.html#cb1-10"></a>  <span class="co">## a is the constant mass-specific loss rate</span></span>
+<span id="cb1-11"><a href="intro.html#cb1-11"></a>  <span class="co">## P is the state variable</span></span>
+<span id="cb1-12"><a href="intro.html#cb1-12"></a></span>
+<span id="cb1-13"><a href="intro.html#cb1-13"></a>  P &lt;-<span class="st"> </span>state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
+<span id="cb1-14"><a href="intro.html#cb1-14"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
+<span id="cb1-15"><a href="intro.html#cb1-15"></a>       {</span>
+<span id="cb1-16"><a href="intro.html#cb1-16"></a>         dP.dt &lt;-<span class="st"> </span>I <span class="op">-</span>a<span class="op">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
+<span id="cb1-17"><a href="intro.html#cb1-17"></a>         <span class="kw">return</span>(<span class="kw">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
+<span id="cb1-18"><a href="intro.html#cb1-18"></a>       })</span>
+<span id="cb1-19"><a href="intro.html#cb1-19"></a>  </span>
+<span id="cb1-20"><a href="intro.html#cb1-20"></a>}</span></code></pre></div>
 <p>Next, we tell R what the values of the parameters are that we want. Let’s say the the import is 3 mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and that the fraction (or rate, really) is 0.5 d<span class="math inline">\(^{-1}\)</span>, or more intuitively, mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">I =</span> <span class="dv">10</span>, <span class="dt">a =</span> <span class="fl">.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a><span class="co">## parameters</span></span>
+<span id="cb2-2"><a href="intro.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="intro.html#cb2-3"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">I =</span> <span class="dv">10</span>, <span class="co"># constant input rate mg / m^2 / day</span></span>
+<span id="cb2-4"><a href="intro.html#cb2-4"></a>       <span class="dt">a =</span> <span class="fl">.5</span> <span class="co"># mass-specific input rate, day^-1</span></span>
+<span id="cb2-5"><a href="intro.html#cb2-5"></a>       )</span></code></pre></div>
 <p>Now the exciting part. We tell R our starting point and what time points we want to integrate for, and then <em>solve</em> the differential equation and have R return the result for the time points we want. After that, we display the first five time points.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a>initial.state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">P=</span><span class="dv">1</span>)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a>initial.state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">P=</span><span class="dv">1</span>) <span class="co"># Initial concentration of P in the lake</span></span>
 <span id="cb3-2"><a href="intro.html#cb3-2"></a>t &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">10</span>, <span class="dt">by=</span><span class="dv">1</span><span class="op">/</span><span class="dv">24</span>) <span class="co"># 10 days, in hourly increments</span></span>
-<span id="cb3-3"><a href="intro.html#cb3-3"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y=</span>initial.state, <span class="dt">times =</span> t, <span class="dt">func =</span> lake, <span class="dt">parms =</span> p)</span>
-<span id="cb3-4"><a href="intro.html#cb3-4"></a>out[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<span id="cb3-3"><a href="intro.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="intro.html#cb3-4"></a><span class="co">## solve the equation in func, using parameter values in p,</span></span>
+<span id="cb3-5"><a href="intro.html#cb3-5"></a><span class="co">## starting at &#39;initial.state&#39; and return the time points t</span></span>
+<span id="cb3-6"><a href="intro.html#cb3-6"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y=</span>initial.state, <span class="dt">times =</span> t, <span class="dt">func =</span> lake, <span class="dt">parms =</span> p)</span>
+<span id="cb3-7"><a href="intro.html#cb3-7"></a></span>
+<span id="cb3-8"><a href="intro.html#cb3-8"></a><span class="co">## display the first five rows of the solution</span></span>
+<span id="cb3-9"><a href="intro.html#cb3-9"></a>out[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
 <pre><code>##            time        P
 ## [1,] 0.00000000 1.000000
 ## [2,] 0.04166667 1.391740

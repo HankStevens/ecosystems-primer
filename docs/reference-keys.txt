@@ -24,11 +24,10 @@ steps-in-modeling
 an-example-in-r
 N
 getting-started
-first-mathematical-form-for-plant-uptake
+mathematical-forms
 paramaterization
 mathematical-solution
-calibration-take-1
-budget-take-ii
+add-self-limitation
 lake-metabolism
 estimating-productivity
 by-hand-in-r

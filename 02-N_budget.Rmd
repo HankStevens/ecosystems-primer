@@ -1,11 +1,11 @@
 # Describing a nitrogen budget {#N}
 
-Readings:
+Background Readings:
 
 * pp. 17-35 (Soetaert and Hermann 2009)
 * Bormann et al. 1977
 
-```{r hbnb, echo=FALSE, fig.cap="*Nitrogen bugdget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*", out.width = '100%'}
+```{r hbnb, echo=FALSE, fig.cap="*Nitrogen budget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*", out.width = '100%'}
 knitr::include_graphics("figs/BormannF2.png")
 ```
 
@@ -45,7 +45,7 @@ For the vegetation pool in Fig. \@ref(fig:hbnb3), we see each flux ($f$) is a *F
 
 Next, we want to represent these fluxes in a mathematical form.
 
-## First mathematical form for plant uptake
+## Mathematical forms
 
 A common starting point for dynamics depending on two pools is the law of *mass action*. This states that the reaction rate is proportional the product of the pools. In the case of plant uptake of N, which depends on the amounts of N in the available pool and the vegetation pool, this would be $aVA$, where $a$ is a proportionality constant. In some circumstances, these pools might also have exponents different than one ($aV^1A^1$), such as $aVA^2$. This occurs in chemistry when a reaction requires two molecules of "A" for each molecule of "V". It might occur in ecology if a rate depends differentially on A and B. 
 
@@ -88,28 +88,17 @@ kbl(df, caption="Parameters, variables, units and estimates for a simplified mod
 Enter parameters into R. 
 
 ```{r}
-# Atmospheric inputs
-##  Precip
-i1 <- 6.5
-## fixation
-i2 <- 14.2
-# uptake
-a1 <- 79.6 / (26 * 532)
-# throughfall and exudates (inorganic)
-a2 <- (6.6 + 0.8) / 532
-# litter, throughfall, exudates (organic)
-a3 <- (54.2 + 2.7 + 0.1 + 6.2 ) / 532
-# net mineralization
-a4 <- 69.6 / 4700
-# export from available
-a5 <- 3.9 /26
-#export from bound
-a6 <- 0.1/4700
+params <- c( 
+i1 = 6.5, # precip
+i2 = 14.2, # fixation
+a1 = 79.6 / (26 * 532), # uptake
+a2 = (6.6 + 0.8) / 532, # throughfall and inorganic exudates
+a3 = (54.2 + 2.7 + 0.1 + 6.2 ) / 532, # litter, throughfall, organic exudates
+a4 <- 69.6 / 4700, # net mineralization
+a5 <- 3.9 /26, # export from available
+a6 <- 0.1/4700 #export from bound
+) # close parentheses
 
-# make a vector
-params <- c( a1 = a1, a2 = a2, a3 = a3, a4 = a4, 
-            a5 = a5, a6 = a6, i1 = i1, i2 = i2)
-#...and look at it.
 params
 ``` 
 
@@ -136,10 +125,10 @@ bormann1 <- function(t, y, p) {
     dV.dt <- a1 * A * V - a2 * V - a3 * V
     dA.dt <- i1 + a2 * V + a4 * B - a1 * A * V - a5 * A 
     dB.dt <- i2 + a3 * V - a4 * B - a6 * B 
-    # Here we return a list whose first element is the vector of
+    # Here we return a LIST whose first element is the vector of
     # rates of change for the state variables. The first element must be these rates,
     # in the same order as the state variables in y
-    # The second element is the total N in the system
+    # The second element, total, is the total N in the system
     return(list( c(dV.dt, dA.dt, dB.dt), 
                  total = V + A + B 
                  )  )})
@@ -150,33 +139,28 @@ Now that we have the function, we tell R what to do with it. We will define the 
 
 The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in @Bormann1977.
 ```{r}
+## starting values in kg/ha
 initial.state <- c( V = 532, A = 26, B = 4700)
 ```
 
-##  Calibration, take 1
-
-Calibration, in general, is the process of finding better estimates
-for our parameters. We can do that by looking into the literature, or
-by using independent data to estimates parameters directly.
-
-If we take a look at the model output (above), we see both differences
-and similarities with Bormann et al. What are they?
-
-What if we run it out longer, say, 100 years? 
+Finally, let's solve the system, and have R return the first 20 years.
 ```{r fig.fullwidth=TRUE}
-time <- 0:250
+time <- 0:20
 out <- ode(y = initial.state, times=time, func=bormann1, parms = params)
-head(round(out,1))
-#plot(out)
+head(out) # the first 6 lines
 ```
 
-Use `gather()` and `ggplot()` to make a graph. We use `gather()` gather multiple columns into one with a new name (`value=kg.N`), keeping track of the names of the original columns in a new column (`key=State.var`). We can use `spread()` if we ever want to spread those columns back out. 
+Use `pivot_longer()` and `ggplot()` to make a graph. We use `pivot_longer()` gather multiple columns into one with a new name (`values_to=kg.N`), keeping track of the names of the original columns in a new column (`names_to=State.var`). We can use `pivot_wider()` if we ever want to spread those columns back out. 
 ```{r fig.cap="Dynamics of a simple N budget, based on Bormann et al. (1977)."}
-outL <- out %>% 
-  as.data.frame() %>% 
+outL <- out %>% # select the data set
+  as.data.frame() %>%  # make sure it is a data frame and not a matrix
+  ## and the rearrange
   pivot_longer( cols=-time, names_to="State.var", values_to="kg.N")
 
-ggplot(outL, aes(x=time, y=kg.N)) + geom_line() + facet_wrap(~State.var, scale="free_y")
+## plot the dynamics
+ggplot(outL, aes(x=time, y=kg.N)) + # select variables to plot
+  geom_line() + # select the form of the graph
+  facet_wrap(~State.var, scale="free_y") # separate each state variable and plot each on its on scale.
 ```
 
 In some ways, we have been moderately successful in our first pass at
@@ -189,7 +173,10 @@ state variables.
 We replicated approximately the N budget of Bormann et al. (1977), but
 clearly vegetation cannot keep accumulating N indefinitely.
 
-What are our next steps? One logical step is to assume that as vegetation eventually gets limited by some factor or resource that is not in our model. If, at first approximation, the vegetation reaches a carrying capacity independent of high resource availability, we can use an approximation suggested by Soetaert and Hermann (2009) for *self-limitation*,
+What are our next steps? 
+
+## Add self-limitation
+One logical step is to assume that as vegetation eventually gets limited by some factor or resource that is not in our model. If, at first approximation, the vegetation reaches a carrying capacity independent of high resource availability, we can use an approximation suggested by Soetaert and Hermann (2009) for *self-limitation*,
 $$f(X)V\left(1-\frac{V}{K}\right)$$
 where $f(X)$ is everything else that regulates mass-specific growth rate.
 
@@ -197,7 +184,6 @@ where $f(X)$ is everything else that regulates mass-specific growth rate.
 
 Include self-limitation in your model of vegetation, estimate $K$, and produce output.
 
-## Budget, take II
 Remember that following our template,  we have a maximum rate times resource and self limitation, and inhibition. Currently, we have
 $$\frac{dV}{dt} = a_{1}AV - a_{2}V - a_3 V$$
 and rearranging,
@@ -242,4 +228,6 @@ outL2 <- out %>%
 ggplot(outL2, aes(time, kg.N)) + geom_line() + facet_wrap(~State.var, scale="free_y")
 ```
 Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in @Bormann1977 and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.
+
+
 

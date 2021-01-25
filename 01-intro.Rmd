@@ -57,7 +57,7 @@ More intuitively, the units of these rate constants are mg$\cdot$m$^{-2}\cdot$d$
 
 See @Soetaert2009 section 2.1.4 for further explanation. 
 
-One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them concel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have, 
+One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have, 
 $$\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}$$
 
 See @Soetaert2009 section 2.1.3 for further explanation. 
@@ -96,13 +96,19 @@ Here we create a simple model to illustrate some of what we've been describing.
 
 Consider our lake above, as a whole. Just one big pool of P. We'll let the imports, $I$, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, $a$, is exported,
 $$\frac{dP}{dt} = I - a P$$
-In R, we write a function for the system of differential equations.
+In R, we write a function for the system of differential equations, and include descriptive comments.
 ```{r}
+## A function called lake to represent an ODE
+## to use in ode() in the deSolve package.
 lake <- function( time, state_vars, parameters ){
-  
   ## ODE function for a single pool (e.g., a lake)  with a constant
   ## rate of import, and first-order export function (depends on the pool).
-  ## to be used with ode() in the deSolve package
+  ## The arguments time, state_vars, and parameters will be used by ode()
+  ## to solve (numerically integrate) the system.
+  
+  ## I is the constant input rate
+  ## a is the constant mass-specific loss rate
+  ## P is the state variable
 
   P <- state_vars[1] # state variable(s)
   with(as.list(parameters), # tell R to look inside 'parameters'
@@ -116,14 +122,23 @@ lake <- function( time, state_vars, parameters ){
 
 Next, we tell R what the values of the parameters are that we want. Let's say the the import is 3 mg$\cdot$m$^{-2}\cdot$d$^{-1}$, and that the fraction (or rate, really) is 0.5 d$^{-1}$, or more intuitively, mg$\cdot$m$^{-2}\cdot$d$^{-1}$ per mg$\cdot$m$^{-2}$ in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
 ```{r}
-p <- c(I = 10, a = .5)
+## parameters
+
+p <- c(I = 10, # constant input rate mg / m^2 / day
+       a = .5 # mass-specific input rate, day^-1
+       )
 ```
 
 Now the exciting part. We tell R our starting point and what time points we want to integrate for, and then *solve* the differential equation and have R return the result for the time points we want. After that, we display the first five time points.
 ```{r}
-initial.state <- c(P=1)
+initial.state <- c(P=1) # Initial concentration of P in the lake
 t <- seq(from=0, to=10, by=1/24) # 10 days, in hourly increments
+
+## solve the equation in func, using parameter values in p,
+## starting at 'initial.state' and return the time points t
 out <- ode(y=initial.state, times = t, func = lake, parms = p)
+
+## display the first five rows of the solution
 out[1:5,]
 ```
 
