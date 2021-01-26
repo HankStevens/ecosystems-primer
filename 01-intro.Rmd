@@ -125,7 +125,7 @@ Next, we tell R what the values of the parameters are that we want. Let's say th
 ## parameters
 
 p <- c(I = 10, # constant input rate mg / m^2 / day
-       a = .5 # mass-specific input rate, day^-1
+       a = .5 # mass-specific output rate, day^-1
        )
 ```
 
@@ -147,7 +147,12 @@ Pictures are informative, so here we plot the result.
 ## simple graph of the time series
 plot(out)
 ```
-
+We can also use `ggplot2` to make a pretty graph, and then save it. 
+```{r}
+out2 <- as.data.frame(out) # re-classify the data set
+ggplot(data=out2, aes(x=time, y=P)) + geom_line()
+ggsave("myLake.png", height=4, width=4)
+```
 In very simple situations, we can solve the equilibrium by hand. By definition, the equilibrium is a state at which the system stops changing, that is, its rate of change is zero. To find a value of $P$ which is an equilibrium, we set the balance equation equal to zero, and solve for $P$:
 $$\frac{dP}{dt} = 0 = I -aP$$
 $$P^* = \frac{I}{a}$$
