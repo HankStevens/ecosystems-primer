@@ -324,8 +324,8 @@ In R, we write a function for the system of differential equations, and include 
 <p>Pictures are informative, so here we plot the result.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="co">## simple graph of the time series</span></span>
 <span id="cb5-2"><a href="intro.html#cb5-2"></a><span class="kw">plot</span>(out)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-5-1.png" width="66%" />
-We can also use <code>ggplot2</code> to make a pretty graph, and then save it.</p>
+<p><img src="figs/unnamed-chunk-5-1.png" width="66%" /></p>
+<p>We can also use <code>ggplot2</code> to make a pretty graph, and then save it.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a>out2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(out) <span class="co"># re-classify the data set</span></span>
 <span id="cb6-2"><a href="intro.html#cb6-2"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>out2, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>P)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="figs/unnamed-chunk-6-1.png" width="66%" /></p>

@@ -147,6 +147,7 @@ Pictures are informative, so here we plot the result.
 ## simple graph of the time series
 plot(out)
 ```
+
 We can also use `ggplot2` to make a pretty graph, and then save it. 
 ```{r}
 out2 <- as.data.frame(out) # re-classify the data set
