@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="N.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -58,18 +58,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,34 +133,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#must-dos"><i class="fa fa-check"></i><b>1.1</b> Must do’s</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a><ul>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a><ul>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.1</b> Other ideas</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
+<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
 <li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
 <li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
 <li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
 <li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a><ul>
+<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
 <li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
 <li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> the LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a><ul>
+<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>5.1</b> Rastetter et al. 1997</a></li>
-<li class="chapter" data-level="5.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>5.2</b> Implementing MEL</a><ul>
+<li class="chapter" data-level="5.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>5.2</b> Implementing MEL</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>5.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
 </ul></li>
 </ul></li>
@@ -183,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
+<div id="intro" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Introduction ecosystem models</h1>
 <p>Reading:</p>
 <ul>
@@ -197,10 +203,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>create models of ecosystem dynamics of your own;</li>
 <li>write R code to implement ecosystem models.</li>
 </ul>
-<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary soruces where appropriate.</p>
-<div id="why-models" class="section level2">
+<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary soruces where appropriate.</p>
+<div id="why-models" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Why models?</h2>
-<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations <span class="citation">(Soetaert and Herman <a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations <span class="citation">(<a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
 <div class="figure"><span id="fig:SH1-3"></span>
 <img src="figs/SH_F-1.3.png" alt="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*" width="66%" />
 <p class="caption">
@@ -208,29 +214,29 @@ Figure 2.1: <em>We use conceptual and mathematical models to interpret reality. 
 </p>
 </div>
 </div>
-<div id="whats-an-ecosystem" class="section level2">
+<div id="whats-an-ecosystem" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> What’s an ecosystem?</h2>
 You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">2.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (aka pools, stocks) are connected by <em>fluxes</em>, or flows, the transfer of some mass of the element. When these transfers come from outside the ecosystem entirely, we refer to them as <em>imports</em>. When the transfer exits the system entirely, we refer to it as an <em>exports</em>.
 <div class="figure"><span id="fig:lake"></span>
 <img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.*" width="66%" />
 <p class="caption">
-Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(Carpenter et al. <a href="#ref-Carpenter1992" role="doc-biblioref">1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.</em>
+Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="references.html#ref-Carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.</em>
 </p>
 </div>
 <p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">2.3</a>).</p>
 <div class="figure"><span id="fig:statefactors"></span>
 <img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2011].*" width="66%" />
 <p class="caption">
-Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(Chapin III, Matson, and Vitousek <a href="#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</em>
+Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="references.html#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Vitousek 2011</a>)</span>.</em>
 </p>
 </div>
 <p>We can describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.</p>
 <p>In Fig. <a href="intro.html#fig:lake">2.2</a>, all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools save dissolved P appear to export P back out. Dissolved P is receiving fluxes from all the animals in the system, and losing P to seston, which is primarily phytoplankton.</p>
 </div>
-<div id="whats-a-model" class="section level2">
+<div id="whats-a-model" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> What’s a model?</h2>
 <p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes.</p>
-<p>We describe an ecosystem using <em>balance</em> equations for each pool <span class="citation">(p. 18, Soetaert and Herman <a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
+<p>We describe an ecosystem using <em>balance</em> equations for each pool <span class="citation">(p. 18, <a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
 <p><span class="math display">\[\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}\]</span>
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> might look like
 <span class="math display">\[\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
@@ -242,14 +248,14 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <li>Ergo, units of <span class="math inline">\(e_H\)</span> are d<span class="math inline">\(^{-1}\)</span>.</li>
 </ul>
 <p>More intuitively, the units of these rate constants are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
-<p>See <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
+<p>See <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
 <p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
-<p>See <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
+<p>See <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
 <p><strong>State factors</strong> also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., <span class="math inline">\(e_H\)</span>, <span class="math inline">\(u_S\)</span>) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em> We will add temperature to a model later in the book.</p>
 <p><strong>To review:</strong> variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
 <p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
-<div id="other-ideas" class="section level3">
+<div id="other-ideas" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Other ideas</h3>
 <p>Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these <em>mechanistic</em> models.</p>
 <div class="figure"><span id="fig:anpp"></span>
@@ -258,14 +264,14 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 Figure 2.4: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
 </p>
 </div>
-<p>A <em>theory</em> is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(Marquet et al. <a href="#ref-Marquet2014" role="doc-biblioref">2014</a>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
+<p>A <em>theory</em> is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(<a href="references.html#ref-Marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
 <p>In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, <em>all models are wrong, but some are useful</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><strong>Exercise:</strong> Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you’ve made about the temporal and spatial scales. What mechanisms have you included? Why?</p>
 </div>
 </div>
-<div id="steps-in-modeling" class="section level2">
+<div id="steps-in-modeling" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Steps in modeling</h2>
-<span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
+<span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
 <div class="figure"><span id="fig:SH1-7"></span>
 <img src="figs/SH_F-1.7a.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" /><img src="figs/SH_F-1.7b.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" />
 <p class="caption">
@@ -273,48 +279,48 @@ Figure 2.5: <em>It is helpful to use a series of steps in improving our models. 
 </p>
 </div>
 </div>
-<div id="an-example-in-r" class="section level2">
+<div id="an-example-in-r" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> An example in R</h2>
 <p>Here we create a simple model to illustrate some of what we’ve been describing.</p>
 <p>Consider our lake above, as a whole. Just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, <span class="math inline">\(a\)</span>, is exported,
 <span class="math display">\[\frac{dP}{dt} = I - a P\]</span>
 In R, we write a function for the system of differential equations, and include descriptive comments.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a><span class="co">## A function called lake to represent an ODE</span></span>
-<span id="cb1-2"><a href="intro.html#cb1-2"></a><span class="co">## to use in ode() in the deSolve package.</span></span>
-<span id="cb1-3"><a href="intro.html#cb1-3"></a>lake &lt;-<span class="st"> </span><span class="cf">function</span>( time, state_vars, parameters ){</span>
-<span id="cb1-4"><a href="intro.html#cb1-4"></a>  <span class="co">## ODE function for a single pool (e.g., a lake)  with a constant</span></span>
-<span id="cb1-5"><a href="intro.html#cb1-5"></a>  <span class="co">## rate of import, and first-order export function (depends on the pool).</span></span>
-<span id="cb1-6"><a href="intro.html#cb1-6"></a>  <span class="co">## The arguments time, state_vars, and parameters will be used by ode()</span></span>
-<span id="cb1-7"><a href="intro.html#cb1-7"></a>  <span class="co">## to solve (numerically integrate) the system.</span></span>
-<span id="cb1-8"><a href="intro.html#cb1-8"></a>  </span>
-<span id="cb1-9"><a href="intro.html#cb1-9"></a>  <span class="co">## I is the constant input rate</span></span>
-<span id="cb1-10"><a href="intro.html#cb1-10"></a>  <span class="co">## a is the constant mass-specific loss rate</span></span>
-<span id="cb1-11"><a href="intro.html#cb1-11"></a>  <span class="co">## P is the state variable</span></span>
-<span id="cb1-12"><a href="intro.html#cb1-12"></a></span>
-<span id="cb1-13"><a href="intro.html#cb1-13"></a>  P &lt;-<span class="st"> </span>state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
-<span id="cb1-14"><a href="intro.html#cb1-14"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
-<span id="cb1-15"><a href="intro.html#cb1-15"></a>       {</span>
-<span id="cb1-16"><a href="intro.html#cb1-16"></a>         dP.dt &lt;-<span class="st"> </span>I <span class="op">-</span>a<span class="op">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
-<span id="cb1-17"><a href="intro.html#cb1-17"></a>         <span class="kw">return</span>(<span class="kw">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
-<span id="cb1-18"><a href="intro.html#cb1-18"></a>       })</span>
-<span id="cb1-19"><a href="intro.html#cb1-19"></a>  </span>
-<span id="cb1-20"><a href="intro.html#cb1-20"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A function called lake to represent an ODE</span></span>
+<span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to use in ode() in the deSolve package.</span></span>
+<span id="cb1-3"><a href="intro.html#cb1-3" aria-hidden="true" tabindex="-1"></a>lake <span class="ot">&lt;-</span> <span class="cf">function</span>( time, state_vars, parameters ){</span>
+<span id="cb1-4"><a href="intro.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## ODE function for a single pool (e.g., a lake)  with a constant</span></span>
+<span id="cb1-5"><a href="intro.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## rate of import, and first-order export function (depends on the pool).</span></span>
+<span id="cb1-6"><a href="intro.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## The arguments time, state_vars, and parameters will be used by ode()</span></span>
+<span id="cb1-7"><a href="intro.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## to solve (numerically integrate) the system.</span></span>
+<span id="cb1-8"><a href="intro.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-9"><a href="intro.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## I is the constant input rate</span></span>
+<span id="cb1-10"><a href="intro.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">## a is the constant mass-specific loss rate</span></span>
+<span id="cb1-11"><a href="intro.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## P is the state variable</span></span>
+<span id="cb1-12"><a href="intro.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="intro.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  P <span class="ot">&lt;-</span> state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
+<span id="cb1-14"><a href="intro.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
+<span id="cb1-15"><a href="intro.html#cb1-15" aria-hidden="true" tabindex="-1"></a>       {</span>
+<span id="cb1-16"><a href="intro.html#cb1-16" aria-hidden="true" tabindex="-1"></a>         dP.dt <span class="ot">&lt;-</span> I <span class="sc">-</span>a<span class="sc">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
+<span id="cb1-17"><a href="intro.html#cb1-17" aria-hidden="true" tabindex="-1"></a>         <span class="fu">return</span>(<span class="fu">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
+<span id="cb1-18"><a href="intro.html#cb1-18" aria-hidden="true" tabindex="-1"></a>       })</span>
+<span id="cb1-19"><a href="intro.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-20"><a href="intro.html#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Next, we tell R what the values of the parameters are that we want. Let’s say the the import is 3 mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and that the fraction (or rate, really) is 0.5 d<span class="math inline">\(^{-1}\)</span>, or more intuitively, mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a><span class="co">## parameters</span></span>
-<span id="cb2-2"><a href="intro.html#cb2-2"></a></span>
-<span id="cb2-3"><a href="intro.html#cb2-3"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">I =</span> <span class="dv">10</span>, <span class="co"># constant input rate mg / m^2 / day</span></span>
-<span id="cb2-4"><a href="intro.html#cb2-4"></a>       <span class="dt">a =</span> <span class="fl">.5</span> <span class="co"># mass-specific output rate, day^-1</span></span>
-<span id="cb2-5"><a href="intro.html#cb2-5"></a>       )</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## parameters</span></span>
+<span id="cb2-2"><a href="intro.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="intro.html#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">I =</span> <span class="dv">10</span>, <span class="co"># constant input rate mg / m^2 / day</span></span>
+<span id="cb2-4"><a href="intro.html#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">a =</span> .<span class="dv">5</span> <span class="co"># mass-specific output rate, day^-1</span></span>
+<span id="cb2-5"><a href="intro.html#cb2-5" aria-hidden="true" tabindex="-1"></a>       )</span></code></pre></div>
 <p>Now the exciting part. We tell R our starting point and what time points we want to integrate for, and then <em>solve</em> the differential equation and have R return the result for the time points we want. After that, we display the first five time points.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a>initial.state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">P=</span><span class="dv">1</span>) <span class="co"># Initial concentration of P in the lake</span></span>
-<span id="cb3-2"><a href="intro.html#cb3-2"></a>t &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">10</span>, <span class="dt">by=</span><span class="dv">1</span><span class="op">/</span><span class="dv">24</span>) <span class="co"># 10 days, in hourly increments</span></span>
-<span id="cb3-3"><a href="intro.html#cb3-3"></a></span>
-<span id="cb3-4"><a href="intro.html#cb3-4"></a><span class="co">## solve the equation in func, using parameter values in p,</span></span>
-<span id="cb3-5"><a href="intro.html#cb3-5"></a><span class="co">## starting at &#39;initial.state&#39; and return the time points t</span></span>
-<span id="cb3-6"><a href="intro.html#cb3-6"></a>out &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">y=</span>initial.state, <span class="dt">times =</span> t, <span class="dt">func =</span> lake, <span class="dt">parms =</span> p)</span>
-<span id="cb3-7"><a href="intro.html#cb3-7"></a></span>
-<span id="cb3-8"><a href="intro.html#cb3-8"></a><span class="co">## display the first five rows of the solution</span></span>
-<span id="cb3-9"><a href="intro.html#cb3-9"></a>out[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">P=</span><span class="dv">1</span>) <span class="co"># Initial concentration of P in the lake</span></span>
+<span id="cb3-2"><a href="intro.html#cb3-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">10</span>, <span class="at">by=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">24</span>) <span class="co"># 10 days, in hourly increments</span></span>
+<span id="cb3-3"><a href="intro.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="intro.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## solve the equation in func, using parameter values in p,</span></span>
+<span id="cb3-5"><a href="intro.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## starting at &#39;initial.state&#39; and return the time points t</span></span>
+<span id="cb3-6"><a href="intro.html#cb3-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y=</span>initial.state, <span class="at">times =</span> t, <span class="at">func =</span> lake, <span class="at">parms =</span> p)</span>
+<span id="cb3-7"><a href="intro.html#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="intro.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## display the first five rows of the solution</span></span>
+<span id="cb3-9"><a href="intro.html#cb3-9" aria-hidden="true" tabindex="-1"></a>out[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
 <pre><code>##            time        P
 ## [1,] 0.00000000 1.000000
 ## [2,] 0.04166667 1.391740
@@ -322,18 +328,18 @@ In R, we write a function for the system of differential equations, and include 
 ## [4,] 0.12500000 2.151151
 ## [5,] 0.16666667 2.519155</code></pre>
 <p>Pictures are informative, so here we plot the result.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="co">## simple graph of the time series</span></span>
-<span id="cb5-2"><a href="intro.html#cb5-2"></a><span class="kw">plot</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## simple graph of the time series</span></span>
+<span id="cb5-2"><a href="intro.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
 <p><img src="figs/unnamed-chunk-5-1.png" width="66%" /></p>
 <p>We can also use <code>ggplot2</code> to make a pretty graph, and then save it.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a>out2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(out) <span class="co"># re-classify the data set</span></span>
-<span id="cb6-2"><a href="intro.html#cb6-2"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>out2, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>P)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out) <span class="co"># re-classify the data set</span></span>
+<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>out2, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>P)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="figs/unnamed-chunk-6-1.png" width="66%" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;myLake.png&quot;</span>, <span class="dt">height=</span><span class="dv">4</span>, <span class="dt">width=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myLake.png&quot;</span>, <span class="at">height=</span><span class="dv">4</span>, <span class="at">width=</span><span class="dv">4</span>)</span></code></pre></div>
 <p>In very simple situations, we can solve the equilibrium by hand. By definition, the equilibrium is a state at which the system stops changing, that is, its rate of change is zero. To find a value of <span class="math inline">\(P\)</span> which is an equilibrium, we set the balance equation equal to zero, and solve for <span class="math inline">\(P\)</span>:
 <span class="math display">\[\frac{dP}{dt} = 0 = I -aP\]</span>
 <span class="math display">\[P^* = \frac{I}{a}\]</span>
-By convention, we denote the equilibrium value of <span class="math inline">\(P\)</span> with an asterisk, or “star”, as in “P-star”. We call this the <em>analytical solution</em>.</p>
+By convention, we denote the equilibrium value of <span class="math inline">\(P\)</span> with an asterisk, or “star,” as in “P-star.” We call this the <em>analytical solution</em>.</p>
 <p><em>Questions:</em></p>
 <ul>
 <li>Is our graph consistent with the analytical prediction of <span class="math inline">\(P^*\)</span>?</li>
@@ -343,25 +349,10 @@ By convention, we denote the equilibrium value of <span class="math inline">\(P\
 
 </div>
 </div>
-<h3> References</h3>
-<div id="refs" class="references">
-<div id="ref-Carpenter1992">
-<p>Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. “Resilience and resistance of lake phosphorus cycle before and after food web manipulation.” <em>Am. Nat.</em> 140: 781–98.</p>
-</div>
-<div id="ref-Chapin2011">
-<p>Chapin III, F. S., P. A. Matson, and P. M. Vitousek. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. Springer.</p>
-</div>
-<div id="ref-Marquet2014">
-<p>Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. “On theory in ecology.” <em>BioScience</em> 64 (8): 701–10.</p>
-</div>
-<div id="ref-Soetaert2009">
-<p>Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.</p>
-</div>
-</div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Box, G. E. P. (1979), “Robustness in the strategy of scientific model building”, in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.<a href="intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Box, G. E. P. (1979), “Robustness in the strategy of scientific model building,” in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.<a href="intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

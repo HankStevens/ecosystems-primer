@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 
 <link rel="next" href="intro.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -58,18 +58,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,34 +133,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#must-dos"><i class="fa fa-check"></i><b>1.1</b> Must do’s</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a><ul>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a><ul>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.1</b> Other ideas</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
+<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
 <li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
 <li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
 <li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
 <li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a><ul>
+<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
 <li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
 <li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> the LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a><ul>
+<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>5.1</b> Rastetter et al. 1997</a></li>
-<li class="chapter" data-level="5.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>5.2</b> Implementing MEL</a><ul>
+<li class="chapter" data-level="5.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>5.2</b> Implementing MEL</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>5.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
 </ul></li>
 </ul></li>
@@ -186,39 +192,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">A Primer of Ecosystem Modeling - a work in progress</h1>
 <p class="author"><em>Hank Stevens, BIO 672</em></p>
-<p class="date"><em>2021-01-26</em></p>
+<p class="date"><em>2021-02-02</em></p>
 </div>
-<div id="prerequisites" class="section level1">
+<div id="prerequisites" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Prerequisites</h1>
-<p>For this R primer, you’ll need to read several chapters of <span class="citation">Soetaert and Herman (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
-<p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation">Chapin III, Matson, and Vitousek (<a href="#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</p>
-<div id="must-dos" class="section level2">
+<p>For this R primer, you’ll need to read several chapters of <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
+<p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation"><a href="references.html#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Vitousek</a> (<a href="references.html#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</p>
+<div id="must-dos" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Must do’s</h2>
 <p>Read background material as needed.</p>
 <ul>
 <li>Install or update R (4.0.3, as of Jan 2021)</li>
 <li>Install or update RStudio</li>
-<li>Install select R packages: ‘deSolve’, ‘tidyverse’, ‘LakeMetabolizer`, ’lubridate’</li>
+<li>Install select R packages: ‘deSolve,’ ‘tidyverse,’ ‘LakeMetabolizer`, ’lubridate’</li>
 </ul>
 <p>Also, before doing most tasks in this primer, load deSolve and tidyverse with <code>library(deSolve); library(tidyverse)</code>.</p>
 <p>The R <strong>working directory</strong> is the place R automatically looks for files. For simplicity, I will refer to the R <strong>working directory</strong> as <code>Rwork</code>. Therefore, <code>Rwork/data</code> would be a folder or directory called <code>data</code> inside <code>Rwork</code>. At any point in time, you can find out what your working directory is using <code>getwd()</code>. You can set your working directory using <code>setwd("HD/MyStuff/Rwork")</code>, where “HD/MyStuff/Rwork” is the path to what you want your working directory to be. You can also use the “Session” pull-down menu in RStudio.</p>
 </div>
-<div id="a-couple-of-useful-citations" class="section level2">
+<div id="a-couple-of-useful-citations" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> A couple of useful citations</h2>
 <ol class="example" style="list-style-type: decimal">
 <li><p>Ten simple rules for biologists learning to program. PLoS Computional Biology 14(1): e1005871. <a href="https://doi.org/10.1371/journal.pcbi.1005871" class="uri">https://doi.org/10.1371/journal.pcbi.1005871</a></p></li>
 <li><p>Ten simple rules for tackling your first mathematical models: A guide for graduate students by graduate students. PLOS Computational Biology 17(1): e1008539. <a href="https://doi.org/10.1371/journal.pcbi.1008539" class="uri">https://doi.org/10.1371/journal.pcbi.1008539</a></p></li>
 </ol>
 
-</div>
-</div>
-<h3> References</h3>
-<div id="refs" class="references">
-<div id="ref-Chapin2011">
-<p>Chapin III, F. S., P. A. Matson, and P. M. Vitousek. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. Springer.</p>
-</div>
-<div id="ref-Soetaert2009">
-<p>Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.</p>
 </div>
 </div>
             </section>

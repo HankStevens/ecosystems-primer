@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="MEL.html"/>
 
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -58,18 +58,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,34 +133,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#must-dos"><i class="fa fa-check"></i><b>1.1</b> Must do’s</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a><ul>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a><ul>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.1</b> Other ideas</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a><ul>
+<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
 <li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
 <li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
 <li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
 <li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a><ul>
+<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
 <li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
 <li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> the LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a><ul>
+<li class="chapter" data-level="5" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>5</b> Multiple Element Limitation</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>5.1</b> Rastetter et al. 1997</a></li>
-<li class="chapter" data-level="5.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>5.2</b> Implementing MEL</a><ul>
+<li class="chapter" data-level="5.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>5.2</b> Implementing MEL</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>5.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
 </ul></li>
 </ul></li>
@@ -183,30 +189,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1">
+<div id="references" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> References</h1>
 
-<div id="refs" class="references">
-<div>
-<p>Bormann, F H, G E Likens, and J M Melillo. 1977. “Nitrogen budget for an aggrading northern hardwood forest ecosystem.” <em>Science (New York, N.Y.)</em> 196 (4293): 981–3.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Bormann1977" class="csl-entry">
+Bormann, F H, G E Likens, and J M Melillo. 1977. <span>“<span class="nocase">Nitrogen budget for an aggrading northern hardwood forest ecosystem.</span>”</span> <em>Science (New York, N.Y.)</em> 196 (4293): 981–83.
 </div>
-<div>
-<p>Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. “Resilience and resistance of lake phosphorus cycle before and after food web manipulation.” <em>Am. Nat.</em> 140: 781–98.</p>
+<div id="ref-Carpenter1992" class="csl-entry">
+Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. <span>“<span class="nocase">Resilience and resistance of lake phosphorus cycle before and after food web manipulation</span>.”</span> <em>Am. Nat.</em> 140: 781–98.
 </div>
-<div>
-<p>Chapin III, F. S., P. A. Matson, and P. M. Vitousek. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. Springer.</p>
+<div id="ref-Chapin2011" class="csl-entry">
+Chapin III, F. S., P. A. Matson, and P. M. Vitousek. 2011. <em><span class="nocase">Principles of Terrestrial Ecosystem Ecology</span></em>. 2nd edition. Springer.
 </div>
-<div>
-<p>Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. “On theory in ecology.” <em>BioScience</em> 64 (8): 701–10.</p>
+<div id="ref-Marquet2014" class="csl-entry">
+Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. <span>“<span class="nocase">On theory in ecology</span>.”</span> <em>BioScience</em> 64 (8): 701–10.
 </div>
-<div>
-<p>Rastetter, E. B., G. I. Agren, and G. R. Shaver. 1997. “Responses of N-Limited Ecosystems to Increased Co2: A Balanced-Nutrition, Coupled-Element-Cycles Model.” <em>Ecological Applications</em> 7 (2): 444–60.</p>
+<div id="ref-Rastetter:1997aa" class="csl-entry">
+Rastetter, E. B., G. I. Agren, and G. R. Shaver. 1997. <span>“Responses of n-Limited Ecosystems to Increased Co2: A Balanced-Nutrition, Coupled-Element-Cycles Model.”</span> <em>Ecological Applications</em> 7 (2): 444–60.
 </div>
-<div>
-<p>Rastetter, E. B., and G. R. Shaver. 1992. “A Model of Multiple-Element Limitation for Acclimating Vegetation.” <em>Ecology</em> 73 (4): 1157–74. <a href="https://doi.org/%7B10.2307/1940666%7D">https://doi.org/{10.2307/1940666}</a>.</p>
+<div id="ref-Rastetter:1992ab" class="csl-entry">
+Rastetter, E. B., and G. R. Shaver. 1992. <span>“A Model of Multiple-Element Limitation for Acclimating Vegetation.”</span> <em><span>Ecology</span></em> <span>73</span> (<span>4</span>): 1157–74. <a href="https://doi.org/10.2307/1940666">https://doi.org/10.2307/1940666</a>.
 </div>
-<div>
-<p>Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.</p>
+<div id="ref-Soetaert2009" class="csl-entry">
+Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.
 </div>
 </div>
 </div>
