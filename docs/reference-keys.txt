@@ -9,9 +9,12 @@ tab:unnamed-chunk-7
 fig:unnamed-chunk-11
 fig:unnamed-chunk-12
 fig:unnamed-chunk-14
+fig:sensfig
+fig:sensfigRel
+fig:unnamed-chunk-30
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-29
+fig:unnamed-chunk-38
 prerequisites
 must-dos
 a-couple-of-useful-citations
@@ -32,6 +35,11 @@ lake-metabolism
 estimating-productivity
 by-hand-in-r
 the-lakemetabolizer-package
+npzd---a-simple-aquatic-ecosystem
+model-sensitivity
+model-sensitivity-1
+local-sensitivity
+assessing-sensitivity-in-a-nitrogen-budget-model
 MEL
 rastetter-et-al.-1997
 implementing-mel

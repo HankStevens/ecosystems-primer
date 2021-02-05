@@ -1,0 +1,217 @@
+# Model Sensitivity
+
+Reading: Chapter 11, Soetart and Herman (2009)
+
+Model sensitivity is part of model testing and validation (Soetart and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcomes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis.  Here, we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity of a demographic projection matrix. 
+
+Stability and sensitivity are, broadly speaking, simply opposites of each other. Stability is the tendency to remain intact, to persist, or return to a steady state, following a perturbation. Ecologists have a large *lingua jargona* to describe different types of stability. Sensitivity is the degree to which model outputs tend to deviate if one or more of their inputs change.
+
+Before we begin, it is worth listing other questions we should ask ourselves about any model.
+
+1. Testing Solution Correctness
+   * Is there an analytical solution against which we can check the model output?
+   * (Is there known data with which we can compare the output?)
+
+2. Internal Logic 
+   * Do the state variables remain in their expected range (e.g., biomass >= 0)?
+   * If it is a closed system, do the state variables remain at zero if they are all set to zero?
+   * Is mass balance preserved?
+
+3. Model Verification and Validity. Our data and model don't agree. How do we proceed?
+   * Are the *data* accurate and/or precise?
+   * Does the *structure* of the model approximate the important processes?
+   * Do the parameter values correspond to actual rates?
+   
+These are important questions. We would also like to know how certain we need to be about parameter values. Model output can be very insensitive or very sensitive to small changes in the values of model parameters. Sensitivity analysis helps us pinpoint parameters to which model output might be most sensitive, that is, parameters that can have big effects on model outcomes.
+
+## Model Sensitivity
+
+How *robust* or *stable* is our model to inevitable untruths? Is our model likely to give approximately correct answers given only approximately correct structure and parameters?
+
+There are two forms of sensitivities that we can assess:
+
+* responses to changes in parameters
+* responses to changes in state variables
+
+Also, we can assess global or local behavior:
+
+* Global changes
+    1. broad, systematic variation in a parameter.
+    2. permanence - do all state values remain > 0?
+* Local changes
+    1. responses to very small changes in parameters.
+    2. responses to very small changes to state variables at equilibria.
+    
+
+## Local sensitivity
+
+Here we will assess the local sensitivity to parameters in our model of the Hubbard Brook nitrogen cycle
+
+To assess the local sensitivity of our model to parameters, we will use code that does the following:
+
+1. Create a  baseline, or reference data set of model output using our original parameter values. 
+   * To assess long term average behavior, we typically run the model a long time, throw away early transient dynamics. We then consider the remaining output as our baseline.
+   * We could also assess short term responses instead, if we had a particular scenario in mind.
+2. Create a new parameter set that changes one parameter by a little bit. This deviate, or "little bit", could be a very small percentage of the original value, or a small fixed value.
+3. Rerun the model using 
+   * the new parameter set,
+   * an initial state that is the same as the first state of the baseline.
+4. Calculate the "difference" between the baseline and new model outputs at each time step. The difference may take several forms, such as the absolute difference, the difference relative to the original, the squared difference, or others.
+5. Summarize the differences across time using the mean or median, or something else.
+6. Rinse and repeat steps 1-5, for each parameter in the model.
+7. Save the results in a form we can use.
+
+The above steps are an example of pseudocode. Pseudocode is a series of steps written in plain language that describe intermediate steps toward achieving some goal. The function we use follows these steps. It relies heavily on code in Chap. 11 of Soetart and Herman (2009). Below I describe arguments of the function. Let's start by loading it. 
+
+Obtain a copy of `sensitivity.R` and put it in an appropriate directory. I use a folder called `code`. The R function `source()` runs an R script. 
+```{r}
+## This script loads a function called, oddly enough, "sensitivity"
+source("code/sensitivity.R")
+## ask for the arguments of the function
+args("sensitivity")
+```
+
+Some of the arguments are the same as for `ode()`.Here is a bit of how the function works:
+
+* `y.initial` is a named vector the starting point for the ODEs. By 'named', we mean that the elements have names, as in `y=c(A=1, B=2)`.
+* `times` is the vector of times for which the user wants to assess sensitivity.
+* `func` is the system of ODEs written for use with `ode()`.
+* `parms` is the vector of parameter values used in `func`.
+* `burnin` is the number of initial time steps to throw away. NULL causes the function to throw away the first half. Otherwise set an actual number (integer).
+* `tiny` is the proportional deviation to the parameter (0.1 = 10% increase, -0.1 = 10% decrease).
+* `summary.type` refers to how the time series of deviates are summarized. The current options are 'arithmetic_mean', 'mean_absolute' (the arthmetic means of absolute values of the deviates), or 'RMSE' (the root mean squared error).
+* `dev.type` refers to the type of sensitivity, either the simple 'deviate' (dy), 'sensitivity' (dy/dp), 'elasticity' (d(log[y])/d(log[p])), 'normalized' ( [dy/y] / [dp/p]). Default is 'normalized' which is nearly identical to 'elasticity'.
+
+The function returns a named list containing several elements:
+
+* `deviation.summary` is data frame of the summarized deviates for each parameter (rows), for each state variable (columns). 
+* `dev.type` is the type of deviate used.
+* `summary.type` is the type of summary of the time series used.
+* `tiny` is size of proportional perturbation to parameters
+* `sens.list` a list of each of the original time series.
+
+## Assessing sensitivity in a nitrogen budget model
+Consult our previous chapter on the nitrogen budget of Hubbard Brook, watershed 6. If you have not already done so, make a  script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**.
+
+Next we prepare our workspace, by removing extraneous objects.
+```{r}
+rm( list = ls() ) # delete (remove) everything in the workspace.
+```
+
+The next line of code loads and runs a file. 
+```{r}
+## I put the script in a folder called 'code' that resides inside
+## my working directory. The following line of code runs the code in 
+## the script, and the script is located at code/bormann2.R
+
+source("code/bormann2.R")
+
+## if you want to make sure that it loaded the right thing, type
+## bormann2 on your command line, or highlight the word, and run it with
+## Control-Enter
+
+## We also load code to calculate the sensitivities, 
+## and also to create a time series figure of the deviations.
+source("code/sensitivity.R") # sensitivities of all variables
+source("code/sens_fig.R") # graph time series of sensitivity of one variable
+```
+
+Next we begin to run it.
+```{r, fig.cap = "Our model's output."}
+params <- c( 
+i1 = 6.5, # precip
+i2 = 14.2, # fixation
+a1 = 79.6 / (26 * 532), # uptake
+a2 = (6.6 + 0.8) / 532, # throughfall and inorganic exudates
+a3 = (54.2 + 2.7 + 0.1 + 6.2 ) / 532, # litter, throughfall, organic exudates
+a4 = 69.6 / 4700, # net mineralization
+a5 = 3.9 /26, # export from available
+a6 = 0.1/4700, #export from bound
+K=600
+) # close parentheses
+
+
+initial.state <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+```
+
+Next we run the sensitivity analysis. We start with parameters and initial conditions.
+```{r}
+params <- c( 
+i1 = 6.5, # precip
+i2 = 14.2, # fixation
+a1 = 79.6 / (26 * 532), # uptake
+a2 = (6.6 + 0.8) / 532, # throughfall and inorganic exudates
+a3 = (54.2 + 2.7 + 0.1 + 6.2 ) / 532, # litter, throughfall, organic exudates
+a4 = 69.6 / 4700, # net mineralization
+a5 = 3.9 /26, # export from available
+a6 = 0.1/4700, #export from bound
+K=600
+) # close parentheses
+
+
+initial.state <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+```
+
+Next we do the sensitivity analysis. We will start with a graph, often a good place to start. The graph will show the actual deviations that arise when we alter each parameter one at a time by one percent.
+```{r sensfig, fig.cap="*Observed responses of the available N pool to a one percent change to each parameter.*"}
+out <- sens_fig("A", y.initial=initial.state, 
+                times=0:1000, func=bormann2, parms=params,
+                burnin=0, tiny=0.01, relative=FALSE )
+ggplot(out, aes(Time, y, colour=Perturbation)) + geom_line() + facet_wrap(~Parameter, scales="free_y")
+```
+Note two features of these graphs. First, the change due to the system dynamics is relatively large and so obscures the change due the sensitivity. Second, note that sometimes a smaller parameter (here in blue) results in a higher value of the state variable.
+
+It might be more informative the (i) focus on model output after it has approach the steady state, and (ii) examine the relative departure from the reference state. Relative change of 1.0 would mean that for a 1% change in a parameter, the state variable would also change by 1%.
+```{r sensfigRel, fig.cap="*Relative responses of the available N pool to a one percent change to each parameter. Note big differences in the values of the y-axes.*"}
+out <- sens_fig("A", y.initial=initial.state, 
+                times=0:1000, func=bormann2, parms=params,
+                burnin=500, tiny=0.01, relative=TRUE )
+ggplot(out, aes(Time, y, colour=Perturbation)) + geom_line() + facet_wrap(~Parameter, scales="free_y")
+```
+
+These graphs show that the state variable responds very consistently through time. In systems with more complicated dynamics, that will not always be the case.
+
+Next, we can assess each of the state variables and average across time.
+```{r}
+b1 <- sensitivity(y.initial=initial.state, times=t, 
+           func=bormann2, parms=params, 
+           dev.type='normalized', 
+           summary.type="arithmetic_mean")
+
+## Peak at the structure of the output
+str(b1)
+
+```
+We will use the deviation summary data frame.
+
+Next we would like to graph the summaries, for ease of interpretation. 
+```{r, fig.cap="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*"} 
+b1L <- b1$deviation.summary %>%  
+  pivot_longer(cols="V":"total")
+ggplot(data=b1L, aes(x=parameters, y=value)) + geom_col() + 
+  facet_wrap(~name, scales="free_y")
+```
+
+We can also summarize across state variables, so that we have one effect of each parameter. Here we use just V, A, and B, and calculate the root mean squared error.
+```{r}
+rmse.SV <- b1$deviation.summary %>% 
+   select(V:B) %>% 
+   apply(MARGIN=1, function(x) sqrt( x*x / 3 ))
+SV <- b1$deviation.summary %>% 
+   select(V:B) 
+rmse.SV <- t( apply(SV, MARGIN=1, function(x) {
+      m <- mean(x)
+      sq <- (x-m)^2
+      sqrt( mean( sq ))
+   }) )
+rmse <- data.frame(p=b1$deviation.summary$parameters, rmse=as.numeric(rmse.SV))
+qplot(p, rmse, data=rmse, geom="col")
+```
+
+
+So,...into what should we direct our effort? What data do we want most want to collect? These sensitivities are likely to help us direct our attention where it would be most useful.
+

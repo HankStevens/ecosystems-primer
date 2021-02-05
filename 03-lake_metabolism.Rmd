@@ -8,10 +8,12 @@ Most cells respire to do the work of growth and maintenance by consuming oxygen 
 
 We measure ecosystem metabolic rate as net primary productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
 $$NPP = GPP - R$$
-If we assume that water column oxygen is correlated with the rates of photosynthesis, respiration, and net primary production, then we can think of the slopes of O vs. time as rates of respiration and net primary production.  If we assume that respiration is constant throughout the 24 h cycle, we calculate GPP as the sum of NPP and R. 
+If we assume that water column oxygen is correlated with the rates of photosynthesis, respiration, and net primary production, then we can think of the slopes of oxygen concentration vs. time as rates of respiration and net primary production.  If we assume that respiration is constant throughout the 24 h cycle, we calculate GPP as the sum of NPP and R. 
 
 ## By hand, in R
-Let's practice R by importing, wrangling, and graphing data, then calculating slopes and estimating respiration, NPP, and GPP.
+Let's practice R by importing, wrangling, and graphing data, then calculating slopes and estimating respiration, NPP, and GPP. 
+
+Start by obtaining data for Acton Lake (acton.csv). Place it inside a folder labelled 'data' inside your working directory. Here you read in data and check whether it loaded properly.
 ```{r}
 ## Either change the path name in this function, or
 ## make sure you have a folder named 'data' inside your working directory
@@ -30,7 +32,7 @@ ggplot(acton, aes(x=date_time, y=O_mg.L)) + geom_path()
 
 If we want to calculate the slope of the night time oxygen concentration, then we should identify what the endpoints of "day time" are so that we can do analyses on just daylight or nighttime data.
 
-Working with times is a little tricky, because times and dates, periods, durations, and intervals are inherently tricky. The `date_time` variable contains all the information, and we extra tidbits from it.
+Working with times in R is a little tricky, because times and dates, periods, durations, and intervals are inherently tricky. The `date_time` variable in the original data set contains all the information, and we extra tidbits from it.
 ```{r}
 # determine day/night intervals
 ## Sunrise
@@ -87,31 +89,33 @@ acton2 <- acton %>% filter(date %in% c("2013-06-28", "2013-06-29") )
 m.resp2 <- lm(O_mg.L ~ night.d + date, data=acton2)
 ```
 
-## the LakeMetabolizer package
-Here we do something similar but in a much more sophisticated way. To estimate the net ecosystem productivity for an entire lake, we need to know, at least, gas exchange rates, equilibrium oxygen saturation, the mixing depth, and the daylight hours.
+## The LakeMetabolizer package
+Here we do something similar but in a much more sophisticated way. To estimate the net ecosystem productivity, we need to know, at least, gas exchange rates, equilibrium oxygen saturation, the mixing depth, and the daylight hours.
 
-The `metab` function calculates GPP, R, and NEP given a bunch of data. The function uses several different approaches depending upon what data you have and your quantitative preferences. Here we use the simplest approach, which the authors refer to as simple bookeeping. First we load the package and then examine the help page for `metab.bookkeep`. 
+The `metab` function in `LakeMetabolizer` calculates GPP, R, and NEP given requisite data. The function can use several different approaches, depending upon what data you have and your quantitative preferences. Here we use the simplest approach, which the authors refer to as simple bookkeeping. First we load the package and then examine the help page for `metab.bookkeep`. 
 ```{r eval=TRUE}
 # install.packages("LakeMetabolizer", dep=TRUE)
 library(LakeMetabolizer)
 ?metab.bookkeep
 ```
-On the help page you learn about how to use this function. Here we walk through the steps for acquiring or making up the data we need.
+On the help page you learn about how to use this function. Here we walk through the steps for acquiring or making educated guesses about the data we need.
 ```{r}
 ## pick a reasonable gas exchange constant and mixing depth
 k.gas <- 0.4
-z.mix <- 1
+z.mix <- 1 # one meter
 
 ## code day and night with ones and zeroes
 irr <- with(acton,{ifelse(daylight=="day", 1,0)})
 
 ## estimate dissolved oxygen at saturation (equilibrium)
-## using o2.at.sat.base()
-acton <- acton %>% mutate(do.sat=o2.at.sat.base(temp))
+## using the function, o2.at.sat.base()
+acton <- acton %>% mutate(
+  do.sat=o2.at.sat.base(temp) 
+  )
 
 ## create a data frame with just the variables we want.
 acton.LM <- acton %>% # select data frame
-  mutate(z.mix = z.mix, k.gas = k.gas, irr=irr ) %>% # add two variables 
+  mutate(z.mix = z.mix, k.gas = k.gas, irr=irr ) %>% # add 3 variables 
   ## select only some of the columns
   select(datetime=date_time,
          do.obs=O_mg.L, do.sat=do.sat, 

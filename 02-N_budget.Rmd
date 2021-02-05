@@ -221,14 +221,18 @@ bormann2 <- function(t, y, p) {
 We can add a new parameter to our vector of parameters, and then solve our new function `bormann2` for the same time interval, and plot it.
 ```{r fig.cap="Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977)."}
 params["K"] <- 600
+## starting values in kg/ha
+initial.state <- c( V = 532, A = 26, B = 4700)
+time <- 0:200
 out <- ode(y = initial.state, times=time, func=bormann2, parms = params)
 outL2 <- out %>% 
   as.data.frame() %>%
   pivot_longer(cols=-time, names_to="State.var", values_to="kg.N")
-
 ggplot(outL2, aes(time, kg.N)) + geom_line() + facet_wrap(~State.var, scale="free_y")
 ```
 Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in @Bormann1977 and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.
 
+**Save your own R script of 'bormann2'**
 
+Make a new script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**. We will use this function in the next section. 
 

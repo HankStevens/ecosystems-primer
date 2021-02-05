@@ -1,0 +1,90 @@
+# NPZD - a simple aquatic ecosystem
+
+This section relies entirely on pages 49-58 of Soetaert and Herman (2009).
+
+Here, I supply the code ('NPZD_code.R') from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don't forget to start with comments about the what the document is, your name, and the source of the model.
+
+Turn in your script, and the figure it should generate.
+
+Obtain a copy of the file, or copy it from below.
+
+```{r eval=FALSE}
+library(deSolve)
+
+NPZD<-function(t,state,parameters)
+ {
+ with( as.list(c(state,parameters)), {  
+    PAR <- 0.5*(540+440*sin(2*pi*t/365-1.4))
+    din            <- max(0,DIN) 
+    Nuptake <- maxUptake * PAR/(PAR+ksPAR) * din/(din+ksDIN)*PHYTO
+
+    Grazing        <- maxGrazing * PHYTO/(PHYTO + ksGrazing)*ZOO 
+    Faeces         <- pFaeces * Grazing
+    Excretion      <- excretionRate * ZOO
+    Mortality      <- mortalityRate * ZOO * ZOO
+    Mineralisation <- mineralisationRate * DETRITUS
+    Chlorophyll    <- chlNratio * PHYTO
+    TotalN         <- PHYTO + ZOO + DETRITUS + DIN   
+  
+    dPHYTO    <- Nuptake - Grazing
+    dZOO      <- Grazing - Faeces - Excretion - Mortality
+    dDETRITUS <- Mortality - Mineralisation + Faeces
+    dDIN      <- Mineralisation + Excretion - Nuptake
+    
+   
+    list( 
+      c(dPHYTO,dZOO,dDETRITUS,dDIN), 
+      c(Chlorophyll = Chlorophyll, PAR=PAR, TotalN= TotalN)
+      )  
+    })
+  }  
+
+parameters<-c(maxUptake          =1.0,       # 
+              ksPAR              =140,       # 
+              ksDIN              =0.5,       # 
+              maxGrazing         =1.0,       # 
+              ksGrazing          =1.0,       # 
+              pFaeces            =0.3,       # 
+              excretionRate      =0.1,       # 
+              mortalityRate      =0.4,       # 
+              mineralisationRate =0.1,       # 
+              chlNratio          =1)         # 
+
+ 
+state     <-c(PHYTO   =1,   # 
+              ZOO     =0.1,
+              DETRITUS=5.0,
+              DIN     =5.0)
+
+
+times     <-c(0,365)     
+library(deSolve)
+out       <- as.data.frame( ode(state,times, NPZD, parameters) ) 
+out
+
+num   <- length(out$PHYTO)   # last element 
+
+state <- c(PHYTO=out$PHYTO[num],         
+               ZOO=out$ZOO[num],           
+               DETRITUS=out$DETRITUS[num],
+               DIN=out$DIN[num])
+
+times     <-seq(0,730,by=1)              
+out <-as.data.frame(ode(state, times, NPZD, parameters))
+
+out.long <- out %>% as.data.frame() %>% 
+  pivot_longer(-time, names_to="State_vars", values_to="Value") 
+
+ggplot(data=out.long, aes(time, Value)) + 
+  geom_line() + 
+  facet_wrap(~State_vars, scales="free_y")
+
+## provide a unique name for your PNG file
+ggsave("myNPZDplot.png")
+
+```
+
+
+
+
+

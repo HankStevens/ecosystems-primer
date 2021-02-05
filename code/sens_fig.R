@@ -10,7 +10,7 @@
 # variable is the state variable whose sensitivity we are measuring.
 
 sens_fig <- function(variable, y.initial, times, func, parms, burnin=NULL, 
-                     tiny = 1e-1) {
+                     tiny = 1e-3, relative=TRUE) {
 library(tidyr)
   y <- y.initial
   t <- times
@@ -69,11 +69,21 @@ library(tidyr)
     # reset p to original
     p[i] <- pp[i]
     
+if(relative){
+    rr <- rep(0, length(yRef))
+    spr <- (outm[, variable]-yRef)/yRef/tiny
+    lpr <- (outp[, variable]-yRef)/yRef/tiny
+} else{
+    rr <- yRef
+    spr <- outm[, variable]
+    lpr <- outp[, variable]
+}
+    
     out.loop <- data.frame(Parameter = p.name, 
-                      Time = outm[,"time"],
-                 Reference = yRef, 
-                 small.p = outm[, variable], 
-                 large.p = outp[,variable] )
+                           Time = outm[,"time"],
+                           Reference = rr, 
+                           small.p = spr, 
+                           large.p = lpr )
     
     out.all <- rbind(out.all, out.loop) 
     out.alls <- gather(out.all, key=param, value=y, -c(Parameter,Time) )

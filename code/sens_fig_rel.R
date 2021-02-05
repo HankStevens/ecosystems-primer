@@ -1,5 +1,5 @@
 #######
-# This function uses code from Soetart and Hermann (2009) to mesaure sensitivities
+# This function uses code from Soetart and Hermann (2009) to measure sensitivities
 # in systems of ODEs. 
 # variable is the state variable whose sensitivity we are measuring.
 # func is the system of ODEs written for use with ode().
@@ -10,7 +10,7 @@
 # tiny is the proportional deviation to the parameter (0.1 = 10% increase, -0.1 = 10% decrease).
 
 sens_fig_rel <- function(variable, y.initial, times, func, parms, burnin=NULL,
-                     tiny = 1e-1) {
+                     tiny = 1e-3) {
   y <- y.initial
   t <- times
   outr <- as.data.frame(
@@ -29,13 +29,13 @@ sens_fig_rel <- function(variable, y.initial, times, func, parms, burnin=NULL,
   # state   <- y # unneeded
   
   # reference of our variable of interest
-  yRef    <- reference[,variable]
+  yRef    <- reference[, variable]
   
   # number of time steps kept
-  nout    <- length(yRef)
+  nout  <- length(yRef)
   
   # number of parameters
-  npar    <- length(parms)
+  npar  <- length(parms)
   
   
   # make a variable that is the small changes to each parameter
@@ -51,12 +51,12 @@ sens_fig_rel <- function(variable, y.initial, times, func, parms, burnin=NULL,
     p[i] <- dval 
    
       
-      # run the model with a bigger p[i]
+      ## run the model with a bigger p[i]
       outp <- as.data.frame(
         ode(y = y, times=t, fun=func, parms = p) 
       )[ -(1:n), ]
       
-      # run the model with a smaller p[i]
+      ## run the model with a smaller p[i]
       dval    <- pp[i] - dp[i] # create a new value of p[i]
       p[i] <- dval
       
@@ -65,12 +65,14 @@ sens_fig_rel <- function(variable, y.initial, times, func, parms, burnin=NULL,
       )[ -(1:n), ]
       
     p.name <- rep(names(p)[i], nout)
-    # reset p to original
+    ## reset p to original
     p[i] <- pp[i]
     
+
     rr <- yRef/mean(yRef)
     spr <- outm[, variable]/mean(yRef)
     lpr <- outp[, variable]/mean(yRef)
+
     
     out.loop <- data.frame(Parameter = p.name, 
                       Time = outm[,"time"],
