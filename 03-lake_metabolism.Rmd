@@ -6,7 +6,7 @@ In this chapter, you'll study how lakes breath. You'll get real data from Acton 
 
 Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O$_2$ is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.
 
-We measure ecosystem metabolic rate as net ecosystem productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
+We measure whole ecosystem metabolic rate as net ecosystem productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
 $$NEP = GPP - R$$
 If we assume that water column oxygen is correlated with the rates of photosynthesis, respiration, and net primary production, then we can think of the slopes of oxygen concentration vs. time as rates of respiration and net primary production.  If we assume that respiration is constant throughout the 24 h cycle, we calculate GPP as the sum of NEP and R. 
 
