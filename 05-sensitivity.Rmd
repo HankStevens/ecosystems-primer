@@ -181,12 +181,19 @@ b1 <- sensitivity(y.initial=initial.state, times=t,
            func=bormann2, parms=params, 
            dev.type='normalized', 
            summary.type="arithmetic_mean")
+```
 
+The output generates a list with seven element, but to see this structure you need to use `str`.
+```{r}
 ## Peak at the structure of the output
 str(b1)
-
 ```
-We will use the deviation summary data frame.
+
+However, if you just type `b1`, it will spit out just the summary of the deviations.
+```{r}
+b1
+```
+If we want to use this summary, however, we need to specify `b1$deviation.summary`
 
 Next we would like to graph the summaries, for ease of interpretation. 
 ```{r, fig.cap="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*"} 
@@ -215,3 +222,67 @@ qplot(p, rmse, data=rmse, geom="col")
 
 So,...into what should we direct our effort? What data do we want most want to collect? These sensitivities are likely to help us direct our attention where it would be most useful.
 
+## Sensitivity in an aquatic ecosystem
+Here we revisit the aquatic ecosystem model, NPZD, of Soetaert and Herman. 
+
+We load it, and define the parameters and initial state.
+```{r}
+source("code/NPZD.R")
+
+#-----------------------#
+# the model parameters: #
+#-----------------------#
+
+parameters<-c(maxUptake          =1.0,       # /day
+              ksPAR              =140,       # muEinst/m2/s
+              ksDIN              =0.5,       # mmolN/m3
+              maxGrazing         =1.0,       # /day
+              ksGrazing          =1.0,       # mmolN/m3
+              pFaeces            =0.3,       # -
+              excretionRate      =0.1,       # /day
+              mortalityRate      =0.4,       # /(mmolN/m3)/day 
+              mineralisationRate =0.1,       # /day
+              chlNratio          =1)         # mgChl/mmolN
+
+#-------------------------#
+# the initial conditions: #
+#-------------------------#
+ 
+state     <-c(PHYTO   =1,   # state variable initial conditions, units mmolN/m3
+              ZOO     =0.1,
+              DETRITUS=5.0,
+              DIN     =5.0)
+
+```
+
+Next we run the dynamics for two years. 
+```{r}
+times <- 0:730
+out <- ode(state, times, NPZD, parameters)
+out %>% 
+  as.data.frame() %>%
+  pivot_longer(cols=-time, names_to="State.var", values_to="value") %>%
+ggplot(aes(time, value)) + geom_line() + facet_wrap(~State.var, scale="free_y")
+```
+
+Next we check model sensitivity.
+```{r}
+outf <- sens_fig("DIN", y.initial=state, 
+                times=0:1000, func=NPZD, parms=parameters,
+                burnin=0, tiny=0.01, relative=TRUE )
+ggplot(outf, aes(Time, y, colour=Perturbation)) + 
+   geom_line() + facet_wrap(~Parameter, scales="free_y")
+```
+
+```{r}
+args(sensitivity)
+outd <- sensitivity(state, times, NPZD, parameters)
+
+outd$deviation.summary %>%  
+  pivot_longer(cols=-parameters) %>%
+ggplot(aes(x=parameters, y=value)) + geom_col() + 
+  facet_wrap(~name, scales="free") + 
+   coord_flip() # Flip x and y so we can see the parameter names
+```
+
+Which parameters appear to have the greatest effect on model predictions? 

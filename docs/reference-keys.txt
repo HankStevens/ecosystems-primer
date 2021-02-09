@@ -11,10 +11,10 @@ fig:unnamed-chunk-12
 fig:unnamed-chunk-14
 fig:sensfig
 fig:sensfigRel
-fig:unnamed-chunk-30
+fig:unnamed-chunk-37
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-38
+fig:unnamed-chunk-49
 prerequisites
 must-dos
 a-couple-of-useful-citations
@@ -36,10 +36,12 @@ estimating-productivity
 by-hand-in-r
 the-lakemetabolizer-package
 npzd---a-simple-aquatic-ecosystem
+create-an-r-script-of-npzd
 model-sensitivity
 model-sensitivity-1
 local-sensitivity
 assessing-sensitivity-in-a-nitrogen-budget-model
+sensitivity-in-an-aquatic-ecosystem
 MEL
 rastetter-et-al.-1997
 implementing-mel

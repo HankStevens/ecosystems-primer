@@ -119,13 +119,20 @@ sum.devs <- sapply(sens.list, function(x) {
   })
 sum.devs <- data.frame(parameters=names(p), sum.devs, row.names=NULL)
   ## return output as list
-  return(list(deviation.summary = sum.devs, # summaries
-              dev.type=dev.type, # type of deviate
-              summary.type=summary.type, # type of summary
-              burnin=NULL,
-              tiny=tiny, # size of proportional perturbation to parameters
-              parms=parms, # original parameter set
-              sens.list = sens.list # original time series
-              ) )
+out <- list(deviation.summary = sum.devs, # summaries
+     dev.type=dev.type, # type of deviate
+     summary.type=summary.type, # type of summary
+     burnin=NULL,
+     tiny=tiny, # size of proportional perturbation to parameters
+     parms=parms, # original parameter set
+     sens.list = sens.list # original time series
+) 
+class(out) <- c("sensitivity", class(out))
+  return(out)
+
+}
+
+print.sensitivity <- function(X){
+  print(X$deviation.summary)
 }
 
