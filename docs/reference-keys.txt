@@ -8,13 +8,14 @@ fig:hbnb3
 tab:unnamed-chunk-7
 fig:unnamed-chunk-11
 fig:unnamed-chunk-12
-fig:unnamed-chunk-14
+fig:unnamed-chunk-13
+fig:unnamed-chunk-15
 fig:sensfig
 fig:sensfigRel
-fig:unnamed-chunk-37
+fig:unnamed-chunk-38
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-49
+fig:unnamed-chunk-50
 prerequisites
 must-dos
 a-couple-of-useful-citations

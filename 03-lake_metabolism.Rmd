@@ -2,6 +2,10 @@
 
 In this chapter, you'll study how lakes breath. You'll get real data from Acton Lake, look it, and measure the rate of an inhale and an exhale. You'll do that by hand, by hand with a spreadsheet, by hand with R, and finally using an R package, `LakeMetabolizer`, which is designed to do that and much more.
 
+```{r fig.cap="*We can use lake oxygen level to measure net ecosystem production. *", out.width="70%", echo=FALSE}
+knitr::include_graphics("figs/lake_O2.jpg")
+```
+
 ## Estimating Productivity
 
 Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O$_2$ is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.
@@ -139,9 +143,10 @@ ggplot(days, aes(x=daytime.d, y=O_mg.L, colour=day)) +
   geom_point() + # plot points
   geom_smooth(method="lm", se=FALSE) # fit linear models each night
 ```
+
 If we want to, we could throw out the days that have negative slopes, that is, days 6 and 7.
 ```{r}
-acton3 <- filter(acton, !(day == 6 | day == 7) ) # NOT day  equal to 6 OR 7 day....
+acton3 <- filter(acton, !(day == 6 | day == 7) ) # NOT day 6 OR 7
 md.resp <- lm(O_mg.L ~ daytime.d + day, data=acton3)
 NEP.day <- coef(md.resp)["daytime.d"]
 NEP.day

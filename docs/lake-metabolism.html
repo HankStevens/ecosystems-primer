@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-02-09" />
+<meta name="date" content="2021-02-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,6 +203,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lake-metabolism" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Lake Metabolism</h1>
 <p>In this chapter, you’ll study how lakes breath. You’ll get real data from Acton Lake, look it, and measure the rate of an inhale and an exhale. You’ll do that by hand, by hand with a spreadsheet, by hand with R, and finally using an R package, <code>LakeMetabolizer</code>, which is designed to do that and much more.</p>
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="figs/lake_O2.jpg" alt="*We can use lake oxygen level to measure net ecosystem production. *" width="70%" />
+<p class="caption">
+Figure 4.1: <em>We can use lake oxygen level to measure net ecosystem production. </em>
+</p>
+</div>
 <div id="estimating-productivity" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Estimating Productivity</h2>
 <p>Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O<span class="math inline">\(_2\)</span> is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.</p>
@@ -239,10 +245,10 @@ If we assume that water column oxygen is correlated with the rates of photosynth
 ##  Max.   :167.1   Max.   :28.10</code></pre>
 <p>Let’s check our understanding of lake oxygen dynamics by plotting the time series. Ggplot understands what to do with dates.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="lake-metabolism.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(acton, <span class="fu">aes</span>(<span class="at">x=</span>date_time, <span class="at">y=</span>O_mg.L)) <span class="sc">+</span> <span class="fu">geom_path</span>() </span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-14"></span>
-<img src="figs/unnamed-chunk-14-1.png" alt="*Oxygen dynamics from Acton Lake." width="66%" />
+<div class="figure"><span id="fig:unnamed-chunk-15"></span>
+<img src="figs/unnamed-chunk-15-1.png" alt="*Oxygen dynamics from Acton Lake." width="66%" />
 <p class="caption">
-Figure 4.1: *Oxygen dynamics from Acton Lake.
+Figure 4.2: *Oxygen dynamics from Acton Lake.
 </p>
 </div>
 <p>If we want to calculate the slope of the night time oxygen concentration, then we should identify what the endpoints of “day time” are so that we can do analyses on just daylight or nighttime data.</p>
@@ -295,7 +301,7 @@ Figure 4.1: *Oxygen dynamics from Acton Lake.
 <span id="cb25-6"><a href="lake-metabolism.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#                    date_time &lt;= ymd_hms(&quot;2013-06-28 06:00:00&quot;) )</span></span>
 <span id="cb25-7"><a href="lake-metabolism.html#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-8"><a href="lake-metabolism.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> date_time, <span class="at">y=</span>O_mg.L, <span class="at">data=</span>acton2, <span class="at">geom =</span> <span class="st">&quot;path&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-16-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-17-1.png" width="66%" /></p>
 <p>The nighttime slope is the regression line for just the nighttime data</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lake-metabolism.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the data frame, filter for &#39;date&#39; values within a range of dates</span></span>
 <span id="cb26-2"><a href="lake-metabolism.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(acton2)</span></code></pre></div>
@@ -327,7 +333,7 @@ Figure 4.1: *Oxygen dynamics from Acton Lake.
 <span id="cb36-2"><a href="lake-metabolism.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nights, <span class="fu">aes</span>(<span class="at">x=</span>nighttime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day)) <span class="sc">+</span> </span>
 <span id="cb36-3"><a href="lake-metabolism.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># plot points</span></span>
 <span id="cb36-4"><a href="lake-metabolism.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># fit linear models each night</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-19-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-20-1.png" width="66%" /></p>
 <p>We can calculate the average slope for all nights, forcing a straight line through each night’s data. The estimates of uncertainty and the P values won’t make sense because the data are horribly autocorrelated, but we can rely on the estimates of the coefficients, and the average slope, in particular.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="lake-metabolism.html#cb37-1" aria-hidden="true" tabindex="-1"></a>ntd <span class="ot">&lt;-</span> acton<span class="sc">$</span>nighttime.d<span class="sc">/</span><span class="dv">24</span></span>
 <span id="cb37-2"><a href="lake-metabolism.html#cb37-2" aria-hidden="true" tabindex="-1"></a>m.resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> nighttime.d <span class="sc">+</span> day, <span class="at">data=</span>acton)</span>
@@ -341,9 +347,9 @@ Figure 4.1: *Oxygen dynamics from Acton Lake.
 <span id="cb39-2"><a href="lake-metabolism.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(days, <span class="fu">aes</span>(<span class="at">x=</span>daytime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day)) <span class="sc">+</span> </span>
 <span id="cb39-3"><a href="lake-metabolism.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># plot points</span></span>
 <span id="cb39-4"><a href="lake-metabolism.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># fit linear models each night</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-21-1.png" width="66%" />
-If we want to, we could throw out the days that have negative slopes, that is, days 6 and 7.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="lake-metabolism.html#cb40-1" aria-hidden="true" tabindex="-1"></a>acton3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(acton, <span class="sc">!</span>(day <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> day <span class="sc">==</span> <span class="dv">7</span>) ) <span class="co"># NOT day  equal to 6 OR 7 day....</span></span>
+<p><img src="figs/unnamed-chunk-22-1.png" width="66%" /></p>
+<p>If we want to, we could throw out the days that have negative slopes, that is, days 6 and 7.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="lake-metabolism.html#cb40-1" aria-hidden="true" tabindex="-1"></a>acton3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(acton, <span class="sc">!</span>(day <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> day <span class="sc">==</span> <span class="dv">7</span>) ) <span class="co"># NOT day 6 OR 7</span></span>
 <span id="cb40-2"><a href="lake-metabolism.html#cb40-2" aria-hidden="true" tabindex="-1"></a>md.resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> daytime.d <span class="sc">+</span> day, <span class="at">data=</span>acton3)</span>
 <span id="cb40-3"><a href="lake-metabolism.html#cb40-3" aria-hidden="true" tabindex="-1"></a>NEP.day <span class="ot">&lt;-</span> <span class="fu">coef</span>(md.resp)[<span class="st">&quot;daytime.d&quot;</span>]</span>
 <span id="cb40-4"><a href="lake-metabolism.html#cb40-4" aria-hidden="true" tabindex="-1"></a>NEP.day</span></code></pre></div>
