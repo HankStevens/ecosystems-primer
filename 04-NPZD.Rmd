@@ -1,12 +1,23 @@
 # NPZD - a simple aquatic ecosystem
 
-This section relies entirely on pages 49-58 of Soetaert and Herman (2009).
+This section relies entirely on selections in pages 31-58 of Soetaert and Herman (2009).
 
-Here, I supply some code from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don't forget to start with comments about the what the document is, your name, and the source of the model.
+The **object** of this chapter is to understanding and explore a simple model of a nitrogen-limited aquatic ecosystem consisting of an inorganic pool, phytoplankton, zooplankton, and particulate detritus.
+
+The **background reading** is the following sections:
+
+* 2.5-2.5.5: Functional responses and rate limitations.
+* 2.6-2.6.2: Couple model equations.
+* 2.7.2: Closure.
+* 2.8.2: Light, as a physical factor.
+* 2.9.1: NPZD, a simple model of an aquatic ecosystem.
+
+## This task
+Below, I supply some code from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don't forget to start with comments about the what the document is, your name, and the source of the model.
 
 Turn in your script, and the figure it should generate.
 
-Obtain a copy of the file, or copy it from below.
+To begin, create or obtain an R script of the following code. 
 
 ```{r eval=FALSE}
 library(deSolve)

@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-02-11" />
+<meta name="date" content="2021-02-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="5.0.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.0.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="5.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
 <ul>
@@ -449,8 +452,8 @@ Figure 6.2: <em>Relative responses of the available N pool to a one percent chan
 <span id="cb70-2"><a href="model-sensitivity.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="st">&quot;V&quot;</span><span class="sc">:</span><span class="st">&quot;total&quot;</span>)</span>
 <span id="cb70-3"><a href="model-sensitivity.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b1L, <span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
 <span id="cb70-4"><a href="model-sensitivity.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-38"></span>
-<img src="figs/unnamed-chunk-38-1.png" alt="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*" width="66%" />
+<div class="figure"><span id="fig:unnamed-chunk-40"></span>
+<img src="figs/unnamed-chunk-40-1.png" alt="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*" width="66%" />
 <p class="caption">
 Figure 6.3: <em>Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.</em>
 </p>
@@ -468,7 +471,7 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb71-10"><a href="model-sensitivity.html#cb71-10" aria-hidden="true" tabindex="-1"></a>   }) )</span>
 <span id="cb71-11"><a href="model-sensitivity.html#cb71-11" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p=</span>b1<span class="sc">$</span>deviation.summary<span class="sc">$</span>parameters, <span class="at">rmse=</span><span class="fu">as.numeric</span>(rmse.SV))</span>
 <span id="cb71-12"><a href="model-sensitivity.html#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(p, rmse, <span class="at">data=</span>rmse, <span class="at">geom=</span><span class="st">&quot;col&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-39-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-41-1.png" width="66%" /></p>
 <p>So,…into what should we direct our effort? What data do we want most want to collect? These sensitivities are likely to help us direct our attention where it would be most useful.</p>
 </div>
 <div id="sensitivity-in-an-aquatic-ecosystem" class="section level2" number="6.4">
@@ -507,7 +510,7 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb73-4"><a href="model-sensitivity.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb73-5"><a href="model-sensitivity.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb73-6"><a href="model-sensitivity.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-41-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-43-1.png" width="66%" /></p>
 <p>Next we check model sensitivity.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="model-sensitivity.html#cb74-1" aria-hidden="true" tabindex="-1"></a>outf <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;DIN&quot;</span>, <span class="at">y.initial=</span>state, </span>
 <span id="cb74-2"><a href="model-sensitivity.html#cb74-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>NPZD, <span class="at">parms=</span>parameters,</span>
@@ -524,7 +527,7 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 ## [1] 10</code></pre>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="model-sensitivity.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outf, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> </span>
 <span id="cb76-2"><a href="model-sensitivity.html#cb76-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-42-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-44-1.png" width="66%" /></p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="model-sensitivity.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(sensitivity)</span></code></pre></div>
 <pre><code>## function (y.initial, times, func, parms, burnin = NULL, tiny = 0.001, 
 ##     dev.type = &quot;normalized&quot;, summary.type = &quot;arithmetic_mean&quot;) 
@@ -536,7 +539,7 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb79-5"><a href="model-sensitivity.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
 <span id="cb79-6"><a href="model-sensitivity.html#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb79-7"><a href="model-sensitivity.html#cb79-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>() <span class="co"># Flip x and y so we can see the parameter names</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-43-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-45-1.png" width="66%" /></p>
 <p>Which parameters appear to have the greatest effect on model predictions?</p>
 
 </div>

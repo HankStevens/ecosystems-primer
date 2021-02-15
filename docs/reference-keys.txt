@@ -12,10 +12,10 @@ fig:unnamed-chunk-13
 fig:unnamed-chunk-15
 fig:sensfig
 fig:sensfigRel
-fig:unnamed-chunk-38
+fig:unnamed-chunk-40
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-50
+fig:unnamed-chunk-52
 prerequisites
 must-dos
 a-couple-of-useful-citations
@@ -37,6 +37,7 @@ estimating-productivity
 by-hand-in-r
 the-lakemetabolizer-package
 npzd---a-simple-aquatic-ecosystem
+this-task
 create-an-r-script-of-npzd
 model-sensitivity
 model-sensitivity-1

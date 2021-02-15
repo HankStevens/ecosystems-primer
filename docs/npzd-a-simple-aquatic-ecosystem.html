@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-02-11" />
+<meta name="date" content="2021-02-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="5.0.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.0.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="5.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
 <ul>
@@ -202,10 +205,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="npzd---a-simple-aquatic-ecosystem" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> NPZD - a simple aquatic ecosystem</h1>
-<p>This section relies entirely on pages 49-58 of Soetaert and Herman (2009).</p>
-<p>Here, I supply some code from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don’t forget to start with comments about the what the document is, your name, and the source of the model.</p>
+<p>This section relies entirely on selections in pages 31-58 of Soetaert and Herman (2009).</p>
+<p>The <strong>object</strong> of this chapter is to understanding and explore a simple model of a nitrogen-limited aquatic ecosystem consisting of an inorganic pool, phytoplankton, zooplankton, and particulate detritus.</p>
+<p>The <strong>background reading</strong> is the following sections:</p>
+<ul>
+<li>2.5-2.5.5: Functional responses and rate limitations.</li>
+<li>2.6-2.6.2: Couple model equations.</li>
+<li>2.7.2: Closure.</li>
+<li>2.8.2: Light, as a physical factor.</li>
+<li>2.9.1: NPZD, a simple model of an aquatic ecosystem.</li>
+</ul>
+<div id="this-task" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> This task</h2>
+<p>Below, I supply some code from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don’t forget to start with comments about the what the document is, your name, and the source of the model.</p>
 <p>Turn in your script, and the figure it should generate.</p>
-<p>Obtain a copy of the file, or copy it from below.</p>
+<p>To begin, create or obtain an R script of the following code.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="npzd-a-simple-aquatic-ecosystem.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
 <span id="cb52-2"><a href="npzd-a-simple-aquatic-ecosystem.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="npzd-a-simple-aquatic-ecosystem.html#cb52-3" aria-hidden="true" tabindex="-1"></a>NPZD<span class="ot">&lt;-</span><span class="cf">function</span>(t,state,parameters)</span>
@@ -278,10 +292,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb52-70"><a href="npzd-a-simple-aquatic-ecosystem.html#cb52-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-71"><a href="npzd-a-simple-aquatic-ecosystem.html#cb52-71" aria-hidden="true" tabindex="-1"></a><span class="do">## provide a unique name for your PNG file</span></span>
 <span id="cb52-72"><a href="npzd-a-simple-aquatic-ecosystem.html#cb52-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myNPZDplot.png&quot;</span>)</span></code></pre></div>
-<div id="create-an-r-script-of-npzd" class="section level3" number="5.0.1">
-<h3><span class="header-section-number">5.0.1</span> Create an R script of NPZD</h3>
+<div id="create-an-r-script-of-npzd" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Create an R script of NPZD</h3>
 <p>Create an R script of just the system of ODEs of NPZD. Name the function <code>NPZD</code>, and name the script “NPZD.R.” We will use it in later chapters.</p>
 
+</div>
 </div>
 </div>
             </section>

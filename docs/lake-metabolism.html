@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-02-11" />
+<meta name="date" content="2021-02-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="5.0.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.0.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="5.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
 <ul>
@@ -301,7 +304,7 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <span id="cb25-6"><a href="lake-metabolism.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#                    date_time &lt;= ymd_hms(&quot;2013-06-28 06:00:00&quot;) )</span></span>
 <span id="cb25-7"><a href="lake-metabolism.html#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-8"><a href="lake-metabolism.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> date_time, <span class="at">y=</span>O_mg.L, <span class="at">data=</span>acton2, <span class="at">geom =</span> <span class="st">&quot;path&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-17-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-18-1.png" width="66%" /></p>
 <p>The nighttime slope is the regression line for just the nighttime data</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lake-metabolism.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the data frame, filter for &#39;date&#39; values within a range of dates</span></span>
 <span id="cb26-2"><a href="lake-metabolism.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(acton2)</span></code></pre></div>
@@ -330,10 +333,10 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <p>These units are mg O<span class="math inline">\(_2\)</span> / L / h.</p>
 <p>Here is what every night looks like.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="lake-metabolism.html#cb36-1" aria-hidden="true" tabindex="-1"></a>nights <span class="ot">&lt;-</span> <span class="fu">filter</span>(acton, daylight<span class="sc">==</span><span class="st">&quot;night&quot;</span>)</span>
-<span id="cb36-2"><a href="lake-metabolism.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nights, <span class="fu">aes</span>(<span class="at">x=</span>nighttime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day)) <span class="sc">+</span> </span>
+<span id="cb36-2"><a href="lake-metabolism.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nights, <span class="fu">aes</span>(<span class="at">x=</span>nighttime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day, <span class="at">linetype=</span>day)) <span class="sc">+</span> </span>
 <span id="cb36-3"><a href="lake-metabolism.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># plot points</span></span>
 <span id="cb36-4"><a href="lake-metabolism.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># fit linear models each night</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-20-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-21-1.png" width="66%" /></p>
 <p>We can calculate the average slope for all nights, forcing a straight line through each night’s data. The estimates of uncertainty and the P values won’t make sense because the data are horribly autocorrelated, but we can rely on the estimates of the coefficients, and the average slope, in particular.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="lake-metabolism.html#cb37-1" aria-hidden="true" tabindex="-1"></a>ntd <span class="ot">&lt;-</span> acton<span class="sc">$</span>nighttime.d<span class="sc">/</span><span class="dv">24</span></span>
 <span id="cb37-2"><a href="lake-metabolism.html#cb37-2" aria-hidden="true" tabindex="-1"></a>m.resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> nighttime.d <span class="sc">+</span> day, <span class="at">data=</span>acton)</span>
@@ -347,7 +350,7 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <span id="cb39-2"><a href="lake-metabolism.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(days, <span class="fu">aes</span>(<span class="at">x=</span>daytime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day)) <span class="sc">+</span> </span>
 <span id="cb39-3"><a href="lake-metabolism.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># plot points</span></span>
 <span id="cb39-4"><a href="lake-metabolism.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># fit linear models each night</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-22-1.png" width="66%" /></p>
+<p><img src="figs/unnamed-chunk-24-1.png" width="66%" /></p>
 <p>If we want to, we could throw out the days that have negative slopes, that is, days 6 and 7.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="lake-metabolism.html#cb40-1" aria-hidden="true" tabindex="-1"></a>acton3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(acton, <span class="sc">!</span>(day <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> day <span class="sc">==</span> <span class="dv">7</span>) ) <span class="co"># NOT day 6 OR 7</span></span>
 <span id="cb40-2"><a href="lake-metabolism.html#cb40-2" aria-hidden="true" tabindex="-1"></a>md.resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> daytime.d <span class="sc">+</span> day, <span class="at">data=</span>acton3)</span>
@@ -379,7 +382,7 @@ where <span class="math inline">\(F_{t-1}\)</span> is the flux of oxygen due to 
 <p>From its calculations, LakeMetabolizer can give us NEP, R, and GPP. This is because average respiration is the average difference between DO and <span class="math inline">\(F\)</span>, and NEP is the difference between GPP and R.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="lake-metabolism.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## pick a reasonable gas exchange constant and mixing depth</span></span>
 <span id="cb47-2"><a href="lake-metabolism.html#cb47-2" aria-hidden="true" tabindex="-1"></a>k.gas <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
-<span id="cb47-3"><a href="lake-metabolism.html#cb47-3" aria-hidden="true" tabindex="-1"></a>z.mix <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># one meter</span></span>
+<span id="cb47-3"><a href="lake-metabolism.html#cb47-3" aria-hidden="true" tabindex="-1"></a>z.mix <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="co"># one meter</span></span>
 <span id="cb47-4"><a href="lake-metabolism.html#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-5"><a href="lake-metabolism.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="do">## code day and night with ones and zeroes</span></span>
 <span id="cb47-6"><a href="lake-metabolism.html#cb47-6" aria-hidden="true" tabindex="-1"></a>irr <span class="ot">&lt;-</span> <span class="fu">with</span>(acton,{<span class="fu">ifelse</span>(daylight<span class="sc">==</span><span class="st">&quot;day&quot;</span>, <span class="dv">1</span>,<span class="dv">0</span>)})</span>
@@ -392,25 +395,26 @@ where <span class="math inline">\(F_{t-1}\)</span> is the flux of oxygen due to 
 <span id="cb47-13"><a href="lake-metabolism.html#cb47-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-14"><a href="lake-metabolism.html#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="do">## create a data frame with just the variables we want.</span></span>
 <span id="cb47-15"><a href="lake-metabolism.html#cb47-15" aria-hidden="true" tabindex="-1"></a>acton.LM <span class="ot">&lt;-</span> acton <span class="sc">%&gt;%</span> <span class="co"># select data frame</span></span>
-<span id="cb47-16"><a href="lake-metabolism.html#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z.mix =</span> z.mix, <span class="at">k.gas =</span> k.gas, <span class="at">irr=</span>irr ) <span class="sc">%&gt;%</span> <span class="co"># add 3 variables </span></span>
+<span id="cb47-16"><a href="lake-metabolism.html#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z.mix =</span> z.mix, <span class="at">k.gas =</span> k.gas, <span class="at">irr=</span>irr, <span class="at">wtr=</span>temp ) <span class="sc">%&gt;%</span> <span class="co"># add 3 variables </span></span>
 <span id="cb47-17"><a href="lake-metabolism.html#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="do">## select only some of the columns</span></span>
 <span id="cb47-18"><a href="lake-metabolism.html#cb47-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">datetime=</span>date_time,</span>
 <span id="cb47-19"><a href="lake-metabolism.html#cb47-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">do.obs=</span>O_mg.L, <span class="at">do.sat=</span>do.sat, </span>
-<span id="cb47-20"><a href="lake-metabolism.html#cb47-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">k.gas=</span>k.gas, <span class="at">z.mix=</span>z.mix, <span class="at">irr=</span>irr) <span class="sc">%&gt;%</span></span>
+<span id="cb47-20"><a href="lake-metabolism.html#cb47-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">k.gas=</span>k.gas, <span class="at">z.mix=</span>z.mix, <span class="at">irr=</span>irr, <span class="at">wtr=</span>wtr) <span class="sc">%&gt;%</span></span>
 <span id="cb47-21"><a href="lake-metabolism.html#cb47-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="co"># simplify the data structure (class tbl_df screws things up)</span></span></code></pre></div>
-<p>Finally, we use <code>metab(method="bookkeep")</code> to estimate GPP, R, and NEP.</p>
+<p>Finally, we use <code>metab(method="mle")</code> to estimate GPP, R, and NEP.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="lake-metabolism.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate GPP, R, NEP in mg O2 / L / day</span></span>
 <span id="cb48-2"><a href="lake-metabolism.html#cb48-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">metab</span>(acton.LM, <span class="at">method=</span><span class="st">&quot;bookkeep&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Points removed due to incomplete day or duplicated time step: 96&quot;
 ## [1] &quot;NA&#39;s added to fill in time series: 0&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="lake-metabolism.html#cb50-1" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div>
-<pre><code>##   year doy       GPP          R        NEP
-## 1 2013 179  6.345054  -4.786770 -0.2392476
-## 2 2013 180 10.741236  -6.051379  2.4460696
-## 3 2013 181 16.144515 -13.116955 -1.9112065
-## 4 2013 182  6.824456  -5.527167 -0.7835609
-## 5 2013 183  5.421310  -3.849978  0.1289339
-## 6 2013 184 -4.466201   4.411346  1.6162349</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="lake-metabolism.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(out,</span>
+<span id="cb50-2"><a href="lake-metabolism.html#cb50-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">GPP.R =</span> GPP<span class="sc">+</span>R )</span></code></pre></div>
+<pre><code>##   year doy       GPP          R        NEP      GPP.R
+## 1 2013 179  6.352796  -5.026701 -0.5648018 1.32609448
+## 2 2013 180 10.667079  -6.337126  1.9740934 4.32995231
+## 3 2013 181 16.119283 -13.243429 -2.1124373 2.87585336
+## 4 2013 182  6.539263  -5.326834 -0.7933975 1.21242966
+## 5 2013 183  5.289326  -3.505548  0.4741359 1.78377752
+## 6 2013 184 -4.390956   4.439337  1.7311660 0.04838152</code></pre>
 <p>How does this compare with our previous estimate? What would happen if our gas exchange constant differs (Cole et al. 2010)?</p>
 
 </div>
