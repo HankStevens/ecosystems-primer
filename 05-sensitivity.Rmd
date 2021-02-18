@@ -292,7 +292,7 @@ outd <- sensitivity(state, times, NPZD, parameters,
 outd$deviation.summary %>%  
   pivot_longer(cols=-parameters) %>%
 ggplot(aes(x=parameters, y=value)) + geom_col() + 
-  facet_wrap(~name, scales="free") + 
+  facet_wrap(~name, ncol=2, scales="free") + 
    coord_flip() # Flip x and y so we can see the parameter names
 ```
 

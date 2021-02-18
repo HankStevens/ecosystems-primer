@@ -114,7 +114,10 @@ sum.devs <- sapply(sens.list, function(x) {
     switch(summary.type,
            arithmetic_mean = colMeans( x ),
            mean_absolute = colMeans( abs(x) ),
-           RMSE = sqrt( colSums( x * x ) / n.ref.rows )
+           RMSE = sqrt( colSums( x * x ) / n.ref.rows ),
+           CV = apply(x, 2, function(column){
+             sd(column)/mean(column)
+           } )
     )
   })
 sum.devs <- data.frame(parameters=names(p), sum.devs, row.names=NULL)
