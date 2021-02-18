@@ -19,7 +19,7 @@ clean: FALSE
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, results='markup', warning=FALSE, message=FALSE, fig.path = "/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/", knitr.graphics.auto_pdf = TRUE,
-                      message=FALSE, out.width="66%")
+                      message=FALSE, out.width="75%")
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'

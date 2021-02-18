@@ -2,15 +2,19 @@
 
 Reading: Chapter 11, Soetart and Herman (2009)
 
-Model sensitivity is part of model testing and validation (Soetart and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcomes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis.  Here, we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity of a demographic projection matrix. 
+Model sensitivity is part of model testing and validation (Soetart and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcomes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis. In contrast, here we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity and elasticity of a demographic projection matrix. One of the reasons we assess the sensitivity of model output to the values of parameters is to determine which parameters are most important in driving the dynamics of the model. Identifying the most important parameters
 
-Stability and sensitivity are, broadly speaking, simply opposites of each other. Stability is the tendency to remain intact, to persist, or return to a steady state, following a perturbation. Ecologists have a large *lingua jargona* to describe different types of stability. Sensitivity is the degree to which model outputs tend to deviate if one or more of their inputs change.
+* provides understanding of the model dynamics
+* guides future research in making sure we have good estimates of those particular model parameters.
 
-Before we begin, it is worth listing other questions we should ask ourselves about any model.
+
+Stability and sensitivity are, broadly speaking, opposites of each other. Stability is the tendency to remain intact, to persist, or return to a steady state, following a perturbation. Ecologists have a large *lingua jargona* to describe different types of stability. Sensitivity is the degree to which model outputs tend to deviate if one or more of their inputs change.
+
+Before we begin, it is worth listing questions we should ask ourselves about any model.
 
 1. Testing Solution Correctness
    * Is there an analytical solution against which we can check the model output?
-   * (Is there known data with which we can compare the output?)
+   * Is there known data with which we can compare the output?
 
 2. Internal Logic 
    * Do the state variables remain in their expected range (e.g., biomass >= 0)?
@@ -45,7 +49,7 @@ Also, we can assess global or local behavior:
 
 ## Local sensitivity
 
-Here we will assess the local sensitivity to parameters in our model of the Hubbard Brook nitrogen cycle
+Here we will assess the local sensitivity to parameters in our model of the Hubbard Brook nitrogen cycle.
 
 To assess the local sensitivity of our model to parameters, we will use code that does the following:
 
@@ -54,16 +58,16 @@ To assess the local sensitivity of our model to parameters, we will use code tha
    * We could also assess short term responses instead, if we had a particular scenario in mind.
 2. Create a new parameter set that changes one parameter by a little bit. This deviate, or "little bit", could be a very small percentage of the original value, or a small fixed value.
 3. Rerun the model using 
-   * the new parameter set,
+   * the new parameter set, and
    * an initial state that is the same as the first state of the baseline.
-4. Calculate the "difference" between the baseline and new model outputs at each time step. The difference may take several forms, such as the absolute difference, the difference relative to the original, the squared difference, or others.
+4. Calculate the difference between the baseline and new model outputs at each time step. This "difference" may take several forms, such as the absolute difference, the difference relative to the original, the squared difference, or others.
 5. Summarize the differences across time using the mean or median, or something else.
 6. Rinse and repeat steps 1-5, for each parameter in the model.
 7. Save the results in a form we can use.
 
 The above steps are an example of pseudocode. Pseudocode is a series of steps written in plain language that describe intermediate steps toward achieving some goal. The function we use follows these steps. It relies heavily on code in Chap. 11 of Soetart and Herman (2009). Below I describe arguments of the function. Let's start by loading it. 
 
-Obtain a copy of `sensitivity.R` and put it in an appropriate directory. I use a folder called `code`. The R function `source()` runs an R script. 
+Obtain a copy of `sensitivity.R` and `sens.fig.R` and put them in an appropriate directory. I use a folder called `code`. The R function `source()` runs an R script; if the script defines a function (as these do), you will then be able to use that function.
 ```{r}
 ## This script loads a function called, oddly enough, "sensitivity"
 source("code/sensitivity.R")
@@ -84,21 +88,21 @@ Some of the arguments are the same as for `ode()`.Here is a bit of how the funct
 
 The function returns a named list containing several elements:
 
-* `deviation.summary` is data frame of the summarized deviates for each parameter (rows), for each state variable (columns). 
+* `deviation.summary` is a data frame of the summarized deviates for each parameter (rows), for each state variable (columns). 
 * `dev.type` is the type of deviate used.
 * `summary.type` is the type of summary of the time series used.
 * `tiny` is size of proportional perturbation to parameters
 * `sens.list` a list of each of the original time series.
 
 ## Assessing sensitivity in a nitrogen budget model
-Consult our previous chapter on the nitrogen budget of Hubbard Brook, watershed 6. If you have not already done so, make a  script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**.
+Consult our previous chapter on the nitrogen budget of Hubbard Brook, watershed 6. If you have not already done so, make a script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**.
 
 Next we prepare our workspace, by removing extraneous objects.
 ```{r}
 rm( list = ls() ) # delete (remove) everything in the workspace.
 ```
 
-The next line of code loads and runs a file. 
+The next line of code loads and runs two files. 
 ```{r}
 ## I put the script in a folder called 'code' that resides inside
 ## my working directory. The following line of code runs the code in 
@@ -183,7 +187,7 @@ b1 <- sensitivity(y.initial=initial.state, times=t,
            summary.type="arithmetic_mean")
 ```
 
-The output generates a list with seven element, but to see this structure you need to use `str`.
+The output generates a list with seven elements, but to see this structure you need to use `str`.
 ```{r}
 ## Peak at the structure of the output
 str(b1)
@@ -225,12 +229,13 @@ So,...into what should we direct our effort? What data do we want most want to c
 ## Sensitivity in an aquatic ecosystem
 Here we revisit the aquatic ecosystem model, NPZD, of Soetaert and Herman. 
 
-We load it, and define the parameters and initial state.
+We load it, and define the parameters and initial state. Obtain a copy of the model, `NPZD.R`.
 ```{r}
+## load the model
 source("code/NPZD.R")
 
 #-----------------------#
-# the model parameters: #
+# define the model parameters: #
 #-----------------------#
 
 parameters<-c(maxUptake          =1.0,       # /day
@@ -274,9 +279,15 @@ ggplot(outf, aes(Time, y, colour=Perturbation)) +
    geom_line() + facet_wrap(~Parameter, scales="free_y")
 ```
 
+In this figure, we see that sensitivity varies through time. For most parameters, it can be small at some times and quite large at other times. We can see how sensitivity can depend to a huge degree on the time points at which we evaluate that sensitivity. 
+
+Here we summarize those across time. 
+
 ```{r}
-args(sensitivity)
-outd <- sensitivity(state, times, NPZD, parameters)
+# args(sensitivity)
+outd <- sensitivity(state, times, NPZD, parameters,
+                    dev.type = "normalized", 
+                    summary.type = "arithmetic_mean")
 
 outd$deviation.summary %>%  
   pivot_longer(cols=-parameters) %>%
@@ -286,3 +297,4 @@ ggplot(aes(x=parameters, y=value)) + geom_col() +
 ```
 
 Which parameters appear to have the greatest effect on model predictions? 
+
