@@ -12,6 +12,16 @@ The **background reading** is the following sections:
 * 2.8.2: Light, as a physical factor.
 * 2.9.1: NPZD, a simple model of an aquatic ecosystem.
 
+The background reading describes the anatomy of interactions and the use of rate limiting functions. One of the most common ways to describe these limitations is closely related the Michaelis-Menten model originally proposed to describe enzyme kinetics (Fig. \@ref(fig:mm)). There, the rate of change in a product, $Y$, is a decelerating function of substrate concentration $X$,
+$$\frac{dY}{dt} = V_m\frac{X}{k+X}$$,
+where $V_m$ is the maximum rate of change, and $k$ is the half-saturation constant. The half-saturation constant is the value of the substrate $X$ at which the rate is half the maximum, because it simplifies the expression to 
+$V_m\frac{X}{X+X} = \frac{1}{2}V_m$.
+```{r mm, echo=FALSE, fig.cap="*'Limitation' arises when the benefit of a resource declines as the resource becomes super-abundant. 'Inhibition' is formulated as 1-limitation and arises when some factor such as a waste product or toxin increases in concentration.*"}
+layout(matrix(1:2, nrow=1))
+curve(x/(1+x), 0,10, main="Limitation")
+curve(1-x/(1+x), 0,10, main="Inhibition")
+```
+
 ## This task
 Below, I supply some code from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don't forget to start with comments about the what the document is, your name, and the source of the model.
 

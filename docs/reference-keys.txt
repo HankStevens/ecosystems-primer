@@ -10,12 +10,13 @@ fig:unnamed-chunk-11
 fig:unnamed-chunk-12
 fig:unnamed-chunk-13
 fig:unnamed-chunk-15
+fig:mm
 fig:sensfig
 fig:sensfigRel
-fig:unnamed-chunk-40
+fig:unnamed-chunk-41
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-52
+fig:unnamed-chunk-53
 prerequisites
 must-dos
 a-couple-of-useful-citations

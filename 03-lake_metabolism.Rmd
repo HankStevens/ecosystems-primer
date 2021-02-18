@@ -28,21 +28,21 @@ acton <- read_csv("data/acton.csv",
     skip = 1# skips the first line of metadata
     )
 
-acton <- read_csv("data/acton.csv", 
-                  ## tell R the format of one of your variables
-         col_types = cols(date_time = 
-                            col_character()), 
-    skip = 1 # skips the first line of metadata
-    )
+# acton <- read_csv("data/acton.csv", 
+#                   ## tell R the format of one of your variables
+#          col_types = cols(date_time = 
+#                             col_character()), 
+#     skip = 1 # skips the first line of metadata
+#     )
 # acton$date_time <- as.POSIXlt(acton$date_time, 
 #                               format="%m/%d/%y %H:%M")
 # summary(acton$date_time)
-acton <- acton %>%
-  mutate(date_time = mdy_hm(date_time))
-summary(acton)
-library(lubridate)
-date_time <- mdy_hm(acton$date_time)
-summary(date_time)
+# acton <- acton %>%
+#   mutate(date_time = mdy_hm(date_time))
+# summary(acton)
+# library(lubridate)
+# date_time <- mdy_hm(acton$date_time)
+# summary(date_time)
 ```
 Let's check our understanding of lake oxygen dynamics by plotting the time series. Ggplot understands what to do with dates.
 ```{r, fig.cap="*Oxygen dynamics from Acton Lake."}
@@ -206,46 +206,64 @@ Here we acknowledge that the change in dissolved oxygen is a function of NEP and
 $$\Delta \mathrm{DO} = \mathrm{NEP}_{t-1} \cdot \Delta t + F_{t-1}$$
 where $F_{t-1}$ is the flux of oxygen due to diffusion (Winslow et al. 2016). This rate of diffusion depends on wind speed, temperature, lake size, and, ultimately, how much the of the lake waters mix (Winslow et al. 2016). Here we will simply provide a value for the gas exchange constant and a mixing depth.
 
-From its calculations, LakeMetabolizer can give us NEP, R, and GPP. This is because average respiration is the average difference between DO and $F$,  and NEP is the difference between GPP and R.
+From its calculations, LakeMetabolizer can give us NEP, R, and GPP. This is because average respiration is the average difference between DO and $F$,  and NEP is the difference between GPP and R. 
+
+LakeMetabolizer needs data in a particular form, and so we build that next.
 ```{r}
 ## pick a reasonable gas exchange constant and mixing depth
 k.gas <- 0.4
-z.mix <- 3 # meters
+z.mix <- 3 # meters of well mixed surface waters
 
-## code day and night with ones and zeroes
-irr <- with(acton,{ifelse(daylight=="day", 1,0)})
+## let midday PAR be 1300 mol photons/m^2/sec at water surface
 
-## estimate dissolved oxygen at saturation (equilibrium)
-## using the function, o2.at.sat.base()
-acton <- acton %>% mutate(
-  do.sat=o2.at.sat.base(temp, altitude=283),
-    day= as.numeric(is.day(date_time, lat=39.5))
-  
-  )
+## estimate 
+### dissolved oxygen at saturation (equilibrium) using the function, o2.at.sat.base()
+### irradiance in PAR
 
-## create a data frame with just the variables we want.
-acton.LM <- acton %>% # select data frame
+acton.LM <- acton %>% 
   mutate(
-    z.mix = z.mix, 
-    k.gas = k.gas, 
-    irr= as.numeric(is.day(date_time, lat=39.5)),
-    wtr=temp ) %>% # add 3 variables 
+  do.sat=o2.at.sat.base(temp, altitude=283), #saturated DO
+    day= as.numeric(is.day(date_time, lat=39.5)), # day vs. night
+  par = 1300 * sin(daytime.d/14.5 * pi), # PAR
+  irr = ifelse(is.na(par), 0, par), # recode par to make night = 0
+  z.mix = z.mix, # add mixing depth
+    k.gas = k.gas, # add gas exchange coefficient
+  wtr=temp # rename observed water temperature
+  ) %>%
   ## select only some of the columns
   select(datetime=date_time,
-         do.obs=O_mg.L, do.sat=do.sat, 
+         do.obs=O_mg.L, do.sat=do.sat,
          k.gas=k.gas, z.mix=z.mix, irr=irr, wtr=wtr) %>%
   as.data.frame() # simplify the data structure (class tbl_df screws things up)
-ashort <- acton.LM[-c(1:71, 649:672),]
 ```
 
-Finally, we use `metab(method="mle")` to estimate GPP, R, and NEP. 
+One of the methods in LakeMetabolizer, 'bookkeep', requires irradiance to be 0 or 1. We make a new data set with that.
+```{r}
+acton.bk <- acton.LM %>%
+  mutate(irr = as.numeric( irr>0 ) ) # converts TRUE/FALSE to 1,0
+```
+
+Finally, we use three different methods to estimate GPP, R, and NEP.
 ```{r}
 ## calculate GPP, R, NEP in mg O2 / L / day
-out <- metab(acton.LM, method="kalman")
-out <- metab(acton.LM, method="mle")
-mutate(out,
-       GPP.R = GPP+R )
-is.day(acton.LM$datetime, lat=39.5)
+out.b <- metab(acton.bk, method="bookkeep")
+out.k <- metab(acton.LM, method="kalman")
+out.m <- metab(acton.LM, method="mle")
+
+## combine data sets - first label each dataset
+out.b$method <- "bookkeep"
+out.k$method <- "kalman"
+out.m$method <- "mle"
+## now combine
+out.all <- full_join(
+  full_join(out.b, out.k),
+  out.m)
+## ... and stack the variables into a long form
+out.l <- out.all %>%
+  pivot_longer(cols=GPP:NEP)
+
+ggplot(out.l, aes(doy, value, color=method)) + geom_line() +
+  facet_grid(.~name)
 ```
 
 How does this compare with our previous estimate? What would happen if our gas exchange constant differs (Cole et al. 2010)? 

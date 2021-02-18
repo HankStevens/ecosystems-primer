@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-02-12" />
+<meta name="date" content="2021-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -274,10 +274,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>The above steps are an example of pseudocode. Pseudocode is a series of steps written in plain language that describe intermediate steps toward achieving some goal. The function we use follows these steps. It relies heavily on code in Chap. 11 of Soetart and Herman (2009). Below I describe arguments of the function. Let’s start by loading it.</p>
 <p>Obtain a copy of <code>sensitivity.R</code> and put it in an appropriate directory. I use a folder called <code>code</code>. The R function <code>source()</code> runs an R script.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="model-sensitivity.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This script loads a function called, oddly enough, &quot;sensitivity&quot;</span></span>
-<span id="cb53-2"><a href="model-sensitivity.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/sensitivity.R&quot;</span>)</span>
-<span id="cb53-3"><a href="model-sensitivity.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="do">## ask for the arguments of the function</span></span>
-<span id="cb53-4"><a href="model-sensitivity.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(<span class="st">&quot;sensitivity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="model-sensitivity.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This script loads a function called, oddly enough, &quot;sensitivity&quot;</span></span>
+<span id="cb56-2"><a href="model-sensitivity.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/sensitivity.R&quot;</span>)</span>
+<span id="cb56-3"><a href="model-sensitivity.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="do">## ask for the arguments of the function</span></span>
+<span id="cb56-4"><a href="model-sensitivity.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(<span class="st">&quot;sensitivity&quot;</span>)</span></code></pre></div>
 <pre><code>## function (y.initial, times, func, parms, burnin = NULL, tiny = 0.001, 
 ##     dev.type = &quot;normalized&quot;, summary.type = &quot;arithmetic_mean&quot;) 
 ## NULL</code></pre>
@@ -305,79 +305,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> Assessing sensitivity in a nitrogen budget model</h2>
 <p>Consult our previous chapter on the nitrogen budget of Hubbard Brook, watershed 6. If you have not already done so, make a script that contains nothing but the <code>bormann2</code> function. Copy the block of text where we define it, paste it into a new R script, and save it as <strong>bormann2.R</strong>.</p>
 <p>Next we prepare our workspace, by removing extraneous objects.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="model-sensitivity.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>( <span class="at">list =</span> <span class="fu">ls</span>() ) <span class="co"># delete (remove) everything in the workspace.</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="model-sensitivity.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>( <span class="at">list =</span> <span class="fu">ls</span>() ) <span class="co"># delete (remove) everything in the workspace.</span></span></code></pre></div>
 <p>The next line of code loads and runs a file.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="model-sensitivity.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">## I put the script in a folder called &#39;code&#39; that resides inside</span></span>
-<span id="cb56-2"><a href="model-sensitivity.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="do">## my working directory. The following line of code runs the code in </span></span>
-<span id="cb56-3"><a href="model-sensitivity.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="do">## the script, and the script is located at code/bormann2.R</span></span>
-<span id="cb56-4"><a href="model-sensitivity.html#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="model-sensitivity.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/bormann2.R&quot;</span>)</span>
-<span id="cb56-6"><a href="model-sensitivity.html#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-7"><a href="model-sensitivity.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="do">## if you want to make sure that it loaded the right thing, type</span></span>
-<span id="cb56-8"><a href="model-sensitivity.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="do">## bormann2 on your command line, or highlight the word, and run it with</span></span>
-<span id="cb56-9"><a href="model-sensitivity.html#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Control-Enter</span></span>
-<span id="cb56-10"><a href="model-sensitivity.html#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-11"><a href="model-sensitivity.html#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="do">## We also load code to calculate the sensitivities, </span></span>
-<span id="cb56-12"><a href="model-sensitivity.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="do">## and also to create a time series figure of the deviations.</span></span>
-<span id="cb56-13"><a href="model-sensitivity.html#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/sensitivity.R&quot;</span>) <span class="co"># sensitivities of all variables</span></span>
-<span id="cb56-14"><a href="model-sensitivity.html#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/sens_fig.R&quot;</span>) <span class="co"># graph time series of sensitivity of one variable</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="model-sensitivity.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="do">## I put the script in a folder called &#39;code&#39; that resides inside</span></span>
+<span id="cb59-2"><a href="model-sensitivity.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="do">## my working directory. The following line of code runs the code in </span></span>
+<span id="cb59-3"><a href="model-sensitivity.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="do">## the script, and the script is located at code/bormann2.R</span></span>
+<span id="cb59-4"><a href="model-sensitivity.html#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="model-sensitivity.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/bormann2.R&quot;</span>)</span>
+<span id="cb59-6"><a href="model-sensitivity.html#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="model-sensitivity.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="do">## if you want to make sure that it loaded the right thing, type</span></span>
+<span id="cb59-8"><a href="model-sensitivity.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="do">## bormann2 on your command line, or highlight the word, and run it with</span></span>
+<span id="cb59-9"><a href="model-sensitivity.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Control-Enter</span></span>
+<span id="cb59-10"><a href="model-sensitivity.html#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="model-sensitivity.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="do">## We also load code to calculate the sensitivities, </span></span>
+<span id="cb59-12"><a href="model-sensitivity.html#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="do">## and also to create a time series figure of the deviations.</span></span>
+<span id="cb59-13"><a href="model-sensitivity.html#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/sensitivity.R&quot;</span>) <span class="co"># sensitivities of all variables</span></span>
+<span id="cb59-14"><a href="model-sensitivity.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/sens_fig.R&quot;</span>) <span class="co"># graph time series of sensitivity of one variable</span></span></code></pre></div>
 <p>Next we begin to run it.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="model-sensitivity.html#cb57-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
-<span id="cb57-2"><a href="model-sensitivity.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
-<span id="cb57-3"><a href="model-sensitivity.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
-<span id="cb57-4"><a href="model-sensitivity.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="at">a1 =</span> <span class="fl">79.6</span> <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>), <span class="co"># uptake</span></span>
-<span id="cb57-5"><a href="model-sensitivity.html#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># throughfall and inorganic exudates</span></span>
-<span id="cb57-6"><a href="model-sensitivity.html#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">6.2</span> ) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># litter, throughfall, organic exudates</span></span>
-<span id="cb57-7"><a href="model-sensitivity.html#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="at">a4 =</span> <span class="fl">69.6</span> <span class="sc">/</span> <span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
-<span id="cb57-8"><a href="model-sensitivity.html#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="at">a5 =</span> <span class="fl">3.9</span> <span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available</span></span>
-<span id="cb57-9"><a href="model-sensitivity.html#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co">#export from bound</span></span>
-<span id="cb57-10"><a href="model-sensitivity.html#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="at">K=</span><span class="dv">600</span></span>
-<span id="cb57-11"><a href="model-sensitivity.html#cb57-11" aria-hidden="true" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
-<span id="cb57-12"><a href="model-sensitivity.html#cb57-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-13"><a href="model-sensitivity.html#cb57-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-14"><a href="model-sensitivity.html#cb57-14" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
-<span id="cb57-15"><a href="model-sensitivity.html#cb57-15" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="model-sensitivity.html#cb60-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
+<span id="cb60-2"><a href="model-sensitivity.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
+<span id="cb60-3"><a href="model-sensitivity.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
+<span id="cb60-4"><a href="model-sensitivity.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="at">a1 =</span> <span class="fl">79.6</span> <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>), <span class="co"># uptake</span></span>
+<span id="cb60-5"><a href="model-sensitivity.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># throughfall and inorganic exudates</span></span>
+<span id="cb60-6"><a href="model-sensitivity.html#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">6.2</span> ) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># litter, throughfall, organic exudates</span></span>
+<span id="cb60-7"><a href="model-sensitivity.html#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="at">a4 =</span> <span class="fl">69.6</span> <span class="sc">/</span> <span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
+<span id="cb60-8"><a href="model-sensitivity.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="at">a5 =</span> <span class="fl">3.9</span> <span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available</span></span>
+<span id="cb60-9"><a href="model-sensitivity.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co">#export from bound</span></span>
+<span id="cb60-10"><a href="model-sensitivity.html#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="at">K=</span><span class="dv">600</span></span>
+<span id="cb60-11"><a href="model-sensitivity.html#cb60-11" aria-hidden="true" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
+<span id="cb60-12"><a href="model-sensitivity.html#cb60-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-13"><a href="model-sensitivity.html#cb60-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-14"><a href="model-sensitivity.html#cb60-14" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb60-15"><a href="model-sensitivity.html#cb60-15" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Next we run the sensitivity analysis. We start with parameters and initial conditions.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="model-sensitivity.html#cb58-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
-<span id="cb58-2"><a href="model-sensitivity.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
-<span id="cb58-3"><a href="model-sensitivity.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
-<span id="cb58-4"><a href="model-sensitivity.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="at">a1 =</span> <span class="fl">79.6</span> <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>), <span class="co"># uptake</span></span>
-<span id="cb58-5"><a href="model-sensitivity.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># throughfall and inorganic exudates</span></span>
-<span id="cb58-6"><a href="model-sensitivity.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">6.2</span> ) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># litter, throughfall, organic exudates</span></span>
-<span id="cb58-7"><a href="model-sensitivity.html#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="at">a4 =</span> <span class="fl">69.6</span> <span class="sc">/</span> <span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
-<span id="cb58-8"><a href="model-sensitivity.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="at">a5 =</span> <span class="fl">3.9</span> <span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available</span></span>
-<span id="cb58-9"><a href="model-sensitivity.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co">#export from bound</span></span>
-<span id="cb58-10"><a href="model-sensitivity.html#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="at">K=</span><span class="dv">600</span></span>
-<span id="cb58-11"><a href="model-sensitivity.html#cb58-11" aria-hidden="true" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
-<span id="cb58-12"><a href="model-sensitivity.html#cb58-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-13"><a href="model-sensitivity.html#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-14"><a href="model-sensitivity.html#cb58-14" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
-<span id="cb58-15"><a href="model-sensitivity.html#cb58-15" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="model-sensitivity.html#cb61-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
+<span id="cb61-2"><a href="model-sensitivity.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
+<span id="cb61-3"><a href="model-sensitivity.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
+<span id="cb61-4"><a href="model-sensitivity.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="at">a1 =</span> <span class="fl">79.6</span> <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>), <span class="co"># uptake</span></span>
+<span id="cb61-5"><a href="model-sensitivity.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># throughfall and inorganic exudates</span></span>
+<span id="cb61-6"><a href="model-sensitivity.html#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">6.2</span> ) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># litter, throughfall, organic exudates</span></span>
+<span id="cb61-7"><a href="model-sensitivity.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="at">a4 =</span> <span class="fl">69.6</span> <span class="sc">/</span> <span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
+<span id="cb61-8"><a href="model-sensitivity.html#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="at">a5 =</span> <span class="fl">3.9</span> <span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available</span></span>
+<span id="cb61-9"><a href="model-sensitivity.html#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co">#export from bound</span></span>
+<span id="cb61-10"><a href="model-sensitivity.html#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="at">K=</span><span class="dv">600</span></span>
+<span id="cb61-11"><a href="model-sensitivity.html#cb61-11" aria-hidden="true" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
+<span id="cb61-12"><a href="model-sensitivity.html#cb61-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-13"><a href="model-sensitivity.html#cb61-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-14"><a href="model-sensitivity.html#cb61-14" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb61-15"><a href="model-sensitivity.html#cb61-15" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Next we do the sensitivity analysis. We will start with a graph, often a good place to start. The graph will show the actual deviations that arise when we alter each parameter one at a time by one percent.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="model-sensitivity.html#cb59-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;A&quot;</span>, <span class="at">y.initial=</span>initial.state, </span>
-<span id="cb59-2"><a href="model-sensitivity.html#cb59-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>bormann2, <span class="at">parms=</span>params,</span>
-<span id="cb59-3"><a href="model-sensitivity.html#cb59-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">burnin=</span><span class="dv">0</span>, <span class="at">tiny=</span><span class="fl">0.01</span>, <span class="at">relative=</span><span class="cn">FALSE</span> )</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
-## [1] 6
-## [1] 7
-## [1] 8
-## [1] 9</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="model-sensitivity.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:sensfig"></span>
-<img src="figs/sensfig-1.png" alt="*Observed responses of the available N pool to a one percent change to each parameter.*" width="66%" />
-<p class="caption">
-Figure 6.1: <em>Observed responses of the available N pool to a one percent change to each parameter.</em>
-</p>
-</div>
-<p>Note two features of these graphs. First, the change due to the system dynamics is relatively large and so obscures the change due the sensitivity. Second, note that sometimes a smaller parameter (here in blue) results in a higher value of the state variable.</p>
-<p>It might be more informative the (i) focus on model output after it has approach the steady state, and (ii) examine the relative departure from the reference state. Relative change of 1.0 would mean that for a 1% change in a parameter, the state variable would also change by 1%.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="model-sensitivity.html#cb62-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;A&quot;</span>, <span class="at">y.initial=</span>initial.state, </span>
 <span id="cb62-2"><a href="model-sensitivity.html#cb62-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>bormann2, <span class="at">parms=</span>params,</span>
-<span id="cb62-3"><a href="model-sensitivity.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">burnin=</span><span class="dv">500</span>, <span class="at">tiny=</span><span class="fl">0.01</span>, <span class="at">relative=</span><span class="cn">TRUE</span> )</span></code></pre></div>
+<span id="cb62-3"><a href="model-sensitivity.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">burnin=</span><span class="dv">0</span>, <span class="at">tiny=</span><span class="fl">0.01</span>, <span class="at">relative=</span><span class="cn">FALSE</span> )</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -388,6 +367,27 @@ Figure 6.1: <em>Observed responses of the available N pool to a one percent chan
 ## [1] 8
 ## [1] 9</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="model-sensitivity.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:sensfig"></span>
+<img src="figs/sensfig-1.png" alt="*Observed responses of the available N pool to a one percent change to each parameter.*" width="66%" />
+<p class="caption">
+Figure 6.1: <em>Observed responses of the available N pool to a one percent change to each parameter.</em>
+</p>
+</div>
+<p>Note two features of these graphs. First, the change due to the system dynamics is relatively large and so obscures the change due the sensitivity. Second, note that sometimes a smaller parameter (here in blue) results in a higher value of the state variable.</p>
+<p>It might be more informative the (i) focus on model output after it has approach the steady state, and (ii) examine the relative departure from the reference state. Relative change of 1.0 would mean that for a 1% change in a parameter, the state variable would also change by 1%.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="model-sensitivity.html#cb65-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;A&quot;</span>, <span class="at">y.initial=</span>initial.state, </span>
+<span id="cb65-2"><a href="model-sensitivity.html#cb65-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>bormann2, <span class="at">parms=</span>params,</span>
+<span id="cb65-3"><a href="model-sensitivity.html#cb65-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">burnin=</span><span class="dv">500</span>, <span class="at">tiny=</span><span class="fl">0.01</span>, <span class="at">relative=</span><span class="cn">TRUE</span> )</span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="model-sensitivity.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:sensfigRel"></span>
 <img src="figs/sensfigRel-1.png" alt="*Relative responses of the available N pool to a one percent change to each parameter. Note big differences in the values of the y-axes.*" width="66%" />
 <p class="caption">
@@ -396,13 +396,13 @@ Figure 6.2: <em>Relative responses of the available N pool to a one percent chan
 </div>
 <p>These graphs show that the state variable responds very consistently through time. In systems with more complicated dynamics, that will not always be the case.</p>
 <p>Next, we can assess each of the state variables and average across time.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="model-sensitivity.html#cb65-1" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sensitivity</span>(<span class="at">y.initial=</span>initial.state, <span class="at">times=</span>t, </span>
-<span id="cb65-2"><a href="model-sensitivity.html#cb65-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">func=</span>bormann2, <span class="at">parms=</span>params, </span>
-<span id="cb65-3"><a href="model-sensitivity.html#cb65-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">dev.type=</span><span class="st">&#39;normalized&#39;</span>, </span>
-<span id="cb65-4"><a href="model-sensitivity.html#cb65-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">summary.type=</span><span class="st">&quot;arithmetic_mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="model-sensitivity.html#cb68-1" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sensitivity</span>(<span class="at">y.initial=</span>initial.state, <span class="at">times=</span>t, </span>
+<span id="cb68-2"><a href="model-sensitivity.html#cb68-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">func=</span>bormann2, <span class="at">parms=</span>params, </span>
+<span id="cb68-3"><a href="model-sensitivity.html#cb68-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">dev.type=</span><span class="st">&#39;normalized&#39;</span>, </span>
+<span id="cb68-4"><a href="model-sensitivity.html#cb68-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">summary.type=</span><span class="st">&quot;arithmetic_mean&quot;</span>)</span></code></pre></div>
 <p>The output generates a list with seven element, but to see this structure you need to use <code>str</code>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="model-sensitivity.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Peak at the structure of the output</span></span>
-<span id="cb66-2"><a href="model-sensitivity.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b1)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="model-sensitivity.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Peak at the structure of the output</span></span>
+<span id="cb69-2"><a href="model-sensitivity.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b1)</span></code></pre></div>
 <pre><code>## List of 7
 ##  $ deviation.summary:&#39;data.frame&#39;:   9 obs. of  5 variables:
 ##   ..$ parameters: chr [1:9] &quot;i1&quot; &quot;i2&quot; &quot;a1&quot; &quot;a2&quot; ...
@@ -435,7 +435,7 @@ Figure 6.2: <em>Relative responses of the available N pool to a one percent chan
 ##   .. .. ..$ : chr [1:9] &quot;i1&quot; &quot;i2&quot; &quot;a1&quot; &quot;a2&quot; ...
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;sensitivity&quot; &quot;list&quot;</code></pre>
 <p>However, if you just type <code>b1</code>, it will spit out just the summary of the deviations.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="model-sensitivity.html#cb68-1" aria-hidden="true" tabindex="-1"></a>b1</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="model-sensitivity.html#cb71-1" aria-hidden="true" tabindex="-1"></a>b1</span></code></pre></div>
 <pre><code>##   parameters             V             A             B         total
 ## 1         i1  3.705840e-05  0.0647565594  3.790716e-05  0.0003194970
 ## 2         i2  2.918269e-05  0.1041528053  1.225100e-01  0.1109138069
@@ -448,73 +448,73 @@ Figure 6.2: <em>Relative responses of the available N pool to a one percent chan
 ## 9          K  8.470909e-01 -0.3190643353  4.950298e-01  0.5246217855</code></pre>
 <p>If we want to use this summary, however, we need to specify <code>b1$deviation.summary</code></p>
 <p>Next we would like to graph the summaries, for ease of interpretation.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="model-sensitivity.html#cb70-1" aria-hidden="true" tabindex="-1"></a>b1L <span class="ot">&lt;-</span> b1<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span>  </span>
-<span id="cb70-2"><a href="model-sensitivity.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="st">&quot;V&quot;</span><span class="sc">:</span><span class="st">&quot;total&quot;</span>)</span>
-<span id="cb70-3"><a href="model-sensitivity.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b1L, <span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
-<span id="cb70-4"><a href="model-sensitivity.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-40"></span>
-<img src="figs/unnamed-chunk-40-1.png" alt="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*" width="66%" />
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="model-sensitivity.html#cb73-1" aria-hidden="true" tabindex="-1"></a>b1L <span class="ot">&lt;-</span> b1<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span>  </span>
+<span id="cb73-2"><a href="model-sensitivity.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="st">&quot;V&quot;</span><span class="sc">:</span><span class="st">&quot;total&quot;</span>)</span>
+<span id="cb73-3"><a href="model-sensitivity.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b1L, <span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb73-4"><a href="model-sensitivity.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-41"></span>
+<img src="figs/unnamed-chunk-41-1.png" alt="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*" width="66%" />
 <p class="caption">
 Figure 6.3: <em>Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.</em>
 </p>
 </div>
 <p>We can also summarize across state variables, so that we have one effect of each parameter. Here we use just V, A, and B, and calculate the root mean squared error.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="model-sensitivity.html#cb71-1" aria-hidden="true" tabindex="-1"></a>rmse.SV <span class="ot">&lt;-</span> b1<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span> </span>
-<span id="cb71-2"><a href="model-sensitivity.html#cb71-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(V<span class="sc">:</span>B) <span class="sc">%&gt;%</span> </span>
-<span id="cb71-3"><a href="model-sensitivity.html#cb71-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">apply</span>(<span class="at">MARGIN=</span><span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sqrt</span>( x<span class="sc">*</span>x <span class="sc">/</span> <span class="dv">3</span> ))</span>
-<span id="cb71-4"><a href="model-sensitivity.html#cb71-4" aria-hidden="true" tabindex="-1"></a>SV <span class="ot">&lt;-</span> b1<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span> </span>
-<span id="cb71-5"><a href="model-sensitivity.html#cb71-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(V<span class="sc">:</span>B) </span>
-<span id="cb71-6"><a href="model-sensitivity.html#cb71-6" aria-hidden="true" tabindex="-1"></a>rmse.SV <span class="ot">&lt;-</span> <span class="fu">t</span>( <span class="fu">apply</span>(SV, <span class="at">MARGIN=</span><span class="dv">1</span>, <span class="cf">function</span>(x) {</span>
-<span id="cb71-7"><a href="model-sensitivity.html#cb71-7" aria-hidden="true" tabindex="-1"></a>      m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb71-8"><a href="model-sensitivity.html#cb71-8" aria-hidden="true" tabindex="-1"></a>      sq <span class="ot">&lt;-</span> (x<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb71-9"><a href="model-sensitivity.html#cb71-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sqrt</span>( <span class="fu">mean</span>( sq ))</span>
-<span id="cb71-10"><a href="model-sensitivity.html#cb71-10" aria-hidden="true" tabindex="-1"></a>   }) )</span>
-<span id="cb71-11"><a href="model-sensitivity.html#cb71-11" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p=</span>b1<span class="sc">$</span>deviation.summary<span class="sc">$</span>parameters, <span class="at">rmse=</span><span class="fu">as.numeric</span>(rmse.SV))</span>
-<span id="cb71-12"><a href="model-sensitivity.html#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(p, rmse, <span class="at">data=</span>rmse, <span class="at">geom=</span><span class="st">&quot;col&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-41-1.png" width="66%" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="model-sensitivity.html#cb74-1" aria-hidden="true" tabindex="-1"></a>rmse.SV <span class="ot">&lt;-</span> b1<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="model-sensitivity.html#cb74-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(V<span class="sc">:</span>B) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-3"><a href="model-sensitivity.html#cb74-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">apply</span>(<span class="at">MARGIN=</span><span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sqrt</span>( x<span class="sc">*</span>x <span class="sc">/</span> <span class="dv">3</span> ))</span>
+<span id="cb74-4"><a href="model-sensitivity.html#cb74-4" aria-hidden="true" tabindex="-1"></a>SV <span class="ot">&lt;-</span> b1<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span> </span>
+<span id="cb74-5"><a href="model-sensitivity.html#cb74-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(V<span class="sc">:</span>B) </span>
+<span id="cb74-6"><a href="model-sensitivity.html#cb74-6" aria-hidden="true" tabindex="-1"></a>rmse.SV <span class="ot">&lt;-</span> <span class="fu">t</span>( <span class="fu">apply</span>(SV, <span class="at">MARGIN=</span><span class="dv">1</span>, <span class="cf">function</span>(x) {</span>
+<span id="cb74-7"><a href="model-sensitivity.html#cb74-7" aria-hidden="true" tabindex="-1"></a>      m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb74-8"><a href="model-sensitivity.html#cb74-8" aria-hidden="true" tabindex="-1"></a>      sq <span class="ot">&lt;-</span> (x<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb74-9"><a href="model-sensitivity.html#cb74-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sqrt</span>( <span class="fu">mean</span>( sq ))</span>
+<span id="cb74-10"><a href="model-sensitivity.html#cb74-10" aria-hidden="true" tabindex="-1"></a>   }) )</span>
+<span id="cb74-11"><a href="model-sensitivity.html#cb74-11" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p=</span>b1<span class="sc">$</span>deviation.summary<span class="sc">$</span>parameters, <span class="at">rmse=</span><span class="fu">as.numeric</span>(rmse.SV))</span>
+<span id="cb74-12"><a href="model-sensitivity.html#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(p, rmse, <span class="at">data=</span>rmse, <span class="at">geom=</span><span class="st">&quot;col&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-42-1.png" width="66%" /></p>
 <p>So,…into what should we direct our effort? What data do we want most want to collect? These sensitivities are likely to help us direct our attention where it would be most useful.</p>
 </div>
 <div id="sensitivity-in-an-aquatic-ecosystem" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Sensitivity in an aquatic ecosystem</h2>
 <p>Here we revisit the aquatic ecosystem model, NPZD, of Soetaert and Herman.</p>
 <p>We load it, and define the parameters and initial state.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="model-sensitivity.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/NPZD.R&quot;</span>)</span>
-<span id="cb72-2"><a href="model-sensitivity.html#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-3"><a href="model-sensitivity.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------#</span></span>
-<span id="cb72-4"><a href="model-sensitivity.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the model parameters: #</span></span>
-<span id="cb72-5"><a href="model-sensitivity.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------#</span></span>
-<span id="cb72-6"><a href="model-sensitivity.html#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-7"><a href="model-sensitivity.html#cb72-7" aria-hidden="true" tabindex="-1"></a>parameters<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">maxUptake          =</span><span class="fl">1.0</span>,       <span class="co"># /day</span></span>
-<span id="cb72-8"><a href="model-sensitivity.html#cb72-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksPAR              =</span><span class="dv">140</span>,       <span class="co"># muEinst/m2/s</span></span>
-<span id="cb72-9"><a href="model-sensitivity.html#cb72-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksDIN              =</span><span class="fl">0.5</span>,       <span class="co"># mmolN/m3</span></span>
-<span id="cb72-10"><a href="model-sensitivity.html#cb72-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">maxGrazing         =</span><span class="fl">1.0</span>,       <span class="co"># /day</span></span>
-<span id="cb72-11"><a href="model-sensitivity.html#cb72-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksGrazing          =</span><span class="fl">1.0</span>,       <span class="co"># mmolN/m3</span></span>
-<span id="cb72-12"><a href="model-sensitivity.html#cb72-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">pFaeces            =</span><span class="fl">0.3</span>,       <span class="co"># -</span></span>
-<span id="cb72-13"><a href="model-sensitivity.html#cb72-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">excretionRate      =</span><span class="fl">0.1</span>,       <span class="co"># /day</span></span>
-<span id="cb72-14"><a href="model-sensitivity.html#cb72-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">mortalityRate      =</span><span class="fl">0.4</span>,       <span class="co"># /(mmolN/m3)/day </span></span>
-<span id="cb72-15"><a href="model-sensitivity.html#cb72-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">mineralisationRate =</span><span class="fl">0.1</span>,       <span class="co"># /day</span></span>
-<span id="cb72-16"><a href="model-sensitivity.html#cb72-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">chlNratio          =</span><span class="dv">1</span>)         <span class="co"># mgChl/mmolN</span></span>
-<span id="cb72-17"><a href="model-sensitivity.html#cb72-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-18"><a href="model-sensitivity.html#cb72-18" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------#</span></span>
-<span id="cb72-19"><a href="model-sensitivity.html#cb72-19" aria-hidden="true" tabindex="-1"></a><span class="co"># the initial conditions: #</span></span>
-<span id="cb72-20"><a href="model-sensitivity.html#cb72-20" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------#</span></span>
-<span id="cb72-21"><a href="model-sensitivity.html#cb72-21" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb72-22"><a href="model-sensitivity.html#cb72-22" aria-hidden="true" tabindex="-1"></a>state     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">PHYTO   =</span><span class="dv">1</span>,   <span class="co"># state variable initial conditions, units mmolN/m3</span></span>
-<span id="cb72-23"><a href="model-sensitivity.html#cb72-23" aria-hidden="true" tabindex="-1"></a>              <span class="at">ZOO     =</span><span class="fl">0.1</span>,</span>
-<span id="cb72-24"><a href="model-sensitivity.html#cb72-24" aria-hidden="true" tabindex="-1"></a>              <span class="at">DETRITUS=</span><span class="fl">5.0</span>,</span>
-<span id="cb72-25"><a href="model-sensitivity.html#cb72-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">DIN     =</span><span class="fl">5.0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="model-sensitivity.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/NPZD.R&quot;</span>)</span>
+<span id="cb75-2"><a href="model-sensitivity.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="model-sensitivity.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------#</span></span>
+<span id="cb75-4"><a href="model-sensitivity.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the model parameters: #</span></span>
+<span id="cb75-5"><a href="model-sensitivity.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------#</span></span>
+<span id="cb75-6"><a href="model-sensitivity.html#cb75-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-7"><a href="model-sensitivity.html#cb75-7" aria-hidden="true" tabindex="-1"></a>parameters<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">maxUptake          =</span><span class="fl">1.0</span>,       <span class="co"># /day</span></span>
+<span id="cb75-8"><a href="model-sensitivity.html#cb75-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksPAR              =</span><span class="dv">140</span>,       <span class="co"># muEinst/m2/s</span></span>
+<span id="cb75-9"><a href="model-sensitivity.html#cb75-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksDIN              =</span><span class="fl">0.5</span>,       <span class="co"># mmolN/m3</span></span>
+<span id="cb75-10"><a href="model-sensitivity.html#cb75-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">maxGrazing         =</span><span class="fl">1.0</span>,       <span class="co"># /day</span></span>
+<span id="cb75-11"><a href="model-sensitivity.html#cb75-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksGrazing          =</span><span class="fl">1.0</span>,       <span class="co"># mmolN/m3</span></span>
+<span id="cb75-12"><a href="model-sensitivity.html#cb75-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">pFaeces            =</span><span class="fl">0.3</span>,       <span class="co"># -</span></span>
+<span id="cb75-13"><a href="model-sensitivity.html#cb75-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">excretionRate      =</span><span class="fl">0.1</span>,       <span class="co"># /day</span></span>
+<span id="cb75-14"><a href="model-sensitivity.html#cb75-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">mortalityRate      =</span><span class="fl">0.4</span>,       <span class="co"># /(mmolN/m3)/day </span></span>
+<span id="cb75-15"><a href="model-sensitivity.html#cb75-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">mineralisationRate =</span><span class="fl">0.1</span>,       <span class="co"># /day</span></span>
+<span id="cb75-16"><a href="model-sensitivity.html#cb75-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">chlNratio          =</span><span class="dv">1</span>)         <span class="co"># mgChl/mmolN</span></span>
+<span id="cb75-17"><a href="model-sensitivity.html#cb75-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-18"><a href="model-sensitivity.html#cb75-18" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------#</span></span>
+<span id="cb75-19"><a href="model-sensitivity.html#cb75-19" aria-hidden="true" tabindex="-1"></a><span class="co"># the initial conditions: #</span></span>
+<span id="cb75-20"><a href="model-sensitivity.html#cb75-20" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------#</span></span>
+<span id="cb75-21"><a href="model-sensitivity.html#cb75-21" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb75-22"><a href="model-sensitivity.html#cb75-22" aria-hidden="true" tabindex="-1"></a>state     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">PHYTO   =</span><span class="dv">1</span>,   <span class="co"># state variable initial conditions, units mmolN/m3</span></span>
+<span id="cb75-23"><a href="model-sensitivity.html#cb75-23" aria-hidden="true" tabindex="-1"></a>              <span class="at">ZOO     =</span><span class="fl">0.1</span>,</span>
+<span id="cb75-24"><a href="model-sensitivity.html#cb75-24" aria-hidden="true" tabindex="-1"></a>              <span class="at">DETRITUS=</span><span class="fl">5.0</span>,</span>
+<span id="cb75-25"><a href="model-sensitivity.html#cb75-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">DIN     =</span><span class="fl">5.0</span>)</span></code></pre></div>
 <p>Next we run the dynamics for two years.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="model-sensitivity.html#cb73-1" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">730</span></span>
-<span id="cb73-2"><a href="model-sensitivity.html#cb73-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(state, times, NPZD, parameters)</span>
-<span id="cb73-3"><a href="model-sensitivity.html#cb73-3" aria-hidden="true" tabindex="-1"></a>out <span class="sc">%&gt;%</span> </span>
-<span id="cb73-4"><a href="model-sensitivity.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb73-5"><a href="model-sensitivity.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb73-6"><a href="model-sensitivity.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-43-1.png" width="66%" /></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="model-sensitivity.html#cb76-1" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">730</span></span>
+<span id="cb76-2"><a href="model-sensitivity.html#cb76-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(state, times, NPZD, parameters)</span>
+<span id="cb76-3"><a href="model-sensitivity.html#cb76-3" aria-hidden="true" tabindex="-1"></a>out <span class="sc">%&gt;%</span> </span>
+<span id="cb76-4"><a href="model-sensitivity.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb76-5"><a href="model-sensitivity.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb76-6"><a href="model-sensitivity.html#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-44-1.png" width="66%" /></p>
 <p>Next we check model sensitivity.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="model-sensitivity.html#cb74-1" aria-hidden="true" tabindex="-1"></a>outf <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;DIN&quot;</span>, <span class="at">y.initial=</span>state, </span>
-<span id="cb74-2"><a href="model-sensitivity.html#cb74-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>NPZD, <span class="at">parms=</span>parameters,</span>
-<span id="cb74-3"><a href="model-sensitivity.html#cb74-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">burnin=</span><span class="dv">0</span>, <span class="at">tiny=</span><span class="fl">0.01</span>, <span class="at">relative=</span><span class="cn">TRUE</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="model-sensitivity.html#cb77-1" aria-hidden="true" tabindex="-1"></a>outf <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;DIN&quot;</span>, <span class="at">y.initial=</span>state, </span>
+<span id="cb77-2"><a href="model-sensitivity.html#cb77-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>NPZD, <span class="at">parms=</span>parameters,</span>
+<span id="cb77-3"><a href="model-sensitivity.html#cb77-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">burnin=</span><span class="dv">0</span>, <span class="at">tiny=</span><span class="fl">0.01</span>, <span class="at">relative=</span><span class="cn">TRUE</span> )</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -525,21 +525,21 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 ## [1] 8
 ## [1] 9
 ## [1] 10</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="model-sensitivity.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outf, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> </span>
-<span id="cb76-2"><a href="model-sensitivity.html#cb76-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-44-1.png" width="66%" /></p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="model-sensitivity.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(sensitivity)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="model-sensitivity.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outf, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> </span>
+<span id="cb79-2"><a href="model-sensitivity.html#cb79-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-45-1.png" width="66%" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="model-sensitivity.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(sensitivity)</span></code></pre></div>
 <pre><code>## function (y.initial, times, func, parms, burnin = NULL, tiny = 0.001, 
 ##     dev.type = &quot;normalized&quot;, summary.type = &quot;arithmetic_mean&quot;) 
 ## NULL</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="model-sensitivity.html#cb79-1" aria-hidden="true" tabindex="-1"></a>outd <span class="ot">&lt;-</span> <span class="fu">sensitivity</span>(state, times, NPZD, parameters)</span>
-<span id="cb79-2"><a href="model-sensitivity.html#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-3"><a href="model-sensitivity.html#cb79-3" aria-hidden="true" tabindex="-1"></a>outd<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span>  </span>
-<span id="cb79-4"><a href="model-sensitivity.html#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>parameters) <span class="sc">%&gt;%</span></span>
-<span id="cb79-5"><a href="model-sensitivity.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
-<span id="cb79-6"><a href="model-sensitivity.html#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb79-7"><a href="model-sensitivity.html#cb79-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>() <span class="co"># Flip x and y so we can see the parameter names</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-45-1.png" width="66%" /></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="model-sensitivity.html#cb82-1" aria-hidden="true" tabindex="-1"></a>outd <span class="ot">&lt;-</span> <span class="fu">sensitivity</span>(state, times, NPZD, parameters)</span>
+<span id="cb82-2"><a href="model-sensitivity.html#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="model-sensitivity.html#cb82-3" aria-hidden="true" tabindex="-1"></a>outd<span class="sc">$</span>deviation.summary <span class="sc">%&gt;%</span>  </span>
+<span id="cb82-4"><a href="model-sensitivity.html#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>parameters) <span class="sc">%&gt;%</span></span>
+<span id="cb82-5"><a href="model-sensitivity.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb82-6"><a href="model-sensitivity.html#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb82-7"><a href="model-sensitivity.html#cb82-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>() <span class="co"># Flip x and y so we can see the parameter names</span></span></code></pre></div>
+<p><img src="figs/unnamed-chunk-46-1.png" width="66%" /></p>
 <p>Which parameters appear to have the greatest effect on model predictions?</p>
 
 </div>
