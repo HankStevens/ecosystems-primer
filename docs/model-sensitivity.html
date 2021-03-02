@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-03-01" />
+<meta name="date" content="2021-03-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -558,7 +558,24 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 <p><em>. Make sure that you have exhausted your own data in its ability to estimate that constant. Perhaps we’ll explore that elsewhere.
 </em> Make sure that you have exhausted the literature as you combed through older papers that might have estimates.
 * Make sure that you’re exhausted generally.</p>
-<p>Assuming that you have done the above, what is left to you? What folks often do is to rely on first principles and logical constraints to find upper and lower limits to the parameter, and display or summarize numerical the variation in outputs that result. The local sensitivity analysis showed us the <em>potential effects</em> of variation in parameters. Here what we want to do is determine for ourselves the potential variation in the parameter itself, and then use simulation to discover the consequences of the a priori variation in the parameter.</p>
+<p><strong>One of the trickiest</strong> aspects of gathering parameter estimates from the literature or from other people’s data is converting their units to units you need.</p>
+<ul>
+<li>What units do you need?
+<ul>
+<li>Are you trying to estimate a <strong>flux</strong> (the mass of material flowing from one compartment to another per unit time)?</li>
+<li>Are you trying to estimate a <strong>mass-specific rate</strong> constant?</li>
+</ul></li>
+<li>What do others provide?
+<ul>
+<li>Estimates of moles or grams?</li>
+<li>Molecular or elemental quantities (e.g., NH<span class="math inline">\(_4\)</span> or N)?</li>
+<li>All or at least the important sources of elemental quantities (NH<span class="math inline">\(_4\)</span> and NO<span class="math inline">\(_3\)</span> vs. just one)?</li>
+<li>Per unit area or volume?</li>
+<li>What is their time scale?</li>
+</ul></li>
+</ul>
+<p>Conversion between what others provide and what you need can bee tricky, but it is essential to get it right.</p>
+<p>Assuming that you have worked hard at the above tasks but are still more in the dark than you would like, what is left to you? What folks often do is to rely on first principles and logical constraints to find upper and lower limits to the parameter, and display or summarize numerical the variation in outputs that result. The local sensitivity analysis showed us the <em>potential effects</em> of variation in parameters. Here what we want to do is determine for ourselves the potential variation in the parameter itself, and then use simulation to discover the consequences of the a priori variation in the parameter.</p>
 <p>So, our current estimate of the grazing half saturation constant, <span class="math inline">\(ks_{\mathrm{Grazing}}\)</span>, is 1.0. If we examine <code>NPZD()</code>, we find that the shape of this resource limitation function:</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="model-sensitivity.html#cb81-1" aria-hidden="true" tabindex="-1"></a>ksGr <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb81-2"><a href="model-sensitivity.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="do">## let Phytoplankton be x, and vary between 0 and 6 mmolN/m3</span></span>

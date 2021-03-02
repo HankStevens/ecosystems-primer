@@ -306,7 +306,21 @@ So, let's say you find that the half saturation constant for grazing rate of phy
 * Make sure that you have exhausted the literature as you combed through older papers that might have estimates.
 * Make sure that you're exhausted generally.
 
-Assuming that you have done the above, what is left to you? What folks often do is to rely on first principles and logical constraints to find upper and lower limits to the parameter, and display or summarize numerical the variation in outputs that result. The local sensitivity analysis showed us the *potential effects* of variation in parameters. Here what we want to do is determine for ourselves the potential variation in the parameter itself, and then use simulation to discover the consequences of the a priori variation in the parameter.
+**One of the trickiest** aspects of gathering parameter estimates from the literature or from other people's data is converting their units to units you need. 
+
+* What units do you need? 
+    * Are you trying to estimate a **flux** (the mass of material flowing from one compartment to another per unit time)? 
+    * Are you trying to estimate a **mass-specific rate** constant?
+* What do others provide? 
+    * Estimates of moles or grams? 
+    * Molecular or elemental quantities (e.g., NH$_4$ or N)? 
+    * All or at least the important sources of elemental quantities (NH$_4$ and NO$_3$ vs. just one)?
+    * Per unit area or volume? 
+    * What is their time scale?
+    
+Conversion between what others provide and what you need can bee tricky, but it is essential to get it right.
+
+Assuming that you have worked hard at the above tasks but are still more in the dark than you would like, what is left to you? What folks often do is to rely on first principles and logical constraints to find upper and lower limits to the parameter, and display or summarize numerical the variation in outputs that result. The local sensitivity analysis showed us the *potential effects* of variation in parameters. Here what we want to do is determine for ourselves the potential variation in the parameter itself, and then use simulation to discover the consequences of the a priori variation in the parameter.
 
 So, our current estimate of the grazing half saturation constant, $ks_{\mathrm{Grazing}}$, is 1.0. If we examine `NPZD()`, we find that the shape of this resource limitation function:
 ```{r}
