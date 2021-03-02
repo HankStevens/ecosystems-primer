@@ -392,7 +392,7 @@ Well, then... . Aren't you glad you tried that!
 
 Take a stab at varying something in your preferred model. You can use anyone's data - we are all in this together. Just give proper attribution. 
 
-You can also come up with creative ways to quantify an output difference from a reference in an output. Often, we come up with a useful quantitative metric, run a larger number of scenarios (e.g., letting a parameter take 20 different values), and then plot the relation between the parameter and your quantitative measure of difference from output.
+You can also come up with creative ways to quantify an output difference from a reference in an output. Often, we come up with a useful quantitative metric, run a larger number of scenarios (e.g., letting a parameter take 20 different values), and then plot the relation between the parameter and your quantitative measure of difference in output.
 
 Be creative. See what you find.
 
