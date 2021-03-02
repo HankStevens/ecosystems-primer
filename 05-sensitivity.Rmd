@@ -283,7 +283,7 @@ In this figure, we see that sensitivity varies through time. For most parameters
 
 Here we summarize those across time. 
 
-```{r}
+```{r fig.h}
 # args(sensitivity)
 outd <- sensitivity(state, times, NPZD, parameters,
                     dev.type = "normalized", 
@@ -297,4 +297,88 @@ ggplot(aes(x=parameters, y=value)) + geom_col() +
 ```
 
 Which parameters appear to have the greatest effect on model predictions? 
+
+## Letting Sensitivity Analysis Guide Next Steps
+
+So, let's say you find that the half saturation constant for grazing rate of phytoplankton by zooplankton,  $ks_{\mathrm{Grazing}}$, is relatively important in governing several state variables. You also believe that it is very poorly estimated. Because you believe that your estimate is very uncertain, you should probably investigate and reveal to your collaborators the effect of wide variation in this parameter. 
+
+*. Make sure that you have exhausted your own data in its ability to estimate that constant. Perhaps we'll explore that elsewhere.
+* Make sure that you have exhausted the literature as you combed through older papers that might have estimates.
+* Make sure that you're exhausted generally.
+
+Assuming that you have done the above, what is left to you? What folks often do is to rely on first principles and logical constraints to find upper and lower limits to the parameter, and display or summarize numerical the variation in outputs that result. The local sensitivity analysis showed us the *potential effects* of variation in parameters. Here what we want to do is determine for ourselves the potential variation in the parameter itself, and then use simulation to discover the consequences of the a priori variation in the parameter.
+
+So, our current estimate of the grazing half saturation constant, $ks_{\mathrm{Grazing}}$, is 1.0. If we examine `NPZD()`, we find that the shape of this resource limitation function:
+```{r}
+ksGr <- 1
+## let Phytoplankton be x, and vary between 0 and 6 mmolN/m3
+## because that is the approximate range we see in the dynamics
+curve(x/(ksGr + x), 0, 6)
+```
+
+If we increase or decrease the half saturation constant, what will we see?
+
+```{r}
+ksGr <- c(.5, 1, 2)
+# let Phytoplankton vary more
+curve(x/(ksGr[1] + x), 0, 10)
+curve(x/(ksGr[2] + x), 0, 10, add=TRUE, lty=2)
+curve(x/(ksGr[3] + x), 0, 10,  add=TRUE, lty=3)
+legend("bottomright", legend=paste(ksGr), lty=1:3)
+```
+
+Given this range, is there some basis for selecting one of these? Recall that this is multiplied by the maximum grazing rate (and zooplankton); therefore, we might want to ask ourselves how that maximum rate was determined. For instance, was it estimated at moderate phytoplankton concentrations or when phytoplankton were truly unlimited? If we have some data from the literature suggesting particular values, we might use these as maxima and minima, or we might go beyond them.
+
+Sometimes, all we have is a guess. If a parameter appears to be important, then we might simply pick a value and then double it and halve it, or investigate 10-fold increases. Here we do the former.
+
+* Let the half saturation constant vary between 0.5 and 2.
+* Generate the dynamics.
+* Plot outputs together.
+```{r}
+## reference run
+## make a copy of the parameters
+myP <- parameters
+## integrate and make a data frame
+out_1 <- as.data.frame( ode(state, times, NPZD, myP) )
+
+## add identifier
+out_1 <- out_1 %>%
+   ## make a new column
+   mutate(ksGrazing = 1.0) # code as text
+
+## Change the half saturation constant
+myP["ksGrazing"] <- 0.5
+##rerun and make a data frame
+out_0.5 <- as.data.frame( ode(state, times, NPZD, myP) )
+## add identifier
+out_0.5 <- out_0.5 %>%
+   ## make a new column
+   mutate(ksGrazing = 0.5) # code as text
+
+## Change the half saturation constant
+myP["ksGrazing"] <- 2
+## rerun and make a dataframe
+out_2<- as.data.frame( ode(state, times, NPZD, myP) )
+## add identifier
+out_2 <- out_2 %>%
+   ## make a new column
+   mutate(ksGrazing = 2.0) # code as text
+
+out.all <- rbind(out_0.5, out_1, out_2)
+
+
+out.all %>% 
+  pivot_longer(cols=PHYTO:TotalN, names_to="State.var", values_to="value") %>%
+ggplot(aes(time, value, colour=as.factor(ksGrazing))) + geom_line() + facet_wrap(~State.var, scale="free_y")
+```
+
+Well, then... . Aren't you glad you tried that!
+
+### Your turn
+
+Take a stab at varying something in your preferred model. You can use anyone's data - we are all in this together. Just give proper attribution. 
+
+You can also come up with creative ways to quantify an output difference from a reference in an output. Often, we come up with a useful quantitative metric, run a larger number of scenarios (e.g., letting a parameter take 20 different values), and then plot the relation between the parameter and your quantitative measure of difference from output.
+
+Be creative. See what you find.
 

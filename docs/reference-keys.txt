@@ -16,7 +16,7 @@ fig:sensfigRel
 fig:unnamed-chunk-41
 fig:rf1
 fig:rt1
-fig:unnamed-chunk-53
+fig:unnamed-chunk-55
 prerequisites
 must-dos
 a-couple-of-useful-citations
@@ -45,6 +45,8 @@ model-sensitivity-1
 local-sensitivity
 assessing-sensitivity-in-a-nitrogen-budget-model
 sensitivity-in-an-aquatic-ecosystem
+letting-sensitivity-analysis-guide-next-steps
+your-turn
 MEL
 rastetter-et-al.-1997
 implementing-mel

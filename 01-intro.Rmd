@@ -90,6 +90,17 @@ knitr::include_graphics("figs/SH_F-1.7a.png")
 knitr::include_graphics("figs/SH_F-1.7b.png")
 ```
 
+In brief, I paraphrase or plagiarize their steps thus:
+
+* Problem statement or question = narrowing the focus of interest in a real system.
+* System conceptualization = representing a real system as an abstraction.
+* Model formulation = representing the conceptual model in mathematical form.
+* Model Verification = Checks on internal consistency, consistency with physical laws of conservation, and ability to reproduce known solutions. 
+* Parameterization = Using the literature or other sources to help determine numerical values for parameters; fine tuning these on the basis of model output is model calibration.
+* Model Calibration = using model output to fine tune model parameters, often referred to or related to model fitting.
+* Sensitivity analysis = using model output to understand the effect of variation in parameters and state variables on dynamics.
+
+
 ## An example in R
 
 Here we create a simple model to illustrate some of what we've been describing.

@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-02-18" />
+<meta name="date" content="2021-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,6 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>6.2</b> Local sensitivity</a></li>
 <li class="chapter" data-level="6.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>6.3</b> Assessing sensitivity in a nitrogen budget model</a></li>
 <li class="chapter" data-level="6.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>6.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="6.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>6.5</b> Letting Sensitivity Analysis Guide Next Steps</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>6.5.1</b> Your turn</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>7</b> Multiple Element Limitation</a>
 <ul>
@@ -545,9 +549,81 @@ Figure 6.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb80-8"><a href="model-sensitivity.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
 <span id="cb80-9"><a href="model-sensitivity.html#cb80-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb80-10"><a href="model-sensitivity.html#cb80-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>() <span class="co"># Flip x and y so we can see the parameter names</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-46-1.png" width="75%" /></p>
+<p><img src="figs/fig.h-1.png" width="75%" /></p>
 <p>Which parameters appear to have the greatest effect on model predictions?</p>
+</div>
+<div id="letting-sensitivity-analysis-guide-next-steps" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Letting Sensitivity Analysis Guide Next Steps</h2>
+<p>So, let’s say you find that the half saturation constant for grazing rate of phytoplankton by zooplankton, <span class="math inline">\(ks_{\mathrm{Grazing}}\)</span>, is relatively important in governing several state variables. You also believe that it is very poorly estimated. Because you believe that your estimate is very uncertain, you should probably investigate and reveal to your collaborators the effect of wide variation in this parameter.</p>
+<p><em>. Make sure that you have exhausted your own data in its ability to estimate that constant. Perhaps we’ll explore that elsewhere.
+</em> Make sure that you have exhausted the literature as you combed through older papers that might have estimates.
+* Make sure that you’re exhausted generally.</p>
+<p>Assuming that you have done the above, what is left to you? What folks often do is to rely on first principles and logical constraints to find upper and lower limits to the parameter, and display or summarize numerical the variation in outputs that result. The local sensitivity analysis showed us the <em>potential effects</em> of variation in parameters. Here what we want to do is determine for ourselves the potential variation in the parameter itself, and then use simulation to discover the consequences of the a priori variation in the parameter.</p>
+<p>So, our current estimate of the grazing half saturation constant, <span class="math inline">\(ks_{\mathrm{Grazing}}\)</span>, is 1.0. If we examine <code>NPZD()</code>, we find that the shape of this resource limitation function:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="model-sensitivity.html#cb81-1" aria-hidden="true" tabindex="-1"></a>ksGr <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb81-2"><a href="model-sensitivity.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="do">## let Phytoplankton be x, and vary between 0 and 6 mmolN/m3</span></span>
+<span id="cb81-3"><a href="model-sensitivity.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="do">## because that is the approximate range we see in the dynamics</span></span>
+<span id="cb81-4"><a href="model-sensitivity.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">6</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-46-1.png" width="75%" /></p>
+<p>If we increase or decrease the half saturation constant, what will we see?</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="model-sensitivity.html#cb82-1" aria-hidden="true" tabindex="-1"></a>ksGr <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb82-2"><a href="model-sensitivity.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># let Phytoplankton vary more</span></span>
+<span id="cb82-3"><a href="model-sensitivity.html#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr[<span class="dv">1</span>] <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb82-4"><a href="model-sensitivity.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr[<span class="dv">2</span>] <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">10</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb82-5"><a href="model-sensitivity.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr[<span class="dv">3</span>] <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">10</span>,  <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb82-6"><a href="model-sensitivity.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend=</span><span class="fu">paste</span>(ksGr), <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-47-1.png" width="75%" /></p>
+<p>Given this range, is there some basis for selecting one of these? Recall that this is multiplied by the maximum grazing rate (and zooplankton); therefore, we might want to ask ourselves how that maximum rate was determined. For instance, was it estimated at moderate phytoplankton concentrations or when phytoplankton were truly unlimited? If we have some data from the literature suggesting particular values, we might use these as maxima and minima, or we might go beyond them.</p>
+<p>Sometimes, all we have is a guess. If a parameter appears to be important, then we might simply pick a value and then double it and halve it, or investigate 10-fold increases. Here we do the former.</p>
+<ul>
+<li>Let the half saturation constant vary between 0.5 and 2.</li>
+<li>Generate the dynamics.</li>
+<li>Plot outputs together.</li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="model-sensitivity.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="do">## reference run</span></span>
+<span id="cb83-2"><a href="model-sensitivity.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="do">## make a copy of the parameters</span></span>
+<span id="cb83-3"><a href="model-sensitivity.html#cb83-3" aria-hidden="true" tabindex="-1"></a>myP <span class="ot">&lt;-</span> parameters</span>
+<span id="cb83-4"><a href="model-sensitivity.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="do">## integrate and make a data frame</span></span>
+<span id="cb83-5"><a href="model-sensitivity.html#cb83-5" aria-hidden="true" tabindex="-1"></a>out_1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(state, times, NPZD, myP) )</span>
+<span id="cb83-6"><a href="model-sensitivity.html#cb83-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="model-sensitivity.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="do">## add identifier</span></span>
+<span id="cb83-8"><a href="model-sensitivity.html#cb83-8" aria-hidden="true" tabindex="-1"></a>out_1 <span class="ot">&lt;-</span> out_1 <span class="sc">%&gt;%</span></span>
+<span id="cb83-9"><a href="model-sensitivity.html#cb83-9" aria-hidden="true" tabindex="-1"></a>   <span class="do">## make a new column</span></span>
+<span id="cb83-10"><a href="model-sensitivity.html#cb83-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">ksGrazing =</span> <span class="fl">1.0</span>) <span class="co"># code as text</span></span>
+<span id="cb83-11"><a href="model-sensitivity.html#cb83-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-12"><a href="model-sensitivity.html#cb83-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Change the half saturation constant</span></span>
+<span id="cb83-13"><a href="model-sensitivity.html#cb83-13" aria-hidden="true" tabindex="-1"></a>myP[<span class="st">&quot;ksGrazing&quot;</span>] <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb83-14"><a href="model-sensitivity.html#cb83-14" aria-hidden="true" tabindex="-1"></a><span class="do">##rerun and make a data frame</span></span>
+<span id="cb83-15"><a href="model-sensitivity.html#cb83-15" aria-hidden="true" tabindex="-1"></a>out_0<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(state, times, NPZD, myP) )</span>
+<span id="cb83-16"><a href="model-sensitivity.html#cb83-16" aria-hidden="true" tabindex="-1"></a><span class="do">## add identifier</span></span>
+<span id="cb83-17"><a href="model-sensitivity.html#cb83-17" aria-hidden="true" tabindex="-1"></a>out_0<span class="fl">.5</span> <span class="ot">&lt;-</span> out_0<span class="fl">.5</span> <span class="sc">%&gt;%</span></span>
+<span id="cb83-18"><a href="model-sensitivity.html#cb83-18" aria-hidden="true" tabindex="-1"></a>   <span class="do">## make a new column</span></span>
+<span id="cb83-19"><a href="model-sensitivity.html#cb83-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">ksGrazing =</span> <span class="fl">0.5</span>) <span class="co"># code as text</span></span>
+<span id="cb83-20"><a href="model-sensitivity.html#cb83-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-21"><a href="model-sensitivity.html#cb83-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Change the half saturation constant</span></span>
+<span id="cb83-22"><a href="model-sensitivity.html#cb83-22" aria-hidden="true" tabindex="-1"></a>myP[<span class="st">&quot;ksGrazing&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb83-23"><a href="model-sensitivity.html#cb83-23" aria-hidden="true" tabindex="-1"></a><span class="do">## rerun and make a dataframe</span></span>
+<span id="cb83-24"><a href="model-sensitivity.html#cb83-24" aria-hidden="true" tabindex="-1"></a>out_2<span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(state, times, NPZD, myP) )</span>
+<span id="cb83-25"><a href="model-sensitivity.html#cb83-25" aria-hidden="true" tabindex="-1"></a><span class="do">## add identifier</span></span>
+<span id="cb83-26"><a href="model-sensitivity.html#cb83-26" aria-hidden="true" tabindex="-1"></a>out_2 <span class="ot">&lt;-</span> out_2 <span class="sc">%&gt;%</span></span>
+<span id="cb83-27"><a href="model-sensitivity.html#cb83-27" aria-hidden="true" tabindex="-1"></a>   <span class="do">## make a new column</span></span>
+<span id="cb83-28"><a href="model-sensitivity.html#cb83-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">ksGrazing =</span> <span class="fl">2.0</span>) <span class="co"># code as text</span></span>
+<span id="cb83-29"><a href="model-sensitivity.html#cb83-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-30"><a href="model-sensitivity.html#cb83-30" aria-hidden="true" tabindex="-1"></a>out.all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(out_0<span class="fl">.5</span>, out_1, out_2)</span>
+<span id="cb83-31"><a href="model-sensitivity.html#cb83-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-32"><a href="model-sensitivity.html#cb83-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-33"><a href="model-sensitivity.html#cb83-33" aria-hidden="true" tabindex="-1"></a>out.all <span class="sc">%&gt;%</span> </span>
+<span id="cb83-34"><a href="model-sensitivity.html#cb83-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>PHYTO<span class="sc">:</span>TotalN, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb83-35"><a href="model-sensitivity.html#cb83-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(time, value, <span class="at">colour=</span><span class="fu">as.factor</span>(ksGrazing))) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-48-1.png" width="75%" /></p>
+<p>Well, then… . Aren’t you glad you tried that!</p>
+<div id="your-turn" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Your turn</h3>
+<p>Take a stab at varying something in your preferred model. You can use anyone’s data - we are all in this together. Just give proper attribution.</p>
+<p>You can also come up with creative ways to quantify an output difference from a reference in an output. Often, we come up with a useful quantitative metric, run a larger number of scenarios (e.g., letting a parameter take 20 different values), and then plot the relation between the parameter and your quantitative measure of difference from output.</p>
+<p>Be creative. See what you find.</p>
 
+</div>
 </div>
 </div>
             </section>
