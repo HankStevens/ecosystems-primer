@@ -49,6 +49,8 @@ letting-sensitivity-analysis-guide-next-steps
 your-turn
 MEL
 rastetter-et-al.-1997
+the-model
+parameters
 implementing-mel
 increasing-atmospheric-carbon-with-events-in-ode
 references

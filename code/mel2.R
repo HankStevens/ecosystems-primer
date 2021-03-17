@@ -6,8 +6,8 @@ function (time, y, p)
         Ucm <- 0
         Mc <- psi * Dc + Ucm
         Mn <- psi * Dn + Unm
-        Alpha_c <- epsilon_c * theta * Mn/(Mc + theta * Mn)
-        Alpha_n <- epsilon_n * Mc/(Mc + theta * Mn)
+        Lambda_c <- epsilon_c * theta * Mn/(Mc + theta * Mn)
+        Lambda_n <- epsilon_n * Mc/(Mc + theta * Mn)
         q <- q_w * Bc/(k_q + Bc)
         Sc <- (Bc + q * Bn)^zc
         Sn <- (Bc + q * Bn)^zn
@@ -19,8 +19,8 @@ function (time, y, p)
         Lne <- beta_ne * En
         Lcd <- beta_d * Dc
         Lnd <- beta_d * Dn
-        Rcm <- Mc * (1 - Alpha_c)
-        Rnm <- Mn * (1 - Alpha_n)
+        Rcm <- Mc * (1 - Lambda_c)
+        Rnm <- Mn * (1 - Lambda_n)
         Rcv <- rc * Bc
         Rnv <- rn * Bn
         dE_N <- Rne + Rnm + Rnv - Lne - Unm - Unv
