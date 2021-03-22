@@ -17,6 +17,8 @@ fig:unnamed-chunk-41
 fig:rf1
 fig:rt1
 fig:unnamed-chunk-55
+fig:unnamed-chunk-57
+fig:HBdata
 prerequisites
 must-dos
 a-couple-of-useful-citations
@@ -53,4 +55,13 @@ the-model
 parameters
 implementing-mel
 increasing-atmospheric-carbon-with-events-in-ode
+optimization
+introduction
+bormann-logistic-model
+fitting-a-model-to-data
+minimization
+trajectory-matching
+other-considerations-weighting-deviations
+variance-weighted-errors
+two-or-more-parameters-at-a-time
 references

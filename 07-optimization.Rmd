@@ -1,0 +1,480 @@
+# Optimization
+
+## Introduction
+
+Sometimes we want to find values of parameters by picking those that cause the model output to match observed data as closely as possible. We call this optimization or calibration. Usually calibration refers to the entire modeling process, whereas optimization refers to the computational techniques used to make the model-data match as close as possible.
+
+We will take a couple of different approaches to optimization, starting with one parameter at a time, and moving to optimizing two or more parameters simulataneously. We will use our most recent Bormann model, with self-limiting vegetation.
+
+## Bormann logistic model
+
+Code to run the ODE model. First we "source" the model and look at it.
+
+```{r}
+rm( list = ls() ) # clean the workspace.
+library(deSolve)
+
+# The next line of code loads and runs a file. It requires that this script
+#   is in R's working directory.
+# Alternatively, you could include the entire path in the file name.
+# getwd() # will tell you what the working directory is.
+
+source("code/BormannLogistic.R")
+bormann.logistic
+```
+
+
+Next we begin to run it.
+```{r,  fig.width = 7, fig.height = 7, fig.fullwidth = TRUE, fig.cap = "Our model's output."}
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, a02 = 3.9/26, a03 = 0.1/4700,
+        K = 600)
+
+y0 <- c(V = 532, A = 26, B = 4700)
+
+t <- seq(from = 0, to = 500, by = 1)
+
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+plot( out )
+```
+
+## Fitting a model to data
+
+Use 'optimize' for 1-dimensional optimization. Let's minimize deviations in our state variables. Now we have options regarding what to compare about the state variables and data:
+
+* Do we compare trajectories, or just end points?
+* Do we minimize deviations between all state variables and the data, or just those we are confident about?
+* Do we keep the deviations so that they are on the original scale of the data, such that large pools carry more weight than small pools? Alternatively, we could scale them to give them more equal weight.
+
+In our case, we do not have trajectories of data through time - we have only a snapshot of the state of the ecosystem, so we cannot compare trajectories, only endpoints of model output *vs.* a snapshot of data.
+
+Let's start by using all the state variables, on the scale of the raw data.
+
+We also need to choose a parameter to optimize. We might as well select one that is associated with high sensitivity, such as mineralization rate, $a_23$.
+
+### Minimization
+
+In most optimization procedures, we create an *objective function* that measures deviation between a model and data and then uses one or another procedure to try different values and find those that minimzation the deviations. 
+
+Here is our example of an objective function that searches for values of a23 (mineralization rate) that minimize deviations between the model output (values of $V$, $A$, $B$ at $t = 500$) and the data on pool size, provided by Bormann et al. (1977). 
+
+```{r obj.f1}
+sse.bormann.mineralization <- function(params, data) {
+  ## an objective function whose arguments are 
+  ## params - the parameter of interest
+  ## data - data from Bormannm et al.
+  
+  ## Assign a new value of the parameter to our set of parameters
+p['a23'] <- params
+
+## run the model 
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+## store the last values of the state variables
+nr <- nrow(out)
+model.output <- out[nr,c("V", "A", "B")]
+
+## Calculate the sum of the squared differences
+## squaring the differences makes them positives and 
+## weights big differences even more heavily
+diffs <- model.output - data
+diffs2 <- diffs^2 
+ sse <- sum( diffs2 )
+ 
+## Return the SSE
+ sse
+}
+```
+Next, we use our objective function with `optimize()` to find the value of `a23` that minimizes the objective function. First, we'll define the data to which we compare the model. We need to use the same name that we used in the objective function.
+```{r}
+data = c(V = 532, A=26, B=4700)
+```
+Next, we use `optimize`, where
+
+* `f` is the objective function
+* `interval` is a two-element vector with the lower and upper limits of parameter.
+* `params` is an argument of our objective function, with which we tell `optimize` the value at which to start the search.
+
+```{r}
+t <- c(0, 500)
+fit0 <- optimize(f = sse.bormann.mineralization, 
+                 interval = c(0.01, 0.5), data=data)
+```
+
+Now let's examine the result of the optimization.
+```{r}
+fit0
+```
+
+The `minimum` is the value of the parameter for which the minimum was reached. The `objective` is the value of the objective function, which was minimized by the parameter value `minimum`. (The value of mineralzation rate that we started with was $a_{23} = 69.6/4700 =$ `r round(69.6/4700, 3)`).
+Now let's rerun the model with the optimized value, and look at the output. We first create a new parameter vector, and insert the optimized mineralization rate.
+```{r}
+p.opt <- p
+p.opt['a23'] <- fit0$minimum
+```
+Now we can rerun the ODE model with the original and the optimized values of the mineralization rate.
+```{r}
+out.original <- as.data.frame( ode(y = y0, times = 0:500, func = bormann.logistic, parms = p))
+out.opt <- as.data.frame( ode(y = y0, times = 0:500, func = bormann.logistic, parms = p.opt))
+```
+When we plot both sets of ouput and the data, we see the differences among all three.
+```{r fig.show="hold"}
+layout(matrix(1:4, nrow=2) )
+plot(out.original$time, out.original$V, type="l")
+lines(out.opt[,1], out.opt[,2], lty=2, lwd=1, col='red')
+abline(h=data['V'], lty=3, lwd=1, col=4)
+
+plot(out.original$time, out.original$A, type="l", ylim = c(23,33))
+lines(out.opt[,1], out.opt[,3], lty=2, lwd=1, col=2)
+abline(h=data['A'], lty=3, lwd=1, col=4)
+
+plot(out.original$time, out.original$B, type="l", ylim=c(1000, 6000))
+lines(out.opt[,1], out.opt[,4], lty=2, lwd=1, col=2)
+abline(h=data['B'], lty=3, lwd=1, col=4)
+```
+
+If we return to our choices described above, we might consider several things. First, we might think that we have relatively accurate and precise estimates of the vegetation and available pools, but poor estimates of the bound pool. Therefore, we might want to fit the model to just the vegetation and available pools. However, given that the system is all connected, we may not want to take such drastic action. 
+
+These huge differences in uncertainty result in different estimates of mineralization rate. alters Thus, the more we know, the more we can learn.
+
+## Trajectory matching
+Up until now, we have compared model output to a data for just a single  time point. Here we fit the model to time series, and try to match the trajectory of the model with that of the data, for a single state variable, stream nitrogen export.
+
+First we read in an environmental data set, and visually inspect the data. I have put my data sets in a subdirectory called, "data", and so read it in from that directory.
+```{r HBdata, fig.cap="Hubbard Brook Watershed 6 N export.", out.width="80%"}
+HB.df <- read.csv("data/env_data_HB.csv")
+names(HB.df)
+ggplot(data=HB.df, aes(x=year, y=value)) + geom_line() +
+  facet_wrap(~factor, scales='free')
+```
+We will use just the export data, so I'll extract that.
+```{r}
+Ne.df <- filter(HB.df, factor=="ann.exp.TN.kg.y")
+```
+
+As our model is based on Bormann et al. (1977), we will, somewhat arbitrarily, take 1975 as our year 0 date. With that start date, we have a total of forty years (2014-1974) worth of data that we will use to calibrate 
+
+We might first want to ask which of our parameters might have the biggest effects on N export. We should start with an ecological rationale, and then c check that with a sensitivity analysis.
+```{r}
+## load our sensitivity function
+source("code/sensitivity.R") # sensitivities of all variables
+b1 <- sensitivity(y.initial=y0, times=0:100, 
+           func=bormann.logistic, parms=p, 
+           dev.type='normalized', 
+           summary.type="arithmetic_mean")
+
+b1$deviation.summary
+```
+
+From this we see that fluxes associated with the mineral pool (A, readily available for plant uptake) have the greatest effect on export ("loss"). Interestingly, plant uptake seems just as important as export rate itself. Let's by fitting the rate of export. 
+
+Next, we need an *objective function* that calculations the sum of squared deviations between the export state variable in our model and in our data.
+```{r}
+sse.bormann.a02.traj <- function(params, data) {
+  ## an objective function whose arguments are 
+  ## params - the parameter of interest
+  ## data - data from Bormannm et al.
+  
+  ## Assign a new value of the parameter to our set of parameters
+p['a02'] <- params
+
+## run the model 
+## starting with 'initial.values' and t for time
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+model.output <- out[,"loss"]
+
+## Calculate the sum of the squared differences
+## squaring the differences makes them positives and 
+## weights big differences even more heavily
+diffs <- model.output - data
+diffs2 <- diffs^2 
+ sse <- sum( diffs2 )
+ 
+## Return the SSE
+ sse
+}
+```
+
+Now we select the data we want from the data set. We 'filter' out just the data we want. Below we use `%in%` to mean 'within', so translating, the code reads "'"filter out the subset of Ne.df for which the variable 'year' is within the define years in 'year.subset', and then make a new time variable 'y' where 0 is 1975."
+```{r}
+year.subset <- 1975:2014
+#
+data.subset <- Ne.df %>% filter(year %in% year.subset) 
+ ##View(data.subset)
+
+t <- data.subset$year-1975
+y0 <- c(V = 532, A = 26, B = 4700)
+
+fit.a02 <- optimize(f = sse.bormann.a02.traj, 
+                 interval = c(0.01, 0.5), data=data.subset$value)
+```
+
+```{r}
+fit.a02
+```
+```{r}
+## original value
+p['a02']
+p.a02 <- p
+p.a02['a02'] <- fit.a02$minimum
+```
+Now we can rerun the ODE model with the original and the optimized values of the mineralization rate.
+```{r}
+
+out.orig <- as.data.frame( 
+  ode(y = y0, times = 0:39, func = bormann.logistic, parms = p)
+  )
+out.a02 <- as.data.frame(
+  ode(y = y0, times = 0:39, func = bormann.logistic, parms = p.a02)
+  )
+```
+
+
+Now we would like to do is to compare the trajectories of the data and the model.
+```{r}
+plot(out.orig$time, out.orig$loss, 
+     type='l', lty=3, ylim=c(0,10))
+lines(out.orig$time, out.a02$loss, lty=2)
+lines(out.orig$time, data.subset$value, lty=1)
+legend('topright', 
+       legend=c('original', 'fitted', 'data'),
+       lty=c(3,2,1))
+```
+
+
+This shows us the model tends to underestimate at first, and then consistently over estimate over time. 
+
+
+So,...what do we make of this? Why might this make sense? 
+
+A couple of things to consider when matching trajectories in data and models:
+
+* are the averages similar?
+* if the time series data have a trend (i.e. are non-stationary), does the model show a similar trend?
+* is the variability similar in magnitude and timing?
+
+Another way to examine it is the examine how the deviations between model and data might vary over time.
+```{r}
+## or the deviations over time (fitted - data)
+devs <- out.a02$loss - data.subset$value
+qplot(x=out.a02$time, y=devs) + geom_point() + geom_smooth() 
+```
+
+
+If we want to check the effect of this we plot both sets of ouput and the data, we see the differences among all three. This time, we'll take advantage of ggplot2 graphics.
+```{r fig.show="hold"}
+## add a new column
+## this will repeat the label for all rows of the data frame
+out.orig$version <- "Original" 
+out.a02$version <- "Fitted" 
+names(out.orig)
+## combine ('bind') all rows of both data frames...
+out2 <- rbind(out.orig, out.a02) %>% 
+  ## ... and then stack up all of the state variables,
+  ## from V to loss
+  pivot_longer(cols=V:loss, names_to="variable", values_to="value")
+
+## plot what we want
+ggplot(data=out2, aes(x=time, y=value, colour=version)) + 
+  ## line graphs for time series
+  geom_line() +
+  ## separate each state variable in its own subfigure with its own scale
+  facet_wrap(~variable, scales = "free")
+```
+
+
+
+## Other considerations: weighting deviations
+When we assess more than one state variable at a time, the model fit might be unduly affected by state variables with the largest absolute values. In our case, that might mean that our fits might be determined by how well our model describes the soil pool. Therefore, we might want to at least weight the pools more equally by using the log-transformations of the output and data. This accomplishes two things. First, it weights the variables on a more similar scale. This may not matter for the result with some methods of optimization, but it can. Second, it makes the computation more stable and reliable to use both smaller numbers, and each on a more similar scale. This can make a big difference if you are having trouble getting the optimization to give reliable, repeatable results. Let's try this option, and see if it makes a difference. We start by rewriting our objective function comparing the base 10 logs of the output and the data. The only difference is that `diffs <- model.output - data` becomes `diffs <- log(model.output, 10) - log(data, 10).`
+
+```{r}
+sse.bormann.mineralization2 <- function(params, data) {
+  ## an objective function whose arguments are 
+  ## params - the parameter of interest
+  ## data - data from Bormannm et al.
+  
+  ## Assign a new value of the parameter to our set of parameters
+p['a23'] <- params[1]
+
+## run the model 
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+## store the last values of the state variables
+nr <- nrow(out)
+model.output <- out[nr,c("V", "A", "B")]
+
+## Calculate the sum of the squared differences
+## squaring the differences makes them positives and 
+## weights big differences even more heavily
+diffs <- log(model.output, 10) - log(data, 10)
+diffs2 <- diffs^2 
+ sse <- sum( diffs2 )
+ 
+## Return the SSE
+ sse
+}
+```
+
+Now we rerun the optimization and examine the output.
+
+```{r}
+fit0.log <- optimize(f = sse.bormann.mineralization2, 
+                     interval = c(0.001, 0.1), data=data)
+fit0.log
+fit0
+```
+
+Notice that the objective function output is much, much smaller. This is because the logarithms of the raw data (especially the bound pool) are much, much smaller.  Second, we see tha $a_{23}$ is only very slightly different than our other fitted value. Nonetheless, we will rerun the model again, using this new value.
+```{r}
+p.opt.log <- p
+p.opt.log['a23'] <- fit0.log$minimum
+out.opt.log <- as.data.frame( ode(y = y0, times = 0:500, func = bormann.logistic, parms = p.opt.log))
+```
+
+Now we can compare all of our information, including the raw data, our original model output using parameters estimated from Bormann et al. (1977), and parameters fitted using either the raw or transformed data.
+```{r}
+rbind(data=data, Bormann = out[501, 2:4], raw=out.opt[501,2:4], log=out.opt.log[501,2:4])
+```
+
+We see that the model calibrated with either the raw or transformed data is able to generate output more consistent with the current size of the bound pool. What does that mean? It gives us a new hypothesis about mineralization rate, and allows us to ask whether the bound pool is growing, whether our estimate of mineralization was too low, or something else. Nonetheless, we can now begin to ask more sophisticated questions of our system. 
+
+
+### Variance weighted errors
+We can build on this approach by directly weighting the model-data differences by the uncertainty in data data (Soetaert and Hermann, Chap. 4),
+$$\mathrm{SSE} = \sum_{i = 1}^{n}\frac{\left(m_i - d_i\right)^2}{e_i}$$
+where $i$ is a particular state variable, $m$ is model output, $d$ is data, and $e$ is the observed uncertainty of the data. Often this variance is calculated as the variance ($\sigma^2$) of the data.
+
+The modified objective function includes a new argument, `vars`, which is a vector of the observed variances of the data.
+```{r}
+sse.bormann.mineralization3 <- function(params, data, vars) {
+  ## an objective function whose arguments are 
+  ## params - the parameter of interest
+  ## data - point estimates of the observed state variables from Bormannm et al.
+  ## vars - observed variances of the data.
+  
+  ## Assign a new value of the parameter to our set of parameters
+p['a23'] <- params[1]
+
+## run the model 
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+## store the last values of the state variables
+nr <- nrow(out)
+model.output <- out[nr,c("V", "A", "B")]
+
+## Calculate the sum of the squared differences
+## squaring the differences makes them positives and 
+## weights big differences even more heavily
+diffs <- log(model.output, 10) - log(data, 10)
+diffs2 <- diffs^2 
+wdiffs2 <- diffs2/vars
+ sse <- sum( wdiffs2 )
+ 
+## Return the SSE
+ sse
+}
+```
+Now we include estimates of the variances. Your guess is nearly as good as mine. Often the standard deviations approach or exceed the mean, which means that the coefficient of variation is $\sigma/\mu > 1$. Let's pretend that we know the vegetation and the available pools pretty well ($\sigma/\mu \ll 1$), but have great uncertainty about the bound pool($\sigma/\mu \gg 1$). 
+```{r}
+vars <- c(532/10, 26/10, 4700*10)
+```
+
+Now we can fit the model to the data.
+```{r}
+fitv <- optimize(f = sse.bormann.mineralization3, 
+                     interval = c(0.001, 0.1), data=data, vars=vars)
+```
+
+Last, let's compare the three estimates of the mineralization rate.
+```{r}
+cbind(fit0, fit0.log, fitv)
+```
+
+
+## Two (or more) parameters at a time
+
+Here we use the same approach, in which we have an objective function, parameters of interest, and data. Yeah, baby!
+
+Here is our objective function, and you can see it is not very different. Find and explain the difference.
+```{r}
+sse.bormann.a02.12.traj <- function(params, data, vars) {
+  ## an objective function whose arguments are 
+  ## params - the parameter of interest
+  ## data - data from Bormannm et al.
+  
+  ## Assign a new value of the parameter to our set of parameters
+p['a02'] <- params[1]
+p['a12'] <- params[2]
+## run the model 
+## starting with 'initial.values' and t for time
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+model.output <- out[,"loss"]
+
+## Calculate the sum of the squared differences
+## squaring the differences makes them positives and 
+## weights big differences even more heavily
+diffs <- model.output - data
+diffs2 <- diffs^2 
+ sse <- sum( diffs2 )
+ 
+## Return the SSE
+ sse
+}
+
+```
+
+Now things start to get a tiny bit different. We need a vector of parameters.
+```{r}
+params <- c(a02 = 0.15, a12 = 0.0005)
+```
+
+Now we use `optim()`. Unlike the 1-D `optimze()`, the first argument is the vector of parameters. The second argument is the function, and last we tell `optim()` what other stuff we need (in this case the data).
+```{r}
+fit2 <- optim(par = params, 
+              fn = sse.bormann.a02.12.traj, 
+              data=data.subset$value)
+```
+
+When we look at the values returned, we get a little more information than we do from `optimize` (see `?optim`). That is because `optim()` can use a variety of optimization algorithms, and a wide variety of control functions (see `?optim` for more information).
+```{r}
+fit2
+```
+
+The value `par` is, of course, the best set of parameters, and `value` is the value of the objective function. `Convergence` is just a code, and `0` indicates successful completion.
+
+```{r}
+## original value
+p['a02']
+p2 <- p
+p2['a02'] <- fit2$par[1]
+p2['a12'] <- fit2$par[2]
+```
+Now we can rerun the ODE model with the original and the optimized values of the mineralization rate.
+```{r}
+out.orig <- as.data.frame( 
+  ode(y = y0, times = 0:39, func = bormann.logistic, parms = p)
+  )
+out.2 <- as.data.frame(
+  ode(y = y0, times = 0:39, func = bormann.logistic, parms = p2)
+  )
+```
+
+
+Now we would like to do is to compare the trajectories of the data and the model.
+```{r}
+plot(out.orig$time, out.orig$loss, 
+     type='l', lty=3, ylim=c(0,10))
+lines(out.orig$time, out.2$loss, lty=2)
+lines(out.orig$time, data.subset$value, lty=1)
+legend('topright', 
+       legend=c('original', 'fitted', 'data'),
+       lty=c(3,2,1))
+```
+
+Have at it. What can you learn today? What to we most want to know? Can we use the model to make hypotheses about processes that are not even in the model, like dentrification?
+

@@ -1,0 +1,357 @@
+---
+title: "Modeling of Bormann et al. (1977)"
+author: "hank"
+date: "April 18, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Disturbance
+
+## the Bormann model
+
+```{r}
+library(primer)
+library(magrittr)
+library(rsvg)
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(igraph)
+model <-
+"digraph{
+  rankdir = TB;
+v[label='Vegetation (1)', shape=box];
+a[label='Available (2)', shape=box];
+b[label='Bound (3)', shape=box];
+i[label=Input, shape=plaintext];
+o[label=Output, shape=plaintext];
+// oval is the default node shape
+  a -> v[label=a12];
+  v -> b[label=a31];
+b -> a[label=a23]
+i -> a[label=a20]
+i -> b[label=a30]
+a -> o[label=a02]
+b -> o[label=a03]
+}"
+
+grViz(model)
+
+grViz(model) %>%
+  export_svg %>% charToRaw %>% rsvg_pdf("model.pdf")
+```
+
+```{r}
+library(deSolve)
+F1 <- 3
+F2 <- 4
+p <- c(a12 = F1/F2)
+p
+
+#########################################
+## the ODE model
+#########################################
+source("BormannwLimitation.R")
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(532*26), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700,
+          a02 = 3.9/26, a03 = 2.128e-5)
+y <- c(V = 10, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+#t <- c(0, 1, 10, 100)
+#t <- c(0,300)
+out <- ode(y = y, times = t, func = bormann_base, parms = p)
+plot( out )
+```
+
+
+## With logistic self-limiting vegetation
+Draw picture of uptake = F(A,V)
+```{r}
+A = 26
+a12 = 79.6/(26*532)
+K= 600
+# V = x
+curve( a12 * A * x * (1 - x/K), 0, K, ylab="Total uptake rate")
+
+theta=3
+curve( a12 * A * x * (1 - (x/K)^theta), 0, K, ylab="Total uptake rate")
+```
+
+```{r}
+
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(26*532), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, 
+          a02 = 3.9/23, a03 = 2.128e-5, K = 532, k=20)
+
+out <- ode(y = y, times = t, func = bormann_logistic, parms = p)
+plot( out )
+```
+
+## Adding a different loss rate
+If vegetation doesn't take it up, what is likely to happen to it?
+
+-- it could wash away
+-- it might cause mineralization to slow
+
+Let's assume it washes away. One possible way to think about that is that loss is not a fraction of the available pool, but rather everything above a threshold.
+
+```{r}
+p['k'] <- 20
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = p)
+plot( out )
+```
+
+
+## Fitting a model to data
+
+Use 'optimize'.
+```{r}
+
+# write a function that creates ODE output and calcualtes a difference between raw data and model output
+
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 100)
+last <- length(t)
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(26*532), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, 
+          a02 = 3.9/23, a03 = 2.128e-5, K = 600, k=100, km = 15)
+
+params <- c(k=20)
+
+sse.bormann.K <- function(params, data) {
+p['K'] <- params[1]
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = p)
+nr <- nrow(out)
+ sse <- sum( (log(out[nr,c("V","A")]) - log(data))^2 )
+ sse
+}
+
+  
+data=c(V=532, A=26)
+
+fit0 <- optimize(f = sse.bormann.K, c(500,1500), params=600)
+fit0
+
+new.p <- p  
+new.p['K'] <- fit0$minimum
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = new.p)
+plot(out)
+
+
+sse.bormann.km <- function(params, data) {
+p['km'] <- params[1]
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = p)
+nr <- nrow(out)
+ sse <- sum( (log(out[nr,c("V","A")]) - log(data))^2 )
+ sse
+}
+
+fit0 <- optimize(f = sse.bormann.K, c(.1, 30), params=15)
+fit0
+  
+
+new.p <- p  
+new.p['km'] <- fit0$minimum
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = p)
+plot(out)
+```
+
+## Add mineralization rate
+```{r}
+
+y <- c(V = 532, A = 26, B = 4700)
+last <- length(t)
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(23*532), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, 
+          a02 = 3.9/23, a03 = 2.128e-5, K = 600, kv=.001, km = .002)
+
+t = seq(0, 1000, by=100)
+
+sse.bormann2 <- function(params, data) {
+p["K"] <- params[1]
+p["km"] <- params[2]
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = p)
+nr <- nrow(out)
+ sse <- sum( (log(out[nr,2:3]) - log(data))^2 )
+ sse
+}
+
+data=c(V=532, A=26)
+
+params2 <- c(kv=.001, km=.01 )
+params2 <- c(K=600, km=.01 )
+
+log(.5)/25
+curve( exp(-.01* x), 0, 26)
+
+sse.bormann2(params2, data)
+p
+fit0 <- optim(params2, fn = sse.bormann2, data=data, method="Nelder")
+fit0 <- optim(params2, fn = sse.bormann2, data=data, method="L-BFGS-B",
+            lower = c(.001, .01), upper = c(.1, .5 ) )
+
+
+fit0$par
+new.p <- p
+new.p['kv'] <- fit0$par["kv"]
+new.p['km'] <- fit0$par["km"]
+t = 0:1000
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = new.p)
+plot(out)
+y = out[nrow(out), 2:4]
+
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = new.p)
+plot(out)
+
+```
+
+## With logistic self-limiting vegetation and greater loss
+```{r}
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(23*532), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, theta=2,
+          a02 = 3.9/23, a03 = 2.128e-5, K = 600)
+
+out <- ode(y = y, times = t, func = bormann_logistic2, parms = p)
+plot( out )
+```
+
+## With logistic self-limiting vegetation and greater loss
+```{r}
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(23*532), a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, 
+          a02 = (3.9*2)/23, a03 = 2.128e-5, K = 600, theta=5)
+
+out <- ode(y = y, times = t, func = bormann_logistic, parms = p)
+plot( out )
+```
+
+## With self limiting vegetation (2)
+```{r}
+
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 79.6/(23*532), a21 = (6.6 + 0.8)/(532^2), 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/(532^2),
+        a23 = 69.6/4700, 
+          a02 = 0.15, a03 = 2.128e-5)
+out <- ode(y = y, times = t, func = bormann_limit2, parms = p)
+plot( out )
+```
+
+
+## With type II functional response by vegetation
+```{r}
+
+y <- c(V = 532, A = 26, B = 4700)
+t <- seq(from = 0, to = 500, by = 1)
+
+p <- c( a20 = 6.5, a30 = 14.2, a12 = 0.15, a21 = (6.6 + 0.8)/532, 
+        a31 = (54.2 + 2.7 + 6.2 + 0.1)/532,
+        a23 = 69.6/4700, 
+          a02 = 0.15, a03 = 2.128e-5, k = 17)
+with(as.list(p), (a21 + a31)*(k+23)/23)
+out <- ode(y = y, times = t, func = bormann_typeII, parms = p)
+plot( out )
+```
+
+# Disturbance
+
+Discrete disturbances can be tricky to deal with is systems of ODE's, in which the ODEs are supposed to be continuous functions. Nonetheless, we can implement them easily, in a variety of ways.
+
+#### Approach 1, Event with a data frame
+Here we use an **event** to mimic disturbance. We use the base model and its paramterization, but add a disturbance as an event.
+
+We create a data frame in which each row describes an event, and each column states the computational operation. This data frame indicates that variable V is affected every 50 years, and the value of 100 replaces ("rep") the current value of V at those times. This particular scenario mimics a harvest that removes nitrogen, and resets succession.
+
+Disturbance frequency or return time, and the duration of the time series combine to determine how we specify disturbance events. Here we set disturbance or harvest intervals to be every 100 years. If we do that for 500 years, then we need five harvests, and a data frame 5 rows long.
+```{r}
+rows <- 5
+eventdat <- data.frame(var = rep("V", rows), 
+                       time = seq(100, 500, length=rows),
+                       value = rep(100, rows),
+                       method = rep("rep", rows)
+                       )
+eventdat
+```
+
+Next we integrate as before. *We tell \code{ode} that we have data we want to use for events.*
+```{r}
+t <- 0:max(eventdat$time)
+initial = y
+out1 <- ode(initial, times=t, fun=bormann2, parms=p, 
+events=list(data=eventdat) # EVENTS as a data frame
+)
+  plot(out1)
+```
+  
+A different plot.
+```{r}
+  matplot(out1[,1], out1[,-1], type="l", xlab="Time", ylab="N")
+  legend('right', colnames(out1[,-1]), lty=1:5, col=1:5, bty="n") 
+```
+  
+#### Approach 2, Event with a function.
+  
+Here we create a function which causes something to happen. In this case, we mimic a fire that reduces vegetation, and transfer some nutrients to both soil pools and includes atmospheric loss from the system
+```{r}
+# the function has the same arguments as our derivatives (t, y, p)
+
+event.func <- function(t, y, p){
+  # What ecology do these lines of code represent?
+  reduction <- .5
+  air <- .3 * reduction
+  bound <- .5 * reduction
+  available <- reduction - (air + bound)
+  y[1] <- (1-reduction) * y[1]
+  y[2] <- y[2] + available * y[1]
+  y[3] <- y[3] + bound * y[1]
+  return(y)
+  }
+  
+  
+```
+  
+  Next we create a vector of times at which to implement the function.
+```{r}
+  # try these times first 
+  fire <- round( seq(from=100, to=500, by = 100), 0)
+  # try these times next
+  # see ?runif for a description
+  # fire <- sort( round( runif(10, 0, 500) ) )
+```
+  
+  Last we integrate the functions, telling ode that we have a function and times for events to happen.
+  
+```{r}
+  out2 <- ode(initial, times=t, fun=bormann2, parms=p) 
+plot( out2)
+  out2 <- ode(initial, times=t, fun=bormann2, parms=p, 
+  events=list(func = event.func, time=fire) 
+  # Events as a function and times 
+  )
+  plot(out2)
+```
+  
