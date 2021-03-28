@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 References | A Primer of Ecosystem Modeling - a work in progress</title>
-  <meta name="description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 References | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="9 References | A Primer of Ecosystem Modeling - a work in progress" />
   
-  <meta name="twitter:description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
 
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-03-22" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,13 +200,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>8.3</b> Fitting a model to data</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>8.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="8.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function."><i class="fa fa-check"></i><b>8.3.2</b> Creating the objective function.</a></li>
+<li class="chapter" data-level="8.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>8.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="8.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>8.3.4</b> <code>mle2()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>8.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.5</b> Other considerations: weighting deviations</a>
+<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.6</b> Other considerations: weighting deviations</a>
 <ul>
-<li class="chapter" data-level="8.5.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.5.1</b> Variance weighted errors</a></li>
+<li class="chapter" data-level="8.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.6.1</b> Variance weighted errors</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.6</b> Two (or more) parameters at a time</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 </ul>
@@ -230,6 +233,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">9</span> References</h1>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Bolker:2008rr" class="csl-entry">
+Bolker, B M. 2008. <em><span class="nocase">Ecological Models and Data in R</span></em>. Princeton, NJ: Princeton University Press.
+</div>
 <div id="ref-Bormann1977" class="csl-entry">
 Bormann, F H, G E Likens, and J M Melillo. 1977. <span>“<span class="nocase">Nitrogen budget for an aggrading northern hardwood forest ecosystem.</span>”</span> <em>Science (New York, N.Y.)</em> 196 (4293): 981–83.
 </div>
@@ -237,16 +243,16 @@ Bormann, F H, G E Likens, and J M Melillo. 1977. <span>“<span class="nocase">N
 Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. <span>“<span class="nocase">Resilience and resistance of lake phosphorus cycle before and after food web manipulation</span>.”</span> <em>Am. Nat.</em> 140: 781–98.
 </div>
 <div id="ref-Chapin2011" class="csl-entry">
-Chapin III, F. S., P. A. Matson, and P. M. Vitousek. 2011. <em><span class="nocase">Principles of Terrestrial Ecosystem Ecology</span></em>. 2nd edition. Springer.
+Chapin III, F S, P A Matson, and H A Mooney. 2011. <em><span class="nocase">Principles of Terrestrial Ecosystem Ecology</span></em>. 2nd edition. Springer.
 </div>
 <div id="ref-Marquet2014" class="csl-entry">
 Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. <span>“<span class="nocase">On theory in ecology</span>.”</span> <em>BioScience</em> 64 (8): 701–10.
 </div>
-<div id="ref-Rastetter:1997aa" class="csl-entry">
-Rastetter, E. B., G. I. Agren, and G. R. Shaver. 1997. <span>“Responses of n-Limited Ecosystems to Increased Co2: A Balanced-Nutrition, Coupled-Element-Cycles Model.”</span> <em>Ecological Applications</em> 7 (2): 444–60.
-</div>
 <div id="ref-Rastetter:1992ab" class="csl-entry">
 Rastetter, E. B., and G. R. Shaver. 1992. <span>“A Model of Multiple-Element Limitation for Acclimating Vegetation.”</span> <em><span>Ecology</span></em> <span>73</span> (<span>4</span>): 1157–74. <a href="https://doi.org/10.2307/1940666">https://doi.org/10.2307/1940666</a>.
+</div>
+<div id="ref-Rastetter:1997aa" class="csl-entry">
+Rastetter, EB, GI Agren, and GR Shaver. 1997. <span>“<span class="nocase">Responses of N-limited ecosystems to increased CO2: A balanced-nutrition, coupled-element-cycles model</span>.”</span> <em><span>ECOLOGICAL APPLICATIONS</span></em> <span>7</span> (<span>2</span>): 444–60.
 </div>
 <div id="ref-Soetaert2009" class="csl-entry">
 Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.

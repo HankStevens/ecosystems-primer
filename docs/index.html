@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Primer of Ecosystem Modeling - a work in progress</title>
-  <meta name="description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="A Primer of Ecosystem Modeling - a work in progress" />
   
-  <meta name="twitter:description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
 
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-03-22" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,13 +200,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>8.3</b> Fitting a model to data</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>8.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="8.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function."><i class="fa fa-check"></i><b>8.3.2</b> Creating the objective function.</a></li>
+<li class="chapter" data-level="8.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>8.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="8.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>8.3.4</b> <code>mle2()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>8.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.5</b> Other considerations: weighting deviations</a>
+<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.6</b> Other considerations: weighting deviations</a>
 <ul>
-<li class="chapter" data-level="8.5.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.5.1</b> Variance weighted errors</a></li>
+<li class="chapter" data-level="8.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.6.1</b> Variance weighted errors</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.6</b> Two (or more) parameters at a time</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 </ul>
@@ -229,12 +232,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">A Primer of Ecosystem Modeling - a work in progress</h1>
 <p class="author"><em>Hank Stevens, BIO 672</em></p>
-<p class="date"><em>2021-03-22</em></p>
+<p class="date"><em>2021-03-28</em></p>
 </div>
 <div id="prerequisites" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Prerequisites</h1>
 <p>For this R primer, you’ll need to read several chapters of <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
-<p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation"><a href="references.html#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Vitousek</a> (<a href="references.html#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</p>
+<p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation"><a href="references.html#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney</a> (<a href="references.html#ref-Chapin2011" role="doc-biblioref">2011</a>)</span>.</p>
 <div id="must-dos" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Must do’s</h2>
 <p>Read background material as needed.</p>

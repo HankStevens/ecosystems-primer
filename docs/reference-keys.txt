@@ -17,7 +17,7 @@ fig:unnamed-chunk-41
 fig:rf1
 fig:rt1
 fig:unnamed-chunk-55
-fig:unnamed-chunk-57
+fig:unnamed-chunk-58
 fig:HBdata
 prerequisites
 must-dos
@@ -60,8 +60,11 @@ introduction
 bormann-logistic-model
 fitting-a-model-to-data
 minimization
+creating-the-objective-function.
+optim
+mle2
 trajectory-matching
+two-or-more-parameters-at-a-time
 other-considerations-weighting-deviations
 variance-weighted-errors
-two-or-more-parameters-at-a-time
 references

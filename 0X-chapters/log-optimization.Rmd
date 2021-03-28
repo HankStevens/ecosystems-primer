@@ -1,0 +1,62 @@
+---
+title: "Untitled"
+author: "MHHS"
+date: "3/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sse.bormann.mineralization2 <- function(params, data) {
+  ## an objective function whose arguments are 
+  ## params - the parameter of interest
+  ## data - data from Bormannm et al.
+  
+  ## Assign a new value of the parameter to our set of parameters
+p['a23'] <- params[1]
+
+## run the model 
+out <- ode(y = y0, times = t, func = bormann.logistic, parms = p)
+
+## store the last values of the state variables
+nr <- nrow(out)
+model.output <- out[nr,c("V", "A", "B")]
+
+## Calculate the sum of the squared differences
+## squaring the differences makes them positives and 
+## weights big differences even more heavily
+diffs <- log(model.output, 10) - log(data, 10)
+diffs2 <- diffs^2 
+ sse <- sum( diffs2 )
+ 
+## Return the SSE
+ sse
+}
+```
+
+Now we rerun the optimization and examine the output.
+
+```{r}
+fit0.log <- optim(par=c(a23=0.018),
+                  fn = sse.bormann.mineralization2, 
+                  data=data,
+                  method="BFGS")
+fit0.log
+```
+
+Notice that the objective function output is much, much smaller. This is because the logarithms of the raw data (especially the bound pool) are much, much smaller.  Second, we see tha $a_{23}$ is only very slightly different than our other fitted value. Nonetheless, we will rerun the model again, using this new value.
+```{r}
+p.opt.log <- p
+p.opt.log['a23'] <- fit0.log$par
+out.opt.log <- as.data.frame( ode(y = y0, times = 0:500, func = bormann.logistic, parms = p.opt.log))
+```
+
+Now we can compare all of our information, including the raw data, our original model output using parameters estimated from Bormann et al. (1977), and parameters fitted using either the raw or transformed data.
+```{r}
+rbind(data=data, Bormann = out[501, 2:4], raw=out.opt[501,2:4], log=out.opt.log[501,2:4])
+```
+
+We see that the model calibrated with either the raw or transformed data is able to generate output more consistent with the current size of the bound pool. What does that mean? It gives us a new hypothesis about mineralization rate, and allows us to ask whether the bound pool is growing, whether our estimate of mineralization was too low, or something else. Nonetheless, we can now begin to ask more sophisticated questions of our system. 
