@@ -37,6 +37,7 @@ Finally, we'll load environmental data. Note the trajectory of annual N export (
 ```{r HBdat, fig.cap="At the Hubbard Brook LTER, annual stream N export and N deposition have declined, while average annual temperature has increased. Average annual sream flow has been highly variable."}
 ## we skip the first 7 lines because those contain metadata
 HB.df <- read.csv("data/env_data_HB.csv", skip=7)
+HB.df[1,]
 ggplot(data=HB.df, aes(x=year, y=value)) + geom_line() +
   facet_wrap(~factor, scales='free')
 ```
@@ -342,15 +343,15 @@ bormann.denitr.temp <- function(t, y, p) {
    
     dV.dt <- (a1 * A * V  - a2 * V - a3 * V) * (1 - V/K )
     
-    dA.dt <- ( I1.new + a4 * B ) - ( a1 * V * A + a5 * A)
+    dA.dt <- ( I1.new + a4.new * B ) - ( a1 * V * A + a5 * A)
 
-    dB.dt <- ( I2 + a3 * V ) -  a4 * B - a6 * B - a7 * B/4
+    dB.dt <- ( I2 + a3 * V ) -  a4.new * B - a6 * B - a7.new * B/4
     
     ## loss from the soil to the stream
     leaching <- a5*A + a6*B 
     
     ## export out of the watershed
-    export <- leaching - a8*leaching
+    export <- leaching - a8.new*leaching
     
     # returning a list whose first (and only) element 
     # is a vector of the ODE values
