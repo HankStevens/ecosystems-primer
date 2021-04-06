@@ -19,6 +19,8 @@ fig:rt1
 fig:unnamed-chunk-55
 fig:unnamed-chunk-58
 fig:HBdata
+fig:HBdat
+fig:denitr
 prerequisites
 must-dos
 a-couple-of-useful-citations
@@ -60,11 +62,17 @@ introduction
 bormann-logistic-model
 fitting-a-model-to-data
 minimization
-creating-the-objective-function.
+creating-the-objective-function
 optim
 mle2
 trajectory-matching
 two-or-more-parameters-at-a-time
 other-considerations-weighting-deviations
 variance-weighted-errors
+more-on-forcing-functions-using-data-inside-models
+preliminaries
+n-deposition
+denitrification
+annual-temperature-as-a-forcing-function
+in-fine
 references

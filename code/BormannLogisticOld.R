@@ -11,28 +11,18 @@ bormann.logistic <- function(t, y, p) {
     ## Therefore, our logistic inhibition term acts on the entire forest.
     ## Growth = Gains - Losses
     ## Rate of change = Growth x Self-inhibition
-    ## I1 - deposition into the inorganic available pool
-    ## I2 - N fixation
-    ## a1 - plant uptake
-    ## a2 - root exudate into the available pool
-    ## a3 - litter fall
-    ## a4 - mineralization
-    ## a5 - is loss from Available to the stream
-    ## a6 - is loss from the bound pool to the stream
-    
-   
-    dV.dt <- (a1 * A  - a2 - a3) * V * (1 - V/K )
+    dV.dt <- (a12 * A * V  - a21 * V - a31 * V) * (1 - V/K )
     ## 
     
     ## A still loses N to vegetation, so we leave the loss function the same.
     ## No self-inhibition
     ## Rate opf change  = Gains - Losses 
-    dA.dt <- ( I1 + a4 * B ) - ( a1 * V * A + a5 * A)
+    dA.dt <- ( a20 + a23 * B ) - ( a12 * V * A + a02 * A)
     
     ## No self-inhibition
     ## Rate of change  = Gains - Losses 
-    dB.dt <- ( I2 + a3 * V ) - ( a4 * B + a6 * B )
-    loss <- a5*A + a6*B
+    dB.dt <- ( a30 + a31 * V ) - ( a23 * B + a03 * B )
+    loss <- a02*A + a03*B
     # returning a list whose first (and only) element 
     # is a vector of the ODE values
     return( 

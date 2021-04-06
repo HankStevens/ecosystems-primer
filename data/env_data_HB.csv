@@ -1,3 +1,10 @@
+Metadata,,
+ann.exp.TN.kg.y,Annual stream export of total nitrogen (kg/y),"Hubbard Brook LTER (http://data.hubbardbrook.org/data/dataset.php?id=2) Likens G. 2016. Chemistry of Streamwater at the Hubbard Brook Experimental Forest, Watershed 6, 1963 - present. Environmental Data Initiative. https://doi.org/10.6073/pasta/87be2e19d30e4e1c60abf129d34a9af6. Dataset accessed 3/08/2019."
+ann.flow.mm.y,Annual stream flow (mm/y),Same as above
+atmos.kgN.ha,Annual atmospheric N deposition,"NTN-NH02-cydep.csv - Annual depositions (kg/ha) (National Atmospheric Deposition Program, Hubbard Brook site [http://nadp.slh.wisc.edu/data/sites/siteDetails.aspx?net=NTN&id=NH02] )"
+meandegC,Mean degree C,"Daily mean temperature Hubbard Brook Experimental Forest (USDA Forest Service): Daily Mean Temperature Data, 1955-present (PRINCIPAL INVESTIGATOR(s) John Campbell USDA Forest Service 271 Mast Rd. Durham, NH, USA; Amey Bailey USDA Forest Service, Hubbard Brook Experimental Forest 234 Mirror Lake Road North
+Woodstock, NH 03262 USA)"
+,,
 year,factor,value
 1970,ann.exp.TN.kg.y,6.802760563
 1971,ann.exp.TN.kg.y,4.975833514
@@ -95,54 +102,6 @@ year,factor,value
 2015,ann.flow.mm.y,NA
 2016,ann.flow.mm.y,NA
 2017,ann.flow.mm.y,NA
-1970,N,NA
-1971,N,NA
-1972,N,NA
-1973,N,NA
-1974,N,NA
-1975,N,NA
-1976,N,NA
-1977,N,NA
-1978,N,NA
-1979,N,4.755659498
-1980,N,5.034781362
-1981,N,6.918734767
-1982,N,4.956702509
-1983,N,5.189408602
-1984,N,5.254340502
-1985,N,4.727433692
-1986,N,4.711727599
-1987,N,4.214827957
-1988,N,4.34825448
-1989,N,6.790250896
-1990,N,5.740175627
-1991,N,5.141587814
-1992,N,4.983874552
-1993,N,4.487175627
-1994,N,5.220996416
-1995,N,5.65916129
-1996,N,5.966182796
-1997,N,5.233842294
-1998,N,5.222752688
-1999,N,4.244634409
-2000,N,5.07883871
-2001,N,3.603795699
-2002,N,4.619172043
-2003,N,4.103831541
-2004,N,4.264304659
-2005,N,4.259236559
-2006,N,3.439784946
-2007,N,4.683928315
-2008,N,4.081050179
-2009,N,3.169820789
-2010,N,2.831437276
-2011,N,3.570275986
-2012,N,4.021336918
-2013,N,3.484168459
-2014,N,2.592508961
-2015,N,3.055663082
-2016,N,2.737903226
-2017,N,3.670634409
 1970,atmos.kgN.ha,NA
 1971,atmos.kgN.ha,NA
 1972,atmos.kgN.ha,NA
