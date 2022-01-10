@@ -1,0 +1,673 @@
+
+\documentclass{article}
+%\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+% My addition
+\usepackage{graphicx, natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[right=1.2in, left=1.2in, top=0.5in, bottom=0.5in]{geometry}
+\setkeys{Gin}{width=0.8\textwidth,height=0.8\textheight,keepaspectratio}
+\usepackage{/Library/Frameworks/R.framework/Versions/3.4/Resources/share/texmf/tex/latex/Sweave}
+\graphicspath{{/Users/stevenmh/g/Courses/672/Modeling/figs/}}
+
+\SweaveOpts{eval=true, echo=true, results=verbatim, keep.source=TRUE,  prefix=FALSE, eps=FALSE, include=FALSE}
+<<echo=false, results=hide>>=
+setwd("~/g/Courses/672/Modeling")
+rm(list=ls())
+badfonts = FALSE
+.detach.stuff = function() {
+ s1 = grep("package|Autoloads",search())
+ nattach = length(search())
+ xattach = search()[c(-1,-s1)]
+ for (i in xattach)
+   eval(substitute(detach(i),list(i=i)))
+}
+.detach.stuff()
+
+
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(deSolve)
+library(magrittr)
+library(rsvg)
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(diagram)
+@
+\title{Modeling, Week 2, BIO/MBI 672}
+
+\author{Dr. Hank Stevens}
+
+\date{\today}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+  
+\begin{figure}[ht]
+ \begin{center}
+\includegraphics[width=\textwidth]{figs/BormannF2}\\
+  \includegraphics[width=\textwidth]{figs/model3}
+  \caption{Two conceptual models of N fluxes in a temperate northern hardwood
+    forest. The top figure, from Bormann et al. (1977) includes
+    estimates of pools and fluxes. The lower figure is a further abstraction.\label{f:c}}
+\end{center}
+\end{figure}
+
+
+\begin{align}
+\frac{dV}{dt} &= a_{1}AV - a_{2}V - a_3 V\\
+\frac{dA}{dt} &= I_1 + a_{2}V +  a_{4}B - a_{5}A - a_{1}AV\\
+\frac{dB}{dt} &= I_2 + a_{3}V - a_{4}B - a_{6}B
+\end{align}
+
+\section{Paramaterization}
+Next, we find initial estimates for the parameters in our model. We use the
+literature for this purpose.
+
+If we have the data (we do) and relatively simple mathematical forms
+(we do), it is fairly straightforward to estimate parameters. For
+instance, we decided that net mineralization would be directly
+proportional to the size of the organic pool, $B$, that is, $F_4 =
+a_4B$. To calculate $a_4$, we substitute data where we can, and solve
+what we need. 
+\begin{align*}
+  F_2 &= a_4 B\\
+  69.6 &= a_4 4700 \\
+  a_4 &= \frac{69.6}{4700}\\
+  a_4 &\approx 0.015
+\end{align*}
+We use the same approach for second order equations as well.
+
+\begin{table}
+\caption{Parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes ($dX/dy$) are in units of kg\,ha$^{-1}$\,y$^{-1}$. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.) } 
+\begin{tabular}{lcc} \hline \hline
+$\mathbf{p}$, $\mathbf{V}$ & \textbf{unit} & \textbf{Estimate}\\ 
+\hline
+$A,\,B,\,V$ state variables & kg\,ha$^{-1}$ & 26, 4700, 532\\
+$a_1$, uptake rate by V from A & (kg\,ha$^{-1}$)$^{-1}$\,y$^{-1}$  &  $79.6 / (26 \cdot 532) = 0.0058$\\
+$a_2$, loss rate from V to A & y$^{-1}$ & $(6.6 + 0.8) / 532 = 0.014 $ \\
+$a_3$, loss rate from V to B & (kg\,ha$^{-1}$)$^{-1}$\,y$^{-1}$ & $(54.2 + 2.7 + 0.1 + 6.2 ) / 532 = 0.00022 $ \\
+$a_4$, mineralization & y$^{-1}$ & $ 69.6 / 4700 = 0.015$ \\
+$a_5$, export from A & y$^{-1} $ & $ 3.9 /26 = 0.15$ \\
+$a_6$, export from B & y$^{-1}$ & $0.1/4700 = 0.000021$ \\
+$I_1$, bulk precip & kg\,ha$^{-1}$\,y$^{-1}$ & $ 6.5$ \\
+$I_2$, N fixation & kg\,ha$^{-1}$\,y$^{-1}$ & $14.2$ 
+\end{tabular}
+\end{table}
+
+
+Enter parameters into R. 
+
+<<>>=
+# Atmospheric inputs
+## Precip
+i1 <- 6.5
+##fixation
+i2 <- 14.2
+# uptake
+a1 <- 79.6 / (26 * 532)
+# throughfall and exudates (inorganic)
+a2 <- (6.6 + 0.8) / 532
+# litter, throughfall, exudates (organic)
+a3 <- (54.2 + 2.7 + 0.1 + 6.2 ) / 532
+# net mineralization
+a4 <- 69.6 / 4700
+# export from available
+a5 <- 3.9 /26
+#export from bound
+a6 <- 0.1/4700
+
+# make a vector
+params <- c( a1 = a1, a2 = a2, a3 = a3, a4 = a4, 
+            a5 = a5, a6 = a6, i1 = i1, i2 = i2)
+#...and look at it.
+params
+@ 
+
+
+\section{Mathematical solution}
+The \emph{mathematical solution} is the process of making the
+predictions using our model and our parameters. We \emph{solve} the
+model. With simple models, we can sometimes find analytical
+solutions. For most ecosystem models, we have to solve the models
+numerically using \emph{numerical integration}.
+
+Here we write a function that includes our system of differential
+equations. This will allow R to integrate change through time.
+<<b1>>=
+bormann1 <- function(t, y, p) {
+  # time, vector of state variables and parameters must be in this order
+  # we can use as.list for both the state variables and parameters
+  # a1 = uptake
+  # a2 = loss from veg to avail
+  # a3 = loss from veg to bound
+  # a4 = net mineralization
+  # a5 = export from avail
+  # a6 = export from bound
+  
+  with( as.list(c(y, p)), {
+    dV.dt <- a1 * A * V - a2 * V - a3 * V
+    dA.dt <- i1 + a2 * V + a4 * B - a1 * A * V - a5 * A 
+    dB.dt <- i2 + a3 * V - a4 * B - a6 * B 
+    
+    # Here we return a list whose first element is the vector of
+    # rates of change for the state variables. The first element must be these rates,
+    # in the same order as the state variables in y
+    # The second element is the total N in the system
+    return(list( c(dV.dt, dA.dt, dB.dt), # first element 
+                 total = V + A + B # second element
+                 )
+           )
+  })
+  
+}
+@
+
+Now that we have the function, we tell R what to do with it. We will define the \emph{initial state of the system}, and then tell R which time point we want it to return.
+
+The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in Bormann et al. (1977).
+<<>>=
+initial.state <- c( V = 532, A = 26, B = 4700)
+@
+
+Next we make sure the preferred differential equation solver package is loaded.
+
+<<>>=
+library(deSolve) 
+# we could load this at the top of our script
+@
+
+\section{ Calibration, take 1}
+
+Calibration, in general, is the process of finding better estimates
+for our parameters. We can do that by looking into the literature, or
+by using independent data to estimates parameters directly.
+
+If we take a look at the model output (above), we see both differences
+and similarities with Bormann et al. What are they?
+
+What if we run it out longer, say, 100 years? Do these trends
+continue (Fig. \ref{f:diffs})? 
+<<>>=
+time <- 0:100
+out <- ode(y = initial.state, times=time, func=bormann1, parms = params)
+## Get annual changes 
+annual.change.100 <- diff(out[, -1])
+## save as a data frame
+annual.change.100 <- as.data.frame(annual.change.100)
+## create a new variable of actual years
+annual.change.100$time <- 1:100
+# gather the state variables into a single 
+# (and don't include time as a state var).
+ac100m <- gather(annual.change.100, key=State.var, value=kg.N, -time)
+## plot the result
+ggplot(ac100m, aes(x=time, y=kg.N) ) + geom_path() + 
+    facet_wrap(~State.var, scales="free_y") + 
+    labs(x="Years", y="Annual change in N (kg/ha/y)")
+## save the graph
+ggsave("diffs.pdf", height=5, width=5)
+@
+
+
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{diffs}
+\caption{Nitrogen pools continue to grow (except for A). Total load is
+  consistent with Bormann et al. (1977), but vegetation is
+  accumulating less than expected.\label{f:diffs}}
+\end{figure}
+
+In some ways, we have been moderately successful in our first pass at
+converting a purely budgetary model into a dynamic process model. We
+mimicked total load, and see similar changes through time of all the
+state variables.
+
+\paragraph{Questions to ponder}
+
+We replicated approximately the N budget of Bormann et al. (1977), but
+clearly vegetation cannot keep accumulating N indefinitely.
+
+What are our next steps? In the next exercise, we will focus more on
+the biology to create a more realistic model of a forest ecosystem.
+
+Resource limitation slows 
+
+Add resource limitation $a_1 V A/(k+A)$ and re-estimate $a_1$, where
+$$a_1 = \frac{F_1\left(k + A\right)}{VA}$$
+
+<<change1, fig=true, include=true>>=
+time=seq(0,1000, by=10)
+
+k = 1
+params2 <- c(params, k)
+params2['a1'] <- 79.6*(k+26)/(532*26)
+bormann2 <- function(t, y, p) {
+  # time, vector of state variables and parameters must be in this order
+  # we can use as.list for both the state variables and parameters
+  # a1 = uptake
+  # a2 = loss from veg to avail
+  # a3 = loss from veg to bound
+  # a4 = net mineralization
+  # a5 = export from avail
+  # a6 = export from bound
+  
+  with( as.list(c(y, p)), {
+    dV.dt <- a1 * V * (A/(k + A))  - a2 * V - a3 * V 
+    dA.dt <- i1 + a2 * V + a4 * B - a1 * V * (A/(10 + A)) - a5 * A 
+    dB.dt <- i2 + a3 * V - a4 * B - a6 * B 
+    
+    # Here we return a list whose first element is the vector of
+    # rates of change for the state variables. The first element must be these rates,
+    # in the same order as the state variables in y
+    # The second element is the total N in the system
+    return(list( c(dV.dt, dA.dt, dB.dt), # first element 
+                 total = V + A + B # second element
+                 )
+           )
+  })
+  
+}
+
+
+out <- ode(y = initial.state, times=time, func=bormann2, parms = params2)
+plot(out)
+@ 
+
+Add self limitation. Note that we can rewrite $dV/dt$ as
+
+$$\frac{dV}{dt} = \left( a_1 A - a_2 - a_3 \right) V $$
+where the $\left( a_1 A - a_2 - a_3 \right)$ is the intrinsic
+resource-dependent growth rate. 
+
+We can add self-limitation to this equation. Plants are limited in
+part by space, especially height. Horizontal space can be a proxy for
+resources such as light, nutrients and water, but even the largest
+canopy trees have maximum heights beyond which they cannot continue to
+grow. Therefore, self-limitation can be an appropriate biological
+mechanism we can include. 
+
+Self-limitation therefore could be written as 
+$$\frac{dV}{dt} = \left( a_1 A - a_2 - a_3 \right) V \left( 1 -V/K
+\right) $$
+where $K$ is the carrying capacity of the forest.
+  
+Note that although we have added self-limitation by plants, this does
+not alter the formulation for the N flux from available to vegetation. 
+
+<<change2, fig=true, include=true>>=
+time=seq(0,1000, by=10)
+K = 600
+params3 <- c(params, K)
+bormann3 <- function(t, y, p) {
+  # time, vector of state variables and parameters must be in this order
+  # we can use as.list for both the state variables and parameters
+  # a1 = uptake
+  # a2 = loss from veg to avail
+  # a3 = loss from veg to bound
+  # a4 = net mineralization
+  # a5 = export from avail
+  # a6 = export from bound
+  
+  with( as.list(c(y, p)), {
+    dV.dt <- ( a1 * A * V - a2 * V - a3 * V) * (1-V/K)
+    dA.dt <- i1 + a2 * V + a4 * B - a1 * V * A - a5 * A 
+    dB.dt <- i2 + a3 * V - a4 * B - a6 * B 
+    
+    # Here we return a list whose first element is the vector of
+    # rates of change for the state variables. The first element must be these rates,
+    # in the same order as the state variables in y
+    # The second element is the total N in the system
+    return(list( c(dV.dt, dA.dt, dB.dt), # first element 
+                 total = V + A + B # second element
+                 )
+           )
+  })
+  
+}
+
+out <- ode(y = initial.state, times=time, func=bormann3, parms = params3) 
+plot(out)
+out.df <- as.data.frame( out )
+outm <- gather(out.df, State.var, kg.N, -time)
+
+ggplot(outm, aes(x=time, y=kg.N)) + geom_line() + facet_wrap(~State.var, scales="free")
+@ 
+
+\section{Adding climate change}
+In this section we address in a small way these questions:
+\begin{itemize}
+  \item What will climate change do in this forest?
+    \item What will these changes do? 
+      \item How do we model the changes?
+        \item How do we model the effects of these changes?
+        \end{itemize}
+        
+
+       
+What will climate change do in this forest? Here is a short list of candidates:
+\begin{itemize}
+\item increase average temprature (or warmer winters or warmer summers).
+  \item increase average annual precipitation
+    \item increase magnitude of extreme precipitation events.
+    \item create more (or fewer?) ice storms
+    \end{itemize}
+    
+Note that some of these changes are annual averages and some are
+discrete events. In this course, we will cover forcings that exert of
+continuous effect, such as an annual average, as well as discrete events.
+    
+What will these changes do? (Melany and Mike) Let's brainstorm about that.
+
+
+
+
+How do we model the changes? Many ways, and we will model these as
+functions of time. For instance, if the average annual rate of
+temperature increase is $\Delta T = 0.01$\,C$^\circ$\,y$^{-1}$ and our time unit, $t$, is
+a year, then $dT/dt = 0.01$. If we think that that rate is
+accelerating, then we could model it as an exponential increase,
+$dT/dt = 0.1 + rT$, where $rT$ is factor of acceleration.
+
+One way that we might model the effect of this on biological rates is
+through the use of $Q_{10}$ which is the multiplicative increase in
+metabolic rate as a function of a 10\,C$^\circ$ increase in
+temperature. $Q_{10}$ varies a bit, but it seems to be cewntered
+around 2. The effect of this is easily
+modeled \citep{Soetaert2009} as
+
+\begin{equation*}
+  \mathrm{TempFactor} = \exp\left( \frac{T - T_{ref}}{10}
+    \log_e\left(Q_{10}\right) \right) 
+\end{equation*}
+
+where $T_{ref}$ is a reference temperature at which the temeprature
+factor equals 1 (because exp(0) = 1).
+
+
+
+How do we model the effects of these changes?
+
+
+<<forcing>>=
+inits4 <- c( V = 532, A = 26, B = 4700, T=7)
+## Precip
+i1 <- 6.5
+##fixation
+i2 <- 14.2
+# uptake
+a1 <- 79.6 / (26 * 532)
+# throughfall and exudates (inorganic)
+a2 <- (6.6 + 0.8) / 532
+# litter, throughfall, exudates (organic)
+a3 <- (54.2 + 2.7 + 0.1 + 6.2 ) / 532
+# net mineralization
+a4 <- 69.6 / 4700
+# export from available
+a5 <- 3.9 /26
+#export from bound
+a6 <- 0.1/4700
+
+# make a vector
+params <- c( a1 = a1, a2 = a2, a3 = a3, a4 = a4, 
+            a5 = a5, a6 = a6, i1 = i1, i2 = i2, K=600, Tref = 7, Q10=2, annual.dC= 1.4/60 )
+
+bormann4 <- function(t, y, p) {
+  # time, vector of state variables and parameters must be in this order
+  # we can use as.list for both the state variables and parameters
+  # a1 = uptake
+  # a2 = loss from veg to avail
+  # a3 = loss from veg to bound
+  # a4 = net mineralization
+  # a5 = export from avail
+  # a6 = export from bound
+  
+  with( as.list(c(y, p)), {
+      dT.dt <- annual.dC
+      TempFactor <- exp( (T-Tref)/10 * log(Q10) )
+      new.a4 <- TempFactor * a4
+    dV.dt <- ( a1 * A  - a2 - a3 ) * V * (1-V/K)
+    dA.dt <- i1 + a2 * V + new.a4 * B - a1 * V * A - a5 * A 
+    dB.dt <- i2 + a3 * V - new.a4 * B - a6 * B 
+    
+    # Here we return a list whose first element is the vector of
+    # rates of change for the state variables. The first element must be these rates,
+    # in the same order as the state variables in y
+    # The second element is the total N in the system
+    return(list( c(dV.dt, dA.dt, dB.dt, dT.dt), # first element 
+                 totalN = V + A + B, # second element
+                loss  = a5*A + a6*B
+                 )
+           )
+  })
+  
+}
+time=0:100
+out <- ode(y = inits4, times=time, func=bormann4, parms = params) 
+plot(out)
+out.df <- as.data.frame( out )
+outg <- gather(out.df, key=State.var, value=kg.N, -time)
+
+ggplot(outg, aes(x=time, y=kg.N)) + geom_line() + facet_wrap(~State.var, scales="free")
+source("sens.R")
+args(sens)
+sens(func=bormann4, times=time, y.initial= inits4, parms=params, variable="A")
+
+@ 
+
+Here we inject some more data.
+
+Sources
+\begin{itemize}
+  \item Hubbard Brook LTER (\url{http://data.hubbardbrook.org/data/dataset.php?id=2})
+    \item National Atmospheric Deposition Program, Hubbard Brook site (\url{http://nadp.slh.wisc.edu/NADP/})
+    \end{itemize}
+    
+Bring in the data and look at it.   
+<<>>=
+env <- read.csv("env_data_HB.csv")
+str(env)
+ggplot(env, aes(x=year,  y=value)) + geom_point() + geom_smooth(span=.9) + facet_wrap(~factor, scales="free_y")
+@ 
+
+How shall we use these data? 
+
+\begin{itemize}
+  \item What is the right reference temperature?
+    \item How do we incorporate actual data?
+      \end{itemize}
+<<>>=
+env_spr <- spread(env, key=factor, value=value)
+head(env_spr)
+
+temps <- subset(env_spr, !is.na(meandegC))
+temps$time <- temps$year - min(temps$year)
+# create a function to approximate temperature for an arbitrary time point.
+
+temp <- approxfun(x = temps[,"time"], y = temps[,"meandegC"], method = "linear", rule = 2)
+
+
+bormann5 <- function(t, y, p) {
+  # time, vector of state variables and parameters must be in this order
+  # we can use as.list for both the state variables and parameters
+  # a1 = uptake
+  # a2 = loss from veg to avail
+  # a3 = loss from veg to bound
+  # a4 = net mineralization
+  # a5 = export from avail
+  # a6 = export from bound
+  
+  with( as.list(c(y, p)), {
+    ## use our temp approximation function.
+    T <- temp(t)
+    TempFactor <- exp( (T-Tref)/10 * log(Q10) )
+    new.a4 <- TempFactor * a4
+    dV.dt <- ( a1 * A  - a2 - a3 ) * V * (1-V/K)
+    dA.dt <- i1 + a2 * V + new.a4 * B - a1 * V * A - a5 * A 
+    dB.dt <- i2 + a3 * V - new.a4 * B - a6 * B 
+    
+    # Here we return a list whose first element is the vector of
+    # rates of change for the state variables. The first element must be these rates,
+    # in the same order as the state variables in y
+    # The second element is the total N in the system
+    return(list( c(dV.dt, dA.dt, dB.dt), # first element 
+                 totalN = V + A + B,
+                 degC=T # second element
+    )
+    )
+  })
+  
+}
+
+params5 <- c( a1 = a1, a2 = a2, a3 = a3, a4 = a4, 
+              a5 = a5, a6 = a6, i1 = i1, i2 = i2, K=600, Tref = 7, Q10=2)
+
+
+
+inits5 <- c( V = 532, A = 26, B = 4700)
+out <- ode(y = inits5, times=temps$time, func=bormann5, parms = params5) 
+out.df <- as.data.frame( out )
+outg <- gather(out.df,  key=state.var,  value=value, -time)
+ggplot(outg, aes(x=time, y=value) ) + geom_line() + facet_wrap(~state.var, scales="free")
+@ 
+
+\subsection{Pros and cons}
+
+What are the pros and cons of using data, vs. a more general approximation?
+
+\section{N deposition}
+Can we do something similar with N deposition?
+
+Just changes in N deposition, with temps being constant.
+<<>>=
+names(env_spr)
+ndep <- subset(env_spr, !is.na(kgN.ha))
+ndep$time <- ndep$year - min(ndep$year)
+# create a function to approximate temperature for an arbitrary time point.
+
+ndep.func <- approxfun(x = ndep[,"time"], y = ndep[,"kgN.ha"], method = "linear", rule = 2)
+
+
+bormann6 <- function(t, y, p) {  
+  with( as.list(c(y, p)), {
+    ## sens.i1, sens.a4 = 1 allow us to calculate sensitivities
+    new.i1 <- ndep.func(t) * sens.i1
+      T <- temp(t)
+      TempFactor <- exp( (T-Tref)/10 * log(Q10) )
+      new.a4 <- TempFactor * a4 * sens.a4
+    dV.dt <- ( a1 * A  - a2 - a3 ) * V * (1-V/K)
+    dA.dt <- new.i1*sens.i1 + a2 * V + new.a4 * B - a1 * V * A - a5 * A
+    dB.dt <- i2 + a3 * V - new.a4 * B - a6 * B 
+   
+    return(list( c(dV.dt, dA.dt, dB.dt), # first element 
+                 totalN = V + A + B,
+                export = a6*B + a5*A,
+                 N.dep=new.i1,
+                 temp=T) )
+    })
+  
+}
+
+bormann6 <- function(t, y, p) {  
+  with( as.list(c(y, p)), {
+    ## sens.i1, sens.a4 = 1 allow us to calculate sensitivities
+    new.i1 <- ndep.func(t) * sens.i1
+      T <- temp(t)
+      #TempFactor <- exp( (T-Tref)/10 * log(Q10) )
+      b1 <- exp(Ea/(B*Tref))
+      TempFactor <- b1 * exp(-Ea/(B*T))
+      new.a4 <- TempFactor * a4 * sens.a4
+    dV.dt <- ( a1 * A  - a2 - a3 ) * V * (1-V/K)
+    dA.dt <- new.i1*sens.i1 + a2 * V + new.a4 * B - a1 * V * A - a5 * A
+    dB.dt <- i2 + a3 * V - new.a4 * B - a6 * B 
+   
+    return(list( c(dV.dt, dA.dt, dB.dt), # first element 
+                 totalN = V + A + B,
+                export = a6*B + a5*A,
+                 N.dep=new.i1,
+                 temp=T) )
+    })
+  
+}
+
+params6 <- c( a1 = a1, a2 = a2, a3 = a3, a4 = a4, 
+              a5 = a5, a6 = a6, i1 = 0, i2 = i2, K=600, Tref = 4, Ea = 0.65, Q10=2, sens.i1=1, sens.a4=1)
+
+inits6 <- c( V = 532, A = 26, B = 4700)
+out <- ode(y = inits6, times=ndep$time, func=bormann6, parms = params6) 
+plot(out)
+
+args(sens)
+senses <- sens(bormann6, times=ndep$time, y.initial = inits6, burnin=0, parms=params6, variable="export")
+round(senses, 3)
+out.df <- as.data.frame( out )
+
+outm <- gather(out.df,  key=state.var,  value=value, -time)
+ggplot(outm, aes(x=time, y=value) ) + geom_line() + facet_wrap(~state.var, scales="free")
+
+@ 
+
+Combine modeled export with observed.
+<<>>=
+names(env_spr)
+Ndata <- select( env_spr, year, ann.TN.kg.y, kgN.ha, ppt)
+out.df$year <- out.df$time + min(ndep$year)
+
+env2 <- full_join(Ndata, out.df)
+env2
+@ 
+
+\subsection{two soil compartments}
+
+<<2sc>>=
+a4
+nmin.floor <- 0.5
+ a4f <- nmin.floor * a4
+ a4m <- (1-nmin.floor) * a4
+   a7 <- max(0, 66.5/1100 - a4f )
+a4f; a4m; a7
+@ 
+
+<<>>=
+
+bormann2soil <- function(t, y, p) {
+  with( as.list(c(y, p)), {
+    dV.dt <- ( a1 * A  - a2 - a3 ) * V * (1-V/K)
+    dA.dt <- i1 + a2 * V + a4f * F + a4m*M - a1 * V * A - a5 * A 
+    dF.dt <- i2 + a3 * V - a4f*F - a7 * F 
+    dM.dt <- a7 * F - a4m * M - a6 * M 
+    return(list( c(dV.dt, dA.dt, dF.dt, dM.dt), # first element 
+                 totalN = V + A + F + M,
+                export= a6*M + a5*A
+    ) )}
+    ) }
+
+# half of the mineralization comes from the forest floor (nmin.floor=0.5)
+p2s1 <- c( a1 = a1, a2 = a2, a3 = a3, a4f = a4f, a4m=a4m, a7 = a7,
+              a5 = a5, a6 = a6, i1 = i1, i2 = i2, K=600)
+t = 0:1000
+inits2s1 <- c( V = 532, A = 26, F = 1100, M=3600)
+out <- ode(y = inits2s1, times=t, func=bormann2soil, parms = p2s1) 
+plot(out)
+args(sens)
+source("sens.R")
+sens(func=bormann2soil, times=t, y.initial=inits2s1, parms=p2s1, variable="export")
+
+
+out.df <- as.data.frame( out ) 
+
+outm <- gather(out.df,  key=state.var,  value=value, -time, factor_key=TRUE)
+ggplot(outm, aes(x=time, y=value) ) + geom_line() + facet_wrap(~state.var, scales="free")
+
+@ 
+\bibliography{~/g/library}{}
+\bibliographystyle{plain}
+\end{document}

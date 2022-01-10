@@ -6,10 +6,10 @@ site: bookdown::bookdown_site
 output:
     bookdown::gitbook
 documentclass: book
-bibliography: [ecosystems.bib, book.bib, packages.bib]
+bibliography: [/Users/stevenmh/library.bib, book.bib, packages.bib]
 biblio-style: plain
 link-citations: yes
-description: "This provides a part of foundation in understanding ecosystem models."
+description: "This provides a part of a foundation in understanding ecosystem models."
 github-repo: HankStevens/ecosystems-primer
 output_dir: "docs"
 clean: FALSE
@@ -18,7 +18,10 @@ clean: FALSE
 # Prerequisites
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, results='markup', warning=FALSE, message=FALSE, fig.path = "/Users/stevenmh/MyDrive/Projects/ecosystems-primer/figs/", knitr.graphics.auto_pdf = TRUE,
+knitr::opts_chunk$set(echo = TRUE, results='markup', 
+                      warning=FALSE, message=FALSE, 
+                      fig.path = "/Users/stevenmh/Projects/ecosystems-primer/figs/",
+                      knitr.graphics.auto_pdf = TRUE,
                       message=FALSE, out.width="75%")
 # automatically create a bib database for R packages
 knitr::write_bib(c(
@@ -30,6 +33,7 @@ library(tidyverse)
 library(kableExtra) #kbl
 library(DiagrammeR) # grViz
 library(DiagrammeRsvg)
+library(bbmle) # MLE with mle2() 
 ```
 
 For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
