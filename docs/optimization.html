@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Optimization | A Primer of Ecosystem Modeling - a work in progress</title>
+  <meta name="description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Optimization | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This provides a part of foundation in understanding ecosystem models." />
+  <meta name="github-repo" content="HankStevens/ecosystems-primer" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Optimization | A Primer of Ecosystem Modeling - a work in progress" />
+  
+  <meta name="twitter:description" content="This provides a part of foundation in understanding ecosystem models." />
+  
+
+<meta name="author" content="Hank Stevens, BIO 672" />
+
+
+<meta name="date" content="2022-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="MEL.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#must-dos"><i class="fa fa-check"></i><b>1.1</b> Must do’s</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction ecosystem models</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-a-model"><i class="fa fa-check"></i><b>2.3</b> What’s a model?</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.1</b> Other ideas</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
+<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
+<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
+<li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
+<li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
+<li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> The LakeMetabolizer package</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#model-sensitivity-1"><i class="fa fa-check"></i><b>6.1</b> Model Sensitivity</a></li>
+<li class="chapter" data-level="6.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>6.2</b> Local sensitivity</a></li>
+<li class="chapter" data-level="6.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>6.3</b> Assessing sensitivity in a nitrogen budget model</a></li>
+<li class="chapter" data-level="6.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>6.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="6.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>6.5</b> Letting Sensitivity Analysis Guide Next Steps</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>6.5.1</b> Your turn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>7</b> Multiple Element Limitation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>7.1</b> Rastetter et al. 1997</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>7.1.1</b> The model</a></li>
+<li class="chapter" data-level="7.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>7.1.2</b> Parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>7.2</b> Implementing MEL</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>7.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>8</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>8.2</b> Bormann logistic model</a></li>
+<li class="chapter" data-level="8.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>8.3</b> Fitting a model to data</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="optimization.html"><a href="optimization.html#minimization-is-the-new-black"><i class="fa fa-check"></i><b>8.3.1</b> Minimization is the new black</a></li>
+<li class="chapter" data-level="8.3.2" data-path="optimization.html"><a href="optimization.html#your-assignment-should-you-choose-to-accept-it."><i class="fa fa-check"></i><b>8.3.2</b> Your assignment, should you choose to accept it.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.4</b> Two (or more) parameters at a time</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Primer of Ecosystem Modeling - a work in progress</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="optimization" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Optimization</h1>
+<div id="introduction" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Introduction</h2>
+<p>Sometimes we want to find values of parameters by picking those that cause the model output to match observed data as closely as possible. We call this optimization or calibration. Usually calibration refers to the entire modeling process, whereas optimization refers to the computational techniques used to make the model-data match as close as possible.</p>
+<p>We will take a couple of different approaches to optimization, starting with one parameter at a time, and moving to optimizing two or more parameters simultaneously. We will use our Bormann model with self-limiting vegetation.</p>
+</div>
+<div id="bormann-logistic-model" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Bormann logistic model</h2>
+<p>Code to run the ODE model. First we load the model (<code>source</code>). If you want to view it in the console, you can do that.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="optimization.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>( <span class="at">list =</span> <span class="fu">ls</span>() ) <span class="co"># clean the workspace.</span></span>
+<span id="cb92-2"><a href="optimization.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb92-3"><a href="optimization.html#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="optimization.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The next line of code loads and runs a file. It requires that this script</span></span>
+<span id="cb92-5"><a href="optimization.html#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   is in R&#39;s working directory.</span></span>
+<span id="cb92-6"><a href="optimization.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, you could include the entire path in the file name.</span></span>
+<span id="cb92-7"><a href="optimization.html#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="co"># getwd() # will tell you what the working directory is.</span></span>
+<span id="cb92-8"><a href="optimization.html#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/BormannLogistic.R&quot;</span>)</span>
+<span id="cb92-9"><a href="optimization.html#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="do">## bormann.logistic</span></span></code></pre></div>
+<p>Next we begin to run it.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="optimization.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb93-2"><a href="optimization.html#cb93-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">a20 =</span> <span class="fl">6.5</span>, <span class="at">a30 =</span> <span class="fl">14.2</span>, <span class="at">a12 =</span> <span class="fl">79.6</span><span class="sc">/</span>(<span class="dv">532</span><span class="sc">*</span><span class="dv">26</span>), <span class="at">a21 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>)<span class="sc">/</span><span class="dv">532</span>, </span>
+<span id="cb93-3"><a href="optimization.html#cb93-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">a31 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">6.2</span> <span class="sc">+</span> <span class="fl">0.1</span>)<span class="sc">/</span><span class="dv">532</span>,</span>
+<span id="cb93-4"><a href="optimization.html#cb93-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">a23 =</span> <span class="fl">69.6</span><span class="sc">/</span><span class="dv">4700</span>, <span class="at">a02 =</span> <span class="fl">3.9</span><span class="sc">/</span><span class="dv">26</span>, <span class="at">a03 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>,</span>
+<span id="cb93-5"><a href="optimization.html#cb93-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">K =</span> <span class="dv">600</span>)</span>
+<span id="cb93-6"><a href="optimization.html#cb93-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-7"><a href="optimization.html#cb93-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb93-8"><a href="optimization.html#cb93-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-9"><a href="optimization.html#cb93-9" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb93-10"><a href="optimization.html#cb93-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-11"><a href="optimization.html#cb93-11" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> t, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p)</span>
+<span id="cb93-12"><a href="optimization.html#cb93-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-13"><a href="optimization.html#cb93-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( out )</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-57"></span>
+<img src="figs/unnamed-chunk-57-1.png" alt="Our model's output. Refer to an earlier chapter for the meanings and units of the parameters and state variables." width="75%" />
+<p class="caption">
+Figure 8.1: Our model’s output. Refer to an earlier chapter for the meanings and units of the parameters and state variables.
+</p>
+</div>
+</div>
+<div id="fitting-a-model-to-data" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Fitting a model to data</h2>
+<p>Fitting a model to data can mean a variety of things, but maybe most generally we mean that we adjust parameters until the differences between the model output and our data are as small as possible. There are many analytical and computational techniques to do this.</p>
+<p>In R, it is often best to use <code>optimize()</code> for 1-dimensional optimization, that is, when our goal is to adjust or optimization a single parameter while holding all others constant. There is a function <code>optim()</code> that is better when we want to optimize for more than one parameter.</p>
+<p>We want to minimize deviations between our model output and observed state variables. We have options:</p>
+<ul>
+<li>Do we compare trajectories, or just end points?</li>
+<li>Do we minimize deviations between all state variables and the data, or just those we are confident about?</li>
+<li>Do we keep the deviations so that they are on the original scale of the data, such that large pools carry more weight than small pools? Alternatively, we could scale them to give them more equal weight.</li>
+</ul>
+<p>In our case, we do not have trajectories of data through time - we have only a snapshot of the state of the ecosystem, so we cannot compare trajectories, only endpoints of model output <em>vs.</em> a snapshot of data.</p>
+<p>Let’s start by using all the state variables, on the scale of the raw data.</p>
+<p>We also need to choose a parameter to optimize. We might as well select one that is associated with high sensitivity, such as mineralization rate, <span class="math inline">\(a_23\)</span>.</p>
+<div id="minimization-is-the-new-black" class="section level3" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Minimization is the new black</h3>
+<p>In most optimization procedures, we create an <em>objective function</em> that measures deviation between a model and data and then uses one or another procedure to try different values and find those that minimization the deviations.</p>
+<p>Here is our example of an objective function that searches for values of a23 (mineralization rate) that minimize deviations between the model output (values of <span class="math inline">\(V\)</span>, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> at <span class="math inline">\(t = 500\)</span>) and the data on pool size, provided by Bormann et al. (1977).</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="optimization.html#cb94-1" aria-hidden="true" tabindex="-1"></a>sse.bormann.mineralization <span class="ot">&lt;-</span> <span class="cf">function</span>(params, data) {</span>
+<span id="cb94-2"><a href="optimization.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## an objective function whose arguments are </span></span>
+<span id="cb94-3"><a href="optimization.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## params - the parameter of interest</span></span>
+<span id="cb94-4"><a href="optimization.html#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## data - data from Bormannm et al.</span></span>
+<span id="cb94-5"><a href="optimization.html#cb94-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb94-6"><a href="optimization.html#cb94-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Assign a new value of the parameter to our set of parameters</span></span>
+<span id="cb94-7"><a href="optimization.html#cb94-7" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&#39;a23&#39;</span>] <span class="ot">&lt;-</span> params</span>
+<span id="cb94-8"><a href="optimization.html#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="optimization.html#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="do">## run the model </span></span>
+<span id="cb94-10"><a href="optimization.html#cb94-10" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> t, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p)</span>
+<span id="cb94-11"><a href="optimization.html#cb94-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-12"><a href="optimization.html#cb94-12" aria-hidden="true" tabindex="-1"></a><span class="do">## store the last values of the state variables</span></span>
+<span id="cb94-13"><a href="optimization.html#cb94-13" aria-hidden="true" tabindex="-1"></a>nr <span class="ot">&lt;-</span> <span class="fu">nrow</span>(out)</span>
+<span id="cb94-14"><a href="optimization.html#cb94-14" aria-hidden="true" tabindex="-1"></a>model.output <span class="ot">&lt;-</span> out[nr,<span class="fu">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)]</span>
+<span id="cb94-15"><a href="optimization.html#cb94-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-16"><a href="optimization.html#cb94-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculate the sum of the squared differences</span></span>
+<span id="cb94-17"><a href="optimization.html#cb94-17" aria-hidden="true" tabindex="-1"></a><span class="do">## squaring the differences makes them positives and </span></span>
+<span id="cb94-18"><a href="optimization.html#cb94-18" aria-hidden="true" tabindex="-1"></a><span class="do">## weights big differences even more heavily</span></span>
+<span id="cb94-19"><a href="optimization.html#cb94-19" aria-hidden="true" tabindex="-1"></a>diffs <span class="ot">&lt;-</span> model.output <span class="sc">-</span> data</span>
+<span id="cb94-20"><a href="optimization.html#cb94-20" aria-hidden="true" tabindex="-1"></a>diffs2 <span class="ot">&lt;-</span> diffs<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb94-21"><a href="optimization.html#cb94-21" aria-hidden="true" tabindex="-1"></a> sse <span class="ot">&lt;-</span> <span class="fu">sum</span>( diffs2 )</span>
+<span id="cb94-22"><a href="optimization.html#cb94-22" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb94-23"><a href="optimization.html#cb94-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Return the SSE</span></span>
+<span id="cb94-24"><a href="optimization.html#cb94-24" aria-hidden="true" tabindex="-1"></a> sse</span>
+<span id="cb94-25"><a href="optimization.html#cb94-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Next, we use our objective function with <code>optimize()</code> to find the value of <code>a23</code> that minimizes the objective function. First, we’ll define the data to which we compare the model. We need to use the same name that we used in the objective function.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="optimization.html#cb95-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A=</span><span class="dv">26</span>, <span class="at">B=</span><span class="dv">4700</span>)</span></code></pre></div>
+<p>Next, we use <code>optimize</code>, where</p>
+<ul>
+<li><code>f</code> is the objective function</li>
+<li><code>interval</code> is a two-element vector with the lower and upper limits of parameter.</li>
+<li><code>params</code> is an argument of our objective function, with which we tell <code>optimize</code> the value at which to start the search.</li>
+</ul>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="optimization.html#cb96-1" aria-hidden="true" tabindex="-1"></a>fit0 <span class="ot">&lt;-</span> <span class="fu">optimize</span>(<span class="at">f =</span> sse.bormann.mineralization, <span class="at">interval =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.5</span>), <span class="at">data=</span>data)</span></code></pre></div>
+<p>Now let’s examine the result of the optimization.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="optimization.html#cb97-1" aria-hidden="true" tabindex="-1"></a>fit0</span></code></pre></div>
+<pre><code>## $minimum
+## [1] 0.018149
+## 
+## $objective
+## [1] 4625.243</code></pre>
+<p>The <code>minimum</code> is the value of the parameter for which the minimum was reached. The <code>objective</code> is the value of the objective function, which was minimized by the parameter value <code>minimum</code>. (The value of mineralzation rate that we started with was <span class="math inline">\(a_{23} = 69.6/4700 =\)</span> 0.015).
+Now let’s rerun the model with the optimized value, and look at the output. We first create a new parameter vector, and insert the optimized mineralization rate.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="optimization.html#cb99-1" aria-hidden="true" tabindex="-1"></a>p.opt <span class="ot">&lt;-</span> p</span>
+<span id="cb99-2"><a href="optimization.html#cb99-2" aria-hidden="true" tabindex="-1"></a>p.opt[<span class="st">&#39;a23&#39;</span>] <span class="ot">&lt;-</span> fit0<span class="sc">$</span>minimum</span></code></pre></div>
+<p>Now we can rerun the ODE model with the original and the optimized values of the mineralization rate.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="optimization.html#cb100-1" aria-hidden="true" tabindex="-1"></a>out.original <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">500</span>, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p))</span>
+<span id="cb100-2"><a href="optimization.html#cb100-2" aria-hidden="true" tabindex="-1"></a>out.opt <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">500</span>, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p.opt))</span></code></pre></div>
+<p>When we plot both sets of ouput and the data, we see the differences among all three.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="optimization.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>) )</span>
+<span id="cb101-2"><a href="optimization.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out.original<span class="sc">$</span>time, out.original<span class="sc">$</span>V, <span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span>
+<span id="cb101-3"><a href="optimization.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(out.opt[,<span class="dv">1</span>], out.opt[,<span class="dv">2</span>], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb101-4"><a href="optimization.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>data[<span class="st">&#39;V&#39;</span>], <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">4</span>)</span>
+<span id="cb101-5"><a href="optimization.html#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="optimization.html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out.original<span class="sc">$</span>time, out.original<span class="sc">$</span>A, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">33</span>))</span>
+<span id="cb101-7"><a href="optimization.html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(out.opt[,<span class="dv">1</span>], out.opt[,<span class="dv">3</span>], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb101-8"><a href="optimization.html#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>data[<span class="st">&#39;A&#39;</span>], <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">4</span>)</span>
+<span id="cb101-9"><a href="optimization.html#cb101-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-10"><a href="optimization.html#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out.original<span class="sc">$</span>time, out.original<span class="sc">$</span>B, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">6000</span>))</span>
+<span id="cb101-11"><a href="optimization.html#cb101-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(out.opt[,<span class="dv">1</span>], out.opt[,<span class="dv">4</span>], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb101-12"><a href="optimization.html#cb101-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>data[<span class="st">&#39;B&#39;</span>], <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">4</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-64-1.png" width="75%" /></p>
+<p>If we return to our choices described above, we might consider several things. First, we might think that we have relatively accurate and precise estimates of the vegetation and available pools, but poor estimates of the bound pool. Therefore, we might want to fit the model to just the vegetation and available pools. However, given that the system is all connected, we may not want to take such drastic action.</p>
+<p>Alternatively, we might want to at least weight the pools more equally by using the log-transformations of the output and data. This accomplishes two things. First, it weights the variables on a more similar scale. This may not matter for the result with some methods of optimization, but it can. Second, it makes the computation more stable and reliable to use both smaller numbers, and each on a more similar scale. This can make a big difference if you are having trouble getting the optimization to give reliable, repeatable results. Let’s try this option, and see if it makes a difference. We start by rewriting our objective function comparing the base 10 logs of the output and the data. The only difference is that <code>diffs &lt;- model.output - data</code> becomes <code>diffs &lt;- log(model.output, 10) - log(data, 10).</code></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="optimization.html#cb102-1" aria-hidden="true" tabindex="-1"></a>sse.bormann.mineralization2 <span class="ot">&lt;-</span> <span class="cf">function</span>(params, data) {</span>
+<span id="cb102-2"><a href="optimization.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## an objective function whose arguments are </span></span>
+<span id="cb102-3"><a href="optimization.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## params - the parameter of interest</span></span>
+<span id="cb102-4"><a href="optimization.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## data - data from Bormannm et al.</span></span>
+<span id="cb102-5"><a href="optimization.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb102-6"><a href="optimization.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Assign a new value of the parameter to our set of parameters</span></span>
+<span id="cb102-7"><a href="optimization.html#cb102-7" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&#39;a23&#39;</span>] <span class="ot">&lt;-</span> params[<span class="dv">1</span>]</span>
+<span id="cb102-8"><a href="optimization.html#cb102-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-9"><a href="optimization.html#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="do">## run the model </span></span>
+<span id="cb102-10"><a href="optimization.html#cb102-10" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> t, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p)</span>
+<span id="cb102-11"><a href="optimization.html#cb102-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-12"><a href="optimization.html#cb102-12" aria-hidden="true" tabindex="-1"></a><span class="do">## store the last values of the state variables</span></span>
+<span id="cb102-13"><a href="optimization.html#cb102-13" aria-hidden="true" tabindex="-1"></a>nr <span class="ot">&lt;-</span> <span class="fu">nrow</span>(out)</span>
+<span id="cb102-14"><a href="optimization.html#cb102-14" aria-hidden="true" tabindex="-1"></a>model.output <span class="ot">&lt;-</span> out[nr,<span class="fu">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)]</span>
+<span id="cb102-15"><a href="optimization.html#cb102-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-16"><a href="optimization.html#cb102-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculate the sum of the squared differences</span></span>
+<span id="cb102-17"><a href="optimization.html#cb102-17" aria-hidden="true" tabindex="-1"></a><span class="do">## squaring the differences makes them positives and </span></span>
+<span id="cb102-18"><a href="optimization.html#cb102-18" aria-hidden="true" tabindex="-1"></a><span class="do">## weights big differences even more heavily</span></span>
+<span id="cb102-19"><a href="optimization.html#cb102-19" aria-hidden="true" tabindex="-1"></a>diffs <span class="ot">&lt;-</span> <span class="fu">log</span>(model.output, <span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log</span>(data, <span class="dv">10</span>)</span>
+<span id="cb102-20"><a href="optimization.html#cb102-20" aria-hidden="true" tabindex="-1"></a>diffs2 <span class="ot">&lt;-</span> diffs<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb102-21"><a href="optimization.html#cb102-21" aria-hidden="true" tabindex="-1"></a> sse <span class="ot">&lt;-</span> <span class="fu">sum</span>( diffs2 )</span>
+<span id="cb102-22"><a href="optimization.html#cb102-22" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb102-23"><a href="optimization.html#cb102-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Return the SSE</span></span>
+<span id="cb102-24"><a href="optimization.html#cb102-24" aria-hidden="true" tabindex="-1"></a> sse</span>
+<span id="cb102-25"><a href="optimization.html#cb102-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now we rerun the optimization and examine the output.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="optimization.html#cb103-1" aria-hidden="true" tabindex="-1"></a>fit0.log <span class="ot">&lt;-</span> <span class="fu">optimize</span>(<span class="at">f =</span> sse.bormann.mineralization2, </span>
+<span id="cb103-2"><a href="optimization.html#cb103-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">interval =</span> <span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.1</span>), <span class="at">data=</span>data)</span>
+<span id="cb103-3"><a href="optimization.html#cb103-3" aria-hidden="true" tabindex="-1"></a>fit0.log</span></code></pre></div>
+<pre><code>## $minimum
+## [1] 0.0181761
+## 
+## $objective
+## [1] 0.002796935</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="optimization.html#cb105-1" aria-hidden="true" tabindex="-1"></a>fit0</span></code></pre></div>
+<pre><code>## $minimum
+## [1] 0.018149
+## 
+## $objective
+## [1] 4625.243</code></pre>
+<p>Notice that the objective function output is much, much smaller. This is because the logarithms of the raw data (especially the bound pool) are much, much smaller. Second, we see tha <span class="math inline">\(a_{23}\)</span> is only very slightly different than our other fitted value. Nonetheless, we will rerun the model again, using this new value.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="optimization.html#cb107-1" aria-hidden="true" tabindex="-1"></a>p.opt.log <span class="ot">&lt;-</span> p</span>
+<span id="cb107-2"><a href="optimization.html#cb107-2" aria-hidden="true" tabindex="-1"></a>p.opt.log[<span class="st">&#39;a23&#39;</span>] <span class="ot">&lt;-</span> fit0.log<span class="sc">$</span>minimum</span>
+<span id="cb107-3"><a href="optimization.html#cb107-3" aria-hidden="true" tabindex="-1"></a>out.opt.log <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">500</span>, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p.opt.log))</span></code></pre></div>
+<p>Now we can compare all of our information, including the raw data, our original model output using parameters estimated from Bormann et al. (1977), and parameters fitted using either the raw or transformed data.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="optimization.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="at">data=</span>data, <span class="at">Bormann =</span> out[<span class="dv">501</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">raw=</span>out.opt[<span class="dv">501</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">log=</span>out.opt.log[<span class="dv">501</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
+<pre><code>##                V        A        B
+## data    532.0000 26.00000 4700.000
+## Bormann 599.7254 25.46203 5753.202
+## raw     599.9441 25.49684 4702.931
+## log     599.9447 25.49695 4695.946</code></pre>
+<p>We see that the model calibrated with either the raw or transformed data is able to generate output more consistent with the current size of the bound pool. What does that mean? It gives us a new hypothesis about mineralization rate, and allows us to ask whether the bound pool is growing, whether our estimate of mineralization was too low, or something else. Nonetheless, we can now begin to ask more sophisticated questions of our system.</p>
+</div>
+<div id="your-assignment-should-you-choose-to-accept-it." class="section level3" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Your assignment, should you choose to accept it.</h3>
+<ol style="list-style-type: decimal">
+<li>Identify another parameter that would be useful to examine.
+<ul>
+<li>Justify your choice.</li>
+<li>identify line of code you would need to edit in <code>sse.bormann.mineralization2()</code>, and propose the necessary change.</li>
+</ul></li>
+<li>Vegetation
+<ul>
+<li>Propose a hypothesis for why the final size of the vegetation pool seems unaffected by changes in mineralization rate.</li>
+<li>What about the pool might vary with mineralization rate, and why? Describe a way to test your idea.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="two-or-more-parameters-at-a-time" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Two (or more) parameters at a time</h2>
+<p>Here we use the same approach, in which we have an objective function, parameters of interest, and data. Yeah, baby!</p>
+<p>Here is our objective function, and you can see it is not very different. Find and explain the difference.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="optimization.html#cb110-1" aria-hidden="true" tabindex="-1"></a>sse.b.m.p2 <span class="ot">&lt;-</span> <span class="cf">function</span>(params, data, vars) {</span>
+<span id="cb110-2"><a href="optimization.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## an objective function whose arguments are </span></span>
+<span id="cb110-3"><a href="optimization.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## params - the parameter of interest</span></span>
+<span id="cb110-4"><a href="optimization.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## data - data from Bormannm et al.</span></span>
+<span id="cb110-5"><a href="optimization.html#cb110-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb110-6"><a href="optimization.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Assign a new value of the parameter to our set of parameters</span></span>
+<span id="cb110-7"><a href="optimization.html#cb110-7" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&#39;a23&#39;</span>] <span class="ot">&lt;-</span> params[<span class="dv">1</span>]</span>
+<span id="cb110-8"><a href="optimization.html#cb110-8" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&#39;a31&#39;</span>] <span class="ot">&lt;-</span> params[<span class="dv">2</span>]</span>
+<span id="cb110-9"><a href="optimization.html#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="do">## run the model </span></span>
+<span id="cb110-10"><a href="optimization.html#cb110-10" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> y, <span class="at">times =</span> t, <span class="at">func =</span> bormann.logistic, <span class="at">parms =</span> p)</span>
+<span id="cb110-11"><a href="optimization.html#cb110-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-12"><a href="optimization.html#cb110-12" aria-hidden="true" tabindex="-1"></a><span class="do">## store the last values of the state variables</span></span>
+<span id="cb110-13"><a href="optimization.html#cb110-13" aria-hidden="true" tabindex="-1"></a>nr <span class="ot">&lt;-</span> <span class="fu">nrow</span>(out)</span>
+<span id="cb110-14"><a href="optimization.html#cb110-14" aria-hidden="true" tabindex="-1"></a>model.output <span class="ot">&lt;-</span> out[nr,<span class="fu">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)]</span>
+<span id="cb110-15"><a href="optimization.html#cb110-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-16"><a href="optimization.html#cb110-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculate the sum of the squared differences</span></span>
+<span id="cb110-17"><a href="optimization.html#cb110-17" aria-hidden="true" tabindex="-1"></a><span class="do">## squaring the differences makes them positives and </span></span>
+<span id="cb110-18"><a href="optimization.html#cb110-18" aria-hidden="true" tabindex="-1"></a><span class="do">## weights big differences even more heavily</span></span>
+<span id="cb110-19"><a href="optimization.html#cb110-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-20"><a href="optimization.html#cb110-20" aria-hidden="true" tabindex="-1"></a>diffs <span class="ot">&lt;-</span> <span class="fu">log</span>(model.output, <span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log</span>(data, <span class="dv">10</span>)</span>
+<span id="cb110-21"><a href="optimization.html#cb110-21" aria-hidden="true" tabindex="-1"></a>diffs2 <span class="ot">&lt;-</span> diffs<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb110-22"><a href="optimization.html#cb110-22" aria-hidden="true" tabindex="-1"></a>wdiffs2 <span class="ot">&lt;-</span> diffs2<span class="sc">/</span>vars</span>
+<span id="cb110-23"><a href="optimization.html#cb110-23" aria-hidden="true" tabindex="-1"></a> sse <span class="ot">&lt;-</span> <span class="fu">sum</span>( wdiffs2 )</span>
+<span id="cb110-24"><a href="optimization.html#cb110-24" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb110-25"><a href="optimization.html#cb110-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Return the SSE</span></span>
+<span id="cb110-26"><a href="optimization.html#cb110-26" aria-hidden="true" tabindex="-1"></a> sse</span>
+<span id="cb110-27"><a href="optimization.html#cb110-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now things start to get a tiny bit different. We need a vector of parameters. What are these biological processes?</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="optimization.html#cb111-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a32 =</span> <span class="fl">69.6</span><span class="sc">/</span><span class="dv">4700</span>, <span class="at">a31 =</span> <span class="fl">0.19</span>)</span></code></pre></div>
+<p>Now we use <code>optim()</code>. Unlike the 1-D <code>optimze()</code>, the first argument is the vector of parameters. The second argument is the function, and last we tell <code>optim()</code> what other stuff we need (in this case the data).</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="optimization.html#cb112-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">532</span><span class="sc">/</span><span class="dv">10</span>, <span class="dv">26</span><span class="sc">/</span><span class="dv">10</span>, <span class="dv">4700</span><span class="sc">*</span><span class="dv">2</span>)</span>
+<span id="cb112-2"><a href="optimization.html#cb112-2" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par =</span> params, <span class="at">fn =</span> sse.b.m.p2, <span class="at">data=</span>data, <span class="at">vars=</span>vars)</span></code></pre></div>
+<p>When we look at the values returned, we get a little more information than we do from <code>optimize</code> (see <code>?optim</code>). That is because <code>optim()</code> can use a variety of optimization algorithms, and a wide variety of control functions (see <code>?optim</code> for more information).</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="optimization.html#cb113-1" aria-hidden="true" tabindex="-1"></a>fit2</span></code></pre></div>
+<pre><code>## $par
+##        a32        a31 
+## 0.01823085 0.12182485 
+## 
+## $value
+## [1] 5.120701e-05
+## 
+## $counts
+## function gradient 
+##       65       NA 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL</code></pre>
+<p>The value <code>par</code> is, of course, the best set of parameters, and <code>value</code> is the value of the objective function. <code>Convergence</code> is just a code, and <code>0</code> indicates successful completion.</p>
+<p>Have at it. What can you learn today? What to we most want to know? Can we use the model to make hypotheses about processes that are not even in the model, like dentrification?</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="MEL.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
