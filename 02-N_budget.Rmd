@@ -3,7 +3,7 @@
 Background Readings:
 
 * pp. 17-35 (Soetaert and Hermann 2009)
-* Bormann et al. 1977
+* Bormann et al. 1977. Nitrogen Budget for an aggrading northern hardwood forest ecosystem. *Science* 196:981-983.
 
 ```{r hbnb, echo=FALSE, fig.cap="*Nitrogen budget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*", out.width = '100%'}
 knitr::include_graphics("figs/BormannF2.png")
@@ -234,5 +234,5 @@ Unlike our first model of this system, we see state variables on curved trajecto
 
 **Save your own R script of 'bormann2'**
 
-Make a new script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**. We will use this function in the next section. 
+Make a new script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**. We will use this function in a latter section. 
 
