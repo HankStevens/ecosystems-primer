@@ -305,7 +305,7 @@ nll.bormann.a5.traj <- function(y0, t, p, a5, export) {
 ```
 
 Now we select the data we want from the data set. We 'filter' out just the data we want. Below we use `%in%` to mean 'within', so translating, the code reads "'"filter out the subset of Ne.df for which the variable 'year' is within the define years in 'year.subset', and then make a new time variable 'y' where 0 is 1975."
-```{r}
+```{r traj_match1}
 year.subset <- 1975:2014
 #
 data.subset <- Ne.df %>% filter(year %in% year.subset) 
@@ -325,7 +325,7 @@ fit.a5 <- optim(f = nll.bormann.a5.traj,
 # list(est=fit.a5$par, 
 #      SD=sqrt( solve(fit.a5$hessian) ) )
 
-fit.a5.mle2 <- mle2(nll.bormann.a5.traj, start=list(a5=0.15),
+fit.a5.mle2 <- mle2(nll.bormann.a5.traj, start=list(a5=0.05),
                      data=list(export=data.subset$value, 
                                y0=y0, t=t, p=p2),
                      method="BFGS")
@@ -412,7 +412,7 @@ ggplot(data=out2, aes(x=time, y=value, colour=version)) +
 Here we use the same approach, in which we have an objective function, parameters of interest, and data.
 
 Here is our objective function, and you can see it is not very different. Find and explain the difference.
-```{r}
+```{r a54}
 nll.bormann.a5.4.traj <- function(a5, a4, data, y0, t, p) {
   ## an objective function whose arguments are 
   ## params - the parameter of interest
@@ -437,11 +437,12 @@ nll <- - sum( dnorm(data, mean=model.output, sd=SD, log=TRUE))
 ```
 
 This will generate warnings, but we'll ignore those for now. See @Bolker:2008rr for more information.
-```{r}
+```{r fit2parms}
 fit2.mle <- mle2(minuslogl = nll.bormann.a5.4.traj,
-                 start=list(a5=0.15, a4=0.018),
+                 start=list(a5=0.05, a4=0.015),
                  data=list(data=data.subset$value,
-                           y0=y0, t=t, p=p))
+                           y0=y0, t=t, p=p),
+                 method="L-BFGS-B", lower=0)
 summary(fit2.mle)
 ```
 
@@ -520,12 +521,12 @@ wdiffs2 <- diffs2/vars
 ```
 Now we include estimates of the variances. Your guess is nearly as good as mine. Often the standard deviations approach or exceed the mean, which means that the coefficient of variation is $\sigma/\mu > 1$. Let's pretend that we know the vegetation and the available pools pretty well ($\sigma/\mu \ll 1$), but have great uncertainty about the bound pool($\sigma/\mu \gg 1$). 
 ```{r}
-vars <- c(532/10, 26/10, 4700*10)
+vars <- c(532/10, 26/10, 4700)
 ```
 
 Now we can fit the model to the data.
 ```{r}
-fitv <- optim(par=c(a4=0.018),
+fitv <- optim(par=c(a4=0.014),
               fn = sse.bormann.mineralization3, 
               data=observed.data, vars=vars,
               method="BFGS")

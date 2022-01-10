@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Introduction ecosystem models | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Introduction ecosystem models | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2021-04-06" />
+<meta name="date" content="2022-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="N.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -61,6 +63,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -121,6 +124,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 </head>
 
 <body>
@@ -163,11 +189,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
 <li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
+<li class="chapter" data-level="5" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<li class="chapter" data-level="5.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="npzd-a-simple-aquatic-ecosystem.html"><a href="npzd-a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="5.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
@@ -251,11 +277,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>create models of ecosystem dynamics of your own;</li>
 <li>write R code to implement ecosystem models.</li>
 </ul>
-<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary soruces where appropriate.</p>
+<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary soruces where appropriate.</p>
 <div id="why-models" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Why models?</h2>
-<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations <span class="citation">(<a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
-<div class="figure"><span id="fig:SH1-3"></span>
+<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations <span class="citation">(<a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:SH1-3"></span>
 <img src="figs/SH_F-1.3.png" alt="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*" width="75%" />
 <p class="caption">
 Figure 2.1: <em>We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).</em>
@@ -265,17 +291,17 @@ Figure 2.1: <em>We use conceptual and mathematical models to interpret reality. 
 <div id="whats-an-ecosystem" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> What’s an ecosystem?</h2>
 You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">2.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (aka pools, stocks) are connected by <em>fluxes</em>, or flows, the transfer of some mass of the element. When these transfers come from outside the ecosystem entirely, we refer to them as <em>imports</em>. When the transfer exits the system entirely, we refer to it as an <em>exports</em>.
-<div class="figure"><span id="fig:lake"></span>
+<div class="figure"><span style="display:block;" id="fig:lake"></span>
 <img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.*" width="75%" />
 <p class="caption">
-Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="references.html#ref-Carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.</em>
+Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-Carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.</em>
 </p>
 </div>
 <p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">2.3</a>).</p>
-<div class="figure"><span id="fig:statefactors"></span>
+<div class="figure"><span style="display:block;" id="fig:statefactors"></span>
 <img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2011].*" width="75%" />
 <p class="caption">
-Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="references.html#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
+Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
 </p>
 </div>
 <p>We can describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.</p>
@@ -284,7 +310,7 @@ Figure 2.3: <em>The current state of an ecosystem depends on state factors <span
 <div id="whats-a-model" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> What’s a model?</h2>
 <p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes.</p>
-<p>We describe an ecosystem using <em>balance</em> equations for each pool <span class="citation">(p. 18, <a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
+<p>We describe an ecosystem using <em>balance</em> equations for each pool <span class="citation">(p. 18, <a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
 <p><span class="math display">\[\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}\]</span>
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> might look like
 <span class="math display">\[\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
@@ -296,31 +322,31 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <li>Ergo, units of <span class="math inline">\(e_H\)</span> are d<span class="math inline">\(^{-1}\)</span>.</li>
 </ul>
 <p>More intuitively, the units of these rate constants are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
-<p>See <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
+<p>See <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
 <p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
-<p>See <span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
+<p>See <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
 <p><strong>State factors</strong> also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., <span class="math inline">\(e_H\)</span>, <span class="math inline">\(u_S\)</span>) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em> We will add temperature to a model later in the book.</p>
 <p><strong>To review:</strong> variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
 <p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
 <div id="other-ideas" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Other ideas</h3>
 <p>Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these <em>mechanistic</em> models.</p>
-<div class="figure"><span id="fig:anpp"></span>
+<div class="figure"><span style="display:block;" id="fig:anpp"></span>
 <img src="figs/anpp-1.png" alt="*A statistical model of aboveground plant biomass as a function of available soil nitrogen.*" width="75%" />
 <p class="caption">
 Figure 2.4: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
 </p>
 </div>
-<p>A <em>theory</em> is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(<a href="references.html#ref-Marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
+<p>A <em>theory</em> is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(<a href="#ref-Marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
 <p>In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, <em>all models are wrong, but some are useful</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><strong>Exercise:</strong> Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you’ve made about the temporal and spatial scales. What mechanisms have you included? Why?</p>
 </div>
 </div>
 <div id="steps-in-modeling" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Steps in modeling</h2>
-<span class="citation"><a href="references.html#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="references.html#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
-<div class="figure"><span id="fig:SH1-7"></span>
+<span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
+<div class="figure"><span style="display:block;" id="fig:SH1-7"></span>
 <img src="figs/SH_F-1.7a.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" /><img src="figs/SH_F-1.7b.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" />
 <p class="caption">
 Figure 2.5: <em>It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).</em>
@@ -407,6 +433,21 @@ By convention, we denote the equilibrium value of <span class="math inline">\(P\
 
 </div>
 </div>
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Carpenter1992" class="csl-entry">
+Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. <span>“<span class="nocase">Resilience and resistance of lake phosphorus cycle before and after food web manipulation</span>.”</span> <em>Am. Nat.</em> 140: 781–98.
+</div>
+<div id="ref-Chapin2011" class="csl-entry">
+Chapin III, F S, P A Matson, and H A Mooney. 2011. <em><span class="nocase">Principles of Terrestrial Ecosystem Ecology</span></em>. 2nd edition. Springer.
+</div>
+<div id="ref-Marquet2014" class="csl-entry">
+Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. <span>“<span class="nocase">On theory in ecology</span>.”</span> <em>BioScience</em> 64 (8): 701–10.
+</div>
+<div id="ref-Soetaert2009" class="csl-entry">
+Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="1">
@@ -423,7 +464,6 @@ By convention, we denote the equilibrium value of <span class="math inline">\(P\
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -442,6 +482,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -462,6 +503,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
