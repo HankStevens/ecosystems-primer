@@ -94,25 +94,27 @@ If you compare the annual incremental rate we first calculated to this instantan
 
 ```{r echo=FALSE}
 labels <- c("$A, B, V$ state variables", "$a_1$, uptake rate by V from A ", "$a_2$, loss rate from V to A ", "$a_3$, loss rate from V to B", "$a_4$, mineralization", "$a_5$, export from A", "$a_6$, export from B","$I_1$, bulk precip", "$I_2$, N fixation")
+
 unit <- c("kg ha$^{-1}$", " (kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "(kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$")
-est <- c("$26, 4700, 532$", "$79.6 / (26 \\cdot 532) = 0.0058$", "$(6.6 + 0.8) / 532 = 0.014$", "$(54.2 + 2.7 + 0.1 + 6.2 ) / 532 = 0.00022$", "$69.6 / 4700 = 0.015$", "$3.9 /26 = 0.15$", "$0.1/4700 = 0.000021$", "$6.5$", "$14.2$")
+
+est <- c("$26, 4700, 532$", "$\\log( (79.6+26 \\cdot 532) / (26 \\cdot 532) ) = 0.0057$", "$\\log( (6.6 + 0.8 + 532) / 532 ) = 0.014$", "$\\log( (54.2 + 2.7 + 0.1 + 6.2 + 532) / 532) = 0.011$", "$\\log( (69.6 + 4700) / 4700) = 0.0147$", "$\\log( (3.9 + 26) / 26) = 0.14$", "$\\log( (0.1 + 4700)/4700) = 0.000021$", "$6.5$", "$14.2$")
 
 df <- data.frame("p or V" = labels, units=unit, Estimate=est )
-kbl(df, caption="Annual rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes ($\\Delta X/ \\Delta y$) are in units of kg ha$^{-1}$ y$^{-1}$. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.)", align = c("l","c","c"), escape=FALSE)
+kbl(df, caption="Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes ($dX/ dy$) are in units of kg ha$^{-1}$ y$^{-1}$. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.", align = c("l","c","c"), escape=FALSE)
 ```
 
 Enter parameters into R. 
 
 ```{r}
 params <- c( 
-i1 = 6.5, # precip
-i2 = 14.2, # fixation
-a1 = 79.6 / (26 * 532), # uptake
-a2 = (6.6 + 0.8) / 532, # throughfall and inorganic exudates
-a3 = (54.2 + 2.7 + 0.1 + 6.2 ) / 532, # litter, throughfall, organic exudates
-a4 = 69.6 / 4700, # net mineralization
-a5 = 3.9 /26, # export from available
-a6 = 0.1/4700 #export from bound
+  i1 = 6.5, # precip
+  i2 = 14.2, # fixation
+  a1 = log( (26*532+79.6) / (26 * 532)), # uptake
+  a2 = log( (6.6 + 0.8 + 532) / 532 ), # throughfall and inorganic exudates
+  a3 = log( (54.2 + 2.7 + 0.1 + 6.2 + 532 ) / 532), # litter, throughfall, organic exudates
+  a4 = log( (69.6+4700) / 4700), # net mineralization
+  a5 = log( (3.9+26) /26 ), # export from available
+  a6 = log( (0.1+4700) /4700) #export from bound
 ) # close parentheses
 
 params

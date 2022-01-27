@@ -240,10 +240,10 @@ Here we add denitrification parameters.
 ```{r}
 ## Forest floor denitrification (Groffman et al. 1989)
 ## total rate / forest floor N
-p$a7 <- 5 / 1100
+p["a7"] <- 5 / 1100
 
 ## Stream denitrification (Mulholland et al. 2008)
-p$a8 <- 0.2 # 
+p["a8"] <- 0.2 # 
 ```
 
 
@@ -368,7 +368,7 @@ bormann.denitr.temp <- function(t, y, p) {
 Here we define $Q_{10}$.
 ```{r}
 ## A common default value is 2
-p$Q10 <- 2
+p["Q10"] <- 2
 ```
 
 
@@ -380,7 +380,7 @@ p$Q10 <- 2
 ## 
 t <- seq(from = 0, to = nrow(temps)-1, by = 1)
 
-p$ref.temp <- 3.5 # reference temperature from 1979
+p["ref.temp"] <- 3.5 # reference temperature from 1979
 y0 <- c(V = 532, A = 24, B = 4700)
 ## Integrate
 out <- as.data.frame(

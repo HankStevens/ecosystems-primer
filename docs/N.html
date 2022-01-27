@@ -351,7 +351,7 @@ The average instantaneous rate, <span class="math inline">\(\alpha_4\)</span> re
 <p>If you compare the annual incremental rate we first calculated to this instantaneous rate, you can see they are quite similar. They would be indistinguishable given the other uncertainties in actually estimating these fluxes and pools. However, that is not always the case.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-7">Table 3.1: </span>Annual rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(\Delta X/ \Delta y\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.)
+<span id="tab:unnamed-chunk-7">Table 3.1: </span>Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(dX/ dy\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.
 </caption>
 <thead>
 <tr>
@@ -386,7 +386,7 @@ kg ha<span class="math inline">\(^{-1}\)</span>
 (kg ha<span class="math inline">\(^{-1}\)</span>)<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
-<span class="math inline">\(79.6 / (26 \cdot 532) = 0.0058\)</span>
+<span class="math inline">\(\log( (79.6+26 \cdot 532) / (26 \cdot 532) ) = 0.0057\)</span>
 </td>
 </tr>
 <tr>
@@ -397,7 +397,7 @@ kg ha<span class="math inline">\(^{-1}\)</span>
 y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
-<span class="math inline">\((6.6 + 0.8) / 532 = 0.014\)</span>
+<span class="math inline">\(\log( (6.6 + 0.8 + 532) / 532 ) = 0.014\)</span>
 </td>
 </tr>
 <tr>
@@ -408,7 +408,7 @@ y<span class="math inline">\(^{-1}\)</span>
 (kg ha<span class="math inline">\(^{-1}\)</span>)<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
-<span class="math inline">\((54.2 + 2.7 + 0.1 + 6.2 ) / 532 = 0.00022\)</span>
+<span class="math inline">\(\log( (54.2 + 2.7 + 0.1 + 6.2 + 532) / 532) = 0.011\)</span>
 </td>
 </tr>
 <tr>
@@ -419,7 +419,7 @@ y<span class="math inline">\(^{-1}\)</span>
 y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
-<span class="math inline">\(69.6 / 4700 = 0.015\)</span>
+<span class="math inline">\(\log( (69.6 + 4700) / 4700) = 0.0147\)</span>
 </td>
 </tr>
 <tr>
@@ -430,7 +430,7 @@ y<span class="math inline">\(^{-1}\)</span>
 y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
-<span class="math inline">\(3.9 /26 = 0.15\)</span>
+<span class="math inline">\(\log( (3.9 + 26) / 26) = 0.14\)</span>
 </td>
 </tr>
 <tr>
@@ -441,7 +441,7 @@ y<span class="math inline">\(^{-1}\)</span>
 y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
-<span class="math inline">\(0.1/4700 = 0.000021\)</span>
+<span class="math inline">\(\log( (0.1 + 4700)/4700) = 0.000021\)</span>
 </td>
 </tr>
 <tr>
@@ -470,21 +470,21 @@ kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-
 </table>
 <p>Enter parameters into R.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="N.html#cb8-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
-<span id="cb8-2"><a href="N.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
-<span id="cb8-3"><a href="N.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
-<span id="cb8-4"><a href="N.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">a1 =</span> <span class="fl">79.6</span> <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>), <span class="co"># uptake</span></span>
-<span id="cb8-5"><a href="N.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># throughfall and inorganic exudates</span></span>
-<span id="cb8-6"><a href="N.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">6.2</span> ) <span class="sc">/</span> <span class="dv">532</span>, <span class="co"># litter, throughfall, organic exudates</span></span>
-<span id="cb8-7"><a href="N.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">a4 =</span> <span class="fl">69.6</span> <span class="sc">/</span> <span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
-<span id="cb8-8"><a href="N.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">a5 =</span> <span class="fl">3.9</span> <span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available</span></span>
-<span id="cb8-9"><a href="N.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span> <span class="co">#export from bound</span></span>
+<span id="cb8-2"><a href="N.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
+<span id="cb8-3"><a href="N.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
+<span id="cb8-4"><a href="N.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">a1 =</span> <span class="fu">log</span>( (<span class="dv">26</span><span class="sc">*</span><span class="dv">532</span><span class="fl">+79.6</span>) <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>)), <span class="co"># uptake</span></span>
+<span id="cb8-5"><a href="N.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">a2 =</span> <span class="fu">log</span>( (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span> <span class="sc">+</span> <span class="dv">532</span>) <span class="sc">/</span> <span class="dv">532</span> ), <span class="co"># throughfall and inorganic exudates</span></span>
+<span id="cb8-6"><a href="N.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">a3 =</span> <span class="fu">log</span>( (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">6.2</span> <span class="sc">+</span> <span class="dv">532</span> ) <span class="sc">/</span> <span class="dv">532</span>), <span class="co"># litter, throughfall, organic exudates</span></span>
+<span id="cb8-7"><a href="N.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">a4 =</span> <span class="fu">log</span>( (<span class="fl">69.6</span><span class="sc">+</span><span class="dv">4700</span>) <span class="sc">/</span> <span class="dv">4700</span>), <span class="co"># net mineralization</span></span>
+<span id="cb8-8"><a href="N.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">a5 =</span> <span class="fu">log</span>( (<span class="fl">3.9</span><span class="sc">+</span><span class="dv">26</span>) <span class="sc">/</span><span class="dv">26</span> ), <span class="co"># export from available</span></span>
+<span id="cb8-9"><a href="N.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">a6 =</span> <span class="fu">log</span>( (<span class="fl">0.1</span><span class="sc">+</span><span class="dv">4700</span>) <span class="sc">/</span><span class="dv">4700</span>) <span class="co">#export from bound</span></span>
 <span id="cb8-10"><a href="N.html#cb8-10" aria-hidden="true" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
 <span id="cb8-11"><a href="N.html#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-12"><a href="N.html#cb8-12" aria-hidden="true" tabindex="-1"></a>params</span></code></pre></div>
 <pre><code>##           i1           i2           a1           a2           a3           a4 
-## 6.500000e+00 1.420000e+01 5.754772e-03 1.390977e-02 1.187970e-01 1.480851e-02 
+## 6.500000e+00 1.420000e+01 5.738276e-03 1.381392e-02 1.122540e-01 1.469994e-02 
 ##           a5           a6 
-## 1.500000e-01 2.127660e-05</code></pre>
+## 1.397619e-01 2.127637e-05</code></pre>
 </div>
 <div id="mathematical-solution" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Mathematical solution</h2>
@@ -526,11 +526,11 @@ equations. This will allow R to integrate change through time.</p>
 <span id="cb12-3"><a href="N.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(out) <span class="co"># the first 6 lines</span></span></code></pre></div>
 <pre><code>##      time        V        A        B    total
 ## [1,]    0 532.0000 26.00000 4700.000 5258.000
-## [2,]    1 540.7799 25.76598 4708.168 5274.714
-## [3,]    2 548.7920 25.47149 4717.208 5291.472
-## [4,]    3 556.0406 25.21597 4727.013 5308.270
-## [5,]    4 562.6178 24.99710 4737.489 5325.104
-## [6,]    5 568.6085 24.80918 4748.550 5341.968</code></pre>
+## [2,]    1 543.9726 25.64295 4705.372 5274.987
+## [3,]    2 554.8724 25.21977 4711.941 5292.033
+## [4,]    3 564.7106 24.85484 4719.569 5309.135
+## [5,]    4 573.6112 24.54316 4728.128 5326.283
+## [6,]    5 581.6881 24.27610 4737.507 5343.471</code></pre>
 <p>Use <code>pivot_longer()</code> and <code>ggplot()</code> to make a graph. We use <code>pivot_longer()</code> gather multiple columns into one with a new name (<code>values_to=kg.N</code>), keeping track of the names of the original columns in a new column (<code>names_to=State.var</code>). We can use <code>pivot_wider()</code> if we ever want to spread those columns back out.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="N.html#cb14-1" aria-hidden="true" tabindex="-1"></a>outL <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="co"># select the data set</span></span>
 <span id="cb14-2"><a href="N.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span>  <span class="co"># make sure it is a data frame and not a matrix</span></span>
