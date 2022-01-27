@@ -66,15 +66,31 @@ If we have the data (we do) and relatively simple mathematical forms
 (we do), it is fairly straightforward to estimate parameters. For
 instance, we decided that net mineralization would be directly
 proportional to the size of the organic pool, $B$, that is, $F_4 =
-a_4B$. To calculate $a_4$, we substitute data where we can, and solve
-what we need. 
+a_4B$. To calculate the annual incremental rate $a_4$, we substitute data where we can, and solve what we need. 
 \begin{align*}
-  F_2 &= a_4 B\\
-  69.6 &= a_4 4700 \\
+  F_4 &= a_4 B\\
+  69.6 &= a_4 B\\
   a_4 &= \frac{69.6}{4700}\\
-  a_4 &\approx 0.015
+  a_4 &\approx 0.0148
 \end{align*}
-We use the same approach for second order equations as well.
+
+We use the same approach for second order equations as well. 
+\begin{align*}
+  F_1 &= a_1 AV \\
+  79.6 &= a_1  26\cdot 532  \\
+  a_1 &= \frac{79.6}{26\cdot 532}\\
+  a_1 &\approx 0.0058
+\end{align*}
+
+To create instantaneous rates, we take advantage of a result from calculus. It turns out that the natural logarithm of the ratio of masses gives us an estimate of an average instantaneous rate.
+
+Let $B_0$ be the mass of N in the soil at time 0, and $B_1$ would be the mass one year later if we summed $B$ plus the flux coming out of $B$:
+$$B_0=4700 \quad; \quad B_1 = B_0 + F_4 = 4700 + 69.6$$
+The average instantaneous rate, $\alpha_4$ required to get us from $B_0$ to $B_1$ in one year is
+$$\alpha_4 = \log\left(\frac{B_1}{B_0}\right) =  \log\left(\frac{4700+69.6}{4700}\right) \approx 0.0147$$
+
+If you compare the annual incremental rate we first calculated to this instantaneous rate, you can see they are quite similar. They would be indistinguishable given the other uncertainties in actually estimating these fluxes and pools. However, that is not always the case.
+
 
 ```{r echo=FALSE}
 labels <- c("$A, B, V$ state variables", "$a_1$, uptake rate by V from A ", "$a_2$, loss rate from V to A ", "$a_3$, loss rate from V to B", "$a_4$, mineralization", "$a_5$, export from A", "$a_6$, export from B","$I_1$, bulk precip", "$I_2$, N fixation")
@@ -82,7 +98,7 @@ unit <- c("kg ha$^{-1}$", " (kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "(kg ha
 est <- c("$26, 4700, 532$", "$79.6 / (26 \\cdot 532) = 0.0058$", "$(6.6 + 0.8) / 532 = 0.014$", "$(54.2 + 2.7 + 0.1 + 6.2 ) / 532 = 0.00022$", "$69.6 / 4700 = 0.015$", "$3.9 /26 = 0.15$", "$0.1/4700 = 0.000021$", "$6.5$", "$14.2$")
 
 df <- data.frame("p or V" = labels, units=unit, Estimate=est )
-kbl(df, caption="Parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes ($dX/dy$) are in units of kg ha$^{-1}$ y$^{-1}$. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.)", align = c("l","c","c"), escape=FALSE)
+kbl(df, caption="Annual rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes ($\\Delta X/ \\Delta y$) are in units of kg ha$^{-1}$ y$^{-1}$. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.)", align = c("l","c","c"), escape=FALSE)
 ```
 
 Enter parameters into R. 

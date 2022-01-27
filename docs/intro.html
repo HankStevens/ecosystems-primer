@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-01-10" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,11 +265,8 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="intro" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Introduction ecosystem models</h1>
-<p>Reading:</p>
-<ul>
-<li>pp. 1-17, (in Chapters 1, 2 of Soetaert and Hermann 2009)</li>
-</ul>
-<p>In this course, we’ll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope the you,</p>
+<p>Primary source: pp. 1-17, (in Chapters 1, 2 of Soetaert and Hermann 2009)</p>
+<p>In this course, we’ll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope that you,</p>
 <ul>
 <li>become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;</li>
 <li>understand and describe the quantitative and qualitative features of ecosystem dynamics and models of those dynamics;</li>
@@ -277,10 +274,10 @@ div.csl-indent {
 <li>create models of ecosystem dynamics of your own;</li>
 <li>write R code to implement ecosystem models.</li>
 </ul>
-<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary soruces where appropriate.</p>
+<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary sources where appropriate.</p>
 <div id="why-models" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Why models?</h2>
-<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, and predict manage ecosystems and populations <span class="citation">(<a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
+<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations <span class="citation">(<a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
 <div class="figure"><span style="display:block;" id="fig:SH1-3"></span>
 <img src="figs/SH_F-1.3.png" alt="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*" width="75%" />
 <p class="caption">
@@ -290,13 +287,14 @@ Figure 2.1: <em>We use conceptual and mathematical models to interpret reality. 
 </div>
 <div id="whats-an-ecosystem" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> What’s an ecosystem?</h2>
-You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">2.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (aka pools, stocks) are connected by <em>fluxes</em>, or flows, the transfer of some mass of the element. When these transfers come from outside the ecosystem entirely, we refer to them as <em>imports</em>. When the transfer exits the system entirely, we refer to it as an <em>exports</em>.
+You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">2.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by <em>fluxes</em>, or flows, the transfer per unit time of some mass of the element. When these transfers come from entirely outside the ecosystem, we refer to them as <em>imports</em>. When the transfer exits the system entirely, we refer to it as an <em>exports</em>. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
 <div class="figure"><span style="display:block;" id="fig:lake"></span>
-<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.*" width="75%" />
+<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*" width="75%" />
 <p class="caption">
-Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-Carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time.</em>
+Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-Carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).</em>
 </p>
 </div>
+<p>In Fig. <a href="intro.html#fig:lake">2.2</a>, all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools save dissolved P appear to export P back out. Dissolved P is receiving fluxes from all the animals in the system, and losing P to seston, which is primarily phytoplankton.</p>
 <p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">2.3</a>).</p>
 <div class="figure"><span style="display:block;" id="fig:statefactors"></span>
 <img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2011].*" width="75%" />
@@ -304,15 +302,13 @@ Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span c
 Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
 </p>
 </div>
-<p>We can describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.</p>
-<p>In Fig. <a href="intro.html#fig:lake">2.2</a>, all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools save dissolved P appear to export P back out. Dissolved P is receiving fluxes from all the animals in the system, and losing P to seston, which is primarily phytoplankton.</p>
 </div>
 <div id="whats-a-model" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> What’s a model?</h2>
-<p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes.</p>
-<p>We describe an ecosystem using <em>balance</em> equations for each pool <span class="citation">(p. 18, <a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes:</p>
+<p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes. In principle, variables can usually be observed, whereas we cannot directly observe parameters and have to estimate them.</p>
+<p>We describe an ecosystem using <strong>balance equations</strong> for each pool <span class="citation">(p. 18, <a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:</p>
 <p><span class="math display">\[\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}\]</span>
-As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> might look like
+As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> could look like
 <span class="math display">\[\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
 where <span class="math inline">\(D\)</span> is the amount of P in the dissolved pool, perhaps in mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>, <span class="math inline">\(I\)</span> is import, or source, from outside the system (dust? lake inflow?), and <span class="math inline">\(H\)</span>, <span class="math inline">\(N\)</span>, <span class="math inline">\(F_1\)</span>, and <span class="math inline">\(F_2\)</span> are the other pools. The lower case letters are <em>parameters</em> or rate constants that are the mass-specific fluxes.</p>
 <p>The units of <span class="math inline">\(dD/dt\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and so <strong>each term (e.g., <span class="math inline">\(I\)</span> or <span class="math inline">\(e_H H\)</span>) in the equation must also have these same units</strong>.</p>
@@ -321,7 +317,7 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <li>units of <span class="math inline">\(H\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>.</li>
 <li>Ergo, units of <span class="math inline">\(e_H\)</span> are d<span class="math inline">\(^{-1}\)</span>.</li>
 </ul>
-<p>More intuitively, the units of these rate constants are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
+<p>More intuitively, the units of these rate constants are milligrams per square meter per day, per milligram per square meter of lake (mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> / mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake). Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
 <p>See <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
 <p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
@@ -331,14 +327,14 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
 <div id="other-ideas" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Other ideas</h3>
-<p>Statistical models (e.g., regression) are concerned with describing patterns and hypothesis testing. Process models (e.g., stock and flow models) are also descriptions of natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these <em>mechanistic</em> models.</p>
+<p><em>Statistical models</em> (e.g., regression) often describe patterns in natural systems and help test hypotheses. They often represent a mechanistic process, but that is not typically their main goal. <em>Process models</em> (e.g., stock and flow models) also describe patterns in natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these <em>mechanistic</em> models.</p>
 <div class="figure"><span style="display:block;" id="fig:anpp"></span>
 <img src="figs/anpp-1.png" alt="*A statistical model of aboveground plant biomass as a function of available soil nitrogen.*" width="75%" />
 <p class="caption">
 Figure 2.4: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
 </p>
 </div>
-<p>A <em>theory</em> is a well supported hierarchical framework that contains clearly formulated postulates, based on a minimal set of assumptions, from which a set of predictions logically follows <span class="citation">(<a href="#ref-Marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span>. <em>Efficient</em> theory is based to as much as possible on first principles, and relies on as few assumptins as possible.</p>
+<p>A <em>theory</em> is a well-supported hierarchical conceptual framework that contains clearly formulated postulates, from which a set of predictions logically follows. <em>Efficient</em> theory <span class="citation">(<a href="#ref-Marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span> is based on first principles, and relies on as few assumptins as possible.</p>
 <p>In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, <em>all models are wrong, but some are useful</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><strong>Exercise:</strong> Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you’ve made about the temporal and spatial scales. What mechanisms have you included? Why?</p>
 </div>
@@ -354,23 +350,24 @@ Figure 2.5: <em>It is helpful to use a series of steps in improving our models. 
 </div>
 <p>In brief, I paraphrase or plagiarize their steps thus:</p>
 <ul>
-<li>Problem statement or question = narrowing the focus of interest in a real system.</li>
-<li>System conceptualization = representing a real system as an abstraction.</li>
-<li>Model formulation = representing the conceptual model in mathematical form.</li>
-<li>Model Verification = Checks on internal consistency, consistency with physical laws of conservation, and ability to reproduce known solutions.</li>
-<li>Parameterization = Using the literature or other sources to help determine numerical values for parameters; fine tuning these on the basis of model output is model calibration.</li>
-<li>Model Calibration = using model output to fine tune model parameters, often referred to or related to model fitting.</li>
-<li>Sensitivity analysis = using model output to understand the effect of variation in parameters and state variables on dynamics.</li>
+<li>Problem statement or question = narrow the focus of interest in a real system.</li>
+<li>System conceptualization = represent a real system as an abstraction.</li>
+<li>Model formulation = represent the conceptual model in mathematical form.</li>
+<li>Model verification = check internal consistency, consistency with physical laws of conservation, and ability to reproduce known solutions.</li>
+<li>Parameterization = use the literature or other sources to help determine numerical values for parameters; fine tuning these on the basis of model output is model calibration.</li>
+<li>Model calibration = use model output to fine tune model parameters, often referred to, or related to, model fitting.</li>
+<li>Sensitivity analysis = use model output to understand the effect of variation in parameters and state variables on dynamics.</li>
 </ul>
+<p>Note that this figure contains a loop – after calibration and sensitivity analysis, we loop back the model structure and its parameters. In this class, you will use sensitivity analysis to identify the most interesting or most important parts of your model.</p>
 </div>
 <div id="an-example-in-r" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> An example in R</h2>
 <p>Here we create a simple model to illustrate some of what we’ve been describing.</p>
-<p>Consider our lake above, as a whole. Just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported, that is, a constant fraction, <span class="math inline">\(a\)</span>, is exported,
+<p>Consider our lake above, but as a whole – just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported. We will assume that a constant fraction, <span class="math inline">\(a\)</span>, is exported,
 <span class="math display">\[\frac{dP}{dt} = I - a P\]</span>
 In R, we write a function for the system of differential equations, and include descriptive comments.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A function called lake to represent an ODE</span></span>
-<span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to use in ode() in the deSolve package.</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A function called &#39;lake&#39; to represent an ordinary differential equation (ODE)</span></span>
+<span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to use with ode() in the deSolve package.</span></span>
 <span id="cb1-3"><a href="intro.html#cb1-3" aria-hidden="true" tabindex="-1"></a>lake <span class="ot">&lt;-</span> <span class="cf">function</span>( time, state_vars, parameters ){</span>
 <span id="cb1-4"><a href="intro.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## ODE function for a single pool (e.g., a lake)  with a constant</span></span>
 <span id="cb1-5"><a href="intro.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## rate of import, and first-order export function (depends on the pool).</span></span>
@@ -385,7 +382,7 @@ In R, we write a function for the system of differential equations, and include 
 <span id="cb1-14"><a href="intro.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
 <span id="cb1-15"><a href="intro.html#cb1-15" aria-hidden="true" tabindex="-1"></a>       {</span>
 <span id="cb1-16"><a href="intro.html#cb1-16" aria-hidden="true" tabindex="-1"></a>         dP.dt <span class="ot">&lt;-</span> I <span class="sc">-</span>a<span class="sc">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
-<span id="cb1-17"><a href="intro.html#cb1-17" aria-hidden="true" tabindex="-1"></a>         <span class="fu">return</span>(<span class="fu">list</span>(dP.dt)) <span class="co"># return the value of the rate function</span></span>
+<span id="cb1-17"><a href="intro.html#cb1-17" aria-hidden="true" tabindex="-1"></a>         <span class="fu">return</span>( <span class="fu">list</span>( dP.dt ) ) <span class="co"># return the value of the rate function</span></span>
 <span id="cb1-18"><a href="intro.html#cb1-18" aria-hidden="true" tabindex="-1"></a>       })</span>
 <span id="cb1-19"><a href="intro.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-20"><a href="intro.html#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
@@ -429,7 +426,7 @@ By convention, we denote the equilibrium value of <span class="math inline">\(P\
 <li>Is our graph consistent with the analytical prediction of <span class="math inline">\(P^*\)</span>?</li>
 <li>Determine the units of <span class="math inline">\(I\)</span> and <span class="math inline">\(a\)</span>; show your work and explain it to your cat.</li>
 </ul>
-<p>In more complex systems, we often (typically?) can’t solve for the analytical solution. Instead, we usually run a model for a long period of time, until the state variables stop changing to find the same result. Alternatively, if we have a model of a real ecosystem, we made be interested in its short term dynamics and address any number of questions related to experimental results, making predictions about the consequences of landscape management, or or using a time series to compare different models.</p>
+<p>In more complex systems, we often (typically?) can’t solve for the analytical solution. Instead, to find the same result, we usually run a model for a long period of time, until the state variables stop changing very much. Alternatively, if we have a model of a real ecosystem, we made be interested in its short term dynamics, in addressing questions related to experimental results, making predictions about the consequences of landscape management, or in using a time series to compare different models.</p>
 
 </div>
 </div>

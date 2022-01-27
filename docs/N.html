@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-01-10" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -268,7 +268,7 @@ div.csl-indent {
 <p>Background Readings:</p>
 <ul>
 <li>pp. 17-35 (Soetaert and Hermann 2009)</li>
-<li>Bormann et al. 1977</li>
+<li>Bormann et al. 1977. Nitrogen Budget for an aggrading northern hardwood forest ecosystem. <em>Science</em> 196:981-983.</li>
 </ul>
 <div class="figure"><span style="display:block;" id="fig:hbnb"></span>
 <img src="figs/BormannF2.png" alt="*Nitrogen budget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*" width="100%" />
@@ -329,18 +329,29 @@ From this we see that the total mass budget for this watershed depends simply on
 <p>If we have the data (we do) and relatively simple mathematical forms
 (we do), it is fairly straightforward to estimate parameters. For
 instance, we decided that net mineralization would be directly
-proportional to the size of the organic pool, <span class="math inline">\(B\)</span>, that is, <span class="math inline">\(F_4 = a_4B\)</span>. To calculate <span class="math inline">\(a_4\)</span>, we substitute data where we can, and solve
-what we need.
+proportional to the size of the organic pool, <span class="math inline">\(B\)</span>, that is, <span class="math inline">\(F_4 = a_4B\)</span>. To calculate the annual incremental rate <span class="math inline">\(a_4\)</span>, we substitute data where we can, and solve what we need.
 <span class="math display">\[\begin{align*}
-  F_2 &amp;= a_4 B\\
-  69.6 &amp;= a_4 4700 \\
+  F_4 &amp;= a_4 B\\
+  69.6 &amp;= a_4 B\\
   a_4 &amp;= \frac{69.6}{4700}\\
-  a_4 &amp;\approx 0.015
-\end{align*}\]</span>
-We use the same approach for second order equations as well.</p>
+  a_4 &amp;\approx 0.0148
+\end{align*}\]</span></p>
+<p>We use the same approach for second order equations as well.
+<span class="math display">\[\begin{align*}
+  F_1 &amp;= a_1 AV \\
+  79.6 &amp;= a_1  26\cdot 532  \\
+  a_1 &amp;= \frac{79.6}{26\cdot 532}\\
+  a_1 &amp;\approx 0.0058
+\end{align*}\]</span></p>
+<p>To create instantaneous rates, we take advantage of a result from calculus. It turns out that the natural logarithm of the ratio of masses gives us an estimate of an average instantaneous rate.</p>
+<p>Let <span class="math inline">\(B_0\)</span> be the mass of N in the soil at time 0, and <span class="math inline">\(B_1\)</span> would be the mass one year later if we summed <span class="math inline">\(B\)</span> plus the flux coming out of <span class="math inline">\(B\)</span>:
+<span class="math display">\[B_0=4700 \quad; \quad B_1 = B_0 + F_4 = 4700 + 69.6\]</span>
+The average instantaneous rate, <span class="math inline">\(\alpha_4\)</span> required to get us from <span class="math inline">\(B_0\)</span> to <span class="math inline">\(B_1\)</span> in one year is
+<span class="math display">\[\alpha_4 = \log\left(\frac{B_1}{B_0}\right) =  \log\left(\frac{4700+69.6}{4700}\right) \approx 0.0147\]</span></p>
+<p>If you compare the annual incremental rate we first calculated to this instantaneous rate, you can see they are quite similar. They would be indistinguishable given the other uncertainties in actually estimating these fluxes and pools. However, that is not always the case.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-7">Table 3.1: </span>Parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(dX/dy\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.)
+<span id="tab:unnamed-chunk-7">Table 3.1: </span>Annual rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(\Delta X/ \Delta y\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. (Note that calculations should not be included in your final table, but are presented here for comparison to your own calculations.)
 </caption>
 <thead>
 <tr>
@@ -599,7 +610,7 @@ Figure 3.4: Dynamics of an N budget, assuming density-dependence in vegetation w
 </div>
 <p>Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in <span class="citation"><a href="#ref-Bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo</a> (<a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span> and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.</p>
 <p><strong>Save your own R script of ‘bormann2’</strong></p>
-<p>Make a new script that contains nothing but the <code>bormann2</code> function. Copy the block of text where we define it, paste it into a new R script, and save it as <strong>bormann2.R</strong>. We will use this function in the next section.</p>
+<p>Make a new script that contains nothing but the <code>bormann2</code> function. Copy the block of text where we define it, paste it into a new R script, and save it as <strong>bormann2.R</strong>. We will use this function in a latter section.</p>
 
 </div>
 </div>
