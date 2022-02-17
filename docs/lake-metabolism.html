@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-02-09" />
+<meta name="date" content="2022-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -276,8 +276,14 @@ Figure 4.1: <em>We can use lake oxygen level to measure net ecosystem production
 <h2><span class="header-section-number">4.1</span> Estimating Productivity</h2>
 <p>Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O<span class="math inline">\(_2\)</span> is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.</p>
 <p>We measure whole ecosystem metabolic rate as net ecosystem productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
-<span class="math display">\[NEP = GPP - R\]</span>
-If we assume that water column oxygen is correlated with the rates of photosynthesis, respiration, and net primary production, then we can think of the slopes of oxygen concentration vs. time as rates of respiration and net primary production. If we assume that respiration is constant throughout the 24 h cycle, we calculate GPP as the sum of NEP and R.</p>
+<span class="math display">\[NEP = GPP - R_{\mathrm{total}}\]</span>
+where <span class="math inline">\(R_{\mathrm{total}}=R_A+R_H\)</span>, or total respiration. Limnologists assume that, due to stoichiometric relations, rates of photosynthesis, respiration, and net primary production are correlated with rates of change in dissolved oxygen. Therefore, we can estimate respiration and net primary production by quantifying changes in oxygen concentration over time. Dissolved oxygen in the water column (DO) is relatively easy to measure, therefore it is relatively easy to estimate NEP. If we assume that respiration is constant throughout the 24 h cycle, we estimate GPP as the sum of NEP and R. This is known are the free-water dissolved oxygen method of estimating NEP, R and GPP.</p>
+<p>Using DO, we can estimate NEP and R, and then calculate GPP as the sum of NEP and R. Because we think about lake NEP as <em>metabolism</em>, we will use units of <span class="math inline">\(R\)</span>, <span class="math inline">\(NEP\)</span>, and <span class="math inline">\(GPP\)</span> as mg<span class="math inline">\(\cdot\)</span>mL<span class="math inline">\(^{-1}\)</span><span class="math inline">\(\cdot\)</span>h<span class="math inline">\(^{-1}\)</span>.</p>
+<ul>
+<li>the rate <span class="math inline">\(R\)</span> is the slope of DO vs. time at nighttime (when photoautrophs stop fixing carbon).</li>
+<li>the rate <span class="math inline">\(NEP\)</span> is the slope of DO vs. time during the day (when photoautrophs are fixing carbon and respiration continues unabated).</li>
+<li>the rate <span class="math inline">\(GPP\)</span> is <span class="math inline">\(GPP = NEP + R_{\mathrm{total}}\)</span></li>
+</ul>
 </div>
 <div id="by-hand-in-r" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> By hand, in R</h2>

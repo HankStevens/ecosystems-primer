@@ -11,8 +11,14 @@ knitr::include_graphics("figs/lake_O2.jpg")
 Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O$_2$ is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.
 
 We measure whole ecosystem metabolic rate as net ecosystem productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
-$$NEP = GPP - R$$
-If we assume that water column oxygen is correlated with the rates of photosynthesis, respiration, and net primary production, then we can think of the slopes of oxygen concentration vs. time as rates of respiration and net primary production.  If we assume that respiration is constant throughout the 24 h cycle, we calculate GPP as the sum of NEP and R. 
+$$NEP = GPP - R_{\mathrm{total}}$$
+where $R_{\mathrm{total}}=R_A+R_H$, or total respiration. Limnologists assume that, due to stoichiometric relations, rates of photosynthesis, respiration, and net primary production are correlated with rates of change in dissolved oxygen. Therefore, we can estimate respiration and net primary production by quantifying changes in oxygen concentration over time.  Dissolved oxygen in the water column (DO) is relatively easy to measure, therefore it is relatively easy to estimate NEP. If we assume that respiration is constant throughout the 24 h cycle, we estimate GPP as the sum of NEP and R. This is known are the free-water dissolved oxygen method of estimating NEP, R and GPP.
+
+Using DO, we can estimate NEP and R, and then calculate GPP as the sum of NEP and R. Because we think about lake NEP as *metabolism*, we will use units of $R$, $NEP$, and $GPP$ as mg$\cdot$mL$^{-1}$$\cdot$h$^{-1}$.
+
+* the rate $R$ is  the slope of DO vs. time at nighttime (when photoautrophs stop fixing carbon).
+* the rate $NEP$ is the slope of DO vs. time during the day (when photoautrophs are fixing carbon and respiration continues unabated).
+* the rate $GPP$ is $GPP = NEP + R_{\mathrm{total}}$ 
 
 ## By hand, in R
 Let's practice R by importing, wrangling, and graphing data, then calculating slopes and estimating respiration, NPP, and GPP. 
