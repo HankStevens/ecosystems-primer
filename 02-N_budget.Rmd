@@ -60,7 +60,7 @@ Using the law of mass action for plant uptake, we will describe the fluxes in th
 Take the time to identify each term and think about the biology or physics that might govern each term.
 
 ## Paramaterization
-Parameteriztion is what we call assigning numerical values to mathematical parameters. Here, we find initial estimates for the parameters in our model. We use the literature for this purpose [@Bormann1977].
+Parameteriztion is what we call assigning numerical values to mathematical parameters. Here, we find initial estimates for the parameters in our model. We use the literature for this purpose [@bormann1977].
 
 If we have the data (we do) and relatively simple mathematical forms
 (we do), it is fairly straightforward to estimate parameters. For
@@ -95,7 +95,7 @@ If you compare the annual incremental rate we first calculated to this instantan
 ```{r echo=FALSE}
 labels <- c("$A, B, V$ state variables", "$a_1$, uptake rate by V from A ", "$a_2$, loss rate from V to A ", "$a_3$, loss rate from V to B", "$a_4$, mineralization", "$a_5$, export from A", "$a_6$, export from B","$I_1$, bulk precip", "$I_2$, N fixation")
 
-unit <- c("kg ha$^{-1}$", " (kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "(kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$")
+unit <- c("$\\frac{kg}{ha}$ = kg ha$^{-1}$", " (kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$")
 
 est <- c("$26, 4700, 532$", "$\\log( (79.6+26 \\cdot 532) / (26 \\cdot 532) ) = 0.0057$", "$\\log( (6.6 + 0.8 + 532) / 532 ) = 0.014$", "$\\log( (54.2 + 2.7 + 0.1 + 6.2 + 532) / 532) = 0.011$", "$\\log( (69.6 + 4700) / 4700) = 0.0147$", "$\\log( (3.9 + 26) / 26) = 0.14$", "$\\log( (0.1 + 4700)/4700) = 0.000021$", "$6.5$", "$14.2$")
 
@@ -155,7 +155,7 @@ bormann1 <- function(t, y, p) {
 
 Now that we have the function, we tell R what to do with it. We will define the *initial state of the system*, and then tell R which time point we want it to return.
 
-The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in @Bormann1977.
+The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in @bormann1977.
 ```{r}
 ## starting values in kg/ha
 initial.state <- c( V = 532, A = 26, B = 4700)
@@ -248,7 +248,7 @@ outL2 <- out %>%
   pivot_longer(cols=-time, names_to="State.var", values_to="kg.N")
 ggplot(outL2, aes(time, kg.N)) + geom_line() + facet_wrap(~State.var, scale="free_y")
 ```
-Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in @Bormann1977 and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.
+Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in @bormann1977 and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.
 
 **Save your own R script of 'bormann2'**
 

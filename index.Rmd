@@ -36,9 +36,9 @@ library(DiagrammeRsvg)
 library(bbmle) # MLE with mle2() 
 ```
 
-For this R primer, you'll need to read several chapters of @Soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
+For this R primer, you'll need to read several chapters of @soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
 
-I also assume that you are reading a book on ecosystem ecology such as @Chapin2011.
+I also assume that you are reading a book on ecosystem ecology such as @chapin2011.
 
 ## Must do's
 

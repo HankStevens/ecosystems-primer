@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-02-17" />
+<meta name="date" content="2022-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,11 +270,11 @@ div.csl-indent {
 <p>Readings:</p>
 <ul>
 <li>Chapters 1, 2</li>
-<li><span class="citation"><a href="#ref-Bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo</a> (<a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span></li>
-<li><span class="citation"><a href="#ref-Rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver</a> (<a href="#ref-Rastetter:1997aa" role="doc-biblioref">1997</a>)</span></li>
-<li><span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>, pages …</li>
+<li><span class="citation"><a href="#ref-bormann1977" role="doc-biblioref">BORMANN, LIKENS, and MELILLO</a> (<a href="#ref-bormann1977" role="doc-biblioref">1977</a>)</span></li>
+<li><span class="citation"><a href="#ref-rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver</a> (<a href="#ref-rastetter:1997aa" role="doc-biblioref">1997</a>)</span></li>
+<li><span class="citation"><a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-soetaert2009" role="doc-biblioref">2009</a>)</span>, pages …</li>
 </ul>
-<p><span class="citation"><a href="#ref-Rastetter:1992ab" role="doc-biblioref">E. B. Rastetter and Shaver</a> (<a href="#ref-Rastetter:1992ab" role="doc-biblioref">1992</a>)</span> proposed a model of multiple-element limitation of vegetation growth (MEL). <span class="citation"><a href="#ref-Rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver</a> (<a href="#ref-Rastetter:1997aa" role="doc-biblioref">1997</a>)</span> extended that to include soil pools. We replicate this here. It is similar to our model of <span class="citation">(<a href="#ref-Bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo 1977</a>)</span>, but now includes both carbon and nitrogen.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p><span class="citation"><a href="#ref-rastetter:1992ab" role="doc-biblioref">E. B. Rastetter and Shaver</a> (<a href="#ref-rastetter:1992ab" role="doc-biblioref">1992</a>)</span> proposed a model of multiple-element limitation of vegetation growth (MEL). <span class="citation"><a href="#ref-rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver</a> (<a href="#ref-rastetter:1997aa" role="doc-biblioref">1997</a>)</span> extended that to include soil pools. We replicate this here. It is similar to our model of <span class="citation">(<a href="#ref-bormann1977" role="doc-biblioref">BORMANN, LIKENS, and MELILLO 1977</a>)</span>, but now includes both carbon and nitrogen.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>By now, you’ve had some practice working with models, so take a gander at this one (Fig. <a href="MEL.html#fig:rf1">7.1</a>).</p>
 <div class="figure"><span style="display:block;" id="fig:rf1"></span>
 <img src="figs/Rastetter97-F1.png" alt="*Fig. 1 from Rastetter et al. 1997. Variables $B$, $E$, and $D$ elements in vegetation biomass, inorganic form (e.g., soil solution, or atmospheric CO$_2$), and organic form in soil detritus. Variable $V_i$ is allocation related to nutrient acquistion. $U$ is uptake by vegetation or microbes in detritus (broadly defined). $R$ is renewal into the inorganic pools. $R_{Ne}$ is N deposition from an external source, and $L_{Ne}$ is loss via leaching or denitrification.  The little triangles or bowties on fluxes refer to some rate-controlling function; $B$ and $V$ exchange information (dotted lines) that influences fluxes. Other terms are explained in the Table below.*" width="100%" />
@@ -425,7 +425,7 @@ Figure 7.2: <em>Table 1 (Rastetter et al 1997).</em>
 <span id="cb86-3"><a href="MEL.html#cb86-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Dc=</span><span class="dv">13000</span>, <span class="at">Dn=</span><span class="dv">521</span>, <span class="co"># Detritus nutrients g/m^2</span></span>
 <span id="cb86-4"><a href="MEL.html#cb86-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Vc=</span><span class="fl">0.5</span>, <span class="at">Vn=</span><span class="fl">0.5</span> <span class="co"># allocation &quot;effort&quot; unitless</span></span>
 <span id="cb86-5"><a href="MEL.html#cb86-5" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
-<p>In addition to initial values of state variables, <span class="citation"><a href="#ref-Rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver</a> (<a href="#ref-Rastetter:1997aa" role="doc-biblioref">1997</a>)</span> (Table 2) list initial fluxes. We don’t have to worry about those; the model calculates the initial fluxes from parameters and from initial values of the state variables.</p>
+<p>In addition to initial values of state variables, <span class="citation"><a href="#ref-rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver</a> (<a href="#ref-rastetter:1997aa" role="doc-biblioref">1997</a>)</span> (Table 2) list initial fluxes. We don’t have to worry about those; the model calculates the initial fluxes from parameters and from initial values of the state variables.</p>
 <div id="increasing-atmospheric-carbon-with-events-in-ode" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Increasing atmospheric carbon with events in <code>ode()</code></h3>
 <p>Rastetter et al. (1997) double CO<span class="math inline">\(_2\)</span> concentrations at an early time point in their simulations. We do that using an <code>events</code> in the <code>ode()</code> function.</p>
@@ -445,7 +445,7 @@ Figure 7.2: <em>Table 1 (Rastetter et al 1997).</em>
 <p>We will run the model for 1000 years as in Rastetter et al. (1997), and specify that R return values for a logarithm series of time steps. That way, we see detail in the short term response when the dynamics are quite rapid.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="MEL.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 10^3 = 1000 years</span></span>
 <span id="cb89-2"><a href="MEL.html#cb89-2" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span><span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">by=</span>.<span class="dv">001</span>)</span></code></pre></div>
-<p>Next, we first run the model using parameters for a closed ecosystem, and then for a partly open system <span class="citation">(<a href="#ref-Rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver 1997</a>)</span>. Check with Rastetter et al. to find out what they mean by closed vs. partly open, but I bet you can at least figure out what they mean by a closed system.</p>
+<p>Next, we first run the model using parameters for a closed ecosystem, and then for a partly open system <span class="citation">(<a href="#ref-rastetter:1997aa" role="doc-biblioref">E. Rastetter, Agren, and Shaver 1997</a>)</span>. Check with Rastetter et al. to find out what they mean by closed vs. partly open, but I bet you can at least figure out what they mean by a closed system.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="MEL.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Closed ecosystem </span></span>
 <span id="cb90-2"><a href="MEL.html#cb90-2" aria-hidden="true" tabindex="-1"></a>out.c <span class="ot">&lt;-</span> <span class="fu">ode</span>(init.states, t, <span class="at">func=</span>mel2, <span class="at">parms=</span>p.c,</span>
 <span id="cb90-3"><a href="MEL.html#cb90-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">events=</span><span class="fu">list</span>(<span class="at">data=</span>event.df) )</span>
@@ -486,17 +486,17 @@ Figure 7.3: <em>Simulated dynamics of carbon and nitrogen in an ecosystem with b
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Bormann1977" class="csl-entry">
-Bormann, F H, G E Likens, and J M Melillo. 1977. <span>“<span class="nocase">Nitrogen budget for an aggrading northern hardwood forest ecosystem.</span>”</span> <em>Science (New York, N.Y.)</em> 196 (4293): 981–83.
+<div id="ref-bormann1977" class="csl-entry">
+BORMANN, FH, GE LIKENS, and JM MELILLO. 1977. <span>“<span>NITROGEN BUDGET FOR AN AGGRADING NORTHERN HARDWOOD FOREST ECOSYSTEM</span>.”</span> <em><span>SCIENCE</span></em> <span>196</span> (<span>4293</span>): 981–83. <a href="https://doi.org/{10.1126/science.196.4293.981}">https://doi.org/{10.1126/science.196.4293.981}</a>.
 </div>
-<div id="ref-Rastetter:1992ab" class="csl-entry">
-Rastetter, E. B., and G. R. Shaver. 1992. <span>“A Model of Multiple-Element Limitation for Acclimating Vegetation.”</span> <em><span>Ecology</span></em> <span>73</span> (<span>4</span>): 1157–74. <a href="https://doi.org/{10.2307/1940666}">https://doi.org/{10.2307/1940666}</a>.
+<div id="ref-rastetter:1992ab" class="csl-entry">
+Rastetter, E. B., and G. R. Shaver. 1992. <span>“A Model of Multiple-Element Limitation for Acclimating Vegetation.”</span> <em>Ecology</em> 73 (4): 1157–74. <a href="https://doi.org/10.2307/1940666">https://doi.org/10.2307/1940666</a>.
 </div>
-<div id="ref-Rastetter:1997aa" class="csl-entry">
-Rastetter, EB, GI Agren, and GR Shaver. 1997. <span>“<span class="nocase">Responses of N-limited ecosystems to increased CO2: A balanced-nutrition, coupled-element-cycles model</span>.”</span> <em><span>ECOLOGICAL APPLICATIONS</span></em> <span>7</span> (<span>2</span>): 444–60.
+<div id="ref-rastetter:1997aa" class="csl-entry">
+Rastetter, EB, GI Agren, and GR Shaver. 1997. <span>“Responses of <span class="nocase">N-limited</span> Ecosystems to Increased <span>Co2</span>: <span>A</span> Balanced-Nutrition, Coupled-Element-Cycles Model.”</span> <em>ECOLOGICAL APPLICATIONS</em> 7 (2): 444–60.
 </div>
-<div id="ref-Soetaert2009" class="csl-entry">
-Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.
+<div id="ref-soetaert2009" class="csl-entry">
+Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. <span>Springer</span>.
 </div>
 </div>
 <div class="footnotes">

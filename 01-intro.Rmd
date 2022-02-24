@@ -10,10 +10,10 @@ In this course, we'll cover the very basics of ecosystem modeling. There are sev
 * create models of ecosystem dynamics of your own;
 * write R code to implement ecosystem models.
 
-To do all this, the following text relies heavily on selected secondary sources especially @Soetaert2009. I also cite selected primary sources where appropriate.
+To do all this, the following text relies heavily on selected secondary sources especially @soetaert2009. I also cite selected primary sources where appropriate.
 
 ## Why models?
-In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. \@ref(fig:SH1-3)). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations [@Soetaert2009].
+In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. \@ref(fig:SH1-3)). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations [@soetaert2009].
 
 ```{r SH1-3, echo=FALSE, fig.cap="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*"}
 knitr::include_graphics("figs/SH_F-1.3.png")
@@ -21,7 +21,7 @@ knitr::include_graphics("figs/SH_F-1.3.png")
 
 ## What's an ecosystem?
 You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. \@ref(fig:lake)). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the *currency* of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by *fluxes*, or flows, the transfer per unit time of some mass of the element. When these transfers come from entirely outside the ecosystem, we refer to them as *imports*. When the transfer exits the system entirely, we refer to it as an *exports*. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
-```{r lake, echo=FALSE, fig.cap="*An ecosystem perspective of lake, in terms of phosphorus [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*"}
+```{r lake, echo=FALSE, fig.cap="*An ecosystem perspective of lake, in terms of phosphorus [@carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*"}
 knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
 ```
 
@@ -30,7 +30,7 @@ In Fig. \@ref(fig:lake), all pools are receiving imports from outside the system
 
 Ecosystem fluxes or flows are influenced by *state factors* such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. \@ref(fig:statefactors)). 
 
-```{r statefactors, echo=FALSE, fig.cap="*The current state of an ecosystem depends on state factors [@Chapin2011].*"}
+```{r statefactors, echo=FALSE, fig.cap="*The current state of an ecosystem depends on state factors [@chapin2011].*"}
 knitr::include_graphics("figs/Chapin_f1-5.png")
 ```
 
@@ -40,7 +40,7 @@ knitr::include_graphics("figs/Chapin_f1-5.png")
 ## What's a model?
 You've already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. In principle, variables can usually be observed, whereas we cannot directly observe parameters and have to estimate them.
 
-We describe an ecosystem using **balance equations** for each pool [p. 18, @Soetaert2009]. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:
+We describe an ecosystem using **balance equations** for each pool [p. 18, @soetaert2009]. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:
 
 $$\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}$$
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. \@ref(fig:lake) could look like
@@ -55,12 +55,12 @@ The units of $dD/dt$ are mg$\cdot$m$^{-2}\cdot$d$^{-1}$, and so **each term (e.g
 
 More intuitively, the units of these rate constants are milligrams per square meter per day, per milligram per square meter of lake (mg$\cdot$m$^{-2}\cdot$d$^{-1}$ / mg$\cdot$m$^{-2}$ in the lake). Note the quantities cancel out, and we are left with d$^{-1}$.
 
-See @Soetaert2009 section 2.1.4 for further explanation. 
+See @soetaert2009 section 2.1.4 for further explanation. 
 
 One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have, 
 $$\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}$$
 
-See @Soetaert2009 section 2.1.3 for further explanation. 
+See @soetaert2009 section 2.1.3 for further explanation. 
 
 **State factors** also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., $e_H$, $u_S$) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.* We will add temperature to a model later in the book.
 
@@ -77,14 +77,14 @@ Abovegrd_plant_biomass <- Soil_N * .5 + Soil_N*rnorm(length(Soil_N), sd=.1)
 qplot(Soil_N, Abovegrd_plant_biomass, geom=c("point") ) + geom_smooth(method = "lm")
 ```
 
-A *theory* is a well-supported hierarchical conceptual framework that contains clearly formulated postulates, from which a set of predictions logically follows. *Efficient* theory  [@Marquet2014] is based on first principles, and relies on as few assumptins as possible.
+A *theory* is a well-supported hierarchical conceptual framework that contains clearly formulated postulates, from which a set of predictions logically follows. *Efficient* theory  [@marquet2014] is based on first principles, and relies on as few assumptins as possible.
 
 In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, *all models are wrong, but some are useful*^[Box, G. E. P. (1979), "Robustness in the strategy of scientific model building", in Launer, R. L.; Wilkinson, G. N., Robustness in Statistics, Academic Press, pp. 201–236.].
 
 **Exercise:** Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you've made about the temporal and spatial scales. What mechanisms have you included? Why?
 
 ## Steps in modeling
-@Soetaert2009 identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. \@ref(fig:SH1-7)).
+@soetaert2009 identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. \@ref(fig:SH1-7)).
 ```{r SH1-7, echo=FALSE, fig.cap="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*", fig.show='hold', out.width='45%'}
 knitr::include_graphics("figs/SH_F-1.7a.png")
 knitr::include_graphics("figs/SH_F-1.7b.png")

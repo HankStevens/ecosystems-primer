@@ -179,11 +179,11 @@ ggplot(out2, aes(time, value)) + geom_line() +
 
 ## Denitrification
 
-Denitrification will occur in both the forest floor and from the stream, wherever there is moisture, a lack of oxygen, and a source of nitrate [@Chapin2011]. All else being equal, denitrification rate increases with increasing nitrate. It might cause declines in stream export because this is measured at the bottom of the watershed. Unfortunately, our model does not currently include terms for denitrification. Lucky for us, we can add them.
+Denitrification will occur in both the forest floor and from the stream, wherever there is moisture, a lack of oxygen, and a source of nitrate [@chapin2011]. All else being equal, denitrification rate increases with increasing nitrate. It might cause declines in stream export because this is measured at the bottom of the watershed. Unfortunately, our model does not currently include terms for denitrification. Lucky for us, we can add them.
 
-Let's model denitrification in both the forest floor and the stream as a first order process ($aX$). We will assume that denitrification causes loss from the forest floor, which is about 1/4 the total bound pool. @Groffman:1989st found that well dranined Michigan forest soils lost 0.5--10 kg N/ha/y. If we take the midpoint of that range, we get 5 kg N/ha/y.
+Let's model denitrification in both the forest floor and the stream as a first order process ($aX$). We will assume that denitrification causes loss from the forest floor, which is about 1/4 the total bound pool. @groffman:1989st found that well dranined Michigan forest soils lost 0.5--10 kg N/ha/y. If we take the midpoint of that range, we get 5 kg N/ha/y.
 
-We'll assume that denitrification occurs in the stream channel *after* leaching from the available pool. @Mulholland:2008 found that about 20% of nitrate entering reference watersheds was denitrified. This means the stream retains about 80% of the nitrogen that gets leached out of the soil and into the stream.
+We'll assume that denitrification occurs in the stream channel *after* leaching from the available pool. @mulholland:2008 found that about 20% of nitrate entering reference watersheds was denitrified. This means the stream retains about 80% of the nitrogen that gets leached out of the soil and into the stream.
 
 Here is a new version of our model, with both N deposition and dentrification.
 ```{r}

@@ -2,7 +2,7 @@
 
 Reading: Chapter 11, Soetart and Herman (2009)
 
-Model sensitivity is part of model testing and validation (Soetart and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcomes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis. In contrast, here we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity and elasticity of a demographic projection matrix. One of the reasons we assess the sensitivity of model output to the values of parameters is to determine which parameters are most important in driving the dynamics of the model. Identifying the most important parameters
+Model sensitivity is part of model testing and validation (Soetaert and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcoxmes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis. In contrast, here we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity and elasticity of a demographic projection matrix. One of the reasons we assess the sensitivity of model output to the values of parameters is to determine which parameters are most important in driving the dynamics of the model. Identifying the most important parameters
 
 * provides understanding of the model dynamics
 * guides future research in making sure we have good estimates of those particular model parameters.

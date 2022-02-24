@@ -5,12 +5,12 @@
 Readings: 
 
 * Chapters 1, 2
-* @Bormann1977
-* @Rastetter:1997aa
-* @Soetaert2009, pages ...
+* @bormann1977
+* @rastetter:1997aa
+* @soetaert2009, pages ...
 
 
-@Rastetter:1992ab proposed a model of multiple-element limitation of vegetation growth (MEL). @Rastetter:1997aa extended that to include soil pools. We replicate this here. It is similar to our model of [@Bormann1977], but now includes both carbon and nitrogen.^[Rastetter et al. introduce a couple terms that make my skin crawl, and I will do my best to explain them, and avoid them where I can.]
+@rastetter:1992ab proposed a model of multiple-element limitation of vegetation growth (MEL). @rastetter:1997aa extended that to include soil pools. We replicate this here. It is similar to our model of [@bormann1977], but now includes both carbon and nitrogen.^[Rastetter et al. introduce a couple terms that make my skin crawl, and I will do my best to explain them, and avoid them where I can.]
 
 By now, you've had some practice working with models, so take a gander at this one (Fig. \@ref(fig:rf1)). 
 
@@ -176,7 +176,7 @@ init.states <- c(Ec=350, En=1, # Inorganic nutrients g/m^2
             )
 ```
 
-In addition to initial values of state variables, @Rastetter:1997aa (Table 2) list initial fluxes. We don't have to worry about those; the model calculates the initial fluxes from parameters and from initial values of the state variables.
+In addition to initial values of state variables, @rastetter:1997aa (Table 2) list initial fluxes. We don't have to worry about those; the model calculates the initial fluxes from parameters and from initial values of the state variables.
 
 ### Increasing atmospheric carbon with events in `ode()`
 Rastetter et al. (1997) double CO$_2$ concentrations at an early time point in their simulations. We do that using an `events` in the `ode()` function. 
@@ -201,7 +201,7 @@ We will run the model for 1000 years as in Rastetter et al. (1997), and specify 
 t=10^seq(-3, 3, by=.001)
 ```
 
-Next, we first run the model using parameters for a closed ecosystem, and then for a partly open system [@Rastetter:1997aa]. Check with Rastetter et al. to find out what they mean by closed vs. partly open, but I bet you can at least figure out what they mean by a closed system.
+Next, we first run the model using parameters for a closed ecosystem, and then for a partly open system [@rastetter:1997aa]. Check with Rastetter et al. to find out what they mean by closed vs. partly open, but I bet you can at least figure out what they mean by a closed system.
 ```{r}
 ## Closed ecosystem 
 out.c <- ode(init.states, t, func=mel2, parms=p.c,

@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-02-17" />
+<meta name="date" content="2022-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -447,9 +447,9 @@ Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition h
 </div>
 <div id="denitrification" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Denitrification</h2>
-<p>Denitrification will occur in both the forest floor and from the stream, wherever there is moisture, a lack of oxygen, and a source of nitrate <span class="citation">(<a href="#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>. All else being equal, denitrification rate increases with increasing nitrate. It might cause declines in stream export because this is measured at the bottom of the watershed. Unfortunately, our model does not currently include terms for denitrification. Lucky for us, we can add them.</p>
-<p>Let’s model denitrification in both the forest floor and the stream as a first order process (<span class="math inline">\(aX\)</span>). We will assume that denitrification causes loss from the forest floor, which is about 1/4 the total bound pool. <span class="citation"><a href="#ref-Groffman:1989st" role="doc-biblioref">Groffman and Tiedje</a> (<a href="#ref-Groffman:1989st" role="doc-biblioref">1989</a>)</span> found that well dranined Michigan forest soils lost 0.5–10 kg N/ha/y. If we take the midpoint of that range, we get 5 kg N/ha/y.</p>
-<p>We’ll assume that denitrification occurs in the stream channel <em>after</em> leaching from the available pool. <span class="citation"><a href="#ref-Mulholland:2008" role="doc-biblioref">Mulholland et al.</a> (<a href="#ref-Mulholland:2008" role="doc-biblioref">2008</a>)</span> found that about 20% of nitrate entering reference watersheds was denitrified. This means the stream retains about 80% of the nitrogen that gets leached out of the soil and into the stream.</p>
+<p>Denitrification will occur in both the forest floor and from the stream, wherever there is moisture, a lack of oxygen, and a source of nitrate <span class="citation">(<a href="#ref-chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>. All else being equal, denitrification rate increases with increasing nitrate. It might cause declines in stream export because this is measured at the bottom of the watershed. Unfortunately, our model does not currently include terms for denitrification. Lucky for us, we can add them.</p>
+<p>Let’s model denitrification in both the forest floor and the stream as a first order process (<span class="math inline">\(aX\)</span>). We will assume that denitrification causes loss from the forest floor, which is about 1/4 the total bound pool. <span class="citation"><a href="#ref-groffman:1989st" role="doc-biblioref">GROFFMAN and TIEDJE</a> (<a href="#ref-groffman:1989st" role="doc-biblioref">1989</a>)</span> found that well dranined Michigan forest soils lost 0.5–10 kg N/ha/y. If we take the midpoint of that range, we get 5 kg N/ha/y.</p>
+<p>We’ll assume that denitrification occurs in the stream channel <em>after</em> leaching from the available pool. <span class="citation"><a href="#ref-mulholland:2008" role="doc-biblioref">Mulholland et al.</a> (<a href="#ref-mulholland:2008" role="doc-biblioref">2008</a>)</span> found that about 20% of nitrate entering reference watersheds was denitrified. This means the stream retains about 80% of the nitrogen that gets leached out of the soil and into the stream.</p>
 <p>Here is a new version of our model, with both N deposition and dentrification.</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-1" aria-hidden="true" tabindex="-1"></a>bormann.denitr <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
 <span id="cb157-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -659,14 +659,14 @@ Figure 9.2: Dynamics with N deposition and denitrification in forest floor and s
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Chapin2011" class="csl-entry">
-Chapin III, F S, P A Matson, and H A Mooney. 2011. <em><span class="nocase">Principles of Terrestrial Ecosystem Ecology</span></em>. 2nd edition. Springer.
+<div id="ref-chapin2011" class="csl-entry">
+Chapin III, F S, P A Matson, and H A Mooney. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. <span>Springer</span>.
 </div>
-<div id="ref-Groffman:1989st" class="csl-entry">
-Groffman, P. M., and J. M. Tiedje. 1989. <span>“<span>DENITRIFICATION IN NORTH TEMPERATE FOREST SOILS - SPATIAL AND TEMPORAL PATTERNS AT THE LANDSCAPE AND SEASONAL SCALES</span>.”</span> <em><span>SOIL BIOLOGY &amp; BIOCHEMISTRY</span></em> <span>21</span> (<span>5</span>): 613–20. <a href="https://doi.org/{10.1016/0038-0717(89)90053-9}">https://doi.org/{10.1016/0038-0717(89)90053-9}</a>.
+<div id="ref-groffman:1989st" class="csl-entry">
+GROFFMAN, PM, and JM TIEDJE. 1989. <span>“<span>DENITRIFICATION IN NORTH TEMPERATE FOREST SOILS - SPATIAL AND TEMPORAL PATTERNS AT THE LANDSCAPE AND SEASONAL SCALES</span>.”</span> <em><span>SOIL BIOLOGY &amp; BIOCHEMISTRY</span></em> <span>21</span> (<span>5</span>): 613–20. <a href="https://doi.org/{10.1016/0038-0717(89)90053-9}">https://doi.org/{10.1016/0038-0717(89)90053-9}</a>.
 </div>
-<div id="ref-Mulholland:2008" class="csl-entry">
-Mulholland, Patrick J., Ashley M. Helton, Geoffrey C. Poole, Robert O. Hall Jr., Stephen K. Hamilton, Bruce J. Peterson, Jennifer L. Tank, et al. 2008. <span>“<span class="nocase">Stream denitrification across biomes and its response to anthropogenic nitrate loading</span>.”</span> <em><span>NATURE</span></em> <span>452</span> (<span>7184</span>): 202–U46. <a href="https://doi.org/{10.1038/nature06686}">https://doi.org/{10.1038/nature06686}</a>.
+<div id="ref-mulholland:2008" class="csl-entry">
+Mulholland, Patrick J., Ashley M. Helton, Geoffrey C. Poole, Robert O. Hall Jr., Stephen K. Hamilton, Bruce J. Peterson, Jennifer L. Tank, et al. 2008. <span>“<span class="nocase">Stream denitrification across biomes and its response to anthropogenic nitrate loading</span>.”</span> <em><span>Nature</span></em> <span>452</span> (<span>7184</span>): 202–U46. <a href="https://doi.org/{10.1038/nature06686}">https://doi.org/{10.1038/nature06686}</a>.
 </div>
 </div>
             </section>

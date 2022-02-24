@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-02-17" />
+<meta name="date" content="2022-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -325,7 +325,7 @@ From this we see that the total mass budget for this watershed depends simply on
 </div>
 <div id="paramaterization" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Paramaterization</h2>
-<p>Parameteriztion is what we call assigning numerical values to mathematical parameters. Here, we find initial estimates for the parameters in our model. We use the literature for this purpose <span class="citation">(<a href="#ref-Bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo 1977</a>)</span>.</p>
+<p>Parameteriztion is what we call assigning numerical values to mathematical parameters. Here, we find initial estimates for the parameters in our model. We use the literature for this purpose <span class="citation">(<a href="#ref-bormann1977" role="doc-biblioref">BORMANN, LIKENS, and MELILLO 1977</a>)</span>.</p>
 <p>If we have the data (we do) and relatively simple mathematical forms
 (we do), it is fairly straightforward to estimate parameters. For
 instance, we decided that net mineralization would be directly
@@ -372,7 +372,7 @@ Estimate
 <span class="math inline">\(A, B, V\)</span> state variables
 </td>
 <td style="text-align:center;">
-kg ha<span class="math inline">\(^{-1}\)</span>
+<span class="math inline">\(\frac{kg}{ha}\)</span> = kg ha<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
 <span class="math inline">\(26, 4700, 532\)</span>
@@ -405,7 +405,7 @@ y<span class="math inline">\(^{-1}\)</span>
 <span class="math inline">\(a_3\)</span>, loss rate from V to B
 </td>
 <td style="text-align:center;">
-(kg ha<span class="math inline">\(^{-1}\)</span>)<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>
+y<span class="math inline">\(^{-1}\)</span>
 </td>
 <td style="text-align:center;">
 <span class="math inline">\(\log( (54.2 + 2.7 + 0.1 + 6.2 + 532) / 532) = 0.011\)</span>
@@ -517,7 +517,7 @@ equations. This will allow R to integrate change through time.</p>
 <span id="cb10-20"><a href="N.html#cb10-20" aria-hidden="true" tabindex="-1"></a>                 )  )})</span>
 <span id="cb10-21"><a href="N.html#cb10-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now that we have the function, we tell R what to do with it. We will define the <em>initial state of the system</em>, and then tell R which time point we want it to return.</p>
-<p>The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in <span class="citation"><a href="#ref-Bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo</a> (<a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span>.</p>
+<p>The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in <span class="citation"><a href="#ref-bormann1977" role="doc-biblioref">BORMANN, LIKENS, and MELILLO</a> (<a href="#ref-bormann1977" role="doc-biblioref">1977</a>)</span>.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="N.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## starting values in kg/ha</span></span>
 <span id="cb11-2"><a href="N.html#cb11-2" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span></code></pre></div>
 <p>Finally, let’s solve the system, and have R return the first 20 years.</p>
@@ -608,7 +608,7 @@ where <span class="math inline">\(K\)</span> is the maximum amount of live veget
 Figure 3.4: Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977).
 </p>
 </div>
-<p>Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in <span class="citation"><a href="#ref-Bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo</a> (<a href="#ref-Bormann1977" role="doc-biblioref">1977</a>)</span> and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.</p>
+<p>Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in <span class="citation"><a href="#ref-bormann1977" role="doc-biblioref">BORMANN, LIKENS, and MELILLO</a> (<a href="#ref-bormann1977" role="doc-biblioref">1977</a>)</span> and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.</p>
 <p><strong>Save your own R script of ‘bormann2’</strong></p>
 <p>Make a new script that contains nothing but the <code>bormann2</code> function. Copy the block of text where we define it, paste it into a new R script, and save it as <strong>bormann2.R</strong>. We will use this function in a latter section.</p>
 
@@ -616,8 +616,8 @@ Figure 3.4: Dynamics of an N budget, assuming density-dependence in vegetation w
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Bormann1977" class="csl-entry">
-Bormann, F H, G E Likens, and J M Melillo. 1977. <span>“<span class="nocase">Nitrogen budget for an aggrading northern hardwood forest ecosystem.</span>”</span> <em>Science (New York, N.Y.)</em> 196 (4293): 981–83.
+<div id="ref-bormann1977" class="csl-entry">
+BORMANN, FH, GE LIKENS, and JM MELILLO. 1977. <span>“<span>NITROGEN BUDGET FOR AN AGGRADING NORTHERN HARDWOOD FOREST ECOSYSTEM</span>.”</span> <em><span>SCIENCE</span></em> <span>196</span> (<span>4293</span>): 981–83. <a href="https://doi.org/{10.1126/science.196.4293.981}">https://doi.org/{10.1126/science.196.4293.981}</a>.
 </div>
 </div>
             </section>

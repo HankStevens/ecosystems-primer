@@ -24,7 +24,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2022-02-17" />
+<meta name="date" content="2022-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -274,10 +274,10 @@ div.csl-indent {
 <li>create models of ecosystem dynamics of your own;</li>
 <li>write R code to implement ecosystem models.</li>
 </ul>
-<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary sources where appropriate.</p>
+<p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation"><a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-soetaert2009" role="doc-biblioref">2009</a>)</span>. I also cite selected primary sources where appropriate.</p>
 <div id="why-models" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Why models?</h2>
-<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations <span class="citation">(<a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
+<p>In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">2.1</a>). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations <span class="citation">(<a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>.</p>
 <div class="figure"><span style="display:block;" id="fig:SH1-3"></span>
 <img src="figs/SH_F-1.3.png" alt="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*" width="75%" />
 <p class="caption">
@@ -289,24 +289,24 @@ Figure 2.1: <em>We use conceptual and mathematical models to interpret reality. 
 <h2><span class="header-section-number">2.2</span> What’s an ecosystem?</h2>
 You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">2.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by <em>fluxes</em>, or flows, the transfer per unit time of some mass of the element. When these transfers come from entirely outside the ecosystem, we refer to them as <em>imports</em>. When the transfer exits the system entirely, we refer to it as an <em>exports</em>. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
 <div class="figure"><span style="display:block;" id="fig:lake"></span>
-<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@Carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*" width="75%" />
+<img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*" width="75%" />
 <p class="caption">
-Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-Carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).</em>
+Figure 2.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-carpenter1992" role="doc-biblioref">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).</em>
 </p>
 </div>
 <p>In Fig. <a href="intro.html#fig:lake">2.2</a>, all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools save dissolved P appear to export P back out. Dissolved P is receiving fluxes from all the animals in the system, and losing P to seston, which is primarily phytoplankton.</p>
 <p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">2.3</a>).</p>
 <div class="figure"><span style="display:block;" id="fig:statefactors"></span>
-<img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@Chapin2011].*" width="75%" />
+<img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@chapin2011].*" width="75%" />
 <p class="caption">
-Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="#ref-Chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
+Figure 2.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="#ref-chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
 </p>
 </div>
 </div>
 <div id="whats-a-model" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> What’s a model?</h2>
 <p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes. In principle, variables can usually be observed, whereas we cannot directly observe parameters and have to estimate them.</p>
-<p>We describe an ecosystem using <strong>balance equations</strong> for each pool <span class="citation">(p. 18, <a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:</p>
+<p>We describe an ecosystem using <strong>balance equations</strong> for each pool <span class="citation">(p. 18, <a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:</p>
 <p><span class="math display">\[\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}\]</span>
 As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. <a href="intro.html#fig:lake">2.2</a> could look like
 <span class="math display">\[\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
@@ -318,10 +318,10 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <li>Ergo, units of <span class="math inline">\(e_H\)</span> are d<span class="math inline">\(^{-1}\)</span>.</li>
 </ul>
 <p>More intuitively, the units of these rate constants are milligrams per square meter per day, per milligram per square meter of lake (mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> / mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake). Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
-<p>See <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
+<p>See <span class="citation"><a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.4 for further explanation.</p>
 <p>One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have,
 <span class="math display">\[\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}\]</span></p>
-<p>See <span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
+<p>See <span class="citation"><a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-soetaert2009" role="doc-biblioref">2009</a>)</span> section 2.1.3 for further explanation.</p>
 <p><strong>State factors</strong> also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., <span class="math inline">\(e_H\)</span>, <span class="math inline">\(u_S\)</span>) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a <em>forcing function.</em> We will add temperature to a model later in the book.</p>
 <p><strong>To review:</strong> variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
 <p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
@@ -334,14 +334,14 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 Figure 2.4: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
 </p>
 </div>
-<p>A <em>theory</em> is a well-supported hierarchical conceptual framework that contains clearly formulated postulates, from which a set of predictions logically follows. <em>Efficient</em> theory <span class="citation">(<a href="#ref-Marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span> is based on first principles, and relies on as few assumptins as possible.</p>
+<p>A <em>theory</em> is a well-supported hierarchical conceptual framework that contains clearly formulated postulates, from which a set of predictions logically follows. <em>Efficient</em> theory <span class="citation">(<a href="#ref-marquet2014" role="doc-biblioref">Marquet et al. 2014</a>)</span> is based on first principles, and relies on as few assumptins as possible.</p>
 <p>In contrast to theory, models are specific implementations of theory and specific descriptions of nature. Remember that in principle, <em>all models are wrong, but some are useful</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><strong>Exercise:</strong> Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you’ve made about the temporal and spatial scales. What mechanisms have you included? Why?</p>
 </div>
 </div>
 <div id="steps-in-modeling" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Steps in modeling</h2>
-<span class="citation"><a href="#ref-Soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-Soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
+<span class="citation"><a href="#ref-soetaert2009" role="doc-biblioref">Soetaert and Herman</a> (<a href="#ref-soetaert2009" role="doc-biblioref">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">2.5</a>).
 <div class="figure"><span style="display:block;" id="fig:SH1-7"></span>
 <img src="figs/SH_F-1.7a.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" /><img src="figs/SH_F-1.7b.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" />
 <p class="caption">
@@ -432,17 +432,17 @@ By convention, we denote the equilibrium value of <span class="math inline">\(P\
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Carpenter1992" class="csl-entry">
-Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. <span>“<span class="nocase">Resilience and resistance of lake phosphorus cycle before and after food web manipulation</span>.”</span> <em>Am. Nat.</em> 140: 781–98.
+<div id="ref-carpenter1992" class="csl-entry">
+Carpenter, D R, C E Kraft, R Wright, X He, P A Soranno, and J R Hodgson. 1992. <span>“Resilience and Resistance of Lake Phosphorus Cycle Before and After Food Web Manipulation.”</span> <em>American Naturalist</em> 140: 781–98.
 </div>
-<div id="ref-Chapin2011" class="csl-entry">
-Chapin III, F S, P A Matson, and H A Mooney. 2011. <em><span class="nocase">Principles of Terrestrial Ecosystem Ecology</span></em>. 2nd edition. Springer.
+<div id="ref-chapin2011" class="csl-entry">
+Chapin III, F S, P A Matson, and H A Mooney. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. <span>Springer</span>.
 </div>
-<div id="ref-Marquet2014" class="csl-entry">
-Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. <span>“<span class="nocase">On theory in ecology</span>.”</span> <em>BioScience</em> 64 (8): 701–10.
+<div id="ref-marquet2014" class="csl-entry">
+Marquet, Pablo A., Andrew P. Allen, James H. Brown, Jennifer A. Dunne, Brian J. Enquist, James F. Gillooly, Patricia A. Gowaty, et al. 2014. <span>“On Theory in Ecology.”</span> <em>BioScience</em> 64 (8): 701–10.
 </div>
-<div id="ref-Soetaert2009" class="csl-entry">
-Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. Springer.
+<div id="ref-soetaert2009" class="csl-entry">
+Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelling</em>. <span>Springer</span>.
 </div>
 </div>
 <div class="footnotes">
