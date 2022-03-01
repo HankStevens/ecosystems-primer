@@ -6,7 +6,7 @@ site: bookdown::bookdown_site
 output:
     bookdown::gitbook
 documentclass: book
-bibliography: [/Users/stevenmh/library.bib, book.bib, packages.bib]
+bibliography: [/Users/stevenmh/myLibrary.bib, book.bib, packages.bib]
 biblio-style: plain
 link-citations: yes
 description: "This provides a part of a foundation in understanding ecosystem models."
