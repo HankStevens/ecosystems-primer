@@ -99,14 +99,16 @@ The point of the objective function is to calculate the difference between model
 
 If we minimize the negative log-likelihoods, then we will have maximized the likelihood of the data, given the model we used. We can then use this quantity to calculate frequentist confidence intervals and Bayesian credible intervals, if we have made wise choices about our probability model (e.g., Normal, binomial) and if our data conform to certain underlying assumptions (e.g., conditional independence). These are important choices and assumptions which we won't have a chance to explore. See @bolker:2008rr for an excellent introduction.
 
-Below is our first objective function, with comments. 
+For our objective function we will use the *negative log-likelihood* of our data. This is a little obtuse, but it will be our goal to maximize the probability of our data by tweaking one or two of the model parameters. This will give us teh *maximum likelihood estimates* for the parameters we tweak.
 
-First a word about our probability model. The probability model we use in this instance is the Normal or Gaussian distribution: we assume the deviates are normally distributed. We specify the likelihoods using the built-in R function `dnorm()` which returns the probability density for particular data, given a mean and a standard deviation. For instance, assuming of mean of 10 and a standard deviation of 1 results in a bell-shaped probability density function centered on ten:
+Maximum likelihood estimates rely on our choice of the probability model. The probability model we use in this instance is the normal or Gaussian distribution: we assume the deviates (differences between the data and the model prediction) are normally distributed. We specify the likelihoods using the built-in R function `dnorm()` which returns the probability density for particular data, given a mean and a standard deviation. 
+
+For an example, let's assume our model of vegetation biomass with particular parameter values predicts a mean biomass of 10 and about 68% of the observations are between 9 and 11 (i.e.standard deviation of 1). This results in a bell-shaped probability density function centered on ten:
 ```{r}
 m <- 10; SD <- 1
 ## calculating the probability density for all values 
 ## between 7 and 13 
-curve(dnorm(x, m=m, sd=SD), 7, 13)
+curve(dnorm(x, m=m, sd=SD), 7, 13, main="our model")
 ```
 
 If we want to know the probability density of $x=9$, then we can find just that:
@@ -117,11 +119,17 @@ dnorm(9, m=m, sd=SD)
 Now imagine our model output is 10, and our observed datum is 9. Got that? Okay, now imagine we collect all of those probability densities for all of our model-data comparisons. That is what our objective function will do.
 
 
-Our objective function will use this code:
+The objective function we use is the *likelihood* of the data, given our hypothesis, which we write as:
+$$\mathcal{L}\left(\theta | x\right) = p_\theta\left(x\right) = P_\theta\left(X=x\right)$$
+and this is the probability density or probability mass for our particular data points, assuming a particular hypothesis for what we expect them to be. Because we nearly always have more than one datum, we sum these densities and commonly refer to that sum as "the likelihood". 
 
-``` nll <- - sum( dnorm(data, mean=model.output, sd=SD.data, log=TRUE))```
+$$\mathcal{L}\left(\theta | x\right) = \sum_{i=1}^n \mathcal{N}\left(x_i | \mu = \theta,\,\sigma\right)$$
 
-If we analyze this from the inside out, we might see that the mean of our assumed Normal distribution is whatever the model predicted. The standard deviation of our assumed Normal distribution comes from the deviates. We use the argument `log=TRUE` because it allows the computer to be more accurate, and minimizing the log or the original scale has the same result. The function `dnorm()` calculates all of the probability densities for the data given the model. We then sum all of these. The sum is the log of the *likelihood* of the data, given the model.
+For reasons of convenience and computational accuracy, we typically work with the negative logarithm of of the likelihood (the negative log-likelihood), for instance, using this code:
+
+``` nll <- -1 * sum( dnorm(data, mean=model.output, sd=SD.data, log=TRUE))```
+
+If we analyze this from the inside out, we might see that the mean of our assumed Normal distribution is whatever the model predicted. The standard deviation of our assumed normal distribution comes from the deviates. We use the argument `log=TRUE` because it allows the computer to be more accurate, and minimizing the log or the original scale has the same result. The function `dnorm()` calculates all of the probability densities for the data given the model. We then sum all of these. The sum is the log of the *likelihood* of the data, given the model.
 
 We finally use the negative value so that we can minimize this quantity, because nearly all such optimization algorithms minimize rather than maximize the objective function. 
 
