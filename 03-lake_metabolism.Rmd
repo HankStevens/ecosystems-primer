@@ -1,6 +1,6 @@
 # Lake Metabolism
 
-In this chapter, you'll study how lakes breath. You'll get real data from Acton Lake, look it, and measure the rate of an inhale and an exhale. You'll do that by hand, by hand with a spreadsheet, by hand with R, and finally using an R package, `LakeMetabolizer`, which is designed to do that and much more.
+In this chapter, you'll study how lakes breath. You'll get real data from Acton Lake, graph the data to see what it looks like, and then measure the rate of an inhale and an exhale. You'll do a simple, small example to get an idea, and then using an R package, `LakeMetabolizer`, which is designed to do the same thing and much more.
 
 ```{r fig.cap="*We can use lake oxygen level to measure net ecosystem production. *", out.width="70%", echo=FALSE}
 knitr::include_graphics("figs/lake_O2.jpg")
@@ -21,9 +21,12 @@ Using DO, we can estimate NEP and R, and then calculate GPP as the sum of NEP an
 * the rate $GPP$ is $GPP = NEP + R_{\mathrm{total}}$ 
 
 ## By hand, in R
+
+Remember to start by loading the `tidyverese` and `deSolve` packages in R.
+
 Let's practice R by importing, wrangling, and graphing data, then calculating slopes and estimating respiration, NPP, and GPP. 
 
-Start by obtaining data for Acton Lake (acton.csv). Place it inside a folder labelled 'data' inside your working directory. Here you read in data and check whether it loaded properly.
+Start by obtaining data for Acton Lake (`acton.csv`). Place it inside a folder labelled 'data' inside your working directory. Here you read in data and check whether it loaded properly.
 ```{r}
 ## Either change the path name in this function, or
 ## make sure you have a folder named 'data' inside your working directory
@@ -210,7 +213,7 @@ On the help page you learn about how to use this function. Here we walk through 
 
 Here we acknowledge that the change in dissolved oxygen is a function of NEP and also the flux of oxygen due to diffusion,
 $$\Delta \mathrm{DO} = \mathrm{NEP}_{t-1} \cdot \Delta t + F_{t-1}$$
-where $F_{t-1}$ is the flux of oxygen due to diffusion (Winslow et al. 2016). This rate of diffusion depends on wind speed, temperature, lake size, and, ultimately, how much the of the lake waters mix (Winslow et al. 2016). Here we will simply provide a value for the gas exchange constant and a mixing depth.
+where $F_{t-1}$ is the flux of oxygen due to diffusion [@winslow2016a]. This rate of diffusion depends on wind speed, temperature, lake size, and, ultimately, how much the of the lake waters mix [@winslow2016a]. Here we will simply provide a value for the gas exchange constant and a mixing depth.
 
 From its calculations, LakeMetabolizer can give us NEP, R, and GPP. This is because average respiration is the average difference between DO and $F$,  and NEP is the difference between GPP and R. 
 

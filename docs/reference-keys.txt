@@ -24,10 +24,12 @@ fig:denitr
 prerequisites
 must-dos
 a-couple-of-useful-citations
+a-final-suggestion
 intro
 why-models
 whats-an-ecosystem
-whats-a-model
+whats-an-ecosystem-model
+units-of-terms
 other-ideas
 steps-in-modeling
 an-example-in-r

@@ -1,18 +1,20 @@
 # NPZD - a simple aquatic ecosystem
 
-This section relies entirely on selections in pages 31-58 of Soetaert and Herman (2009).
+The **objective** of this chapter is to understanding and explore a simple model of a nitrogen-limited aquatic ecosystem consisting of an inorganic pool, phytoplankton, zooplankton, and particulate detritus.
 
-The **object** of this chapter is to understanding and explore a simple model of a nitrogen-limited aquatic ecosystem consisting of an inorganic pool, phytoplankton, zooplankton, and particulate detritus.
-
-The **background reading** is the following sections:
+This Primer chapter relies entirely on **selections in pages 31-58 of Soetaert and Herman (2009):**
 
 * 2.5-2.5.5: Functional responses and rate limitations.
-* 2.6-2.6.2: Couple model equations.
+* 2.6-2.6.2: Coupled model equations.
 * 2.7.2: Closure.
 * 2.8.2: Light, as a physical factor.
 * 2.9.1: NPZD, a simple model of an aquatic ecosystem.
 
-The background reading describes the anatomy of interactions and the use of rate limiting functions. One of the most common ways to describe these limitations is closely related the Michaelis-Menten model originally proposed to describe enzyme kinetics (Fig. \@ref(fig:mm)). There, the rate of change in a product, $Y$, is a decelerating function of substrate concentration $X$,
+This background reading describes the anatomy of interactions. It builds on chapter 3 (Describing a nitrogen budget), and is critical for advancing your understanding of ecosystem compartment models.
+
+----
+
+One small piece of the background reading (sec. 2.5-2.5.5) concerns limitations and inhibitions on maximum fluxes. One of the most common ways to describe these limitations is closely related the Michaelis-Menten model originally proposed to describe enzyme kinetics (Fig. \@ref(fig:mm)). There, the rate of change in a product, $Y$, is a decelerating function of substrate concentration $X$,
 $$\frac{dY}{dt} = V_m\frac{X}{k+X}$$,
 where $V_m$ is the maximum rate of change, and $k$ is the half-saturation constant. The half-saturation constant is the value of the substrate $X$ at which the rate is half the maximum, because it simplifies the expression to 
 $V_m\frac{X}{X+X} = \frac{1}{2}V_m$.

@@ -1,68 +1,75 @@
-# Introduction ecosystem models {#intro}
+# Introduction to ecosystem models {#intro}
 
 Primary source: pp. 1-17, (in Chapters 1, 2 of Soetaert and Hermann 2009)
 
-In this course, we'll cover the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope that you,
+In this primer, we'll cover a few of the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope that you,
 
-* become more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;
-* understand and describe the quantitative and qualitative features of ecosystem dynamics and models of those dynamics;
-* assess the relative merits of different modeling approaches and different mathematical formalisms of those approaches;
-* create models of ecosystem dynamics of your own;
+* become a little more fluent in the discipline of ecosystem ecology; that you understand and can use basic terminology, and can identify quantitative pieces of the literature you read, and presentations you hear and see;
+* understand and describe a few quantitative and qualitative features of ecosystem dynamics and models of those dynamics;
+* create simple models of ecosystem dynamics of your own;
 * write R code to implement ecosystem models.
 
-To do all this, the following text relies heavily on selected secondary sources especially @soetaert2009. I also cite selected primary sources where appropriate.
+To do all this, the following text relies heavily on selected secondary sources especially @soetaert2009 (especially in this chapter and chapter \@ref(Model-Sensitivity)) and @bolker2008rr. I also cite selected a few primary sources where appropriate.
 
 ## Why models?
-In general, models are simplifications of reality. Useful models capture something useful about the reality we are interested in. A road map is a useful model of a road network. It captures just what we need. We model to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. \@ref(fig:SH1-3)). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations [@soetaert2009].
+Models help us understand reality because they simplify reality and capture particular phenomena in which we are interested. Useful models capture something useful about the reality we are interested in. One example is a road map - it is a useful simplification of the actual road network. Jorges Luis Borges has a (very) short story of map makers whose map was so detailed that it was the same size as the country it described. Not very useful. 
+
+A useful model captures just what we need. We build and use models to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. \@ref(fig:SH1-3)). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations [@soetaert2009].
 
 ```{r SH1-3, echo=FALSE, fig.cap="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*"}
 knitr::include_graphics("figs/SH_F-1.3.png")
 ```
 
 ## What's an ecosystem?
-You can find definitions of an ecosystem elsewhere, but here we want to emphasize the abstraction of that ecosystem (Fig. \@ref(fig:lake)). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the *currency* of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by *fluxes*, or flows, the transfer per unit time of some mass of the element. When these transfers come from entirely outside the ecosystem, we refer to them as *imports*. When the transfer exits the system entirely, we refer to it as an *exports*. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
+You can find definitions of an ecosystem elsewhere, but in this primer, we want to emphasize the abstraction of that ecosystem (Fig. \@ref(fig:lake)). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the *currency* of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by *fluxes*, or flows, which transfer some mass of the element over some period of time. When a transfer come from entirely outside the ecosystem, we refer to it as an *import*. When the transfer exits the system entirely, we refer to it as an *export*. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
 ```{r lake, echo=FALSE, fig.cap="*An ecosystem perspective of lake, in terms of phosphorus [@carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*"}
 knitr::include_graphics("figs/LakeEcosystemCarpenteretal1992.png")
 ```
 
 
-In Fig. \@ref(fig:lake), all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools save dissolved P appear to export P back out. Dissolved P is receiving fluxes from all the animals in the system, and losing P to seston, which is primarily phytoplankton.
+In Fig. \@ref(fig:lake), all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools, except dissolved phosphorous, appear to export phosphorous back out. The Dissolved P pool (D) receives fluxes from all the animals in the system, and loses P to seston, which is primarily phytoplankton.
 
-Ecosystem fluxes or flows are influenced by *state factors* such as temperature, time, or disturbance which act as constraints that can limit or speed up the fluxes or determine the current states of the variables (Fig. \@ref(fig:statefactors)). 
+Ecosystem fluxes or flows are influenced by *state factors* such as temperature, time, or disturbance which act as constraints that can slow down or speed up the fluxes or determine the current states of the variables (Fig. \@ref(fig:statefactors)). 
 
 ```{r statefactors, echo=FALSE, fig.cap="*The current state of an ecosystem depends on state factors [@chapin2011].*"}
 knitr::include_graphics("figs/Chapin_f1-5.png")
 ```
 
 
+## What's an ecosystem model?
+You've already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. In principle, variables can usually be observed, whereas we cannot directly observe parameters and have to estimate them.^[Some people point out that parameters are really just unobserved variables, but we will tend to avoid that usage here.]
 
+The units of the currency of each pool in an ecosystem model must be the same. Those units might be kilograms carbon per hectare (kg C ha$^{-1}$), milligram phosphorous per cubic meter (mg P m$^{-3}$), or joules per second per square meter (J s$^{-1}$ m$^{-2}$). Regardless of the units, they should be the same for each pool in an ecosystem model.
 
-## What's a model?
-You've already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as *variables* because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call *parameters* that control the rate of these fluxes. In principle, variables can usually be observed, whereas we cannot directly observe parameters and have to estimate them.
-
-We describe an ecosystem using **balance equations** for each pool [p. 18, @soetaert2009]. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:
+We can describe an ecosystem using **balance equations** for each pool [p. 18, @soetaert2009]. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:
 
 $$\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}$$
-As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the dissolved P in Fig. \@ref(fig:lake) could look like
-$$\frac{dD}{dt} = I + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS$$
-where $D$ is the amount of P in the dissolved pool, perhaps in mg$\cdot$m$^{-2}$, $I$ is import, or source, from outside the system (dust? lake inflow?), and $H$, $N$, $F_1$, and $F_2$ are the other pools. The lower case letters are *parameters* or rate constants that are the mass-specific fluxes. 
+This is simply saying that a change in any pool over a period of time results from a difference between inputs and outputs (sources and sinks). 
 
-The units of $dD/dt$ are mg$\cdot$m$^{-2}\cdot$d$^{-1}$, and so **each term (e.g., $I$ or $e_H H$) in the equation must also have these same units**. 
+As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the rate of change of dissolved P in Fig. \@ref(fig:lake) could look like
+$$\frac{dD}{dt} = i + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS$$
+where $D$ is the amount of P in the dissolved form, perhaps in mg$\cdot$m$^{-2}$. Parameter $i$ is import, or source, from outside the system (e.g., dust, lake inflow), and $H$, $N$, $F_1$, and $F_2$ are the other pools. The lower case letters are *parameters* or rate constants that are the mass-specific fluxes. The rate of change of $D$ is a function of imports and fluxes from herbivores ($H$), invertebrates ($N$), planktivorous fish ($F_1$), and piscivorous fish ($F_2$), minus loss to seston ($S$).
 
-* units of $e_H H$ must be mg$\cdot$m$^{-2}$$\cdot$d$^{-1}$.
-* units of $H$ are mg$\cdot$m$^{-2}$.
-* Ergo, units of $e_H$ are d$^{-1}$.
+### Units of terms
+Each term in an equation must have units that make sense. The units of the dissolved pool are mg$\cdot$m$^{-2}$, so the daily flux $dD/dt$ (the lefthand side of the equation) must be mg$\cdot$m$^{-2}\cdot$d$^{-1}$ (milligrams per square meter per day). Therefore, **each termin the equation must also have these same units**. For instance,  units for $i$ must be mg$\cdot$m$^{-2}\cdot$d$^{-1}$. Similarly the units for $e_H H$ must be mg$\cdot$m$^{-2}\cdot$d$^{-1}$. Therefore, we can deduce the following. 
 
-More intuitively, the units of these rate constants are milligrams per square meter per day, per milligram per square meter of lake (mg$\cdot$m$^{-2}\cdot$d$^{-1}$ / mg$\cdot$m$^{-2}$ in the lake). Note the quantities cancel out, and we are left with d$^{-1}$.
+Given that units of $e_H H$ must be mg$\cdot$m$^{-2}$$\cdot$d$^{-1}$, and we know that the units of $H$ are mg$\cdot$m$^{-2}$, then it must be true that the units of $e_H$ are d$^{-1}$.
+
+*A more intuitive way* to think about the units of $e_H$ is that it is the amount of P lost from the herbivores per total amount of P in the herbivores, per day. The units for the two amounts cancel out mathematically, and we are left with simply a dimensionless constant "per day". With the units, we have 
+
+
+$$\frac{\mathrm{mg}\cdot \mathrm{m}^{-2}~\mathrm{P~lost}}{\mathrm{mg}\cdot \mathrm{m}^{-2}~\mathrm{P~total}} \frac{1}{d} =  \frac{1}{d} = d^{-1}$$
+
+where the masses per unit area cancel out, and we are left with d$^{-1}$.
 
 See @soetaert2009 section 2.1.4 for further explanation. 
 
-One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We aim to track where everything comes from and where it goes. If we add up all of the rates of change for each pool, we should see that most of them cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have, 
+One nice feature of ecosystem ecology and ecosystem models is the emphasis on the conservation of mass and energy. We track where everything comes from and where it all goes. If we add up all of the rates of change for each pool, we should see that all internal fluxes should cancel out, and we are left with only imports and exports. Doing this summation will tell us whether our model makes sense or we made a mistake. If we did not make any mistakes, it will tell us whether the entire system is a net sink or source of our currency. For instance, after simplifying the lake ecosystem model, we would have, 
 $$\frac{dD}{dt} + \frac{dS}{dt} + \frac{dH}{dt} + \frac{dN}{dt} + \frac{dF_1}{dt} + \frac{dF_2}{dt} = \ldots \ldots = \mathrm{Imports - Exports}$$
 
 See @soetaert2009 section 2.1.3 for further explanation. 
 
-**State factors** also enter into the model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., $e_H$, $u_S$) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.* We will add temperature to a model later in the book.
+**State factors** also play roles in a model, typically altering the fluxes. For instance, increasing atmospheric temperature might force a predictable change in our rate constants (e.g., $e_H$, $u_S$) in the above model. Because temperature is an external factor forcing a change to a parameter, we often call its role in a model a *forcing function.* We will add temperature to a model later in the primer.
 
 **To review:** variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.
 

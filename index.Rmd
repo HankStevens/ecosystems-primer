@@ -34,6 +34,7 @@ library(kableExtra) #kbl
 library(DiagrammeR) # grViz
 library(DiagrammeRsvg)
 library(bbmle) # MLE with mle2() 
+library(LakeMetabolizer)
 ```
 
 For this R primer, you'll need to read several chapters of @soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
@@ -44,9 +45,9 @@ I also assume that you are reading a book on ecosystem ecology such as @chapin20
 
 Read background material as needed.
 
-* Install or update R (4.0.3, as of Jan 2021)
-* Install or update RStudio
-* Install select R packages: 'deSolve', 'tidyverse', 'LakeMetabolizer`, 'lubridate'
+* Install or update R (v. 4.2.2, as of 2022 January)
+* Install or update RStudio (v. 2022.12.0+353, as of 2022 January)
+* Install or update selected R packages: 'deSolve', 'tidyverse', 'LakeMetabolizer`, 'lubridate', 'googlesheets4'. (tidyverse is a collection of packages)
 
 Also, before doing most tasks in this primer, load deSolve and tidyverse with `library(deSolve); library(tidyverse)`.
 
@@ -57,4 +58,8 @@ The R **working directory** is the place R automatically looks for files. For si
 @Carey2018PLoS. Ten simple rules for biologists learning to program. PLoS Computional Biology 14(1): e1005871. https://doi.org/10.1371/journal.pcbi.1005871
 
 @Bodner2021PLoS. Ten simple rules for tackling your first mathematical models: A guide for graduate students by graduate students. PLOS Computational Biology 17(1): e1008539.  https://doi.org/10.1371/journal.pcbi.1008539
+
+## A final suggestion
+
+An elementary book or manual introducing a topic is called a "primer" and is pronounced like "prim", just like the grammarian pointing this out. In contrast, a small explosion or flame that detonates a larger explosion uses the same spelling, "primer", but is pronounced like "prime", with a long "i" sound. Be cautious about your use of these; incorrect use could lead to unexpected consequences.
 
