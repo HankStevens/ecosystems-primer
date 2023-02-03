@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-01-23" />
+<meta name="date" content="2023-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,7 +180,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
 <li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
-<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a></li>
+<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>3.3.1</b> Instantaneous rates</a></li>
+<li class="chapter" data-level="3.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>3.3.2</b> A sign of the times</a></li>
+</ul></li>
 <li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
 <li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
 </ul></li>
@@ -292,78 +296,78 @@ Figure 5.1: <em>‘Limitation’ arises when the benefit of a resource declines 
 <p>Below, I supply some code from Soetaert and Herman (2009). Your assignment is to make a copy of it, and document heavily it with your own comments. Nearly every line of code should have a comment. Use comments to demarcate different sections of the script. Don’t forget to start with comments about the what the document is, your name, and the source of the model.</p>
 <p>Turn in your script, and the figure it should generate.</p>
 <p>To begin, create or obtain an R script of the following code.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
-<span id="cb55-2"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-3" aria-hidden="true" tabindex="-1"></a>NPZD<span class="ot">&lt;-</span><span class="cf">function</span>(t,state,parameters)</span>
-<span id="cb55-4"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-4" aria-hidden="true" tabindex="-1"></a> {</span>
-<span id="cb55-5"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">with</span>( <span class="fu">as.list</span>(<span class="fu">c</span>(state,parameters)), {  </span>
-<span id="cb55-6"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-6" aria-hidden="true" tabindex="-1"></a>    PAR <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>(<span class="dv">540</span><span class="sc">+</span><span class="dv">440</span><span class="sc">*</span><span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>t<span class="sc">/</span><span class="dv">365</span><span class="fl">-1.4</span>))</span>
-<span id="cb55-7"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-7" aria-hidden="true" tabindex="-1"></a>    din            <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>,DIN) </span>
-<span id="cb55-8"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-8" aria-hidden="true" tabindex="-1"></a>    Nuptake <span class="ot">&lt;-</span> maxUptake <span class="sc">*</span> PAR<span class="sc">/</span>(PAR<span class="sc">+</span>ksPAR) <span class="sc">*</span> din<span class="sc">/</span>(din<span class="sc">+</span>ksDIN)<span class="sc">*</span>PHYTO</span>
-<span id="cb55-9"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-10"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-10" aria-hidden="true" tabindex="-1"></a>    Grazing        <span class="ot">&lt;-</span> maxGrazing <span class="sc">*</span> PHYTO<span class="sc">/</span>(PHYTO <span class="sc">+</span> ksGrazing)<span class="sc">*</span>ZOO </span>
-<span id="cb55-11"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-11" aria-hidden="true" tabindex="-1"></a>    Faeces         <span class="ot">&lt;-</span> pFaeces <span class="sc">*</span> Grazing</span>
-<span id="cb55-12"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-12" aria-hidden="true" tabindex="-1"></a>    Excretion      <span class="ot">&lt;-</span> excretionRate <span class="sc">*</span> ZOO</span>
-<span id="cb55-13"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-13" aria-hidden="true" tabindex="-1"></a>    Mortality      <span class="ot">&lt;-</span> mortalityRate <span class="sc">*</span> ZOO <span class="sc">*</span> ZOO</span>
-<span id="cb55-14"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-14" aria-hidden="true" tabindex="-1"></a>    Mineralisation <span class="ot">&lt;-</span> mineralisationRate <span class="sc">*</span> DETRITUS</span>
-<span id="cb55-15"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-15" aria-hidden="true" tabindex="-1"></a>    Chlorophyll    <span class="ot">&lt;-</span> chlNratio <span class="sc">*</span> PHYTO</span>
-<span id="cb55-16"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-16" aria-hidden="true" tabindex="-1"></a>    TotalN         <span class="ot">&lt;-</span> PHYTO <span class="sc">+</span> ZOO <span class="sc">+</span> DETRITUS <span class="sc">+</span> DIN   </span>
-<span id="cb55-17"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-18"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-18" aria-hidden="true" tabindex="-1"></a>    dPHYTO    <span class="ot">&lt;-</span> Nuptake <span class="sc">-</span> Grazing</span>
-<span id="cb55-19"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-19" aria-hidden="true" tabindex="-1"></a>    dZOO      <span class="ot">&lt;-</span> Grazing <span class="sc">-</span> Faeces <span class="sc">-</span> Excretion <span class="sc">-</span> Mortality</span>
-<span id="cb55-20"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-20" aria-hidden="true" tabindex="-1"></a>    dDETRITUS <span class="ot">&lt;-</span> Mortality <span class="sc">-</span> Mineralisation <span class="sc">+</span> Faeces</span>
-<span id="cb55-21"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-21" aria-hidden="true" tabindex="-1"></a>    dDIN      <span class="ot">&lt;-</span> Mineralisation <span class="sc">+</span> Excretion <span class="sc">-</span> Nuptake</span>
-<span id="cb55-22"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb55-23"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-23" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb55-24"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>( </span>
-<span id="cb55-25"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(dPHYTO,dZOO,dDETRITUS,dDIN), </span>
-<span id="cb55-26"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="at">Chlorophyll =</span> Chlorophyll, <span class="at">PAR=</span>PAR, <span class="at">TotalN=</span> TotalN)</span>
-<span id="cb55-27"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-27" aria-hidden="true" tabindex="-1"></a>      )  </span>
-<span id="cb55-28"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-28" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb55-29"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-29" aria-hidden="true" tabindex="-1"></a>  }  </span>
-<span id="cb55-30"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-31"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-31" aria-hidden="true" tabindex="-1"></a><span class="do">## THE FLUXES ARE PER DAYS. SCAlE PARAMETERS ACCORDINGLY.</span></span>
-<span id="cb55-32"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-32" aria-hidden="true" tabindex="-1"></a>parameters<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">maxUptake          =</span><span class="fl">1.0</span>,       <span class="co"># </span></span>
-<span id="cb55-33"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-33" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksPAR              =</span><span class="dv">140</span>,       <span class="co"># </span></span>
-<span id="cb55-34"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-34" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksDIN              =</span><span class="fl">0.5</span>,       <span class="co"># </span></span>
-<span id="cb55-35"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-35" aria-hidden="true" tabindex="-1"></a>              <span class="at">maxGrazing         =</span><span class="fl">1.0</span>,       <span class="co"># </span></span>
-<span id="cb55-36"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-36" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksGrazing          =</span><span class="fl">1.0</span>,       <span class="co"># </span></span>
-<span id="cb55-37"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-37" aria-hidden="true" tabindex="-1"></a>              <span class="at">pFaeces            =</span><span class="fl">0.3</span>,       <span class="co"># </span></span>
-<span id="cb55-38"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-38" aria-hidden="true" tabindex="-1"></a>              <span class="at">excretionRate      =</span><span class="fl">0.1</span>,       <span class="co"># </span></span>
-<span id="cb55-39"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-39" aria-hidden="true" tabindex="-1"></a>              <span class="at">mortalityRate      =</span><span class="fl">0.4</span>,       <span class="co"># </span></span>
-<span id="cb55-40"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-40" aria-hidden="true" tabindex="-1"></a>              <span class="at">mineralisationRate =</span><span class="fl">0.1</span>,       <span class="co"># </span></span>
-<span id="cb55-41"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-41" aria-hidden="true" tabindex="-1"></a>              <span class="at">chlNratio          =</span><span class="dv">1</span>)         <span class="co"># </span></span>
-<span id="cb55-42"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-43"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-43" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb55-44"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-44" aria-hidden="true" tabindex="-1"></a>state     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">PHYTO   =</span><span class="dv">1</span>,   <span class="co"># </span></span>
-<span id="cb55-45"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-45" aria-hidden="true" tabindex="-1"></a>              <span class="at">ZOO     =</span><span class="fl">0.1</span>,</span>
-<span id="cb55-46"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-46" aria-hidden="true" tabindex="-1"></a>              <span class="at">DETRITUS=</span><span class="fl">5.0</span>,</span>
-<span id="cb55-47"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-47" aria-hidden="true" tabindex="-1"></a>              <span class="at">DIN     =</span><span class="fl">5.0</span>)</span>
-<span id="cb55-48"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-49"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-50"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-50" aria-hidden="true" tabindex="-1"></a>times     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">365</span>)  </span>
-<span id="cb55-51"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-51" aria-hidden="true" tabindex="-1"></a>out       <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(state,times, NPZD, parameters) ) </span>
-<span id="cb55-52"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-52" aria-hidden="true" tabindex="-1"></a>out</span>
-<span id="cb55-53"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-54"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-54" aria-hidden="true" tabindex="-1"></a>num   <span class="ot">&lt;-</span> <span class="fu">length</span>(out<span class="sc">$</span>PHYTO)   <span class="co"># last element </span></span>
-<span id="cb55-55"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-56"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-56" aria-hidden="true" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">PHYTO=</span>out<span class="sc">$</span>PHYTO[num],         </span>
-<span id="cb55-57"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-57" aria-hidden="true" tabindex="-1"></a>               <span class="at">ZOO=</span>out<span class="sc">$</span>ZOO[num],           </span>
-<span id="cb55-58"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-58" aria-hidden="true" tabindex="-1"></a>               <span class="at">DETRITUS=</span>out<span class="sc">$</span>DETRITUS[num],</span>
-<span id="cb55-59"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-59" aria-hidden="true" tabindex="-1"></a>               <span class="at">DIN=</span>out<span class="sc">$</span>DIN[num])</span>
-<span id="cb55-60"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-61"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-61" aria-hidden="true" tabindex="-1"></a>times     <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">730</span>,<span class="at">by=</span><span class="dv">1</span>)              </span>
-<span id="cb55-62"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-62" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">ode</span>(state, times, NPZD, parameters))</span>
-<span id="cb55-63"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-64"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-64" aria-hidden="true" tabindex="-1"></a>out.long <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb55-65"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State_vars&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;Value&quot;</span>) </span>
-<span id="cb55-66"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-67"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-67" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>out.long, <span class="fu">aes</span>(time, Value)) <span class="sc">+</span> </span>
-<span id="cb55-68"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb55-69"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>State_vars, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span>
-<span id="cb55-70"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-71"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-71" aria-hidden="true" tabindex="-1"></a><span class="do">## provide a unique name for your PNG file</span></span>
-<span id="cb55-72"><a href="npzd---a-simple-aquatic-ecosystem.html#cb55-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myNPZDplot.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb61-2"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-3" aria-hidden="true" tabindex="-1"></a>NPZD<span class="ot">&lt;-</span><span class="cf">function</span>(t,state,parameters)</span>
+<span id="cb61-4"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-4" aria-hidden="true" tabindex="-1"></a> {</span>
+<span id="cb61-5"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">with</span>( <span class="fu">as.list</span>(<span class="fu">c</span>(state,parameters)), {  </span>
+<span id="cb61-6"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-6" aria-hidden="true" tabindex="-1"></a>    PAR <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>(<span class="dv">540</span><span class="sc">+</span><span class="dv">440</span><span class="sc">*</span><span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>t<span class="sc">/</span><span class="dv">365</span><span class="fl">-1.4</span>))</span>
+<span id="cb61-7"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-7" aria-hidden="true" tabindex="-1"></a>    din            <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>,DIN) </span>
+<span id="cb61-8"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-8" aria-hidden="true" tabindex="-1"></a>    Nuptake <span class="ot">&lt;-</span> maxUptake <span class="sc">*</span> PAR<span class="sc">/</span>(PAR<span class="sc">+</span>ksPAR) <span class="sc">*</span> din<span class="sc">/</span>(din<span class="sc">+</span>ksDIN)<span class="sc">*</span>PHYTO</span>
+<span id="cb61-9"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-10"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-10" aria-hidden="true" tabindex="-1"></a>    Grazing        <span class="ot">&lt;-</span> maxGrazing <span class="sc">*</span> PHYTO<span class="sc">/</span>(PHYTO <span class="sc">+</span> ksGrazing)<span class="sc">*</span>ZOO </span>
+<span id="cb61-11"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-11" aria-hidden="true" tabindex="-1"></a>    Faeces         <span class="ot">&lt;-</span> pFaeces <span class="sc">*</span> Grazing</span>
+<span id="cb61-12"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-12" aria-hidden="true" tabindex="-1"></a>    Excretion      <span class="ot">&lt;-</span> excretionRate <span class="sc">*</span> ZOO</span>
+<span id="cb61-13"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-13" aria-hidden="true" tabindex="-1"></a>    Mortality      <span class="ot">&lt;-</span> mortalityRate <span class="sc">*</span> ZOO <span class="sc">*</span> ZOO</span>
+<span id="cb61-14"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-14" aria-hidden="true" tabindex="-1"></a>    Mineralisation <span class="ot">&lt;-</span> mineralisationRate <span class="sc">*</span> DETRITUS</span>
+<span id="cb61-15"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-15" aria-hidden="true" tabindex="-1"></a>    Chlorophyll    <span class="ot">&lt;-</span> chlNratio <span class="sc">*</span> PHYTO</span>
+<span id="cb61-16"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-16" aria-hidden="true" tabindex="-1"></a>    TotalN         <span class="ot">&lt;-</span> PHYTO <span class="sc">+</span> ZOO <span class="sc">+</span> DETRITUS <span class="sc">+</span> DIN   </span>
+<span id="cb61-17"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-18"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-18" aria-hidden="true" tabindex="-1"></a>    dPHYTO    <span class="ot">&lt;-</span> Nuptake <span class="sc">-</span> Grazing</span>
+<span id="cb61-19"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-19" aria-hidden="true" tabindex="-1"></a>    dZOO      <span class="ot">&lt;-</span> Grazing <span class="sc">-</span> Faeces <span class="sc">-</span> Excretion <span class="sc">-</span> Mortality</span>
+<span id="cb61-20"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-20" aria-hidden="true" tabindex="-1"></a>    dDETRITUS <span class="ot">&lt;-</span> Mortality <span class="sc">-</span> Mineralisation <span class="sc">+</span> Faeces</span>
+<span id="cb61-21"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-21" aria-hidden="true" tabindex="-1"></a>    dDIN      <span class="ot">&lt;-</span> Mineralisation <span class="sc">+</span> Excretion <span class="sc">-</span> Nuptake</span>
+<span id="cb61-22"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb61-23"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-23" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb61-24"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>( </span>
+<span id="cb61-25"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(dPHYTO,dZOO,dDETRITUS,dDIN), </span>
+<span id="cb61-26"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="at">Chlorophyll =</span> Chlorophyll, <span class="at">PAR=</span>PAR, <span class="at">TotalN=</span> TotalN)</span>
+<span id="cb61-27"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-27" aria-hidden="true" tabindex="-1"></a>      )  </span>
+<span id="cb61-28"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-28" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb61-29"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-29" aria-hidden="true" tabindex="-1"></a>  }  </span>
+<span id="cb61-30"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-31"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-31" aria-hidden="true" tabindex="-1"></a><span class="do">## THE FLUXES ARE PER DAYS. SCAlE PARAMETERS ACCORDINGLY.</span></span>
+<span id="cb61-32"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-32" aria-hidden="true" tabindex="-1"></a>parameters<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">maxUptake          =</span><span class="fl">1.0</span>,       <span class="co"># </span></span>
+<span id="cb61-33"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-33" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksPAR              =</span><span class="dv">140</span>,       <span class="co"># </span></span>
+<span id="cb61-34"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-34" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksDIN              =</span><span class="fl">0.5</span>,       <span class="co"># </span></span>
+<span id="cb61-35"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-35" aria-hidden="true" tabindex="-1"></a>              <span class="at">maxGrazing         =</span><span class="fl">1.0</span>,       <span class="co"># </span></span>
+<span id="cb61-36"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-36" aria-hidden="true" tabindex="-1"></a>              <span class="at">ksGrazing          =</span><span class="fl">1.0</span>,       <span class="co"># </span></span>
+<span id="cb61-37"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-37" aria-hidden="true" tabindex="-1"></a>              <span class="at">pFaeces            =</span><span class="fl">0.3</span>,       <span class="co"># </span></span>
+<span id="cb61-38"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-38" aria-hidden="true" tabindex="-1"></a>              <span class="at">excretionRate      =</span><span class="fl">0.1</span>,       <span class="co"># </span></span>
+<span id="cb61-39"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-39" aria-hidden="true" tabindex="-1"></a>              <span class="at">mortalityRate      =</span><span class="fl">0.4</span>,       <span class="co"># </span></span>
+<span id="cb61-40"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-40" aria-hidden="true" tabindex="-1"></a>              <span class="at">mineralisationRate =</span><span class="fl">0.1</span>,       <span class="co"># </span></span>
+<span id="cb61-41"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-41" aria-hidden="true" tabindex="-1"></a>              <span class="at">chlNratio          =</span><span class="dv">1</span>)         <span class="co"># </span></span>
+<span id="cb61-42"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-43"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-43" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb61-44"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-44" aria-hidden="true" tabindex="-1"></a>state     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">PHYTO   =</span><span class="dv">1</span>,   <span class="co"># </span></span>
+<span id="cb61-45"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-45" aria-hidden="true" tabindex="-1"></a>              <span class="at">ZOO     =</span><span class="fl">0.1</span>,</span>
+<span id="cb61-46"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-46" aria-hidden="true" tabindex="-1"></a>              <span class="at">DETRITUS=</span><span class="fl">5.0</span>,</span>
+<span id="cb61-47"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-47" aria-hidden="true" tabindex="-1"></a>              <span class="at">DIN     =</span><span class="fl">5.0</span>)</span>
+<span id="cb61-48"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-49"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-50"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-50" aria-hidden="true" tabindex="-1"></a>times     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">365</span>)  </span>
+<span id="cb61-51"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-51" aria-hidden="true" tabindex="-1"></a>out       <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(state,times, NPZD, parameters) ) </span>
+<span id="cb61-52"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-52" aria-hidden="true" tabindex="-1"></a>out</span>
+<span id="cb61-53"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-54"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-54" aria-hidden="true" tabindex="-1"></a>num   <span class="ot">&lt;-</span> <span class="fu">length</span>(out<span class="sc">$</span>PHYTO)   <span class="co"># last element </span></span>
+<span id="cb61-55"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-56"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-56" aria-hidden="true" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">PHYTO=</span>out<span class="sc">$</span>PHYTO[num],         </span>
+<span id="cb61-57"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-57" aria-hidden="true" tabindex="-1"></a>               <span class="at">ZOO=</span>out<span class="sc">$</span>ZOO[num],           </span>
+<span id="cb61-58"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-58" aria-hidden="true" tabindex="-1"></a>               <span class="at">DETRITUS=</span>out<span class="sc">$</span>DETRITUS[num],</span>
+<span id="cb61-59"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-59" aria-hidden="true" tabindex="-1"></a>               <span class="at">DIN=</span>out<span class="sc">$</span>DIN[num])</span>
+<span id="cb61-60"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-61"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-61" aria-hidden="true" tabindex="-1"></a>times     <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">730</span>,<span class="at">by=</span><span class="dv">1</span>)              </span>
+<span id="cb61-62"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-62" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">ode</span>(state, times, NPZD, parameters))</span>
+<span id="cb61-63"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-64"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-64" aria-hidden="true" tabindex="-1"></a>out.long <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb61-65"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State_vars&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;Value&quot;</span>) </span>
+<span id="cb61-66"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-67"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-67" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>out.long, <span class="fu">aes</span>(time, Value)) <span class="sc">+</span> </span>
+<span id="cb61-68"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb61-69"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>State_vars, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span>
+<span id="cb61-70"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-71"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-71" aria-hidden="true" tabindex="-1"></a><span class="do">## provide a unique name for your PNG file</span></span>
+<span id="cb61-72"><a href="npzd---a-simple-aquatic-ecosystem.html#cb61-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myNPZDplot.png&quot;</span>)</span></code></pre></div>
 <div id="create-an-r-script-of-npzd" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Create an R script of NPZD<a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create an R script of just the system of ODEs of NPZD. Name the function <code>NPZD</code>, and name the script “NPZD.R”. We will use it in later chapters.</p>

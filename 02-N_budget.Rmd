@@ -67,14 +67,16 @@ If we have the data (we do) and relatively simple mathematical forms
 instance, we decided that net mineralization would be directly
 proportional to the size of the organic pool, $B$, that is, $F_4 =
 a_4B$. To calculate the annual incremental rate $a_4$, we substitute data where we can, and solve what we need. 
+
+This example shows the *loss* of N from the bound pool due to net mineralization:
 \begin{align*}
   F_4 &= a_4 B\\
   69.6 &= a_4 B\\
-  a_4 &= \frac{69.6}{4700}\\
-  a_4 &\approx 0.0148
+  a_4 &= \frac{-69.6}{4700}\\
+  a_4 &\approx -0.0148
 \end{align*}
 
-We use the same approach for second order equations as well. 
+We use the same approach for second order equations as well, this time, the *gain* of N added to vegetation. 
 \begin{align*}
   F_1 &= a_1 AV \\
   79.6 &= a_1  26\cdot 532  \\
@@ -82,12 +84,13 @@ We use the same approach for second order equations as well.
   a_1 &\approx 0.0058
 \end{align*}
 
-To create instantaneous rates, we take advantage of a result from calculus. It turns out that the natural logarithm of the ratio of masses gives us an estimate of an average instantaneous rate.
+### Instantaneous rates
+Continuous differential equations describe *instantaneous rates of change through time.* To create instantaneous rate constants, we take advantage of a result from calculus. It turns out that, with some reasonable assumptions, the **natural logarithm of the ratio of masses gives us an estimate of an average instantaneous rate**.
 
 Let $B_0$ be the mass of N in the soil at time 0, and $B_1$ would be the mass one year later if we summed $B$ plus the flux coming out of $B$:
-$$B_0=4700 \quad; \quad B_1 = B_0 + F_4 = 4700 + 69.6$$
+$$B_0=4700 \quad; \quad B_1 = B_0 + F_4 = 4700 - 69.6$$
 The average instantaneous rate, $\alpha_4$ required to get us from $B_0$ to $B_1$ in one year is
-$$\alpha_4 = \log\left(\frac{B_1}{B_0}\right) =  \log\left(\frac{4700+69.6}{4700}\right) \approx 0.0147$$
+$$\alpha_4 = \log\left(\frac{B_1}{B_0}\right) =  \log\left(\frac{4700-69.6}{4700}\right) \approx -0.0149$$
 
 If you compare the annual incremental rate we first calculated to this instantaneous rate, you can see they are quite similar. They would be indistinguishable given the other uncertainties in actually estimating these fluxes and pools. However, that is not always the case.
 
@@ -97,24 +100,65 @@ labels <- c("$A, B, V$ state variables", "$a_1$, uptake rate by V from A ", "$a_
 
 unit <- c("$\\frac{kg}{ha}$ = kg ha$^{-1}$", " (kg ha$^{-1}$)$^{-1}$ y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$", "kg ha$^{-1}$ y$^{-1}$")
 
-est <- c("$26, 4700, 532$", "$\\log( (79.6+26 \\cdot 532) / (26 \\cdot 532) ) = 0.0057$", "$\\log( (6.6 + 0.8 + 532) / 532 ) = 0.014$", "$\\log( (54.2 + 2.7 + 0.1 + 6.2 + 532) / 532) = 0.011$", "$\\log( (69.6 + 4700) / 4700) = 0.0147$", "$\\log( (3.9 + 26) / 26) = 0.14$", "$\\log( (0.1 + 4700)/4700) = 0.000021$", "$6.5$", "$14.2$")
+est <- c("$26, 4700, 532$", "$\\log( (79.6 + 26 \\cdot 532) / (26 \\cdot 532) ) = 0.0057$", "$\\log( (532-6.6 - 0.8 ) / 532 ) = -0.014$", "$\\log( (532-54.2 - 2.7 - 0.1 - 6.2 ) / 532) = -0.0126$", "$\\log( (4700-69.6) / 4700) = -0.0149$", "$\\log( (26-3.9) / 26) = -0.162$", "$\\log( (4700-0.1)/4700) = -0.000021$", "$6.5$", "$14.2$")
 
 df <- data.frame("p or V" = labels, units=unit, Estimate=est )
 kbl(df, caption="Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes ($dX/ dy$) are in units of kg ha$^{-1}$ y$^{-1}$. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.", align = c("l","c","c"), escape=FALSE)
 ```
 
-Enter parameters into R. 
+### A sign of the times
 
+When we estimate and use model parameters we need to be very conscious of the sign of the interaction. For instance, when we estimated the *loss* of N from the bound pool, the number we calculated was a negative number ($a_4=-0.0149$). When we use negative numbers, should we add them or subtract them?
+
+Adding negative numbers is the same as subtracting positive numbers. So, if $a_3 = -a_2$, then these two equations are the same:
+$$\frac{dX}{dt}=a_1 - a2 \quad ; \quad \frac{dX}{dt}=a_1+a_3$$ 
+Convince yourself that this is true.
+
+We just have to be careful of signs.
+
+Next we estimate the magnitude of each parameter in R. Recall that the *absolute value* of a number is symbolized with vertical lines $|x|$. That value is its *magnitude* and is always positive. In what follows, we will use the absolute value for every parameter. This will allow us to use signs (+, -) in or equations that make intuitive sense to us. In R, the absolute value function is `abs()`.
+
+**N Uptake by plants** is a positive number.
+```{r}
+a1 <- log( (26*532+79.6) / (26 * 532))
+```
+
+**Throughfall and inorganic exudates** is a loss from vegetation, and therefore a negative number. Therefore, we will use its absolute value.
+```{r}
+a2 <- abs( log( (532 - 6.6 - 0.8) / 532 ) )
+```
+
+**Litter, throughfall, organic exudates** is a loss from vegetation, and therefore a negative number. Therefore, we will use its absolute value.
+```{r}
+a3 <- abs( log( (532 - 54.2 - 2.7 - 0.1 - 6.2  ) / 532) )
+```
+
+**Net mineralization** is a loss from the bound pool, and therefore a negative number. Therefore, we will use its absolute value.
+```{r}
+a4 <-  abs( log( (4700 - 69.6) / 4700) )
+```
+
+**Export from the available pool** is a loss, and therefore a negative number. Therefore, we will use its absolute value.
+```{r}
+a5 <- abs( log( (26-3.9) /26 ) )
+```
+
+**Export from the bound pool** is a loss, and therefore a negative number. Therefore, we will use its absolute value.
+```{r}
+a6 <- abs( log( (4700-0.1) /4700) )
+```
+
+Here we create a single vector of all of the parameters, adding imports as well.
 ```{r}
 params <- c( 
   i1 = 6.5, # precip
   i2 = 14.2, # fixation
-  a1 = log( (26*532+79.6) / (26 * 532)), # uptake
-  a2 = log( (6.6 + 0.8 + 532) / 532 ), # throughfall and inorganic exudates
-  a3 = log( (54.2 + 2.7 + 0.1 + 6.2 + 532 ) / 532), # litter, throughfall, organic exudates
-  a4 = log( (69.6+4700) / 4700), # net mineralization
-  a5 = log( (3.9+26) /26 ), # export from available
-  a6 = log( (0.1+4700) /4700) #export from bound
+  a1 = a1, # uptake
+  a2 = a2, # throughfall and inorganic exudates
+  a3 = a3, # litter, throughfall, organic exudates
+  a4 = a4, # net mineralization
+  a5 = a5, # export from available
+  a6 = a6 #export from bound
 ) # close parentheses
 
 params

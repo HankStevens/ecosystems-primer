@@ -9,7 +9,7 @@ In this primer, we'll cover a few of the very basics of ecosystem modeling. Ther
 * create simple models of ecosystem dynamics of your own;
 * write R code to implement ecosystem models.
 
-To do all this, the following text relies heavily on selected secondary sources especially @soetaert2009 (especially in this chapter and chapter \@ref(Model-Sensitivity)) and @bolker2008rr. I also cite selected a few primary sources where appropriate.
+To do all this, the following text relies heavily on selected secondary sources especially @soetaert2009 (especially in this chapter and chapter \@ref(Model-Sensitivity)) and @bolker:2008rr. I also cite selected a few primary sources where appropriate.
 
 ## Why models?
 Models help us understand reality because they simplify reality and capture particular phenomena in which we are interested. Useful models capture something useful about the reality we are interested in. One example is a road map - it is a useful simplification of the actual road network. Jorges Luis Borges has a (very) short story of map makers whose map was so detailed that it was the same size as the country it described. Not very useful. 
