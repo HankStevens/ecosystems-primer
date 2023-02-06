@@ -1,6 +1,6 @@
 # Lake Metabolism
 
-In this chapter, you'll study how lakes breath. You'll get real data from Acton Lake, graph the data to see what it looks like, and then measure the rate of an inhale and an exhale. You'll do a simple, small example to get an idea, and then using an R package, `LakeMetabolizer`, which is designed to do the same thing and much more.
+In this chapter, you'll study how lakes breath. You'll get real data from Acton Lake, graph the data to see what it looks like, and then measure the rate of an inhale and an exhale. You'll do a simple, small example to get the idea of what to do, and then use an R package, `LakeMetabolizer`, to do the same thing and much more.
 
 ```{r fig.cap="*We can use lake oxygen level to measure net ecosystem production. *", out.width="70%", echo=FALSE}
 knitr::include_graphics("figs/lake_O2.jpg")
@@ -8,21 +8,23 @@ knitr::include_graphics("figs/lake_O2.jpg")
 
 ## Estimating Productivity
 
-Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O$_2$ is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.
+Most cells respire to do the work of growth and maintenance by consuming oxygen and using it as the final electron acceptor when O$_2$ is reduced, creating water. Because individuals comprise cells, and ecosystems comprise individuals, ecosystems respire too, and we can measure their metabolic rate using oxygen consumption and production.^[Just remember: ecosystems are peole, too. You respire, and lakes respire.]
 
-We measure whole ecosystem metabolic rate as net ecosystem productivity which is the difference between gross primary productivity and respiration. Putting all of this in the same units of oxygen allows us to measure the rate,
+We measure whole ecosystem metabolic rate as *net ecosystem productivity* (NEP), which is the difference between gross primary productivity (GPP) and respiration (R). Recall that production and respiration result mostly from the processes of building carbon-rich molecules (anabolism) and burning carbon-rich molecules (catabolism). These processes use lots of carbon, hydrogen, and oxygen, and thanks to strict stoichiometric constraints, we can track just one of those elements to measure the entire pair of processes.
+
+If we put all of these in the same units of oxygen allows us to measure the rate,
 $$NEP = GPP - R_{\mathrm{total}}$$
-where $R_{\mathrm{total}}=R_A+R_H$, or total respiration. Limnologists assume that, due to stoichiometric relations, rates of photosynthesis, respiration, and net primary production are correlated with rates of change in dissolved oxygen. Therefore, we can estimate respiration and net primary production by quantifying changes in oxygen concentration over time.  Dissolved oxygen in the water column (DO) is relatively easy to measure, therefore it is relatively easy to estimate NEP. If we assume that respiration is constant throughout the 24 h cycle, we estimate GPP as the sum of NEP and R. This is known are the free-water dissolved oxygen method of estimating NEP, R and GPP.
+where $R_{\mathrm{total}}=R_A+R_H$, that total respiration is the sum of respiration by autotrophs and heterotrophs. Limnologists assume that, due to stoichiometric relations of acquatic organisms, rates of whole lake photosynthesis, respiration, and net primary production are correlated with rates of change in amount of oxygen dissolve in the water column. Therefore, we can estimate respiration and net primary production by quantifying changes in oxygen concentration over time.  Dissolved oxygen in the water column (DO) is relatively easy to measure, therefore it is relatively easy to estimate NEP. If we assume that respiration is constant throughout the 24 h cycle, we estimate GPP as the sum of NEP and R. This is known are the *free-water dissolved oxygen method* of estimating NEP, R and GPP. Because we think about lake NEP as *metabolism*, we will use units of $R$, $NEP$, and $GPP$ as mg$\cdot$mL$^{-1}$$\cdot$h$^{-1}$.
 
-Using DO, we can estimate NEP and R, and then calculate GPP as the sum of NEP and R. Because we think about lake NEP as *metabolism*, we will use units of $R$, $NEP$, and $GPP$ as mg$\cdot$mL$^{-1}$$\cdot$h$^{-1}$.
+By tracking DO throughout the daytime and nighttime, we can estimate NEP and R, and then calculate GPP as the sum of NEP and R:
 
-* the rate $R$ is  the slope of DO vs. time at nighttime (when photoautrophs stop fixing carbon).
+* the rate $R$ is the slope of DO vs. time at nighttime (when photoautrophs stop fixing carbon).
 * the rate $NEP$ is the slope of DO vs. time during the day (when photoautrophs are fixing carbon and respiration continues unabated).
 * the rate $GPP$ is $GPP = NEP + R_{\mathrm{total}}$ 
 
-## By hand, in R
+## By hand, but in R
 
-Remember to start by loading the `tidyverese` and `deSolve` packages in R.
+Remember to start by loading the `tidyverse` and `deSolve` packages in R.
 
 Let's practice R by importing, wrangling, and graphing data, then calculating slopes and estimating respiration, NPP, and GPP. 
 
@@ -53,6 +55,14 @@ acton <- read_csv("data/acton.csv",
 # date_time <- mdy_hm(acton$date_time)
 # summary(date_time)
 ```
+
+Let's check what kind of data set we have.
+```{r}
+str(acton)
+```
+
+We see that the first column is a special format the R will treat in special ways, because it knows how dates and times work, with a 24 clock, 12 months, per year, etc. The rest of the variables are simple continuous numeric variables.
+
 Let's check our understanding of lake oxygen dynamics by plotting the time series. Ggplot understands what to do with dates.
 ```{r, fig.cap="*Oxygen dynamics from Acton Lake."}
 ggplot(acton, aes(x=date_time, y=O_mg.L)) + geom_path() 
@@ -62,14 +72,16 @@ If we want to calculate the slope of the night time oxygen concentration, then w
 
 Working with times in R is a little tricky, because times and dates, periods, durations, and intervals are inherently tricky. The `date_time` variable in the original data set contains all the information, and we extra tidbits from it.
 ```{r}
-# determine day/night intervals
-## Sunrise
+# determine day/night intervals in a 24 hour clock
+## Sunrise time in June
 morning <- 6.25
-## sunset
+## sunset time in June
 evening <- 21
+```
 
-
-acton <- mutate(acton,
+Here we separate the hours and days in our variable called `date_time`, and create new variables that will be more useful. The function `mutate()` changes existing variables to make new ones. Don't sweat the details of *how* we manipulate time variables, just figure out what the new variables are.
+```{r}
+acton <- acton %>% mutate(
                 ## dates, as factors.
                 date = as.factor( format(date_time, "%Y-%m-%d", tz="America/New_York") ),
                 ## hour in decimal format
@@ -88,7 +100,22 @@ acton <- mutate(acton,
                 daylight = as.factor(
                   ifelse(hour.d >= morning & hour.d < evening, "day", "night"))
                 )
+```
 
+Investigate what we have created thus far.
+```{r}
+acton[1:5,]
+```
+
+(If you would like a spreadsheet-like view of a data frame, RStudio can do that for you. In the upper right panel, select the "Environment" tab. Then select the data frame you would like to see. In addition, you code run the code,
+```{r eval=FALSE}
+View(acton)
+```
+which will open the data frame in the upper left panel.)
+
+Next we will identify each 24 hour cycle, starting at sunrise and ending just before sunrise of the next day. Each cycle will be numbered sequentially, 1, 2, ... etc.
+
+```{r}
 ## identify different day/night cycles, one cycle = one day
 ## first measurement of the day 
 ( first <- which(acton$hour.d==6.25) )
@@ -99,55 +126,88 @@ acton <- mutate(acton,
 ## make a new categorical variable, day
 acton <- acton %>%
   mutate(day=as.factor( rep(1:7, each=96)))
-
 ```
 
-```{r echo=FALSE, eval=FALSE}
-table(acton$date)
-x <- 1:nrow(acton)
-qplot(x=x, y=date_time, data=acton, geom="line")
-```
-
-
+### Plot one cycle
 The slope of oxygen concentration at night is respiration, $R$. The slope of the oxygen concentration during the day is gross primary production minus respiration, or net ecosystem production.
 
-We will pull out one day's worth of data and make a **q**uick plot of the time series.
+We will pull out one day's worth of data and plot the time series.
 ```{r}
-acton2 <- filter(acton, day=="1")
+acton_day1 <- filter(acton, day=="1")
 ## or 
 # library(lubridate)
 # acton2 <- filter(acton,  
 #                  date_time >=ymd_hms("2013-06-27 06:15:00") & 
 #                    date_time <= ymd_hms("2013-06-28 06:00:00") )
 
-qplot(x = date_time, y=O_mg.L, data=acton2, geom = "path")
+ggplot(data=acton_day1, aes(x = date_time, y=O_mg.L) ) +
+  geom_path()
 ```
 
-The nighttime slope is the regression line for just the nighttime data
+The nighttime slope is the regression line for just the nighttime data. Here is a picture.
 
 ```{r}
 # select the data frame, filter for 'date' values within a range of dates
-names(acton2)
-night.R <- lm(O_mg.L ~ nighttime.d, data=acton2)
+night1 <- acton_day1 %>% 
+  filter( !is.na(nighttime.d) )
+ggplot(data=night1, aes(x=nighttime.d, y=O_mg.L)) + 
+  geom_path() + geom_smooth(method="lm") + 
+  labs("First nighttime O2 levels")
+```
+
+Now let's actually use linear regression to measure the slope, which is the rate of decline in O$_2$ levels. We will also measure the rate of change during the daytime as well.
+```{r}
+night.R <- lm(O_mg.L ~ nighttime.d, data=night1)
 ## intercept and slope of nighttime regression
 coef(night.R)
 
-day.NEP <- lm(O_mg.L ~ daytime.d, data=acton2)
+# as.numeric gets rid of labels
+# abs() takes the absolute value
+slope.night <- as.numeric( abs( coef(night.R)[2] ))
+
+day1 <- acton_day1 %>% 
+  filter( !is.na(daytime.d) )
+day.NEP <- lm(O_mg.L ~ daytime.d, data=day1)
 ## intercept and slope of daytime regression
 coef(day.NEP)
-
+# as.numeric gets rid of labels
+slope.day <- as.numeric( coef(day.NEP)[2] )
 ```
 
-To calculate time-averaged, 24 hour NEP, we assume that all GPP occurred during the day, and respiration is constant. Our day is 14 h 45 min, or 14.75.
+What are the *units* of these numbers?
+
+Remember that a slope is the rise over the run, or the change in $y$ divided by the change in $x$.
+
+$$\mathrm{units} \frac{\Delta y}{\Delta x} = \frac{\mathrm{mg\,O}_2 \mathrm{L}^{-1}}{\mathrm{h}}$$
+
+or milligrams O$_2$ per liter per hour.
+
+
+
+To calculate time-averaged, 24 hour NEP, we assume that all GPP occurred during the day, whereas respiration is constant throughout the 24 h period. Our daytime is 14 h 45 min, or 14.75, which is only about 61% of one entire 24 h day. 
+
+Here is what we have for hourly rates:
 ```{r}
-## as.numeric() drops the name of the slope we used
-R24 <- as.numeric( abs( coef(night.R)[2] ) )
-NEP24 <- as.numeric( coef(day.NEP)[2] * 14.75/24 )
-GPP24 <- NEP24 + R24
-R24; NEP24; GPP24
+# hourly rates
+R <- slope.night
+NEP <- slope.day
+# NEP = fixation - R
+# Fixation = GPP = NEP + R
+GPP <- NEP + R
 ```
-These units are mg O$_2$ / L / h.
 
+The hourly rates do not take into account that GPP stops when the sun goes down. The total daily rates have to take into account that respiration happens for 24 h/d, whereas NEP and GPP happen only during the daylight hours, or about 61% of the day.
+
+```{r}
+daily.R <- R * 24
+daily.NEP <- (NEP * 14.75 - R * 9.25)
+daily.GPP <- daily.NEP + daily.R
+c(daily.R=daily.R, daily.NEP=daily.NEP, daily.GPP=daily.GPP)
+```
+
+So what does this tell us about NEP of Acton Lake on this day?
+
+### Average of all nights
 Here is what every night looks like. 
 ```{r}
 nights <- filter(acton, daylight=="night")
@@ -156,18 +216,13 @@ ggplot(nights, aes(x=nighttime.d, y=O_mg.L, colour=day, linetype=day)) +
   geom_smooth(method="lm", se=FALSE) # fit linear models each night
 ```
 
-We can calculate the average slope for all nights, forcing a straight line through each night's data. The estimates of uncertainty and the P values won't make sense because the data are horribly autocorrelated, but we can rely on the estimates of the coefficients, and the average slope, in particular.
+We can calculate the average slope for all nights, forcing a straight line through each night's data. The estimates of uncertainty and the P values won't make sense because the data are completely autocorrelated, but we can rely on the point estimates of the coefficients, and the average slope, in particular.
 ```{r}
-ntd <- acton$nighttime.d/24
-m.resp <- lm(O_mg.L ~ nighttime.d + day, data=acton)
-night.O2.rate <- coef(m.resp)["nighttime.d"]
+m.resp <- lm(O_mg.L ~ nighttime.d:day , data=acton)
+night.O2.rate <- mean( coef(m.resp)[-1] )
 night.O2.rate 
 ```
 
-```{r echo=FALSE, eval=FALSE}
-m.resp <- lm(O_mg.L ~ -1 + day + nighttime.d:day, data=acton)
-summary(m.resp)
-```
 
 
 The estimate for `night.d`, ```r round(coef(m.resp)[2],3)```, is our estimate of the respiration rate in mg_O$_2$/L per hour. We usually report this per day, which would just be 24 times as great.
@@ -183,22 +238,22 @@ ggplot(days, aes(x=daytime.d, y=O_mg.L, colour=day)) +
 If we want to, we could throw out the days that have negative slopes, that is, days 6 and 7.
 ```{r}
 acton3 <- filter(acton, !(day == 6 | day == 7) ) # NOT day 6 OR 7
-md.resp <- lm(O_mg.L ~ daytime.d + day, data=acton3)
-NEP.day <- coef(md.resp)["daytime.d"]
+md.resp <- lm(O_mg.L ~ daytime.d:day, data=acton3)
+NEP.day <- mean( coef(md.resp)[-1])
 NEP.day
 ```
 To get 24 hour NEP, we have to weight daytime and nighttime GPP by the daylength. We stipulated that our morning began at 6:15 AM and ended at 9 PM, or a day time of 14 h 45 min, or about 61% of the 24 h cycle. Also, remember that respiration is positive, even though we are measuring it with a negative slope.
 ```{r}
-NEP24 <- as.numeric( NEP.day * 14.75/24 )
-R24 <- as.numeric( abs( night.O2.rate ) )
-GPP24 <- NEP24 + R24 # as.numeric drops the element name
-GPP24
+R <- as.numeric( abs( night.O2.rate ) )
+NEP <- NEP.day 
+GPP <- NEP + R # as.numeric drops the element name
+
+daily.R <- R * 24
+daily.NEP <- (NEP * 14.75 - R * 9.25)
+daily.GPP <- daily.NEP + daily.R
+c(daily.R=daily.R, daily.NEP=daily.NEP, daily.GPP=daily.GPP)
 ```
 
-Recall these are units of mg O$_2$ / L / h. For units per day, we have
-```{r}
-c(GPP24, NEP24, R24) * 24
-```
 
 ## The LakeMetabolizer package
 Here we do something similar but in a much more sophisticated way. To estimate the net ecosystem productivity, we need to know, at least, gas exchange rates, equilibrium oxygen saturation, the mixing depth, and the daylight hours.
@@ -272,8 +327,12 @@ out.l <- out.all %>%
   pivot_longer(cols=GPP:NEP)
 
 ggplot(out.l, aes(doy, value, color=method)) + geom_line() +
-  facet_grid(.~name)
+  facet_grid(.~name) + labs(y="O2 per liter per day")
 ```
 
 How does this compare with our previous estimate? What would happen if our gas exchange constant differs (Cole et al. 2010)? 
+
+```{r}
+out.b$GPP - (out.b$NEP + abs(out.b$R))
+```
 

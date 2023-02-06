@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-02-03" />
+<meta name="date" content="2023-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,11 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
-<li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, in R</a></li>
+<li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, but in R</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>4.2.1</b> Plot one cycle</a></li>
+<li class="chapter" data-level="4.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>4.2.2</b> Average of all nights</a></li>
+</ul></li>
 <li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
@@ -303,133 +307,133 @@ Figure 7.2: <em>Table 1 (Rastetter et al 1997).</em>
 <h3><span class="header-section-number">7.1.1</span> The model<a href="MEL.html#the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here we write out the model nearly as written in Rastetter et al. (1997), but with some reordering. By default, R is an <em>interpreted language</em> rather than a <em>compiled language</em>. What that means for us is that R processes commands one line at a time. Therefore, if a function F requires parameter x, we have to make sure parameter x is defined before we use function F. In our implementation of MEL below, <code>Mc</code> requires <code>Ucm</code>, so <code>Ucm</code> needs to be defined before <code>Mc</code>.</p>
 <p>Copy this into a new script and name it ‘mel2.R’. In that script, add more comments to those I started. Once you have saved your script, you can use <code>source('mel2.R')</code> to load the function.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="MEL.html#cb90-1" aria-hidden="true" tabindex="-1"></a>mel2 <span class="ot">&lt;-</span> <span class="cf">function</span>(time, y, p){</span>
-<span id="cb90-2"><a href="MEL.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(y,p)), {</span>
-<span id="cb90-3"><a href="MEL.html#cb90-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Carbon is 1 and Nitrogen is 2 in </span></span>
-<span id="cb90-4"><a href="MEL.html#cb90-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## E - inorganic; D - soil organic w/ microbes; B - veg biomass;  </span></span>
-<span id="cb90-5"><a href="MEL.html#cb90-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## V - acclimation</span></span>
-<span id="cb90-6"><a href="MEL.html#cb90-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Fig. 1 of Rastetter et al. (1997)</span></span>
-<span id="cb90-7"><a href="MEL.html#cb90-7" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb90-8"><a href="MEL.html#cb90-8" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Gross UPTAKE of inorganic nutrients by Microbes</span></span>
-<span id="cb90-9"><a href="MEL.html#cb90-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Note rearrangement of terms (cf. Rastetter et al. 1997)</span></span>
-<span id="cb90-10"><a href="MEL.html#cb90-10" aria-hidden="true" tabindex="-1"></a>    <span class="do">## (uptake) X (carbon availability) X (stoichiometric optimization) </span></span>
-<span id="cb90-11"><a href="MEL.html#cb90-11" aria-hidden="true" tabindex="-1"></a>    Unm <span class="ot">&lt;-</span> alpha_n<span class="sc">*</span>En<span class="sc">/</span>(k_nm <span class="sc">+</span> En) <span class="sc">*</span> psi<span class="sc">*</span>Dc <span class="sc">*</span> Dc<span class="sc">/</span>(theta<span class="sc">*</span>Dn) </span>
-<span id="cb90-12"><a href="MEL.html#cb90-12" aria-hidden="true" tabindex="-1"></a>    Ucm <span class="ot">&lt;-</span> alpha_c<span class="sc">*</span>Ec<span class="sc">/</span>(k_cm <span class="sc">+</span> Ec) <span class="sc">*</span> psi<span class="sc">*</span>Dn <span class="sc">*</span> (theta<span class="sc">*</span>Dn)<span class="sc">/</span>Dc  <span class="co"># alpha_c=0</span></span>
-<span id="cb90-13"><a href="MEL.html#cb90-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-14"><a href="MEL.html#cb90-14" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Microbial consumption</span></span>
-<span id="cb90-15"><a href="MEL.html#cb90-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## nutrient availability + gross uptake</span></span>
-<span id="cb90-16"><a href="MEL.html#cb90-16" aria-hidden="true" tabindex="-1"></a>    Mc <span class="ot">&lt;-</span> psi<span class="sc">*</span>Dc <span class="sc">+</span> Ucm</span>
-<span id="cb90-17"><a href="MEL.html#cb90-17" aria-hidden="true" tabindex="-1"></a>    Mn <span class="ot">&lt;-</span> psi<span class="sc">*</span>Dn <span class="sc">+</span> Unm</span>
-<span id="cb90-18"><a href="MEL.html#cb90-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-19"><a href="MEL.html#cb90-19" aria-hidden="true" tabindex="-1"></a>    Lambda_c <span class="ot">&lt;-</span> epsilon_c <span class="sc">*</span> theta<span class="sc">*</span>Mn<span class="sc">/</span>(Mc <span class="sc">+</span> theta<span class="sc">*</span>Mn)</span>
-<span id="cb90-20"><a href="MEL.html#cb90-20" aria-hidden="true" tabindex="-1"></a>    Lambda_n <span class="ot">&lt;-</span> epsilon_n <span class="sc">*</span> Mc<span class="sc">/</span>(Mc <span class="sc">+</span> theta<span class="sc">*</span>Mn)</span>
-<span id="cb90-21"><a href="MEL.html#cb90-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-22"><a href="MEL.html#cb90-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb90-23"><a href="MEL.html#cb90-23" aria-hidden="true" tabindex="-1"></a>    <span class="do">## C:N ratio (units of C)</span></span>
-<span id="cb90-24"><a href="MEL.html#cb90-24" aria-hidden="true" tabindex="-1"></a>    q <span class="ot">&lt;-</span> q_w<span class="sc">*</span>Bc<span class="sc">/</span>(k_q <span class="sc">+</span> Bc)</span>
-<span id="cb90-25"><a href="MEL.html#cb90-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-26"><a href="MEL.html#cb90-26" aria-hidden="true" tabindex="-1"></a>    <span class="do">## SURFACE area related to nutrient acquisition (0 &lt; z &lt; 1)</span></span>
-<span id="cb90-27"><a href="MEL.html#cb90-27" aria-hidden="true" tabindex="-1"></a>    Sc <span class="ot">&lt;-</span> (Bc <span class="sc">+</span> q<span class="sc">*</span>Bn)<span class="sc">^</span>zc</span>
-<span id="cb90-28"><a href="MEL.html#cb90-28" aria-hidden="true" tabindex="-1"></a>    Sn <span class="ot">&lt;-</span> (Bc <span class="sc">+</span> q<span class="sc">*</span>Bn)<span class="sc">^</span>zn</span>
-<span id="cb90-29"><a href="MEL.html#cb90-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-30"><a href="MEL.html#cb90-30" aria-hidden="true" tabindex="-1"></a>    <span class="do">## UPTAKE by Vegetation</span></span>
-<span id="cb90-31"><a href="MEL.html#cb90-31" aria-hidden="true" tabindex="-1"></a>    <span class="do">## uptake constant X rel. effort X Surface area X resource conc.</span></span>
-<span id="cb90-32"><a href="MEL.html#cb90-32" aria-hidden="true" tabindex="-1"></a>    Ucv <span class="ot">&lt;-</span> gc <span class="sc">*</span> Vc <span class="sc">*</span> Sc <span class="sc">*</span> Ec<span class="sc">/</span>(kc <span class="sc">+</span> Ec)</span>
-<span id="cb90-33"><a href="MEL.html#cb90-33" aria-hidden="true" tabindex="-1"></a>    Unv <span class="ot">&lt;-</span> gn <span class="sc">*</span> Vn <span class="sc">*</span> Sn <span class="sc">*</span> En<span class="sc">/</span>(kn <span class="sc">+</span> En)</span>
-<span id="cb90-34"><a href="MEL.html#cb90-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-35"><a href="MEL.html#cb90-35" aria-hidden="true" tabindex="-1"></a>    <span class="do">## LOSSES</span></span>
-<span id="cb90-36"><a href="MEL.html#cb90-36" aria-hidden="true" tabindex="-1"></a>    Lcv <span class="ot">&lt;-</span> mc<span class="sc">*</span>Bc </span>
-<span id="cb90-37"><a href="MEL.html#cb90-37" aria-hidden="true" tabindex="-1"></a>    Lnv <span class="ot">&lt;-</span> mn<span class="sc">*</span>Bn</span>
-<span id="cb90-38"><a href="MEL.html#cb90-38" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-39"><a href="MEL.html#cb90-39" aria-hidden="true" tabindex="-1"></a>    Lce <span class="ot">&lt;-</span> beta_ce <span class="sc">*</span> Ec <span class="co"># beta_ce = 0 # export = 0</span></span>
-<span id="cb90-40"><a href="MEL.html#cb90-40" aria-hidden="true" tabindex="-1"></a>    Lne <span class="ot">&lt;-</span> beta_ne <span class="sc">*</span> En <span class="co"># leaching or denitrification</span></span>
-<span id="cb90-41"><a href="MEL.html#cb90-41" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-42"><a href="MEL.html#cb90-42" aria-hidden="true" tabindex="-1"></a>    Lcd <span class="ot">&lt;-</span> beta_d <span class="sc">*</span> Dc</span>
-<span id="cb90-43"><a href="MEL.html#cb90-43" aria-hidden="true" tabindex="-1"></a>    Lnd <span class="ot">&lt;-</span> beta_d <span class="sc">*</span> Dn</span>
-<span id="cb90-44"><a href="MEL.html#cb90-44" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-45"><a href="MEL.html#cb90-45" aria-hidden="true" tabindex="-1"></a>    <span class="do">## REPLENISHMENT to the inorganic pools (R) </span></span>
-<span id="cb90-46"><a href="MEL.html#cb90-46" aria-hidden="true" tabindex="-1"></a>    Rcm <span class="ot">&lt;-</span> Mc<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Lambda_c) <span class="co"># C respiration</span></span>
-<span id="cb90-47"><a href="MEL.html#cb90-47" aria-hidden="true" tabindex="-1"></a>    Rnm <span class="ot">&lt;-</span> Mn<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Lambda_n) <span class="co"># N mineralization</span></span>
-<span id="cb90-48"><a href="MEL.html#cb90-48" aria-hidden="true" tabindex="-1"></a>    Rcv <span class="ot">&lt;-</span> rc<span class="sc">*</span>Bc</span>
-<span id="cb90-49"><a href="MEL.html#cb90-49" aria-hidden="true" tabindex="-1"></a>    Rnv <span class="ot">&lt;-</span> rn<span class="sc">*</span>Bn</span>
-<span id="cb90-50"><a href="MEL.html#cb90-50" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-51"><a href="MEL.html#cb90-51" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Available elemental nutrients</span></span>
-<span id="cb90-52"><a href="MEL.html#cb90-52" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Set dE_i/dt = 0 to control the inorganic pools externally</span></span>
-<span id="cb90-53"><a href="MEL.html#cb90-53" aria-hidden="true" tabindex="-1"></a>    dE_N <span class="ot">&lt;-</span> Rne <span class="sc">+</span> Rnm <span class="sc">+</span> Rnv <span class="sc">-</span> Lne <span class="sc">-</span> Unm <span class="sc">-</span> Unv</span>
-<span id="cb90-54"><a href="MEL.html#cb90-54" aria-hidden="true" tabindex="-1"></a>    <span class="do">## dE_C &lt;- Rce + Rcm + Rcv - Lce - Ucm - Ucv</span></span>
-<span id="cb90-55"><a href="MEL.html#cb90-55" aria-hidden="true" tabindex="-1"></a>    dE_C <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb90-56"><a href="MEL.html#cb90-56" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-57"><a href="MEL.html#cb90-57" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Nutrients in vegetation BIOMASS</span></span>
-<span id="cb90-58"><a href="MEL.html#cb90-58" aria-hidden="true" tabindex="-1"></a>    dB_C <span class="ot">&lt;-</span> Ucv <span class="sc">-</span> Rcv <span class="sc">-</span> Lcv</span>
-<span id="cb90-59"><a href="MEL.html#cb90-59" aria-hidden="true" tabindex="-1"></a>    dB_N <span class="ot">&lt;-</span> Unv <span class="sc">-</span> Rnv <span class="sc">-</span> Lnv</span>
-<span id="cb90-60"><a href="MEL.html#cb90-60" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-61"><a href="MEL.html#cb90-61" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Nutrients in DETRITUS</span></span>
-<span id="cb90-62"><a href="MEL.html#cb90-62" aria-hidden="true" tabindex="-1"></a>    dD_C <span class="ot">&lt;-</span> Lcv <span class="sc">+</span> Ucm <span class="sc">-</span> Lcd <span class="sc">-</span> Rcm</span>
-<span id="cb90-63"><a href="MEL.html#cb90-63" aria-hidden="true" tabindex="-1"></a>    dD_N <span class="ot">&lt;-</span> Lnv <span class="sc">+</span> Unm <span class="sc">-</span> Lnd <span class="sc">-</span> Rnm</span>
-<span id="cb90-64"><a href="MEL.html#cb90-64" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-65"><a href="MEL.html#cb90-65" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Acclimation (compensation) potential</span></span>
-<span id="cb90-66"><a href="MEL.html#cb90-66" aria-hidden="true" tabindex="-1"></a>    <span class="do">## mass-specific growth rates</span></span>
-<span id="cb90-67"><a href="MEL.html#cb90-67" aria-hidden="true" tabindex="-1"></a>    Grc <span class="ot">&lt;-</span> dB_C<span class="sc">/</span>Bc</span>
-<span id="cb90-68"><a href="MEL.html#cb90-68" aria-hidden="true" tabindex="-1"></a>    Grn <span class="ot">&lt;-</span> dB_N<span class="sc">/</span>Bn</span>
-<span id="cb90-69"><a href="MEL.html#cb90-69" aria-hidden="true" tabindex="-1"></a>    <span class="do">## symmetric C:N differential plus relative growth difference</span></span>
-<span id="cb90-70"><a href="MEL.html#cb90-70" aria-hidden="true" tabindex="-1"></a>    A <span class="ot">&lt;-</span> <span class="fu">log</span>(Bc<span class="sc">/</span>(q<span class="sc">*</span>Bn)) <span class="sc">+</span> tau <span class="sc">*</span> (Grc <span class="sc">-</span> Grn)</span>
-<span id="cb90-71"><a href="MEL.html#cb90-71" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-72"><a href="MEL.html#cb90-72" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Relative effort toward compensation</span></span>
-<span id="cb90-73"><a href="MEL.html#cb90-73" aria-hidden="true" tabindex="-1"></a>    <span class="do">## if(A&gt;0) Vstar &lt;- Vc else Vstar &lt;- Vn</span></span>
-<span id="cb90-74"><a href="MEL.html#cb90-74" aria-hidden="true" tabindex="-1"></a>    Vstar <span class="ot">&lt;-</span> (A <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> Vc <span class="sc">+</span> (A <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">*</span> Vn </span>
-<span id="cb90-75"><a href="MEL.html#cb90-75" aria-hidden="true" tabindex="-1"></a>    dV_C <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>a<span class="sc">*</span>A<span class="sc">*</span>Vstar</span>
-<span id="cb90-76"><a href="MEL.html#cb90-76" aria-hidden="true" tabindex="-1"></a>    dV_N <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> dV_C</span>
-<span id="cb90-77"><a href="MEL.html#cb90-77" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-78"><a href="MEL.html#cb90-78" aria-hidden="true" tabindex="-1"></a>    <span class="do">## AUXILIARY ecosystem variables</span></span>
-<span id="cb90-79"><a href="MEL.html#cb90-79" aria-hidden="true" tabindex="-1"></a>    NPP <span class="ot">&lt;-</span> Ucv <span class="sc">-</span> Rcv</span>
-<span id="cb90-80"><a href="MEL.html#cb90-80" aria-hidden="true" tabindex="-1"></a>    Net_N_uptake <span class="ot">&lt;-</span> Unv <span class="sc">-</span> Rnv</span>
-<span id="cb90-81"><a href="MEL.html#cb90-81" aria-hidden="true" tabindex="-1"></a>    Ecosystem_N<span class="ot">=</span>Bn<span class="sc">+</span>En<span class="sc">+</span>Dn</span>
-<span id="cb90-82"><a href="MEL.html#cb90-82" aria-hidden="true" tabindex="-1"></a>    Ecosystem_C<span class="ot">=</span>Bc<span class="sc">+</span>Ec<span class="sc">+</span>Dc</span>
-<span id="cb90-83"><a href="MEL.html#cb90-83" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb90-84"><a href="MEL.html#cb90-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dE_C, dE_N, dB_C, dB_N, dD_C, dD_N, dV_C, dV_N),</span>
-<span id="cb90-85"><a href="MEL.html#cb90-85" aria-hidden="true" tabindex="-1"></a>                <span class="at">NPP=</span>NPP, <span class="at">Net_N_uptake=</span>Net_N_uptake,</span>
-<span id="cb90-86"><a href="MEL.html#cb90-86" aria-hidden="true" tabindex="-1"></a>                <span class="at">Ecosystem_C=</span>Ecosystem_C) )</span>
-<span id="cb90-87"><a href="MEL.html#cb90-87" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb90-88"><a href="MEL.html#cb90-88" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="MEL.html#cb96-1" aria-hidden="true" tabindex="-1"></a>mel2 <span class="ot">&lt;-</span> <span class="cf">function</span>(time, y, p){</span>
+<span id="cb96-2"><a href="MEL.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(y,p)), {</span>
+<span id="cb96-3"><a href="MEL.html#cb96-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Carbon is 1 and Nitrogen is 2 in </span></span>
+<span id="cb96-4"><a href="MEL.html#cb96-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## E - inorganic; D - soil organic w/ microbes; B - veg biomass;  </span></span>
+<span id="cb96-5"><a href="MEL.html#cb96-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## V - acclimation</span></span>
+<span id="cb96-6"><a href="MEL.html#cb96-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Fig. 1 of Rastetter et al. (1997)</span></span>
+<span id="cb96-7"><a href="MEL.html#cb96-7" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb96-8"><a href="MEL.html#cb96-8" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Gross UPTAKE of inorganic nutrients by Microbes</span></span>
+<span id="cb96-9"><a href="MEL.html#cb96-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Note rearrangement of terms (cf. Rastetter et al. 1997)</span></span>
+<span id="cb96-10"><a href="MEL.html#cb96-10" aria-hidden="true" tabindex="-1"></a>    <span class="do">## (uptake) X (carbon availability) X (stoichiometric optimization) </span></span>
+<span id="cb96-11"><a href="MEL.html#cb96-11" aria-hidden="true" tabindex="-1"></a>    Unm <span class="ot">&lt;-</span> alpha_n<span class="sc">*</span>En<span class="sc">/</span>(k_nm <span class="sc">+</span> En) <span class="sc">*</span> psi<span class="sc">*</span>Dc <span class="sc">*</span> Dc<span class="sc">/</span>(theta<span class="sc">*</span>Dn) </span>
+<span id="cb96-12"><a href="MEL.html#cb96-12" aria-hidden="true" tabindex="-1"></a>    Ucm <span class="ot">&lt;-</span> alpha_c<span class="sc">*</span>Ec<span class="sc">/</span>(k_cm <span class="sc">+</span> Ec) <span class="sc">*</span> psi<span class="sc">*</span>Dn <span class="sc">*</span> (theta<span class="sc">*</span>Dn)<span class="sc">/</span>Dc  <span class="co"># alpha_c=0</span></span>
+<span id="cb96-13"><a href="MEL.html#cb96-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-14"><a href="MEL.html#cb96-14" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Microbial consumption</span></span>
+<span id="cb96-15"><a href="MEL.html#cb96-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## nutrient availability + gross uptake</span></span>
+<span id="cb96-16"><a href="MEL.html#cb96-16" aria-hidden="true" tabindex="-1"></a>    Mc <span class="ot">&lt;-</span> psi<span class="sc">*</span>Dc <span class="sc">+</span> Ucm</span>
+<span id="cb96-17"><a href="MEL.html#cb96-17" aria-hidden="true" tabindex="-1"></a>    Mn <span class="ot">&lt;-</span> psi<span class="sc">*</span>Dn <span class="sc">+</span> Unm</span>
+<span id="cb96-18"><a href="MEL.html#cb96-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-19"><a href="MEL.html#cb96-19" aria-hidden="true" tabindex="-1"></a>    Lambda_c <span class="ot">&lt;-</span> epsilon_c <span class="sc">*</span> theta<span class="sc">*</span>Mn<span class="sc">/</span>(Mc <span class="sc">+</span> theta<span class="sc">*</span>Mn)</span>
+<span id="cb96-20"><a href="MEL.html#cb96-20" aria-hidden="true" tabindex="-1"></a>    Lambda_n <span class="ot">&lt;-</span> epsilon_n <span class="sc">*</span> Mc<span class="sc">/</span>(Mc <span class="sc">+</span> theta<span class="sc">*</span>Mn)</span>
+<span id="cb96-21"><a href="MEL.html#cb96-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-22"><a href="MEL.html#cb96-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb96-23"><a href="MEL.html#cb96-23" aria-hidden="true" tabindex="-1"></a>    <span class="do">## C:N ratio (units of C)</span></span>
+<span id="cb96-24"><a href="MEL.html#cb96-24" aria-hidden="true" tabindex="-1"></a>    q <span class="ot">&lt;-</span> q_w<span class="sc">*</span>Bc<span class="sc">/</span>(k_q <span class="sc">+</span> Bc)</span>
+<span id="cb96-25"><a href="MEL.html#cb96-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-26"><a href="MEL.html#cb96-26" aria-hidden="true" tabindex="-1"></a>    <span class="do">## SURFACE area related to nutrient acquisition (0 &lt; z &lt; 1)</span></span>
+<span id="cb96-27"><a href="MEL.html#cb96-27" aria-hidden="true" tabindex="-1"></a>    Sc <span class="ot">&lt;-</span> (Bc <span class="sc">+</span> q<span class="sc">*</span>Bn)<span class="sc">^</span>zc</span>
+<span id="cb96-28"><a href="MEL.html#cb96-28" aria-hidden="true" tabindex="-1"></a>    Sn <span class="ot">&lt;-</span> (Bc <span class="sc">+</span> q<span class="sc">*</span>Bn)<span class="sc">^</span>zn</span>
+<span id="cb96-29"><a href="MEL.html#cb96-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-30"><a href="MEL.html#cb96-30" aria-hidden="true" tabindex="-1"></a>    <span class="do">## UPTAKE by Vegetation</span></span>
+<span id="cb96-31"><a href="MEL.html#cb96-31" aria-hidden="true" tabindex="-1"></a>    <span class="do">## uptake constant X rel. effort X Surface area X resource conc.</span></span>
+<span id="cb96-32"><a href="MEL.html#cb96-32" aria-hidden="true" tabindex="-1"></a>    Ucv <span class="ot">&lt;-</span> gc <span class="sc">*</span> Vc <span class="sc">*</span> Sc <span class="sc">*</span> Ec<span class="sc">/</span>(kc <span class="sc">+</span> Ec)</span>
+<span id="cb96-33"><a href="MEL.html#cb96-33" aria-hidden="true" tabindex="-1"></a>    Unv <span class="ot">&lt;-</span> gn <span class="sc">*</span> Vn <span class="sc">*</span> Sn <span class="sc">*</span> En<span class="sc">/</span>(kn <span class="sc">+</span> En)</span>
+<span id="cb96-34"><a href="MEL.html#cb96-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-35"><a href="MEL.html#cb96-35" aria-hidden="true" tabindex="-1"></a>    <span class="do">## LOSSES</span></span>
+<span id="cb96-36"><a href="MEL.html#cb96-36" aria-hidden="true" tabindex="-1"></a>    Lcv <span class="ot">&lt;-</span> mc<span class="sc">*</span>Bc </span>
+<span id="cb96-37"><a href="MEL.html#cb96-37" aria-hidden="true" tabindex="-1"></a>    Lnv <span class="ot">&lt;-</span> mn<span class="sc">*</span>Bn</span>
+<span id="cb96-38"><a href="MEL.html#cb96-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-39"><a href="MEL.html#cb96-39" aria-hidden="true" tabindex="-1"></a>    Lce <span class="ot">&lt;-</span> beta_ce <span class="sc">*</span> Ec <span class="co"># beta_ce = 0 # export = 0</span></span>
+<span id="cb96-40"><a href="MEL.html#cb96-40" aria-hidden="true" tabindex="-1"></a>    Lne <span class="ot">&lt;-</span> beta_ne <span class="sc">*</span> En <span class="co"># leaching or denitrification</span></span>
+<span id="cb96-41"><a href="MEL.html#cb96-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-42"><a href="MEL.html#cb96-42" aria-hidden="true" tabindex="-1"></a>    Lcd <span class="ot">&lt;-</span> beta_d <span class="sc">*</span> Dc</span>
+<span id="cb96-43"><a href="MEL.html#cb96-43" aria-hidden="true" tabindex="-1"></a>    Lnd <span class="ot">&lt;-</span> beta_d <span class="sc">*</span> Dn</span>
+<span id="cb96-44"><a href="MEL.html#cb96-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-45"><a href="MEL.html#cb96-45" aria-hidden="true" tabindex="-1"></a>    <span class="do">## REPLENISHMENT to the inorganic pools (R) </span></span>
+<span id="cb96-46"><a href="MEL.html#cb96-46" aria-hidden="true" tabindex="-1"></a>    Rcm <span class="ot">&lt;-</span> Mc<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Lambda_c) <span class="co"># C respiration</span></span>
+<span id="cb96-47"><a href="MEL.html#cb96-47" aria-hidden="true" tabindex="-1"></a>    Rnm <span class="ot">&lt;-</span> Mn<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Lambda_n) <span class="co"># N mineralization</span></span>
+<span id="cb96-48"><a href="MEL.html#cb96-48" aria-hidden="true" tabindex="-1"></a>    Rcv <span class="ot">&lt;-</span> rc<span class="sc">*</span>Bc</span>
+<span id="cb96-49"><a href="MEL.html#cb96-49" aria-hidden="true" tabindex="-1"></a>    Rnv <span class="ot">&lt;-</span> rn<span class="sc">*</span>Bn</span>
+<span id="cb96-50"><a href="MEL.html#cb96-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-51"><a href="MEL.html#cb96-51" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Available elemental nutrients</span></span>
+<span id="cb96-52"><a href="MEL.html#cb96-52" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Set dE_i/dt = 0 to control the inorganic pools externally</span></span>
+<span id="cb96-53"><a href="MEL.html#cb96-53" aria-hidden="true" tabindex="-1"></a>    dE_N <span class="ot">&lt;-</span> Rne <span class="sc">+</span> Rnm <span class="sc">+</span> Rnv <span class="sc">-</span> Lne <span class="sc">-</span> Unm <span class="sc">-</span> Unv</span>
+<span id="cb96-54"><a href="MEL.html#cb96-54" aria-hidden="true" tabindex="-1"></a>    <span class="do">## dE_C &lt;- Rce + Rcm + Rcv - Lce - Ucm - Ucv</span></span>
+<span id="cb96-55"><a href="MEL.html#cb96-55" aria-hidden="true" tabindex="-1"></a>    dE_C <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb96-56"><a href="MEL.html#cb96-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-57"><a href="MEL.html#cb96-57" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Nutrients in vegetation BIOMASS</span></span>
+<span id="cb96-58"><a href="MEL.html#cb96-58" aria-hidden="true" tabindex="-1"></a>    dB_C <span class="ot">&lt;-</span> Ucv <span class="sc">-</span> Rcv <span class="sc">-</span> Lcv</span>
+<span id="cb96-59"><a href="MEL.html#cb96-59" aria-hidden="true" tabindex="-1"></a>    dB_N <span class="ot">&lt;-</span> Unv <span class="sc">-</span> Rnv <span class="sc">-</span> Lnv</span>
+<span id="cb96-60"><a href="MEL.html#cb96-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-61"><a href="MEL.html#cb96-61" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Nutrients in DETRITUS</span></span>
+<span id="cb96-62"><a href="MEL.html#cb96-62" aria-hidden="true" tabindex="-1"></a>    dD_C <span class="ot">&lt;-</span> Lcv <span class="sc">+</span> Ucm <span class="sc">-</span> Lcd <span class="sc">-</span> Rcm</span>
+<span id="cb96-63"><a href="MEL.html#cb96-63" aria-hidden="true" tabindex="-1"></a>    dD_N <span class="ot">&lt;-</span> Lnv <span class="sc">+</span> Unm <span class="sc">-</span> Lnd <span class="sc">-</span> Rnm</span>
+<span id="cb96-64"><a href="MEL.html#cb96-64" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-65"><a href="MEL.html#cb96-65" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Acclimation (compensation) potential</span></span>
+<span id="cb96-66"><a href="MEL.html#cb96-66" aria-hidden="true" tabindex="-1"></a>    <span class="do">## mass-specific growth rates</span></span>
+<span id="cb96-67"><a href="MEL.html#cb96-67" aria-hidden="true" tabindex="-1"></a>    Grc <span class="ot">&lt;-</span> dB_C<span class="sc">/</span>Bc</span>
+<span id="cb96-68"><a href="MEL.html#cb96-68" aria-hidden="true" tabindex="-1"></a>    Grn <span class="ot">&lt;-</span> dB_N<span class="sc">/</span>Bn</span>
+<span id="cb96-69"><a href="MEL.html#cb96-69" aria-hidden="true" tabindex="-1"></a>    <span class="do">## symmetric C:N differential plus relative growth difference</span></span>
+<span id="cb96-70"><a href="MEL.html#cb96-70" aria-hidden="true" tabindex="-1"></a>    A <span class="ot">&lt;-</span> <span class="fu">log</span>(Bc<span class="sc">/</span>(q<span class="sc">*</span>Bn)) <span class="sc">+</span> tau <span class="sc">*</span> (Grc <span class="sc">-</span> Grn)</span>
+<span id="cb96-71"><a href="MEL.html#cb96-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-72"><a href="MEL.html#cb96-72" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Relative effort toward compensation</span></span>
+<span id="cb96-73"><a href="MEL.html#cb96-73" aria-hidden="true" tabindex="-1"></a>    <span class="do">## if(A&gt;0) Vstar &lt;- Vc else Vstar &lt;- Vn</span></span>
+<span id="cb96-74"><a href="MEL.html#cb96-74" aria-hidden="true" tabindex="-1"></a>    Vstar <span class="ot">&lt;-</span> (A <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> Vc <span class="sc">+</span> (A <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">*</span> Vn </span>
+<span id="cb96-75"><a href="MEL.html#cb96-75" aria-hidden="true" tabindex="-1"></a>    dV_C <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>a<span class="sc">*</span>A<span class="sc">*</span>Vstar</span>
+<span id="cb96-76"><a href="MEL.html#cb96-76" aria-hidden="true" tabindex="-1"></a>    dV_N <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> dV_C</span>
+<span id="cb96-77"><a href="MEL.html#cb96-77" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-78"><a href="MEL.html#cb96-78" aria-hidden="true" tabindex="-1"></a>    <span class="do">## AUXILIARY ecosystem variables</span></span>
+<span id="cb96-79"><a href="MEL.html#cb96-79" aria-hidden="true" tabindex="-1"></a>    NPP <span class="ot">&lt;-</span> Ucv <span class="sc">-</span> Rcv</span>
+<span id="cb96-80"><a href="MEL.html#cb96-80" aria-hidden="true" tabindex="-1"></a>    Net_N_uptake <span class="ot">&lt;-</span> Unv <span class="sc">-</span> Rnv</span>
+<span id="cb96-81"><a href="MEL.html#cb96-81" aria-hidden="true" tabindex="-1"></a>    Ecosystem_N<span class="ot">=</span>Bn<span class="sc">+</span>En<span class="sc">+</span>Dn</span>
+<span id="cb96-82"><a href="MEL.html#cb96-82" aria-hidden="true" tabindex="-1"></a>    Ecosystem_C<span class="ot">=</span>Bc<span class="sc">+</span>Ec<span class="sc">+</span>Dc</span>
+<span id="cb96-83"><a href="MEL.html#cb96-83" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb96-84"><a href="MEL.html#cb96-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dE_C, dE_N, dB_C, dB_N, dD_C, dD_N, dV_C, dV_N),</span>
+<span id="cb96-85"><a href="MEL.html#cb96-85" aria-hidden="true" tabindex="-1"></a>                <span class="at">NPP=</span>NPP, <span class="at">Net_N_uptake=</span>Net_N_uptake,</span>
+<span id="cb96-86"><a href="MEL.html#cb96-86" aria-hidden="true" tabindex="-1"></a>                <span class="at">Ecosystem_C=</span>Ecosystem_C) )</span>
+<span id="cb96-87"><a href="MEL.html#cb96-87" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb96-88"><a href="MEL.html#cb96-88" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="parameters" class="section level3 hasAnchor" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Parameters<a href="MEL.html#parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here we start with a vector of model parameters whose description and units are found in Table 1 above. The numeric values come from Table 2 in Rastetter et al. (1997). You should copy these into your own script, and then add your own comments to each parameter, as I started to.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="MEL.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Parameter set for a closed ecosystem</span></span>
-<span id="cb91-2"><a href="MEL.html#cb91-2" aria-hidden="true" tabindex="-1"></a>p.c <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb91-3"><a href="MEL.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># carbon, nitrogen</span></span>
-<span id="cb91-4"><a href="MEL.html#cb91-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Rce=</span><span class="dv">0</span>, <span class="at">Rne=</span><span class="dv">0</span>, <span class="co"># no renewal from outside the ecosystem </span></span>
-<span id="cb91-5"><a href="MEL.html#cb91-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gc=</span><span class="dv">1116</span>, <span class="at">gn =</span><span class="fl">23.77</span>,</span>
-<span id="cb91-6"><a href="MEL.html#cb91-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">rc=</span><span class="fl">0.02055</span>, <span class="at">rn=</span><span class="fl">0.01955</span>, </span>
-<span id="cb91-7"><a href="MEL.html#cb91-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">mc=</span><span class="fl">0.02055</span>, <span class="at">mn=</span><span class="fl">0.08009</span>,</span>
-<span id="cb91-8"><a href="MEL.html#cb91-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">kc=</span><span class="dv">350</span>, <span class="at">kn=</span><span class="dv">5</span>,</span>
-<span id="cb91-9"><a href="MEL.html#cb91-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">zc=</span><span class="fl">0.11</span>, <span class="at">zn=</span><span class="fl">0.16</span>,</span>
-<span id="cb91-10"><a href="MEL.html#cb91-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">epsilon_c=</span><span class="fl">0.6</span>, <span class="at">epsilon_n=</span><span class="fl">0.6471</span>,</span>
-<span id="cb91-11"><a href="MEL.html#cb91-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_c=</span><span class="dv">0</span>, <span class="at">alpha_n =</span> <span class="fl">0.01092</span>,</span>
-<span id="cb91-12"><a href="MEL.html#cb91-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">k_cm =</span> <span class="dv">1</span>, <span class="at">k_nm=</span><span class="dv">1</span>, </span>
-<span id="cb91-13"><a href="MEL.html#cb91-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_ce =</span> <span class="dv">0</span>, </span>
-<span id="cb91-14"><a href="MEL.html#cb91-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_ne =</span> <span class="dv">0</span>,</span>
-<span id="cb91-15"><a href="MEL.html#cb91-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb91-16"><a href="MEL.html#cb91-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other</span></span>
-<span id="cb91-17"><a href="MEL.html#cb91-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">a=</span><span class="dv">5</span>, </span>
-<span id="cb91-18"><a href="MEL.html#cb91-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">tau=</span><span class="dv">3</span>, <span class="co"># damping coef</span></span>
-<span id="cb91-19"><a href="MEL.html#cb91-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">q_w=</span><span class="dv">439</span>, </span>
-<span id="cb91-20"><a href="MEL.html#cb91-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">k_q=</span><span class="dv">26290</span>,</span>
-<span id="cb91-21"><a href="MEL.html#cb91-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta=</span><span class="fl">8.628</span>,</span>
-<span id="cb91-22"><a href="MEL.html#cb91-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">psi=</span><span class="fl">0.04321</span>,</span>
-<span id="cb91-23"><a href="MEL.html#cb91-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_d=</span><span class="dv">0</span></span>
-<span id="cb91-24"><a href="MEL.html#cb91-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="MEL.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Parameter set for a closed ecosystem</span></span>
+<span id="cb97-2"><a href="MEL.html#cb97-2" aria-hidden="true" tabindex="-1"></a>p.c <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb97-3"><a href="MEL.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># carbon, nitrogen</span></span>
+<span id="cb97-4"><a href="MEL.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Rce=</span><span class="dv">0</span>, <span class="at">Rne=</span><span class="dv">0</span>, <span class="co"># no renewal from outside the ecosystem </span></span>
+<span id="cb97-5"><a href="MEL.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gc=</span><span class="dv">1116</span>, <span class="at">gn =</span><span class="fl">23.77</span>,</span>
+<span id="cb97-6"><a href="MEL.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">rc=</span><span class="fl">0.02055</span>, <span class="at">rn=</span><span class="fl">0.01955</span>, </span>
+<span id="cb97-7"><a href="MEL.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">mc=</span><span class="fl">0.02055</span>, <span class="at">mn=</span><span class="fl">0.08009</span>,</span>
+<span id="cb97-8"><a href="MEL.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">kc=</span><span class="dv">350</span>, <span class="at">kn=</span><span class="dv">5</span>,</span>
+<span id="cb97-9"><a href="MEL.html#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">zc=</span><span class="fl">0.11</span>, <span class="at">zn=</span><span class="fl">0.16</span>,</span>
+<span id="cb97-10"><a href="MEL.html#cb97-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">epsilon_c=</span><span class="fl">0.6</span>, <span class="at">epsilon_n=</span><span class="fl">0.6471</span>,</span>
+<span id="cb97-11"><a href="MEL.html#cb97-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_c=</span><span class="dv">0</span>, <span class="at">alpha_n =</span> <span class="fl">0.01092</span>,</span>
+<span id="cb97-12"><a href="MEL.html#cb97-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">k_cm =</span> <span class="dv">1</span>, <span class="at">k_nm=</span><span class="dv">1</span>, </span>
+<span id="cb97-13"><a href="MEL.html#cb97-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_ce =</span> <span class="dv">0</span>, </span>
+<span id="cb97-14"><a href="MEL.html#cb97-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_ne =</span> <span class="dv">0</span>,</span>
+<span id="cb97-15"><a href="MEL.html#cb97-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb97-16"><a href="MEL.html#cb97-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other</span></span>
+<span id="cb97-17"><a href="MEL.html#cb97-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">a=</span><span class="dv">5</span>, </span>
+<span id="cb97-18"><a href="MEL.html#cb97-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">tau=</span><span class="dv">3</span>, <span class="co"># damping coef</span></span>
+<span id="cb97-19"><a href="MEL.html#cb97-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">q_w=</span><span class="dv">439</span>, </span>
+<span id="cb97-20"><a href="MEL.html#cb97-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">k_q=</span><span class="dv">26290</span>,</span>
+<span id="cb97-21"><a href="MEL.html#cb97-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta=</span><span class="fl">8.628</span>,</span>
+<span id="cb97-22"><a href="MEL.html#cb97-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">psi=</span><span class="fl">0.04321</span>,</span>
+<span id="cb97-23"><a href="MEL.html#cb97-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_d=</span><span class="dv">0</span></span>
+<span id="cb97-24"><a href="MEL.html#cb97-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><strong>Exercise</strong> To help you better grasp what is going on in the model, redraw Fig. <a href="MEL.html#fig:rf1">7.1</a> on a chalkboard or a larger piece of paper and add as much detail as you can fit. Include model parameters and definitions and explanations – whatever helps you make sense of the processes, and their mathematical representation.</p>
 </div>
 </div>
 <div id="implementing-mel" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Implementing MEL<a href="MEL.html#implementing-mel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Table 2 of Rastetter et al. also include initial values for the state variables, which we include here.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="MEL.html#cb92-1" aria-hidden="true" tabindex="-1"></a>init.states <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Ec=</span><span class="dv">350</span>, <span class="at">En=</span><span class="dv">1</span>, <span class="co"># Inorganic nutrients g/m^2</span></span>
-<span id="cb92-2"><a href="MEL.html#cb92-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">Bc=</span><span class="dv">22000</span>, <span class="at">Bn=</span><span class="dv">110</span>, <span class="co"># Biomass nutrients g/m^2</span></span>
-<span id="cb92-3"><a href="MEL.html#cb92-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Dc=</span><span class="dv">13000</span>, <span class="at">Dn=</span><span class="dv">521</span>, <span class="co"># Detritus nutrients g/m^2</span></span>
-<span id="cb92-4"><a href="MEL.html#cb92-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Vc=</span><span class="fl">0.5</span>, <span class="at">Vn=</span><span class="fl">0.5</span> <span class="co"># allocation &quot;effort&quot; unitless</span></span>
-<span id="cb92-5"><a href="MEL.html#cb92-5" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="MEL.html#cb98-1" aria-hidden="true" tabindex="-1"></a>init.states <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Ec=</span><span class="dv">350</span>, <span class="at">En=</span><span class="dv">1</span>, <span class="co"># Inorganic nutrients g/m^2</span></span>
+<span id="cb98-2"><a href="MEL.html#cb98-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">Bc=</span><span class="dv">22000</span>, <span class="at">Bn=</span><span class="dv">110</span>, <span class="co"># Biomass nutrients g/m^2</span></span>
+<span id="cb98-3"><a href="MEL.html#cb98-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Dc=</span><span class="dv">13000</span>, <span class="at">Dn=</span><span class="dv">521</span>, <span class="co"># Detritus nutrients g/m^2</span></span>
+<span id="cb98-4"><a href="MEL.html#cb98-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Vc=</span><span class="fl">0.5</span>, <span class="at">Vn=</span><span class="fl">0.5</span> <span class="co"># allocation &quot;effort&quot; unitless</span></span>
+<span id="cb98-5"><a href="MEL.html#cb98-5" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
 <p>In addition to initial values of state variables, <span class="citation">Rastetter, Agren, and Shaver (<a href="#ref-rastetter:1997aa" role="doc-biblioref">1997</a>)</span> (Table 2) list initial fluxes. We don’t have to worry about those; the model calculates the initial fluxes from parameters and from initial values of the state variables.</p>
 <div id="increasing-atmospheric-carbon-with-events-in-ode" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Increasing atmospheric carbon with events in <code>ode()</code><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -442,43 +446,43 @@ Figure 7.2: <em>Table 1 (Rastetter et al 1997).</em>
 <li>‘value’ is the numeric value associated with the change.</li>
 <li>‘method’ is the operator that operates on the ‘value’ and the state variable: ‘add’ will add the value to the state variable, ‘mult’ will multiply the state variable by the value, and ‘replace’ will simply replace the state variable with the value (the value can be a positive or negative number).</li>
 </ul>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="MEL.html#cb93-1" aria-hidden="true" tabindex="-1"></a>event.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var=</span><span class="st">&quot;Ec&quot;</span>, <span class="at">time=</span><span class="fl">0.005</span>, <span class="at">value=</span><span class="dv">2</span>, <span class="at">method=</span><span class="st">&quot;mult&quot;</span>)</span>
-<span id="cb93-2"><a href="MEL.html#cb93-2" aria-hidden="true" tabindex="-1"></a>event.df</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="MEL.html#cb99-1" aria-hidden="true" tabindex="-1"></a>event.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var=</span><span class="st">&quot;Ec&quot;</span>, <span class="at">time=</span><span class="fl">0.005</span>, <span class="at">value=</span><span class="dv">2</span>, <span class="at">method=</span><span class="st">&quot;mult&quot;</span>)</span>
+<span id="cb99-2"><a href="MEL.html#cb99-2" aria-hidden="true" tabindex="-1"></a>event.df</span></code></pre></div>
 <pre><code>##   var  time value method
 ## 1  Ec 0.005     2   mult</code></pre>
 <p>This event will double atmospheric carbon concentration very shortly after the start of the simulation.</p>
 <p>We will run the model for 1000 years as in Rastetter et al. (1997), and specify that R return values for a logarithm series of time steps. That way, we see detail in the short term response when the dynamics are quite rapid.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="MEL.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 10^3 = 1000 years</span></span>
-<span id="cb95-2"><a href="MEL.html#cb95-2" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span><span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">by=</span>.<span class="dv">001</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="MEL.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 10^3 = 1000 years</span></span>
+<span id="cb101-2"><a href="MEL.html#cb101-2" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span><span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">by=</span>.<span class="dv">001</span>)</span></code></pre></div>
 <p>Next, we first run the model using parameters for a closed ecosystem, and then for a partly open system <span class="citation">(<a href="#ref-rastetter:1997aa" role="doc-biblioref">Rastetter, Agren, and Shaver 1997</a>)</span>. Check with Rastetter et al. to find out what they mean by closed vs. partly open, but I bet you can at least figure out what they mean by a closed system.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="MEL.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Closed ecosystem </span></span>
-<span id="cb96-2"><a href="MEL.html#cb96-2" aria-hidden="true" tabindex="-1"></a>out.c <span class="ot">&lt;-</span> <span class="fu">ode</span>(init.states, t, <span class="at">func=</span>mel2, <span class="at">parms=</span>p.c,</span>
-<span id="cb96-3"><a href="MEL.html#cb96-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">events=</span><span class="fu">list</span>(<span class="at">data=</span>event.df) )</span>
-<span id="cb96-4"><a href="MEL.html#cb96-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-5"><a href="MEL.html#cb96-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Partly open</span></span>
-<span id="cb96-6"><a href="MEL.html#cb96-6" aria-hidden="true" tabindex="-1"></a>p.o <span class="ot">&lt;-</span> p.c</span>
-<span id="cb96-7"><a href="MEL.html#cb96-7" aria-hidden="true" tabindex="-1"></a>p.o[<span class="st">&quot;Rne&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb96-8"><a href="MEL.html#cb96-8" aria-hidden="true" tabindex="-1"></a>p.o[<span class="st">&quot;beta_ne&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb96-9"><a href="MEL.html#cb96-9" aria-hidden="true" tabindex="-1"></a>out.o <span class="ot">&lt;-</span> <span class="fu">ode</span>(init.states, t, <span class="at">func=</span>mel2, <span class="at">parms=</span>p.o, </span>
-<span id="cb96-10"><a href="MEL.html#cb96-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">events =</span> <span class="fu">list</span>(<span class="at">data =</span> event.df) )</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="MEL.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Closed ecosystem </span></span>
+<span id="cb102-2"><a href="MEL.html#cb102-2" aria-hidden="true" tabindex="-1"></a>out.c <span class="ot">&lt;-</span> <span class="fu">ode</span>(init.states, t, <span class="at">func=</span>mel2, <span class="at">parms=</span>p.c,</span>
+<span id="cb102-3"><a href="MEL.html#cb102-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">events=</span><span class="fu">list</span>(<span class="at">data=</span>event.df) )</span>
+<span id="cb102-4"><a href="MEL.html#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="MEL.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Partly open</span></span>
+<span id="cb102-6"><a href="MEL.html#cb102-6" aria-hidden="true" tabindex="-1"></a>p.o <span class="ot">&lt;-</span> p.c</span>
+<span id="cb102-7"><a href="MEL.html#cb102-7" aria-hidden="true" tabindex="-1"></a>p.o[<span class="st">&quot;Rne&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb102-8"><a href="MEL.html#cb102-8" aria-hidden="true" tabindex="-1"></a>p.o[<span class="st">&quot;beta_ne&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb102-9"><a href="MEL.html#cb102-9" aria-hidden="true" tabindex="-1"></a>out.o <span class="ot">&lt;-</span> <span class="fu">ode</span>(init.states, t, <span class="at">func=</span>mel2, <span class="at">parms=</span>p.o, </span>
+<span id="cb102-10"><a href="MEL.html#cb102-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">events =</span> <span class="fu">list</span>(<span class="at">data =</span> event.df) )</span></code></pre></div>
 <p>You will probably get a warning message that R has included our event time into the integration procedure. That is a good thing; if the time we selected for our event was not also a time for which we choose output, <code>ode</code> will include it automatically in order to generate the event.</p>
 <p>Next we convert the simulation data sets to data frames, add variables, combine, rearrange, and plot the results.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="MEL.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="do">## convert and add a variable</span></span>
-<span id="cb97-2"><a href="MEL.html#cb97-2" aria-hidden="true" tabindex="-1"></a>out.c <span class="ot">&lt;-</span> out.c <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">N.cycle =</span> <span class="st">&quot;closed&quot;</span>)</span>
-<span id="cb97-3"><a href="MEL.html#cb97-3" aria-hidden="true" tabindex="-1"></a>out.o <span class="ot">&lt;-</span> out.o <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">N.cycle =</span> <span class="st">&quot;open&quot;</span>)</span>
-<span id="cb97-4"><a href="MEL.html#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-5"><a href="MEL.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="do">## combine &quot;row-bind&quot;</span></span>
-<span id="cb97-6"><a href="MEL.html#cb97-6" aria-hidden="true" tabindex="-1"></a>out.all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(out.c, out.o)</span>
-<span id="cb97-7"><a href="MEL.html#cb97-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-8"><a href="MEL.html#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="do">## rearrange to a &#39;tidy&#39; and long format</span></span>
-<span id="cb97-9"><a href="MEL.html#cb97-9" aria-hidden="true" tabindex="-1"></a>outL <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(out.all, <span class="at">cols=</span><span class="sc">-</span><span class="fu">c</span>(time, N.cycle),</span>
-<span id="cb97-10"><a href="MEL.html#cb97-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_to=</span><span class="st">&quot;State_var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;g.sq.m&quot;</span>)</span>
-<span id="cb97-11"><a href="MEL.html#cb97-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-12"><a href="MEL.html#cb97-12" aria-hidden="true" tabindex="-1"></a><span class="do">## plot</span></span>
-<span id="cb97-13"><a href="MEL.html#cb97-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outL, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>g.sq.m, <span class="at">colour=</span>N.cycle)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb97-14"><a href="MEL.html#cb97-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State_var, <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
-<img src="figs/unnamed-chunk-61-1.png" alt="*Simulated dynamics of carbon and nitrogen in an ecosystem with both C- and N-limitation, in a closed and partly open ecosystem. Recreates Fig. 3 from Rastetter et al. (1997), in part.*" width="100%" />
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="MEL.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="do">## convert and add a variable</span></span>
+<span id="cb103-2"><a href="MEL.html#cb103-2" aria-hidden="true" tabindex="-1"></a>out.c <span class="ot">&lt;-</span> out.c <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">N.cycle =</span> <span class="st">&quot;closed&quot;</span>)</span>
+<span id="cb103-3"><a href="MEL.html#cb103-3" aria-hidden="true" tabindex="-1"></a>out.o <span class="ot">&lt;-</span> out.o <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">N.cycle =</span> <span class="st">&quot;open&quot;</span>)</span>
+<span id="cb103-4"><a href="MEL.html#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="MEL.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="do">## combine &quot;row-bind&quot;</span></span>
+<span id="cb103-6"><a href="MEL.html#cb103-6" aria-hidden="true" tabindex="-1"></a>out.all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(out.c, out.o)</span>
+<span id="cb103-7"><a href="MEL.html#cb103-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-8"><a href="MEL.html#cb103-8" aria-hidden="true" tabindex="-1"></a><span class="do">## rearrange to a &#39;tidy&#39; and long format</span></span>
+<span id="cb103-9"><a href="MEL.html#cb103-9" aria-hidden="true" tabindex="-1"></a>outL <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(out.all, <span class="at">cols=</span><span class="sc">-</span><span class="fu">c</span>(time, N.cycle),</span>
+<span id="cb103-10"><a href="MEL.html#cb103-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_to=</span><span class="st">&quot;State_var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;g.sq.m&quot;</span>)</span>
+<span id="cb103-11"><a href="MEL.html#cb103-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-12"><a href="MEL.html#cb103-12" aria-hidden="true" tabindex="-1"></a><span class="do">## plot</span></span>
+<span id="cb103-13"><a href="MEL.html#cb103-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outL, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>g.sq.m, <span class="at">colour=</span>N.cycle)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb103-14"><a href="MEL.html#cb103-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State_var, <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-66"></span>
+<img src="figs/unnamed-chunk-66-1.png" alt="*Simulated dynamics of carbon and nitrogen in an ecosystem with both C- and N-limitation, in a closed and partly open ecosystem. Recreates Fig. 3 from Rastetter et al. (1997), in part.*" width="100%" />
 <p class="caption">
 Figure 7.3: <em>Simulated dynamics of carbon and nitrogen in an ecosystem with both C- and N-limitation, in a closed and partly open ecosystem. Recreates Fig. 3 from Rastetter et al. (1997), in part.</em>
 </p>
