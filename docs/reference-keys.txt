@@ -10,6 +10,10 @@ fig:unnamed-chunk-18
 fig:unnamed-chunk-19
 fig:unnamed-chunk-20
 fig:unnamed-chunk-23
+fig:unnamed-chunk-29
+fig:unnamed-chunk-30
+fig:unnamed-chunk-34
+fig:unnamed-chunk-36
 fig:unnamed-chunk-42
 fig:mm
 fig:sensfig

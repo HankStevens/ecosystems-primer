@@ -64,7 +64,7 @@ str(acton)
 We see that the first column is a special format the R will treat in special ways, because it knows how dates and times work, with a 24 clock, 12 months, per year, etc. The rest of the variables are simple continuous numeric variables.
 
 Let's check our understanding of lake oxygen dynamics by plotting the time series. Ggplot understands what to do with dates.
-```{r, fig.cap="*Oxygen dynamics from Acton Lake."}
+```{r, fig.cap="Oxygen dynamics from Acton Lake."}
 ggplot(acton, aes(x=date_time, y=O_mg.L)) + geom_path() 
 ```
 
@@ -132,7 +132,7 @@ acton <- acton %>%
 The slope of oxygen concentration at night is respiration, $R$. The slope of the oxygen concentration during the day is gross primary production minus respiration, or net ecosystem production.
 
 We will pull out one day's worth of data and plot the time series.
-```{r}
+```{r fig.cap="One day of the dissolved O$_2$ cycle in Acton Lake, OH, shows evidence of positive NEP during the daytime."}
 acton_day1 <- filter(acton, day=="1")
 ## or 
 # library(lubridate)
@@ -146,7 +146,7 @@ ggplot(data=acton_day1, aes(x = date_time, y=O_mg.L) ) +
 
 The nighttime slope is the regression line for just the nighttime data. Here is a picture.
 
-```{r}
+```{r fig.cap="Respiration happens all the time, but we can estimate it as the slope of nighttime O2 concentration per unit time." }
 # select the data frame, filter for 'date' values within a range of dates
 night1 <- acton_day1 %>% 
   filter( !is.na(nighttime.d) )
@@ -209,7 +209,7 @@ So what does this tell us about NEP of Acton Lake on this day?
 
 ### Average of all nights
 Here is what every night looks like. 
-```{r}
+```{r fig.cap="Respiration rate, measured as nighttime slope of O2 vs. time, seems to vary substantially from night to night."}
 nights <- filter(acton, daylight=="night")
 ggplot(nights, aes(x=nighttime.d, y=O_mg.L, colour=day, linetype=day)) + 
   geom_point() + # plot points
@@ -228,7 +228,7 @@ night.O2.rate
 The estimate for `night.d`, ```r round(coef(m.resp)[2],3)```, is our estimate of the respiration rate in mg_O$_2$/L per hour. We usually report this per day, which would just be 24 times as great.
 
 Here is what each day looks like. Recall the at daytime oxygen increase is GPP-R or NEP.
-```{r}
+```{r fig.cap="NEP rate, measured as daytime slope of O2 vs. time, seems to vary substantially from night to night."}
 days <- filter(acton, daylight=="day")
 ggplot(days, aes(x=daytime.d, y=O_mg.L, colour=day)) + 
   geom_point() + # plot points

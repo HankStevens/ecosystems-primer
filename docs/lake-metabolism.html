@@ -417,7 +417,12 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <span id="cb37-7"><a href="lake-metabolism.html#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-8"><a href="lake-metabolism.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>acton_day1, <span class="fu">aes</span>(<span class="at">x =</span> date_time, <span class="at">y=</span>O_mg.L) ) <span class="sc">+</span></span>
 <span id="cb37-9"><a href="lake-metabolism.html#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>()</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-29-1.png" width="75%" /></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="figs/unnamed-chunk-29-1.png" alt="One day of the dissolved O$_2$ cycle in Acton Lake, OH, shows evidence of positive NEP during the daytime." width="75%" />
+<p class="caption">
+Figure 4.3: One day of the dissolved O<span class="math inline">\(_2\)</span> cycle in Acton Lake, OH, shows evidence of positive NEP during the daytime.
+</p>
+</div>
 <p>The nighttime slope is the regression line for just the nighttime data. Here is a picture.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="lake-metabolism.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the data frame, filter for &#39;date&#39; values within a range of dates</span></span>
 <span id="cb38-2"><a href="lake-metabolism.html#cb38-2" aria-hidden="true" tabindex="-1"></a>night1 <span class="ot">&lt;-</span> acton_day1 <span class="sc">%&gt;%</span> </span>
@@ -425,7 +430,12 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <span id="cb38-4"><a href="lake-metabolism.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>night1, <span class="fu">aes</span>(<span class="at">x=</span>nighttime.d, <span class="at">y=</span>O_mg.L)) <span class="sc">+</span> </span>
 <span id="cb38-5"><a href="lake-metabolism.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb38-6"><a href="lake-metabolism.html#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="st">&quot;First nighttime O2 levels&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-30-1.png" width="75%" /></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="figs/unnamed-chunk-30-1.png" alt="Respiration happens all the time, but we can estimate it as the slope of nighttime O2 concentration per unit time." width="75%" />
+<p class="caption">
+Figure 4.4: Respiration happens all the time, but we can estimate it as the slope of nighttime O2 concentration per unit time.
+</p>
+</div>
 <p>Now let’s actually use linear regression to measure the slope, which is the rate of decline in O<span class="math inline">\(_2\)</span> levels. We will also measure the rate of change during the daytime as well.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="lake-metabolism.html#cb39-1" aria-hidden="true" tabindex="-1"></a>night.R <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> nighttime.d, <span class="at">data=</span>night1)</span>
 <span id="cb39-2"><a href="lake-metabolism.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="do">## intercept and slope of nighttime regression</span></span>
@@ -473,7 +483,12 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <span id="cb47-2"><a href="lake-metabolism.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nights, <span class="fu">aes</span>(<span class="at">x=</span>nighttime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day, <span class="at">linetype=</span>day)) <span class="sc">+</span> </span>
 <span id="cb47-3"><a href="lake-metabolism.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># plot points</span></span>
 <span id="cb47-4"><a href="lake-metabolism.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># fit linear models each night</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-34-1.png" width="75%" /></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="figs/unnamed-chunk-34-1.png" alt="Respiration rate, measured as nighttime slope of O2 vs. time, seems to vary substantially from night to night." width="75%" />
+<p class="caption">
+Figure 4.5: Respiration rate, measured as nighttime slope of O2 vs. time, seems to vary substantially from night to night.
+</p>
+</div>
 <p>We can calculate the average slope for all nights, forcing a straight line through each night’s data. The estimates of uncertainty and the P values won’t make sense because the data are completely autocorrelated, but we can rely on the point estimates of the coefficients, and the average slope, in particular.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="lake-metabolism.html#cb48-1" aria-hidden="true" tabindex="-1"></a>m.resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> nighttime.d<span class="sc">:</span>day , <span class="at">data=</span>acton)</span>
 <span id="cb48-2"><a href="lake-metabolism.html#cb48-2" aria-hidden="true" tabindex="-1"></a>night.O2.rate <span class="ot">&lt;-</span> <span class="fu">mean</span>( <span class="fu">coef</span>(m.resp)[<span class="sc">-</span><span class="dv">1</span>] )</span>
@@ -485,7 +500,12 @@ Figure 4.2: *Oxygen dynamics from Acton Lake.
 <span id="cb50-2"><a href="lake-metabolism.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(days, <span class="fu">aes</span>(<span class="at">x=</span>daytime.d, <span class="at">y=</span>O_mg.L, <span class="at">colour=</span>day)) <span class="sc">+</span> </span>
 <span id="cb50-3"><a href="lake-metabolism.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># plot points</span></span>
 <span id="cb50-4"><a href="lake-metabolism.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># fit linear models each night</span></span></code></pre></div>
-<p><img src="figs/unnamed-chunk-36-1.png" width="75%" /></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="figs/unnamed-chunk-36-1.png" alt="NEP rate, measured as daytime slope of O2 vs. time, seems to vary substantially from night to night." width="75%" />
+<p class="caption">
+Figure 4.6: NEP rate, measured as daytime slope of O2 vs. time, seems to vary substantially from night to night.
+</p>
+</div>
 <p>If we want to, we could throw out the days that have negative slopes, that is, days 6 and 7.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="lake-metabolism.html#cb51-1" aria-hidden="true" tabindex="-1"></a>acton3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(acton, <span class="sc">!</span>(day <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> day <span class="sc">==</span> <span class="dv">7</span>) ) <span class="co"># NOT day 6 OR 7</span></span>
 <span id="cb51-2"><a href="lake-metabolism.html#cb51-2" aria-hidden="true" tabindex="-1"></a>md.resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(O_mg.L <span class="sc">~</span> daytime.d<span class="sc">:</span>day, <span class="at">data=</span>acton3)</span>
@@ -574,7 +594,7 @@ where <span class="math inline">\(F_{t-1}\)</span> is the flux of oxygen due to 
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-42"></span>
 <img src="figs/unnamed-chunk-42-1.png" alt="Estimates of gross and net primary productivity and respiration in Acton Lake, calculated with the `LakeMetabolizer` package suggest problems in blind application of these methods to unfiltered O$_2$ data." width="75%" />
 <p class="caption">
-Figure 4.3: Estimates of gross and net primary productivity and respiration in Acton Lake, calculated with the <code>LakeMetabolizer</code> package suggest problems in blind application of these methods to unfiltered O<span class="math inline">\(_2\)</span> data.
+Figure 4.7: Estimates of gross and net primary productivity and respiration in Acton Lake, calculated with the <code>LakeMetabolizer</code> package suggest problems in blind application of these methods to unfiltered O<span class="math inline">\(_2\)</span> data.
 </p>
 </div>
 <p>What about this figure doesn’t seem to make sense? Consider definitions of GPP and respiration in your explanation.</p>
