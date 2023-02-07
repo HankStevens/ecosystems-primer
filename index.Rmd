@@ -32,6 +32,15 @@ a <- c("deSolve", "tidyverse","kableExtra","DiagrammeR", "DiagrammeRsvg", "bbmle
 sapply(a, library, character.only=TRUE)
 ```
 
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
 For this R primer, you'll need to read several chapters of @soetaert2009 which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models. 
 
 I also assume that you are reading a book on ecosystem ecology such as @chapin2011.

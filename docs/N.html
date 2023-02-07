@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-02-06" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -363,7 +363,7 @@ The average instantaneous rate, <span class="math inline">\(\alpha_4\)</span> re
 <p>If you compare the annual incremental rate we first calculated to this instantaneous rate, you can see they are quite similar. They would be indistinguishable given the other uncertainties in actually estimating these fluxes and pools. However, that is not always the case.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-7">Table 3.1: </span>Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(dX/ dy\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.
+<span id="tab:unnamed-chunk-8">Table 3.1: </span>Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(dX/ dy\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.
 </caption>
 <thead>
 <tr>
@@ -575,8 +575,8 @@ equations. This will allow R to integrate change through time.</p>
 <span id="cb20-7"><a href="N.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outL, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>kg.N)) <span class="sc">+</span> <span class="co"># select variables to plot</span></span>
 <span id="cb20-8"><a href="N.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="co"># select the form of the graph</span></span>
 <span id="cb20-9"><a href="N.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>) <span class="co"># separate each state variable and plot each on its on scale.</span></span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="figs/unnamed-chunk-17-1.png" alt="Dynamics of a simple N budget, based on Bormann et al. (1977)." width="75%" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="figs/unnamed-chunk-18-1.png" alt="Dynamics of a simple N budget, based on Bormann et al. (1977)." width="75%" />
 <p class="caption">
 Figure 3.3: Dynamics of a simple N budget, based on Bormann et al. (1977).
 </p>
@@ -636,8 +636,8 @@ where <span class="math inline">\(K\)</span> is the maximum amount of live veget
 <span id="cb22-7"><a href="N.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb22-8"><a href="N.html#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
 <span id="cb22-9"><a href="N.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outL2, <span class="fu">aes</span>(time, kg.N)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="figs/unnamed-chunk-18-1.png" alt="Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977)." width="75%" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="figs/unnamed-chunk-19-1.png" alt="Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977)." width="75%" />
 <p class="caption">
 Figure 3.4: Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977).
 </p>

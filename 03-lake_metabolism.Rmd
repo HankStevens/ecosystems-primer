@@ -308,7 +308,7 @@ acton.bk <- acton.LM %>%
 ```
 
 Finally, we use three different methods to estimate GPP, R, and NEP.
-```{r}
+```{r fig.cap="Estimates of gross and net primary productivity and respiration in Acton Lake, calculated with the `LakeMetabolizer` package suggest problems in blind application of these methods to unfiltered O$_2$ data." }
 ## calculate GPP, R, NEP in mg O2 / L / day
 out.b <- metab(acton.bk, method="bookkeep")
 out.k <- metab(acton.LM, method="kalman")
@@ -330,9 +330,6 @@ ggplot(out.l, aes(doy, value, color=method)) + geom_line() +
   facet_grid(.~name) + labs(y="O2 per liter per day")
 ```
 
-How does this compare with our previous estimate? What would happen if our gas exchange constant differs (Cole et al. 2010)? 
+What about this figure doesn't seem to make sense? Consider definitions of GPP and respiration in your explanation.
 
-```{r}
-out.b$GPP - (out.b$NEP + abs(out.b$R))
-```
 
