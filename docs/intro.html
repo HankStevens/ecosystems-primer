@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -175,6 +175,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>2.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
 <ul>
@@ -377,7 +378,9 @@ Figure 2.5: <em>It is helpful to use a series of steps in improving our models. 
 <p>Here we create a simple model to illustrate some of what we’ve been describing.</p>
 <p>Consider our lake above, but as a whole – just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported. We will assume that a constant fraction, <span class="math inline">\(a\)</span>, is exported,
 <span class="math display">\[\frac{dP}{dt} = I - a P\]</span>
-In R, we write a function for the system of differential equations, and include descriptive comments.</p>
+where the rate of change is mg P / m<span class="math inline">\(^2\)</span> / day, or
+<span class="math inline">\(\mathrm{mg\,P\cdot m^{-2}\,d^{-1}}\)</span>.</p>
+<p>In R, we write a function for the system of differential equations, and include descriptive comments.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A function called &#39;lake&#39; to represent an ordinary differential equation (ODE)</span></span>
 <span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to use with ode() in the deSolve package.</span></span>
 <span id="cb1-3"><a href="intro.html#cb1-3" aria-hidden="true" tabindex="-1"></a>lake <span class="ot">&lt;-</span> <span class="cf">function</span>( time, state_vars, parameters ){</span>
@@ -388,21 +391,23 @@ In R, we write a function for the system of differential equations, and include 
 <span id="cb1-8"><a href="intro.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-9"><a href="intro.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## I is the constant input rate</span></span>
 <span id="cb1-10"><a href="intro.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">## a is the constant mass-specific loss rate</span></span>
-<span id="cb1-11"><a href="intro.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## P is the state variable</span></span>
-<span id="cb1-12"><a href="intro.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="intro.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  P <span class="ot">&lt;-</span> state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
-<span id="cb1-14"><a href="intro.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
-<span id="cb1-15"><a href="intro.html#cb1-15" aria-hidden="true" tabindex="-1"></a>       {</span>
-<span id="cb1-16"><a href="intro.html#cb1-16" aria-hidden="true" tabindex="-1"></a>         dP.dt <span class="ot">&lt;-</span> I <span class="sc">-</span>a<span class="sc">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
-<span id="cb1-17"><a href="intro.html#cb1-17" aria-hidden="true" tabindex="-1"></a>         <span class="fu">return</span>( <span class="fu">list</span>( dP.dt ) ) <span class="co"># return the value of the rate function</span></span>
-<span id="cb1-18"><a href="intro.html#cb1-18" aria-hidden="true" tabindex="-1"></a>       })</span>
-<span id="cb1-19"><a href="intro.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-20"><a href="intro.html#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>Next, we tell R what the values of the parameters are that we want. Let’s say the the import is 3 mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and that the fraction (or rate, really) is 0.5 d<span class="math inline">\(^{-1}\)</span>, or more intuitively, mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> per mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span> in the lake. Note the quantities cancel out, and we are left with d<span class="math inline">\(^{-1}\)</span>.</p>
+<span id="cb1-11"><a href="intro.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## P is the state variable mg P / m^2</span></span>
+<span id="cb1-12"><a href="intro.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## time is in days</span></span>
+<span id="cb1-13"><a href="intro.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="intro.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  P <span class="ot">&lt;-</span> state_vars[<span class="dv">1</span>] <span class="co"># state variable(s)</span></span>
+<span id="cb1-15"><a href="intro.html#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(parameters), <span class="co"># tell R to look inside &#39;parameters&#39;</span></span>
+<span id="cb1-16"><a href="intro.html#cb1-16" aria-hidden="true" tabindex="-1"></a>       {</span>
+<span id="cb1-17"><a href="intro.html#cb1-17" aria-hidden="true" tabindex="-1"></a>         dP.dt <span class="ot">&lt;-</span> I <span class="sc">-</span>a<span class="sc">*</span>P <span class="co"># the balance eq. or rate func.</span></span>
+<span id="cb1-18"><a href="intro.html#cb1-18" aria-hidden="true" tabindex="-1"></a>         <span class="fu">return</span>( <span class="fu">list</span>( dP.dt ) ) <span class="co"># return the value of the rate function</span></span>
+<span id="cb1-19"><a href="intro.html#cb1-19" aria-hidden="true" tabindex="-1"></a>       })</span>
+<span id="cb1-20"><a href="intro.html#cb1-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-21"><a href="intro.html#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Next, we tell R what the values of the parameters are that we want. We do that here, but you need to determine the units for these two parameters. Recall from above that the rate of change for <span class="math inline">\(dP/dt\)</span> is mg P / m<span class="math inline">\(^2\)</span> / day, or
+<span class="math inline">\(\mathrm{mg\,P\cdot m^{-2}\,d^{-1}}\)</span>. Use that information and what you learned earlier in this chapter to determine the units of these parameters.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## parameters</span></span>
 <span id="cb2-2"><a href="intro.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="intro.html#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">I =</span> <span class="dv">10</span>, <span class="co"># constant input rate mg / m^2 / day</span></span>
-<span id="cb2-4"><a href="intro.html#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">a =</span> .<span class="dv">5</span> <span class="co"># mass-specific output rate, day^-1</span></span>
+<span id="cb2-3"><a href="intro.html#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">I =</span> <span class="dv">10</span>, <span class="co"># units?</span></span>
+<span id="cb2-4"><a href="intro.html#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">a =</span> .<span class="dv">5</span> <span class="co"># units?</span></span>
 <span id="cb2-5"><a href="intro.html#cb2-5" aria-hidden="true" tabindex="-1"></a>       )</span></code></pre></div>
 <p>Now the exciting part. We tell R our starting point and what time points we want to integrate for, and then <em>solve</em> the differential equation and have R return the result for the time points we want. After that, we display the first five time points.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">P=</span><span class="dv">1</span>) <span class="co"># Initial concentration of P in the lake</span></span>
@@ -429,6 +434,9 @@ In R, we write a function for the system of differential equations, and include 
 <span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>out2, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>P)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="figs/unnamed-chunk-7-1.png" width="75%" /></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myLake.png&quot;</span>, <span class="at">height=</span><span class="dv">4</span>, <span class="at">width=</span><span class="dv">4</span>)</span></code></pre></div>
+</div>
+<div id="analytical-solutions-to-rate-equations" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Analytical solutions to rate equations<a href="intro.html#analytical-solutions-to-rate-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In very simple situations, we can solve the equilibrium by hand. By definition, the equilibrium is a state at which the system stops changing, that is, its rate of change is zero. To find a value of <span class="math inline">\(P\)</span> which is an equilibrium, we set the balance equation equal to zero, and solve for <span class="math inline">\(P\)</span>:
 <span class="math display">\[\frac{dP}{dt} = 0 = I -aP\]</span>
 <span class="math display">\[P^* = \frac{I}{a}\]</span>

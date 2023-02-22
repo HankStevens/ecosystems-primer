@@ -81,7 +81,7 @@ state     <-c(PHYTO   =1,   #
               DIN     =5.0)
 
 
-times     <-c(0,365)  
+times     <-c(0,365)
 out       <- as.data.frame( ode(state,times, NPZD, parameters) ) 
 out
 
@@ -104,12 +104,13 @@ ggplot(data=out.long, aes(time, Value)) +
 
 ## provide a unique name for your PNG file
 ggsave("myNPZDplot.png")
-
 ```
 
 ### Create an R script of NPZD
 
 Create an R script of just the system of ODEs of NPZD. Name the function `NPZD`, and name the script "NPZD.R". We will use it in later chapters.
+
+
 
 
 

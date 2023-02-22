@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -175,6 +175,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>2.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
 <ul>
@@ -349,7 +350,7 @@ Figure 5.1: <em>‘Limitation’ arises when the benefit of a resource declines 
 <span id="cb65-47"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-47" aria-hidden="true" tabindex="-1"></a>              <span class="at">DIN     =</span><span class="fl">5.0</span>)</span>
 <span id="cb65-48"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-49"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-50"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-50" aria-hidden="true" tabindex="-1"></a>times     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">365</span>)  </span>
+<span id="cb65-50"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-50" aria-hidden="true" tabindex="-1"></a>times     <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">365</span>)</span>
 <span id="cb65-51"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-51" aria-hidden="true" tabindex="-1"></a>out       <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>( <span class="fu">ode</span>(state,times, NPZD, parameters) ) </span>
 <span id="cb65-52"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-52" aria-hidden="true" tabindex="-1"></a>out</span>
 <span id="cb65-53"><a href="npzd---a-simple-aquatic-ecosystem.html#cb65-53" aria-hidden="true" tabindex="-1"></a></span>

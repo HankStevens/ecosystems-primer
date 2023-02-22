@@ -116,6 +116,9 @@ Here we create a simple model to illustrate some of what we've been describing.
 
 Consider our lake above, but as a whole -- just one big pool of P. We'll let the imports, $I$, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported. We will assume that a constant fraction, $a$, is exported,
 $$\frac{dP}{dt} = I - a P$$
+where the rate of change is mg P / m$^2$ / day, or 
+$\mathrm{mg\,P\cdot m^{-2}\,d^{-1}}$. 
+
 In R, we write a function for the system of differential equations, and include descriptive comments.
 ```{r}
 ## A function called 'lake' to represent an ordinary differential equation (ODE)
@@ -128,7 +131,8 @@ lake <- function( time, state_vars, parameters ){
   
   ## I is the constant input rate
   ## a is the constant mass-specific loss rate
-  ## P is the state variable
+  ## P is the state variable mg P / m^2
+  ## time is in days
 
   P <- state_vars[1] # state variable(s)
   with(as.list(parameters), # tell R to look inside 'parameters'
@@ -140,12 +144,13 @@ lake <- function( time, state_vars, parameters ){
 }
 ```
 
-Next, we tell R what the values of the parameters are that we want. Let's say the the import is 3 mg$\cdot$m$^{-2}\cdot$d$^{-1}$, and that the fraction (or rate, really) is 0.5 d$^{-1}$, or more intuitively, mg$\cdot$m$^{-2}\cdot$d$^{-1}$ per mg$\cdot$m$^{-2}$ in the lake. Note the quantities cancel out, and we are left with d$^{-1}$.
+Next, we tell R what the values of the parameters are that we want. We do that here, but you need to determine the units for these two parameters. Recall from above that the rate of change for $dP/dt$ is mg P / m$^2$ / day, or 
+$\mathrm{mg\,P\cdot m^{-2}\,d^{-1}}$. Use that information and what you learned earlier in this chapter to determine the units of these parameters.
 ```{r}
 ## parameters
 
-p <- c(I = 10, # constant input rate mg / m^2 / day
-       a = .5 # mass-specific output rate, day^-1
+p <- c(I = 10, # units?
+       a = .5 # units?
        )
 ```
 
@@ -174,6 +179,8 @@ out2 <- as.data.frame(out) # re-classify the data set
 ggplot(data=out2, aes(x=time, y=P)) + geom_line()
 ggsave("myLake.png", height=4, width=4)
 ```
+
+## Analytical solutions to rate equations
 In very simple situations, we can solve the equilibrium by hand. By definition, the equilibrium is a state at which the system stops changing, that is, its rate of change is zero. To find a value of $P$ which is an equilibrium, we set the balance equation equal to zero, and solve for $P$:
 $$\frac{dP}{dt} = 0 = I -aP$$
 $$P^* = \frac{I}{a}$$

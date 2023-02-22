@@ -38,6 +38,7 @@ units-of-terms
 other-ideas
 steps-in-modeling
 an-example-in-r
+analytical-solutions-to-rate-equations
 N
 getting-started
 mathematical-forms
