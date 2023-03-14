@@ -1,0 +1,32 @@
+# Appendix: Build a model of your own system
+
+Background Readings:
+
+* This primer: at least chapters 1-3; chapters 5-6, 8-9 are also useful.
+* Soetaert and Hermann 2009. All of it is useful, but especially the chapters ued in this primer.
+
+## Steps
+
+1. Identify scope, including,
+   a. state variables (with units),
+   a. inputs and outputs for the system, 
+   a. fluxes between state variables,
+   a. the state variables upon which the fluxes depend (e.g., litterfall from trees to soils depends directly on only trees but not soils), 
+   a. spatial boundaries, and
+   a. time scale, or temporal boundaries. 
+1. Create budget, including,   
+   a. amount in each state variable,
+   a. annual fluxes between state variables; if you can't find these in the literature, figure out ways to get very rough approximate estimates.
+1. Write out a model, including,
+   a. write out explicit rate equations for each state variable,
+   a. calculate instantaneous rates, derived from *annual fluxes* and the size of the state variables upon which the fluxes depend.
+1. Code the model in R, including,
+   a. writing an ODE function, a vector of parameters; start with three or four years only.
+   a. run and then troubleshoot the model.
+1. Perform sensitivity analysis (chap. 6).
+1. Consider including data from an external source (chap. 9)
+1. Consider letting R try to fit rate parameters through optimization (chap. 8).
+1. Present your findings in a simple written form and short oral presentation.
+
+
+

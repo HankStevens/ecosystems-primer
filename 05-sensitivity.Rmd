@@ -2,7 +2,7 @@
 
 Reading: Chapter 11, Soetart and Herman (2009)
 
-Model sensitivity is part of model testing and validation (Soetaert and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcoxmes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis. In contrast, here we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity and elasticity of a demographic projection matrix. One of the reasons we assess the sensitivity of model output to the values of parameters is to determine which parameters are most important in driving the dynamics of the model. Identifying the most important parameters
+Model sensitivity is part of model testing and validation (Soetaert and Herman 2009). In this chapter, we assess model sensitivity, that is, the sensitivity of model outcomes to model inputs. Sometimes, those inputs are small perturbations of the state variables, and we often refer to this as local stability analysis. In contrast, here we investigate the sensitivity of model output to the values of parameters we use as input. This is what we do when we calculate the sensitivity and elasticity of a demographic projection matrix. One of the reasons we assess the sensitivity of model output to the values of parameters is to determine which parameters are most important in driving the dynamics of the model. Identifying the most important parameters
 
 * provides understanding of the model dynamics
 * guides future research in making sure we have good estimates of those particular model parameters.
@@ -15,7 +15,6 @@ Before we begin, it is worth listing questions we should ask ourselves about any
 1. Testing Solution Correctness
    * Is there an analytical solution against which we can check the model output?
    * Is there known data with which we can compare the output?
-
 2. Internal Logic 
    * Do the state variables remain in their expected range (e.g., biomass >= 0)?
    * If it is a closed system, do the state variables remain at zero if they are all set to zero?
@@ -28,7 +27,7 @@ Before we begin, it is worth listing questions we should ask ourselves about any
    
 These are important questions. We would also like to know how certain we need to be about parameter values. Model output can be very insensitive or very sensitive to small changes in the values of model parameters. Sensitivity analysis helps us pinpoint parameters to which model output might be most sensitive, that is, parameters that can have big effects on model outcomes.
 
-## Model Sensitivity
+## Types of Sensitivity
 
 How *robust* or *stable* is our model to inevitable untruths? Is our model likely to give approximately correct answers given only approximately correct structure and parameters?
 
@@ -97,11 +96,6 @@ The function returns a named list containing several elements:
 ## Assessing sensitivity in a nitrogen budget model
 Consult our previous chapter on the nitrogen budget of Hubbard Brook, watershed 6. If you have not already done so, make a script that contains nothing but the `bormann2` function. Copy the block of text where we define it, paste it into a new R script, and save it as **bormann2.R**.
 
-Next we prepare our workspace, by removing extraneous objects.
-```{r}
-rm( list = ls() ) # delete (remove) everything in the workspace.
-```
-
 The next line of code loads and runs two files. 
 ```{r}
 ## I put the script in a folder called 'code' that resides inside
@@ -109,15 +103,16 @@ The next line of code loads and runs two files.
 ## the script, and the script is located at code/bormann2.R
 
 source("code/bormann2.R")
+args(bormann2)
 
 ## if you want to make sure that it loaded the right thing, type
 ## bormann2 on your command line, or highlight the word, and run it with
 ## Control-Enter
 
-## We also load code to calculate the sensitivities, 
-## and also to create a time series figure of the deviations.
-source("code/sensitivity.R") # sensitivities of all variables
+## Earlier we loaded code to calculate the sensitivities. 
+## Here we load code to create a time series figure of the deviations.
 source("code/sens_fig.R") # graph time series of sensitivity of one variable
+args( sens_fig )
 ```
 
 Next we begin to run it.
@@ -160,6 +155,7 @@ t <- seq(from = 0, to = 500, by = 1)
 
 ```
 
+### Dynamics of sensitivity in one state variable
 Next we do the sensitivity analysis. We will start with a graph, often a good place to start. The graph will show the actual deviations that arise when we alter each parameter one at a time by one percent.
 ```{r sensfig, fig.cap="*Observed responses of the available N pool to a one percent change to each parameter.*"}
 out <- sens_fig("A", y.initial=initial.state, 
@@ -179,6 +175,7 @@ ggplot(out, aes(Time, y, colour=Perturbation)) + geom_line() + facet_wrap(~Param
 
 These graphs show that the state variable responds very consistently through time. In systems with more complicated dynamics, that will not always be the case.
 
+### Summary of sensitivities in all state variables
 Next, we can assess each of the state variables and average across time.
 ```{r}
 b1 <- sensitivity(y.initial=initial.state, times=t, 
@@ -388,11 +385,19 @@ ggplot(aes(time, value, colour=as.factor(ksGrazing))) + geom_line() + facet_wrap
 
 Well, then... . Aren't you glad you tried that!
 
-### Your turn
+## Your turn
 
 Take a stab at varying something in your preferred model. You can use anyone's data - we are all in this together. Just give proper attribution. 
 
 You can also come up with creative ways to quantify an output difference from a reference in an output. Often, we come up with a useful quantitative metric, run a larger number of scenarios (e.g., letting a parameter take 20 different values), and then plot the relation between the parameter and your quantitative measure of difference in output.
 
 Be creative. See what you find.
+
+```{r echo=FALSE, eval=FALSE}
+source("rmd2r.R")
+args(rmd2r)
+rmd2r(x = "05-sensitivity.Rmd", file="primer-sensitivity.R", 
+      noPlots=FALSE, stripMD=TRUE)
+
+```
 

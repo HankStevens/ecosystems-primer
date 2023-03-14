@@ -18,7 +18,7 @@ fig:unnamed-chunk-42
 fig:mm
 fig:sensfig
 fig:sensfigRel
-fig:unnamed-chunk-52
+fig:unnamed-chunk-51
 fig:rf1
 fig:rt1
 fig:unnamed-chunk-66
@@ -57,9 +57,11 @@ npzd---a-simple-aquatic-ecosystem
 this-task
 create-an-r-script-of-npzd
 model-sensitivity
-model-sensitivity-1
+types-of-sensitivity
 local-sensitivity
 assessing-sensitivity-in-a-nitrogen-budget-model
+dynamics-of-sensitivity-in-one-state-variable
+summary-of-sensitivities-in-all-state-variables
 sensitivity-in-an-aquatic-ecosystem
 letting-sensitivity-analysis-guide-next-steps
 your-turn
@@ -87,4 +89,6 @@ n-deposition
 denitrification
 annual-temperature-as-a-forcing-function
 in-fine
+appendix-build-a-model-of-your-own-system
+steps
 references
