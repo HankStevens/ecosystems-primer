@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-03-14" />
+<meta name="date" content="2023-04-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -259,7 +259,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>10</b> Appendix: Build a model of your own system</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>10.1</b> Steps</a></li>
+<li class="chapter" data-level="10.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>10.1</b> Background Readings:</a></li>
+<li class="chapter" data-level="10.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>10.2</b> Steps</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
 </ul>
@@ -281,34 +282,42 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="appendix-build-a-model-of-your-own-system" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">10</span> Appendix: Build a model of your own system<a href="appendix-build-a-model-of-your-own-system.html#appendix-build-a-model-of-your-own-system" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Background Readings:</p>
+<div id="background-readings" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Background Readings:<a href="appendix-build-a-model-of-your-own-system.html#background-readings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>This primer: at least chapters 1-3; chapters 5-6, 8-9 are also useful.</li>
-<li>Soetaert and Hermann 2009. All of it is useful, but especially the chapters ued in this primer.</li>
+<li>Soetaert and Hermann 2009. All of it is useful, but especially the chapters used in this primer.</li>
 </ul>
-<div id="steps" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Steps<a href="appendix-build-a-model-of-your-own-system.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="steps" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Steps<a href="appendix-build-a-model-of-your-own-system.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Identify scope, including,
+<li><strong>Identify the scope</strong> and focus of your model, including,
 <ol style="list-style-type: lower-alpha">
 <li>state variables (with units),</li>
+<li>spatial boundaries,</li>
+<li>time scale, or temporal boundaries,</li>
 <li>inputs and outputs for the system,</li>
 <li>fluxes between state variables,</li>
-<li>the state variables upon which the fluxes depend (e.g., litterfall from trees to soils depends directly on only trees but not soils),</li>
-<li>spatial boundaries, and</li>
-<li>time scale, or temporal boundaries.</li>
+<li>the state variables <em>upon which the fluxes depend</em> (e.g., litterfall from trees to soils depends directly on only trees but not soils); this gives you the <strong>order</strong> of the rate equations.</li>
 </ol></li>
-<li>Create budget, including,
+<li>Create a <strong>budget</strong>, including,
 <ol style="list-style-type: lower-alpha">
-<li>amount in each state variable,</li>
-<li>annual fluxes between state variables; if you can’t find these in the literature, figure out ways to get very rough approximate estimates.</li>
+<li>amount <em>in</em> each state variable,</li>
+<li><em>annual fluxes between</em> state variables; if you can’t find these in the literature, figure out ways to get very rough approximate estimates.</li>
 </ol></li>
-<li>Write out a model, including,
+<li>Write out a model:
 <ol style="list-style-type: lower-alpha">
-<li>write out explicit rate equations for each state variable,</li>
-<li>calculate instantaneous rates, derived from <em>annual fluxes</em> and the size of the state variables upon which the fluxes depend.</li>
+<li><strong>for each flux</strong>, write an <em>explicit mathematical function for each process</em> in that flux (see, e.g., the NPZD model). (You will estimate rate paramters later.)</li>
+<li><strong>for each state variable</strong>, write an <em>explicit rate equation</em> using the functions for the fluxes in the previous step.</li>
+<li><strong>estimate each parameter</strong> in one of these ways:
+<ol style="list-style-type: lower-roman">
+<li>use algebra to calculate instantaneous rates from <em>annual fluxes</em> and the magnitude of the state variables upon which the fluxes depend, or</li>
+<li>if there is an estimate in relevant literature for your particular rate parameter, use that, or</li>
+<li>use both approaches and try them both out.</li>
 </ol></li>
-<li>Code the model in R, including,
+</ol></li>
+<li><strong>Code the model in R</strong>, including,
 <ol style="list-style-type: lower-alpha">
 <li>writing an ODE function, a vector of parameters; start with three or four years only.</li>
 <li>run and then troubleshoot the model.</li>
