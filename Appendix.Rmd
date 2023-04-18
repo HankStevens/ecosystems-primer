@@ -27,10 +27,19 @@
 1. **Code the model in R**, including,
    a. writing an ODE function, a vector of parameters; start with three or four years only.
    a. run and then troubleshoot the model.
-1. Perform sensitivity analysis (chap. 6).
 1. Consider including data from an external source (chap. 9)
+1. **Perform sensitivity analysis** (chap. 6)
 1. Consider letting R try to fit rate parameters through optimization (chap. 8).
-1. Present your findings in a simple written form and short oral presentation.
+1. Present your findings in a simple written form and in a short oral presentation.
+   a. **Five** minute (5 min) presentation should include:
+      i. Your question.
+      i. Introduction to the ecological system.
+      i. Clearly labelled model diagram (boxes and arrows)
+      i. Corresponding system of model equations.
+      i. Explanation of parameter estimates.
+      i. Lessons from the sensitivity analysis.
+      i. Findings and conclusions.
+   a. **One** page written explanation of the model that includes all the elements in your presentation. Use elements of your slides as appropriate.
 
 
 
