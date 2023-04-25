@@ -33,7 +33,7 @@
 1. Present your findings in a simple written form and in a short oral presentation.
    a. **Five** minute (5 min) presentation should include:
       i. Your question.
-      i. Introduction to the ecological system.
+      i. Introduction to the ecological system, including the items listed in 1. above related to the scope of your model.
       i. Clearly labelled model diagram (boxes and arrows)
       i. Corresponding system of model equations.
       i. Explanation of parameter estimates.

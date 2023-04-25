@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Lake Metabolism | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Lake Metabolism | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-04-18" />
+<meta name="date" content="2023-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -388,15 +388,14 @@ Figure 4.2: Oxygen dynamics from Acton Lake.
 <p>Investigate what we have created thus far.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="lake-metabolism.html#cb29-1" aria-hidden="true" tabindex="-1"></a>acton[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 10
-##   date_time           cum_h O_mg.L O_perc  temp date      hour.d dayti…¹ night…²
-##   &lt;dttm&gt;              &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1 2013-06-27 06:15:00  0      7.39   96    26.9 2013-06-…   6.25    0         NA
-## 2 2013-06-27 06:30:00  0.25   7.27   94.5  26.9 2013-06-…   6.5     0.25      NA
-## 3 2013-06-27 06:45:00  0.5    7.54   97.9  26.9 2013-06-…   6.75    0.5       NA
-## 4 2013-06-27 07:00:00  0.75   7.45   96.7  26.9 2013-06-…   7       0.75      NA
-## 5 2013-06-27 07:15:00  1      7.45   96.8  26.9 2013-06-…   7.25    1         NA
-## # … with 1 more variable: daylight &lt;fct&gt;, and abbreviated variable names
-## #   ¹​daytime.d, ²​nighttime.d</code></pre>
+##   date_time           cum_h O_mg.L O_perc  temp date       hour.d daytime.d
+##   &lt;dttm&gt;              &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 2013-06-27 06:15:00  0      7.39   96    26.9 2013-06-27   6.25      0   
+## 2 2013-06-27 06:30:00  0.25   7.27   94.5  26.9 2013-06-27   6.5       0.25
+## 3 2013-06-27 06:45:00  0.5    7.54   97.9  26.9 2013-06-27   6.75      0.5 
+## 4 2013-06-27 07:00:00  0.75   7.45   96.7  26.9 2013-06-27   7         0.75
+## 5 2013-06-27 07:15:00  1      7.45   96.8  26.9 2013-06-27   7.25      1   
+## # ℹ 2 more variables: nighttime.d &lt;dbl&gt;, daylight &lt;fct&gt;</code></pre>
 <p>(If you would like a spreadsheet-like view of a data frame, RStudio can do that for you. In the upper right panel, select the “Environment” tab. Then select the data frame you would like to see. In addition, you code run the code,</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="lake-metabolism.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(acton)</span></code></pre></div>
 <p>which will open the data frame in the upper left panel.)</p>
@@ -543,7 +542,7 @@ Figure 4.6: NEP rate, measured as daytime slope of O2 vs. time, seems to vary s
 <p>On the help page you learn about how to use this function. Here we walk through the steps for acquiring or making educated guesses about the data we need.</p>
 <p>Here we acknowledge that the change in dissolved oxygen is a function of NEP and also the flux of oxygen due to diffusion,
 <span class="math display">\[\Delta \mathrm{DO} = \mathrm{NEP}_{t-1} \cdot \Delta t + F_{t-1}\]</span>
-where <span class="math inline">\(F_{t-1}\)</span> is the flux of oxygen due to diffusion <span class="citation">(<a href="#ref-winslow2016a" role="doc-biblioref"><strong>winslow2016a?</strong></a>)</span>. This rate of diffusion depends on wind speed, temperature, lake size, and, ultimately, how much the of the lake waters mix <span class="citation">(<a href="#ref-winslow2016a" role="doc-biblioref"><strong>winslow2016a?</strong></a>)</span>. Here we will simply provide a value for the gas exchange constant and a mixing depth.</p>
+where <span class="math inline">\(F_{t-1}\)</span> is the flux of oxygen due to diffusion <span class="citation">(<a href="#ref-winslow2016a" role="doc-biblioref">Winslow et al. 2016</a>)</span>. This rate of diffusion depends on wind speed, temperature, lake size, and, ultimately, how much the of the lake waters mix <span class="citation">(<a href="#ref-winslow2016a" role="doc-biblioref">Winslow et al. 2016</a>)</span>. Here we will simply provide a value for the gas exchange constant and a mixing depth.</p>
 <p>From its calculations, LakeMetabolizer can give us NEP, R, and GPP. This is because average respiration is the average difference between DO and <span class="math inline">\(F\)</span>, and NEP is the difference between GPP and R.</p>
 <p>LakeMetabolizer needs data in a particular form, and so we build that next.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="lake-metabolism.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">## pick a reasonable gas exchange constant and mixing depth</span></span>
@@ -607,6 +606,12 @@ Figure 4.7: Estimates of gross and net primary productivity and respiration in A
 </div>
 <p>What about this figure doesn’t seem to make sense? Consider definitions of GPP and respiration in your explanation.</p>
 
+</div>
+</div>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-winslow2016a" class="csl-entry">
+Winslow, Luke A, Jake A Zwart, Ryan D Batt, Hilary A Dugan, Richard I Woolway, Jessica R Corman, and Jordan S Read. 2016. <span>“LakeMetabolizer: An r Package for Estimating Lake Metabolism from Free-Water Oxygen Using Diverse Statistical Models.”</span> <em>Inland Waters</em> 6 (4). <a href="https://doi.org/10.1080/IW-6.4.883">https://doi.org/10.1080/IW-6.4.883</a>.
 </div>
 </div>
 <div class="footnotes">
