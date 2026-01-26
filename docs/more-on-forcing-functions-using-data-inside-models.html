@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 More On Forcing Functions: Using data inside models | A Primer of Ecosystem Modeling - a work in progress</title>
+  <title>10 More On Forcing Functions: Using data inside models | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 More On Forcing Functions: Using data inside models | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta property="og:title" content="10 More On Forcing Functions: Using data inside models | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 More On Forcing Functions: Using data inside models | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta name="twitter:title" content="10 More On Forcing Functions: Using data inside models | A Primer of Ecosystem Modeling - a work in progress" />
   
   <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-04-25" />
+<meta name="date" content="2026-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -124,10 +125,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -164,105 +170,129 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#a-final-suggestion"><i class="fa fa-check"></i><b>1.3</b> A final suggestion</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to ecosystem models</a>
+<li class="chapter" data-level="2" data-path="simple-budgets.html"><a href="simple-budgets.html"><i class="fa fa-check"></i><b>2</b> Simple Budgets</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>2.3</b> What’s an ecosystem model?</a>
+<li class="chapter" data-level="2.1" data-path="simple-budgets.html"><a href="simple-budgets.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="simple-budgets.html"><a href="simple-budgets.html#one-compartment-models"><i class="fa fa-check"></i><b>2.2</b> One-compartment models</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>2.3.1</b> Units of terms</a></li>
-<li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.2</b> Other ideas</a></li>
+<li class="chapter" data-level="2.2.1" data-path="simple-budgets.html"><a href="simple-budgets.html#example-1-lake-phosphorus"><i class="fa fa-check"></i><b>2.2.1</b> Example 1: Lake Phosphorus</a></li>
+<li class="chapter" data-level="2.2.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-2-forest-floor-leaf-litter"><i class="fa fa-check"></i><b>2.2.2</b> Example 2: Forest Floor Leaf Litter</a></li>
+<li class="chapter" data-level="2.2.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-3-pond-water-budget"><i class="fa fa-check"></i><b>2.2.3</b> Example 3: Pond Water Budget</a></li>
+<li class="chapter" data-level="2.2.4" data-path="simple-budgets.html"><a href="simple-budgets.html#example-4-soil-nitrogen-pool"><i class="fa fa-check"></i><b>2.2.4</b> Example 4: Soil Nitrogen Pool</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>2.6</b> Analytical solutions to rate equations</a></li>
+<li class="chapter" data-level="2.3" data-path="simple-budgets.html"><a href="simple-budgets.html#more-complex-one-compartment-models"><i class="fa fa-check"></i><b>2.3</b> More complex one-compartment models</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="simple-budgets.html"><a href="simple-budgets.html#example-5-estuary-nitrogen-cycling"><i class="fa fa-check"></i><b>2.3.1</b> Example 5: Estuary Nitrogen Cycling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-6-tropical-forest-carbon-balance"><i class="fa fa-check"></i><b>2.3.2</b> Example 6: Tropical Forest Carbon Balance</a></li>
+<li class="chapter" data-level="2.3.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-7-urban-stormwater-detention-basin"><i class="fa fa-check"></i><b>2.3.3</b> Example 7: Urban Stormwater Detention Basin</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<li class="chapter" data-level="2.4" data-path="simple-budgets.html"><a href="simple-budgets.html#two-compartment-models"><i class="fa fa-check"></i><b>2.4</b> Two-compartment models</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
-<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
-<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>3.3.1</b> Instantaneous rates</a></li>
-<li class="chapter" data-level="3.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>3.3.2</b> A sign of the times</a></li>
+<li class="chapter" data-level="2.4.1" data-path="simple-budgets.html"><a href="simple-budgets.html#general-template-for-two-compartment-models"><i class="fa fa-check"></i><b>2.4.1</b> General Template for Two-Compartment Models</a></li>
+<li class="chapter" data-level="2.4.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-8-soil-groundwater-nitrogen-system"><i class="fa fa-check"></i><b>2.4.2</b> Example 8: Soil-Groundwater Nitrogen System</a></li>
+<li class="chapter" data-level="2.4.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-9-vegetation-litter-carbon-system"><i class="fa fa-check"></i><b>2.4.3</b> Example 9: Vegetation-Litter Carbon System</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
+<li class="chapter" data-level="2.5" data-path="simple-budgets.html"><a href="simple-budgets.html#answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introduction to ecosystem models</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
-<li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, but in R</a>
+<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>3.1</b> Why models?</a></li>
+<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>3.2</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>3.3</b> What’s an ecosystem model?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>4.2.1</b> Plot one cycle</a></li>
-<li class="chapter" data-level="4.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>4.2.2</b> Average of all nights</a></li>
+<li class="chapter" data-level="3.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>3.3.1</b> Units of terms</a></li>
+<li class="chapter" data-level="3.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>3.3.2</b> Other ideas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> The LakeMetabolizer package</a></li>
+<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>3.4</b> Steps in modeling</a></li>
+<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>3.5</b> An example in R</a></li>
+<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>3.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
+<li class="chapter" data-level="4" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>4</b> Describing a nitrogen budget</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<li class="chapter" data-level="4.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
+<li class="chapter" data-level="4.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>4.2</b> Mathematical forms</a></li>
+<li class="chapter" data-level="4.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>4.3</b> Paramaterization</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="4.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>4.3.1</b> Instantaneous rates</a></li>
+<li class="chapter" data-level="4.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>4.3.2</b> A sign of the times</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>4.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="4.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>4.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
+<li class="chapter" data-level="5" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>5</b> Lake Metabolism</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>6.1</b> Types of Sensitivity</a></li>
-<li class="chapter" data-level="6.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>6.2</b> Local sensitivity</a></li>
-<li class="chapter" data-level="6.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>6.3</b> Assessing sensitivity in a nitrogen budget model</a>
+<li class="chapter" data-level="5.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>5.1</b> Estimating Productivity</a></li>
+<li class="chapter" data-level="5.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>5.2</b> By hand, but in R</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>6.3.1</b> Dynamics of sensitivity in one state variable</a></li>
-<li class="chapter" data-level="6.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>6.3.2</b> Summary of sensitivities in all state variables</a></li>
+<li class="chapter" data-level="5.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>5.2.1</b> Plot one cycle</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>5.2.2</b> Average of all nights</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>6.4</b> Sensitivity in an aquatic ecosystem</a></li>
-<li class="chapter" data-level="6.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>6.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
-<li class="chapter" data-level="6.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>6.6</b> Your turn</a></li>
+<li class="chapter" data-level="5.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>5.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>7</b> Multiple Element Limitation</a>
+<li class="chapter" data-level="6" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>6</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>7.1</b> Rastetter et al. 1997</a>
+<li class="chapter" data-level="6.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>6.1</b> This task</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>7.1.1</b> The model</a></li>
-<li class="chapter" data-level="7.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>7.1.2</b> Parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>7.2</b> Implementing MEL</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>7.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>8</b> Optimization</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>8.2</b> Bormann logistic model</a></li>
-<li class="chapter" data-level="8.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>8.3</b> Fitting a model to data</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>8.3.1</b> Minimization</a></li>
-<li class="chapter" data-level="8.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>8.3.2</b> Creating the objective function</a></li>
-<li class="chapter" data-level="8.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>8.3.3</b> <code>optim()</code></a></li>
-<li class="chapter" data-level="8.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>8.3.4</b> <code>mle2()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>8.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.5</b> Two (or more) parameters at a time</a></li>
-<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.6</b> Other considerations: weighting deviations</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.6.1</b> Variance weighted errors</a></li>
+<li class="chapter" data-level="6.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>6.1.1</b> Create an R script of NPZD</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>9</b> More On Forcing Functions: Using data inside models</a>
+<li class="chapter" data-level="7" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>7</b> Model Sensitivity</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>9.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="9.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>9.2</b> N deposition</a></li>
-<li class="chapter" data-level="9.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>9.3</b> Denitrification</a></li>
-<li class="chapter" data-level="9.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>9.4</b> Annual temperature as a forcing function</a></li>
-<li class="chapter" data-level="9.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>9.5</b> In fine</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>10</b> Appendix: Build a model of your own system</a>
+<li class="chapter" data-level="7.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>7.1</b> Types of Sensitivity</a></li>
+<li class="chapter" data-level="7.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>7.2</b> Local sensitivity</a></li>
+<li class="chapter" data-level="7.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>7.3</b> Assessing sensitivity in a nitrogen budget model</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>10.1</b> Background Readings:</a></li>
-<li class="chapter" data-level="10.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>10.2</b> Steps</a></li>
+<li class="chapter" data-level="7.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>7.3.1</b> Dynamics of sensitivity in one state variable</a></li>
+<li class="chapter" data-level="7.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>7.3.2</b> Summary of sensitivities in all state variables</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="chapter" data-level="7.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>7.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="7.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>7.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
+<li class="chapter" data-level="7.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>7.6</b> Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>8</b> Multiple Element Limitation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>8.1</b> Rastetter et al. 1997</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>8.1.1</b> The model</a></li>
+<li class="chapter" data-level="8.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>8.1.2</b> Parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>8.2</b> Implementing MEL</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>8.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>9</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>9.2</b> Bormann logistic model</a></li>
+<li class="chapter" data-level="9.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>9.3</b> Fitting a model to data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>9.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>9.3.2</b> Creating the objective function</a></li>
+<li class="chapter" data-level="9.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>9.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="9.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>9.3.4</b> <code>mle2()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>9.4</b> Trajectory matching</a></li>
+<li class="chapter" data-level="9.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>9.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="9.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>9.6</b> Other considerations: weighting deviations</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>9.6.1</b> Variance weighted errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>10</b> More On Forcing Functions: Using data inside models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>10.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="10.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>10.2</b> N deposition</a></li>
+<li class="chapter" data-level="10.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>10.3</b> Denitrification</a></li>
+<li class="chapter" data-level="10.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>10.4</b> Annual temperature as a forcing function</a></li>
+<li class="chapter" data-level="10.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>10.5</b> In fine</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>11</b> Appendix: Build a model of your own system</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>11.1</b> Background Readings:</a></li>
+<li class="chapter" data-level="11.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>11.2</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 </ul>
 
       </nav>
@@ -280,53 +310,53 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="more-on-forcing-functions-using-data-inside-models" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">9</span> More On Forcing Functions: Using data inside models<a href="more-on-forcing-functions-using-data-inside-models.html#more-on-forcing-functions-using-data-inside-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="more-on-forcing-functions-using-data-inside-models" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> More On Forcing Functions: Using data inside models<a href="more-on-forcing-functions-using-data-inside-models.html#more-on-forcing-functions-using-data-inside-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In previous chapters, we showed two ways of using external data as forcing functions. In <a href="npzd---a-simple-aquatic-ecosystem.html#npzd---a-simple-aquatic-ecosystem">NPZD - a simple aquatic ecosystem</a>, we used seasonal variation in sunlight (PAR) using a mathematical expression in our R ODE function. In <a href="MEL.html#MEL">Multiple Element Limitation</a>, we used the <code>events</code> argument to force a doubling of CO<span class="math inline">\(_2\)</span> concentration. Here we demonstrate two methods (one new, one old) to use environmental data inside our system of ODEs using our model of a [terrestrial nitrogen budget]{#N#}. For our new method, we introduce the use of <em>data interpolation</em>, implemented in R using <code>approxfun()</code>.</p>
 <p><strong>Our scientific goal</strong> in this chapter is to explain the decline in nitrogen export. This is happening in New England watersheds outside of Hubbard Brook, and it is not clear why.</p>
-<div id="preliminaries" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Preliminaries<a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="preliminaries" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Preliminaries<a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We’ll start by loading packages we need.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rm( list = ls() ) # clean the workspace, with rm()</span></span>
-<span id="cb157-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="do">## load the libraries we need</span></span>
-<span id="cb157-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="do">## install these if you have not already done so.</span></span>
-<span id="cb157-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># data management and graphing</span></span>
-<span id="cb157-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve) <span class="co"># ODE solver</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-1" tabindex="-1"></a><span class="co"># rm( list = ls() ) # clean the workspace, with rm()</span></span>
+<span id="cb158-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-2" tabindex="-1"></a><span class="do">## load the libraries we need</span></span>
+<span id="cb158-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-3" tabindex="-1"></a><span class="do">## install these if you have not already done so.</span></span>
+<span id="cb158-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># data management and graphing</span></span>
+<span id="cb158-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-5" tabindex="-1"></a><span class="fu">library</span>(deSolve) <span class="co"># ODE solver</span></span></code></pre></div>
 <p>Next, we load our own ODE function and parameters. Make sure you obtain an up to date copy of <code>BormannLogistic.R</code>.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Make sure you obtain a new copy of BormannLogistic.R</span></span>
-<span id="cb158-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/BormannLogistic.R&quot;</span>)</span>
-<span id="cb158-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">I1 =</span> <span class="fl">6.5</span>, <span class="co"># deposition</span></span>
-<span id="cb158-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">I2 =</span> <span class="fl">14.2</span>, <span class="co"># N fixation</span></span>
-<span id="cb158-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">a1 =</span> <span class="fl">79.6</span><span class="sc">/</span>(<span class="dv">532</span><span class="sc">*</span><span class="dv">26</span>), <span class="co"># uptake by vegetation (V)</span></span>
-<span id="cb158-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>)<span class="sc">/</span><span class="dv">532</span>, <span class="co"># root exudation into available pool</span></span>
-<span id="cb158-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">6.2</span> <span class="sc">+</span> <span class="fl">0.1</span>)<span class="sc">/</span><span class="dv">532</span>, <span class="co"># litter fall, etc.</span></span>
-<span id="cb158-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">a4 =</span> <span class="fl">69.6</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
-<span id="cb158-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">a5 =</span> <span class="fl">3.9</span><span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available pool to stream</span></span>
-<span id="cb158-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co"># export from bound pool to stream</span></span>
-<span id="cb158-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">K =</span> <span class="dv">600</span> <span class="co"># carrying capacity of vegetation</span></span>
-<span id="cb158-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-12" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb158-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-14" aria-hidden="true" tabindex="-1"></a><span class="do">## a02 0.0275559  0.0041165  6.6940 2.171e-11 ***</span></span>
-<span id="cb158-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb158-15" aria-hidden="true" tabindex="-1"></a><span class="do">## a23 0.1434636</span></span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-1" tabindex="-1"></a><span class="do">## Make sure you obtain a new copy of BormannLogistic.R</span></span>
+<span id="cb159-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-2" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/BormannLogistic.R&quot;</span>)</span>
+<span id="cb159-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">I1 =</span> <span class="fl">6.5</span>, <span class="co"># deposition</span></span>
+<span id="cb159-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-4" tabindex="-1"></a>        <span class="at">I2 =</span> <span class="fl">14.2</span>, <span class="co"># N fixation</span></span>
+<span id="cb159-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-5" tabindex="-1"></a>        <span class="at">a1 =</span> <span class="fl">79.6</span><span class="sc">/</span>(<span class="dv">532</span><span class="sc">*</span><span class="dv">26</span>), <span class="co"># uptake by vegetation (V)</span></span>
+<span id="cb159-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-6" tabindex="-1"></a>        <span class="at">a2 =</span> (<span class="fl">6.6</span> <span class="sc">+</span> <span class="fl">0.8</span>)<span class="sc">/</span><span class="dv">532</span>, <span class="co"># root exudation into available pool</span></span>
+<span id="cb159-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-7" tabindex="-1"></a>        <span class="at">a3 =</span> (<span class="fl">54.2</span> <span class="sc">+</span> <span class="fl">2.7</span> <span class="sc">+</span> <span class="fl">6.2</span> <span class="sc">+</span> <span class="fl">0.1</span>)<span class="sc">/</span><span class="dv">532</span>, <span class="co"># litter fall, etc.</span></span>
+<span id="cb159-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-8" tabindex="-1"></a>        <span class="at">a4 =</span> <span class="fl">69.6</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co"># net mineralization</span></span>
+<span id="cb159-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-9" tabindex="-1"></a>        <span class="at">a5 =</span> <span class="fl">3.9</span><span class="sc">/</span><span class="dv">26</span>, <span class="co"># export from available pool to stream</span></span>
+<span id="cb159-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-10" tabindex="-1"></a>        <span class="at">a6 =</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">4700</span>, <span class="co"># export from bound pool to stream</span></span>
+<span id="cb159-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-11" tabindex="-1"></a>        <span class="at">K =</span> <span class="dv">600</span> <span class="co"># carrying capacity of vegetation</span></span>
+<span id="cb159-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-12" tabindex="-1"></a>        )</span>
+<span id="cb159-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-13" tabindex="-1"></a></span>
+<span id="cb159-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-14" tabindex="-1"></a><span class="do">## a02 0.0275559  0.0041165  6.6940 2.171e-11 ***</span></span>
+<span id="cb159-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-15" tabindex="-1"></a><span class="do">## a23 0.1434636</span></span></code></pre></div>
 <p>Finally, we’ll load environmental data. Note the trajectory of annual N export (kg/y, `ann.export.kg.y).</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">## we skip the first 7 lines because those contain metadata</span></span>
-<span id="cb159-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-2" aria-hidden="true" tabindex="-1"></a>HB.df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/env_data_HB.csv&quot;</span>, <span class="at">skip=</span><span class="dv">7</span>)</span>
-<span id="cb159-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb159-3" aria-hidden="true" tabindex="-1"></a>HB.df[<span class="dv">1</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb160-1" tabindex="-1"></a><span class="do">## we skip the first 7 lines because those contain metadata</span></span>
+<span id="cb160-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb160-2" tabindex="-1"></a>HB.df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/env_data_HB.csv&quot;</span>, <span class="at">skip=</span><span class="dv">7</span>)</span>
+<span id="cb160-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb160-3" tabindex="-1"></a>HB.df[<span class="dv">1</span>,]</span></code></pre></div>
 <pre><code>##   year          factor    value
 ## 1 1970 ann.exp.TN.kg.y 6.802761</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>HB.df, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb161-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>factor, <span class="at">scales=</span><span class="st">&#39;free&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>HB.df, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb162-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-2" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>factor, <span class="at">scales=</span><span class="st">&#39;free&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:HBdat"></span>
 <img src="figs/HBdat-1.png" alt="At the Hubbard Brook LTER, annual stream N export and N deposition have declined, while average annual temperature has increased. Average annual sream flow has been highly variable." width="75%" />
 <p class="caption">
-Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition have declined, while average annual temperature has increased. Average annual sream flow has been highly variable.
+Figure 10.1: At the Hubbard Brook LTER, annual stream N export and N deposition have declined, while average annual temperature has increased. Average annual sream flow has been highly variable.
 </p>
 </div>
 <p>We see that average annual temperature has been increasing (meandegC) and N deposition has be decreasing. Could either of these be to blame?</p>
 </div>
-<div id="n-deposition" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> N deposition<a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We see N deposition declining (Fig. <a href="optimization.html#fig:HBdata">8.2</a>), and so perhaps that is the most obvious answer to why stream export is declining. We will use these data to determine N deposition in our model (parameter <span class="math inline">\(I_1\)</span>). This is an example of a “time-varying parameter”.</p>
+<div id="n-deposition" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> N deposition<a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We see N deposition declining (Fig. <a href="optimization.html#fig:HBdata">9.2</a>), and so perhaps that is the most obvious answer to why stream export is declining. We will use these data to determine N deposition in our model (parameter <span class="math inline">\(I_1\)</span>). This is an example of a “time-varying parameter”.</p>
 <p>Creating a data-based time-varying parameter is not hard when we use <em>interpolation.</em> The reason we do this is because these data are only annual averages, but our ODE needs parameter values at potentially any instant in time. We will write a small function that will calculate a value for <span class="math inline">\(I_1\)</span>, based on surrounding data points.</p>
 <p>Below, we use the following steps:</p>
 <ul>
@@ -336,13 +366,13 @@ Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition h
 <li>Generate model predictions and compare them visually to data, and to predictions from models without temperature.</li>
 </ul>
 <p>We first need to extract the N deposition data, and create a new variable <code>time</code> instead of <code>year</code> that starts at zero instead of 1979.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Find out the range of years for each state variable or factor</span></span>
-<span id="cb162-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Exclude missing data</span></span>
-<span id="cb162-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-3" aria-hidden="true" tabindex="-1"></a>HB.df <span class="sc">%&gt;%</span> <span class="fu">filter</span>( <span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">%&gt;%</span> </span>
-<span id="cb162-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(factor) <span class="sc">%&gt;%</span> <span class="co"># group the data by state vars</span></span>
-<span id="cb162-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## calculate stats (for each state var)</span></span>
-<span id="cb162-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">first_year=</span><span class="fu">min</span>(year),</span>
-<span id="cb162-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb162-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">last_year=</span><span class="fu">max</span>(year))</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-1" tabindex="-1"></a><span class="do">## Find out the range of years for each state variable or factor</span></span>
+<span id="cb163-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-2" tabindex="-1"></a><span class="do">## Exclude missing data</span></span>
+<span id="cb163-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-3" tabindex="-1"></a>HB.df <span class="sc">%&gt;%</span> <span class="fu">filter</span>( <span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">%&gt;%</span> </span>
+<span id="cb163-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-4" tabindex="-1"></a>  <span class="fu">group_by</span>(factor) <span class="sc">%&gt;%</span> <span class="co"># group the data by state vars</span></span>
+<span id="cb163-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-5" tabindex="-1"></a>  <span class="do">## calculate stats (for each state var)</span></span>
+<span id="cb163-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-6" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">first_year=</span><span class="fu">min</span>(year),</span>
+<span id="cb163-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb163-7" tabindex="-1"></a>            <span class="at">last_year=</span><span class="fu">max</span>(year))</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   factor          first_year last_year
 ##   &lt;chr&gt;                &lt;int&gt;     &lt;int&gt;
@@ -351,19 +381,19 @@ Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition h
 ## 3 atmos.kgN.ha          1979      2017
 ## 4 meandegC              1972      2012</code></pre>
 <p>Here we select the data we want.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb164-1" aria-hidden="true" tabindex="-1"></a>ndep <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span> <span class="co"># select orig. data</span></span>
-<span id="cb164-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">##select non-missing deposition data only</span></span>
-<span id="cb164-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">&amp;</span> factor<span class="sc">==</span> <span class="st">&quot;atmos.kgN.ha&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb164-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add new variable t = 0,1, 2, .... max</span></span>
-<span id="cb164-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">time =</span> year <span class="sc">-</span> <span class="fu">min</span>(year) )</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-1" tabindex="-1"></a>ndep <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span> <span class="co"># select orig. data</span></span>
+<span id="cb165-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-2" tabindex="-1"></a>  <span class="do">##select non-missing deposition data only</span></span>
+<span id="cb165-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">&amp;</span> factor<span class="sc">==</span> <span class="st">&quot;atmos.kgN.ha&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb165-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-4" tabindex="-1"></a>  <span class="do">## add new variable t = 0,1, 2, .... max</span></span>
+<span id="cb165-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-5" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">time =</span> year <span class="sc">-</span> <span class="fu">min</span>(year) )</span></code></pre></div>
 <p>Next we use <code>approxfun()</code> to create the function to approximate N deposition for an arbitrary time point. We then plot the data and show the linear interpolation.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-1" aria-hidden="true" tabindex="-1"></a>ndep.func <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="at">rule =</span> <span class="dv">2</span>)</span>
-<span id="cb165-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-3" aria-hidden="true" tabindex="-1"></a><span class="do">## plot the data</span></span>
-<span id="cb165-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], </span>
-<span id="cb165-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;N deposition (kg/ha/y&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Year (1979-2017)&quot;</span>)</span>
-<span id="cb165-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-6" aria-hidden="true" tabindex="-1"></a><span class="do">## add the linear interpolation</span></span>
-<span id="cb165-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb165-7" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(ndep.func, <span class="dv">0</span>, <span class="dv">38</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">n=</span><span class="dv">1001</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-1" tabindex="-1"></a>ndep.func <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="at">rule =</span> <span class="dv">2</span>)</span>
+<span id="cb166-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-2" tabindex="-1"></a></span>
+<span id="cb166-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-3" tabindex="-1"></a><span class="do">## plot the data</span></span>
+<span id="cb166-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], </span>
+<span id="cb166-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-5" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;N deposition (kg/ha/y&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Year (1979-2017)&quot;</span>)</span>
+<span id="cb166-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-6" tabindex="-1"></a><span class="do">## add the linear interpolation</span></span>
+<span id="cb166-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-7" tabindex="-1"></a><span class="fu">curve</span>(ndep.func, <span class="dv">0</span>, <span class="dv">38</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">n=</span><span class="dv">1001</span>)</span></code></pre></div>
 <div class="figure">
 <img src="figs/lin_int-1.png" alt="Linear interpolation between annual N deposition data points, using `approxfun()`." width="75%" />
 <p class="caption">
@@ -371,18 +401,18 @@ Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition h
 </p>
 </div>
 <p>We can fit smoothed lines, splines, across these points as well. R allows a variety of methods for fitting splines, and here we show two.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="do">## natural</span></span>
-<span id="cb166-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-2" aria-hidden="true" tabindex="-1"></a>ndep.func.nat <span class="ot">&lt;-</span> <span class="fu">splinefun</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;natural&quot;</span>)</span>
-<span id="cb166-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="do">## fmm: Forsythe, Malcolm and Moler (default)</span></span>
-<span id="cb166-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-4" aria-hidden="true" tabindex="-1"></a>ndep.func.fmm <span class="ot">&lt;-</span> <span class="fu">splinefun</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;fmm&quot;</span>)</span>
-<span id="cb166-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-6" aria-hidden="true" tabindex="-1"></a><span class="do">## plot the data</span></span>
-<span id="cb166-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], </span>
-<span id="cb166-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;N deposition (kg/ha/y&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Year (1979-2017)&quot;</span>)</span>
-<span id="cb166-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-9" aria-hidden="true" tabindex="-1"></a><span class="do">## add the smoothed interpolation</span></span>
-<span id="cb166-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(ndep.func.fmm, <span class="dv">0</span>, <span class="dv">38</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">n=</span><span class="dv">1001</span>, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb166-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-11" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(ndep.func.nat, <span class="dv">0</span>, <span class="dv">38</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">n=</span><span class="dv">1001</span>)</span>
-<span id="cb166-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb166-12" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Natural&quot;</span>, <span class="st">&quot;FMM&quot;</span>), <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">bty=</span><span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-1" tabindex="-1"></a><span class="do">## natural</span></span>
+<span id="cb167-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-2" tabindex="-1"></a>ndep.func.nat <span class="ot">&lt;-</span> <span class="fu">splinefun</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;natural&quot;</span>)</span>
+<span id="cb167-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-3" tabindex="-1"></a><span class="do">## fmm: Forsythe, Malcolm and Moler (default)</span></span>
+<span id="cb167-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-4" tabindex="-1"></a>ndep.func.fmm <span class="ot">&lt;-</span> <span class="fu">splinefun</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;fmm&quot;</span>)</span>
+<span id="cb167-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-5" tabindex="-1"></a></span>
+<span id="cb167-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-6" tabindex="-1"></a><span class="do">## plot the data</span></span>
+<span id="cb167-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-7" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> ndep[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> ndep[,<span class="st">&quot;value&quot;</span>], </span>
+<span id="cb167-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-8" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;N deposition (kg/ha/y&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Year (1979-2017)&quot;</span>)</span>
+<span id="cb167-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-9" tabindex="-1"></a><span class="do">## add the smoothed interpolation</span></span>
+<span id="cb167-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-10" tabindex="-1"></a><span class="fu">curve</span>(ndep.func.fmm, <span class="dv">0</span>, <span class="dv">38</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">n=</span><span class="dv">1001</span>, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb167-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-11" tabindex="-1"></a><span class="fu">curve</span>(ndep.func.nat, <span class="dv">0</span>, <span class="dv">38</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">n=</span><span class="dv">1001</span>)</span>
+<span id="cb167-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-12" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Natural&quot;</span>, <span class="st">&quot;FMM&quot;</span>), <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">bty=</span><span class="st">&quot;n&quot;</span>)</span></code></pre></div>
 <div class="figure">
 <img src="figs/spline_int-1.png" alt="Smoothed interpolation between annual N deposition data points, using `splinefun()`." width="75%" />
 <p class="caption">
@@ -390,71 +420,71 @@ Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition h
 </p>
 </div>
 <p>Next we write a new version of the ODE function that includes linear interpolation to create a new value of <span class="math inline">\(I_1\)</span>.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-1" aria-hidden="true" tabindex="-1"></a>bormann.dep <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
-<span id="cb167-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
-<span id="cb167-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">### ODEs</span></span>
-<span id="cb167-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Rate of change = Gains - Losses</span></span>
-<span id="cb167-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## I1 - deposition into the inorganic available pool</span></span>
-<span id="cb167-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## I2 - N fixation</span></span>
-<span id="cb167-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-7" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a1 - plant uptake</span></span>
-<span id="cb167-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-8" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a2 - root exudate into the available pool</span></span>
-<span id="cb167-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a3 - litter fall</span></span>
-<span id="cb167-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-10" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a4 - mineralization</span></span>
-<span id="cb167-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-11" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a5 - is loss from Available to the stream</span></span>
-<span id="cb167-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-12" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a6 - is loss from the bound pool to the stream</span></span>
-<span id="cb167-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">##############</span></span>
-<span id="cb167-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-14" aria-hidden="true" tabindex="-1"></a>    <span class="do">### Adding linearly interpolated N deposition</span></span>
-<span id="cb167-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-15" aria-hidden="true" tabindex="-1"></a>    I1.new <span class="ot">&lt;-</span> <span class="fu">ndep.func</span>(t)</span>
-<span id="cb167-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-16" aria-hidden="true" tabindex="-1"></a>    <span class="do">##############</span></span>
-<span id="cb167-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb167-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-18" aria-hidden="true" tabindex="-1"></a>    <span class="do">## ODEs</span></span>
-<span id="cb167-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-19" aria-hidden="true" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A <span class="sc">*</span> V  <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> V<span class="sc">/</span>K )</span>
-<span id="cb167-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-20" aria-hidden="true" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> ( I1.new <span class="sc">+</span> a4 <span class="sc">*</span> B ) <span class="sc">-</span> ( a1 <span class="sc">*</span> V <span class="sc">*</span> A <span class="sc">+</span> a5 <span class="sc">*</span> A)</span>
-<span id="cb167-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-21" aria-hidden="true" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> I2 <span class="sc">+</span> a3 <span class="sc">*</span> V  <span class="sc">-</span> (a4 <span class="sc">*</span> B <span class="sc">+</span> a6 <span class="sc">*</span> B)</span>
-<span id="cb167-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb167-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-23" aria-hidden="true" tabindex="-1"></a>    <span class="do">## loss from the soil to the stream and out the watershed</span></span>
-<span id="cb167-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-24" aria-hidden="true" tabindex="-1"></a>    export <span class="ot">&lt;-</span> a5<span class="sc">*</span>A <span class="sc">+</span> a6<span class="sc">*</span>B </span>
-<span id="cb167-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># returning a list whose first  element </span></span>
-<span id="cb167-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># is a vector of the ODE values</span></span>
-<span id="cb167-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>( </span>
-<span id="cb167-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb167-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>( dV.dt, dA.dt, dB.dt ), </span>
-<span id="cb167-31"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">export=</span>export, </span>
-<span id="cb167-32"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">I1.new=</span>I1.new</span>
-<span id="cb167-33"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-33" aria-hidden="true" tabindex="-1"></a>           )</span>
-<span id="cb167-34"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb167-35"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-35" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb167-36"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-36" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb167-37"><a href="more-on-forcing-functions-using-data-inside-models.html#cb167-37" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-1" tabindex="-1"></a>bormann.dep <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
+<span id="cb168-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
+<span id="cb168-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-3" tabindex="-1"></a>    <span class="do">### ODEs</span></span>
+<span id="cb168-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-4" tabindex="-1"></a>    <span class="do">## Rate of change = Gains - Losses</span></span>
+<span id="cb168-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-5" tabindex="-1"></a>    <span class="do">## I1 - deposition into the inorganic available pool</span></span>
+<span id="cb168-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-6" tabindex="-1"></a>    <span class="do">## I2 - N fixation</span></span>
+<span id="cb168-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-7" tabindex="-1"></a>    <span class="do">## a1 - plant uptake</span></span>
+<span id="cb168-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-8" tabindex="-1"></a>    <span class="do">## a2 - root exudate into the available pool</span></span>
+<span id="cb168-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-9" tabindex="-1"></a>    <span class="do">## a3 - litter fall</span></span>
+<span id="cb168-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-10" tabindex="-1"></a>    <span class="do">## a4 - mineralization</span></span>
+<span id="cb168-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-11" tabindex="-1"></a>    <span class="do">## a5 - is loss from Available to the stream</span></span>
+<span id="cb168-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-12" tabindex="-1"></a>    <span class="do">## a6 - is loss from the bound pool to the stream</span></span>
+<span id="cb168-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-13" tabindex="-1"></a>    <span class="do">##############</span></span>
+<span id="cb168-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-14" tabindex="-1"></a>    <span class="do">### Adding linearly interpolated N deposition</span></span>
+<span id="cb168-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-15" tabindex="-1"></a>    I1.new <span class="ot">&lt;-</span> <span class="fu">ndep.func</span>(t)</span>
+<span id="cb168-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-16" tabindex="-1"></a>    <span class="do">##############</span></span>
+<span id="cb168-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-17" tabindex="-1"></a>    </span>
+<span id="cb168-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-18" tabindex="-1"></a>    <span class="do">## ODEs</span></span>
+<span id="cb168-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-19" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A <span class="sc">*</span> V  <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> V<span class="sc">/</span>K )</span>
+<span id="cb168-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-20" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> ( I1.new <span class="sc">+</span> a4 <span class="sc">*</span> B ) <span class="sc">-</span> ( a1 <span class="sc">*</span> V <span class="sc">*</span> A <span class="sc">+</span> a5 <span class="sc">*</span> A)</span>
+<span id="cb168-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-21" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> I2 <span class="sc">+</span> a3 <span class="sc">*</span> V  <span class="sc">-</span> (a4 <span class="sc">*</span> B <span class="sc">+</span> a6 <span class="sc">*</span> B)</span>
+<span id="cb168-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-22" tabindex="-1"></a>    </span>
+<span id="cb168-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-23" tabindex="-1"></a>    <span class="do">## loss from the soil to the stream and out the watershed</span></span>
+<span id="cb168-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-24" tabindex="-1"></a>    export <span class="ot">&lt;-</span> a5<span class="sc">*</span>A <span class="sc">+</span> a6<span class="sc">*</span>B </span>
+<span id="cb168-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-25" tabindex="-1"></a></span>
+<span id="cb168-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-26" tabindex="-1"></a>    <span class="co"># returning a list whose first  element </span></span>
+<span id="cb168-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-27" tabindex="-1"></a>    <span class="co"># is a vector of the ODE values</span></span>
+<span id="cb168-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-28" tabindex="-1"></a>    <span class="fu">return</span>( </span>
+<span id="cb168-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-29" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb168-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-30" tabindex="-1"></a>        <span class="fu">c</span>( dV.dt, dA.dt, dB.dt ), </span>
+<span id="cb168-31"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-31" tabindex="-1"></a>        <span class="at">export=</span>export, </span>
+<span id="cb168-32"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-32" tabindex="-1"></a>        <span class="at">I1.new=</span>I1.new</span>
+<span id="cb168-33"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-33" tabindex="-1"></a>           )</span>
+<span id="cb168-34"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-34" tabindex="-1"></a>    )</span>
+<span id="cb168-35"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-35" tabindex="-1"></a>    }</span>
+<span id="cb168-36"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-36" tabindex="-1"></a>  )</span>
+<span id="cb168-37"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-37" tabindex="-1"></a>}</span></code></pre></div>
 <p>Next we run the model, combine with our stream export data, and see what we get.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This relies on the data set and functions we made above:</span></span>
-<span id="cb168-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ndep and ndep.func</span></span>
-<span id="cb168-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="do">## times that we want R to return</span></span>
-<span id="cb168-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="do">## just round years</span></span>
-<span id="cb168-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">38</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb168-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-7" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">24</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
-<span id="cb168-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Integrate</span></span>
-<span id="cb168-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-9" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
-<span id="cb168-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ode</span>(<span class="at">y =</span> y0, <span class="at">times =</span> t, <span class="at">func =</span> bormann.dep, <span class="at">parms =</span> p)</span>
-<span id="cb168-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb168-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-13" aria-hidden="true" tabindex="-1"></a><span class="do">## combine with stream export data</span></span>
-<span id="cb168-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-14" aria-hidden="true" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span></span>
-<span id="cb168-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1978</span> <span class="sc">&amp;</span> factor<span class="sc">==</span> <span class="st">&quot;ann.exp.TN.kg.y&quot;</span>)</span>
-<span id="cb168-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>export.data <span class="ot">&lt;-</span> exp.data<span class="sc">$</span>value</span>
-<span id="cb168-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-18" aria-hidden="true" tabindex="-1"></a><span class="do">## rearrange to long format, and reorder state variable levels</span></span>
-<span id="cb168-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-19" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb168-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>V<span class="sc">:</span>export.data) <span class="sc">%&gt;%</span></span>
-<span id="cb168-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transform</span>(<span class="at">name=</span><span class="fu">factor</span>(name, <span class="at">levels=</span><span class="fu">c</span>(</span>
-<span id="cb168-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;V&quot;</span>, <span class="st">&quot;I1.new&quot;</span>, <span class="st">&quot;export.data&quot;</span>,</span>
-<span id="cb168-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;export&quot;</span>) ) )</span>
-<span id="cb168-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-25" aria-hidden="true" tabindex="-1"></a><span class="do">## plot</span></span>
-<span id="cb168-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb168-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb168-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-1" tabindex="-1"></a><span class="do">## This relies on the data set and functions we made above:</span></span>
+<span id="cb169-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-2" tabindex="-1"></a><span class="do">## ndep and ndep.func</span></span>
+<span id="cb169-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-3" tabindex="-1"></a><span class="do">## times that we want R to return</span></span>
+<span id="cb169-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-4" tabindex="-1"></a><span class="do">## just round years</span></span>
+<span id="cb169-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-5" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">38</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb169-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-6" tabindex="-1"></a></span>
+<span id="cb169-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-7" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">24</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb169-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-8" tabindex="-1"></a><span class="do">## Integrate</span></span>
+<span id="cb169-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-9" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb169-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-10" tabindex="-1"></a>  <span class="fu">ode</span>(<span class="at">y =</span> y0, <span class="at">times =</span> t, <span class="at">func =</span> bormann.dep, <span class="at">parms =</span> p)</span>
+<span id="cb169-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-11" tabindex="-1"></a>)</span>
+<span id="cb169-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-12" tabindex="-1"></a></span>
+<span id="cb169-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-13" tabindex="-1"></a><span class="do">## combine with stream export data</span></span>
+<span id="cb169-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-14" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span></span>
+<span id="cb169-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-15" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1978</span> <span class="sc">&amp;</span> factor<span class="sc">==</span> <span class="st">&quot;ann.exp.TN.kg.y&quot;</span>)</span>
+<span id="cb169-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-16" tabindex="-1"></a>out<span class="sc">$</span>export.data <span class="ot">&lt;-</span> exp.data<span class="sc">$</span>value</span>
+<span id="cb169-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-17" tabindex="-1"></a></span>
+<span id="cb169-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-18" tabindex="-1"></a><span class="do">## rearrange to long format, and reorder state variable levels</span></span>
+<span id="cb169-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-19" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb169-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-20" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>V<span class="sc">:</span>export.data) <span class="sc">%&gt;%</span></span>
+<span id="cb169-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-21" tabindex="-1"></a>  <span class="fu">transform</span>(<span class="at">name=</span><span class="fu">factor</span>(name, <span class="at">levels=</span><span class="fu">c</span>(</span>
+<span id="cb169-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-22" tabindex="-1"></a>    <span class="st">&quot;V&quot;</span>, <span class="st">&quot;I1.new&quot;</span>, <span class="st">&quot;export.data&quot;</span>,</span>
+<span id="cb169-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-23" tabindex="-1"></a>    <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;export&quot;</span>) ) )</span>
+<span id="cb169-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-24" tabindex="-1"></a></span>
+<span id="cb169-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-25" tabindex="-1"></a><span class="do">## plot</span></span>
+<span id="cb169-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-26" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb169-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-27" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure">
 <img src="figs/ts.denitr-1.png" alt="Declining deposition doesn't guarantee declining export." width="75%" />
 <p class="caption">
@@ -462,100 +492,100 @@ Figure 9.1: At the Hubbard Brook LTER, annual stream N export and N deposition h
 </p>
 </div>
 </div>
-<div id="denitrification" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Denitrification<a href="more-on-forcing-functions-using-data-inside-models.html#denitrification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Denitrification will occur in both the forest floor and from the stream, wherever there is moisture, a lack of oxygen, and a source of nitrate <span class="citation">(<a href="#ref-chapin2011" role="doc-biblioref">Chapin III, Matson, and Mooney 2011</a>)</span>. All else being equal, denitrification rate increases with increasing nitrate. It might cause declines in stream export because this is measured at the bottom of the watershed. Unfortunately, our model does not currently include terms for denitrification. Lucky for us, we can add them.</p>
-<p>Let’s model denitrification in both the forest floor and the stream as a first order process (<span class="math inline">\(aX\)</span>). We will assume that denitrification causes loss from the forest floor, which is about 1/4 the total bound pool. <span class="citation">GROFFMAN and TIEDJE (<a href="#ref-groffman:1989st" role="doc-biblioref">1989</a>)</span> found that well dranined Michigan forest soils lost 0.5–10 kg N/ha/y. If we take the midpoint of that range, we get 5 kg N/ha/y.</p>
-<p>We’ll assume that denitrification occurs in the stream channel <em>after</em> leaching from the available pool. <span class="citation">Mulholland et al. (<a href="#ref-mulholland:2008" role="doc-biblioref">2008</a>)</span> found that about 20% of nitrate entering reference watersheds was denitrified. This means the stream retains about 80% of the nitrogen that gets leached out of the soil and into the stream.</p>
+<div id="denitrification" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Denitrification<a href="more-on-forcing-functions-using-data-inside-models.html#denitrification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Denitrification will occur in both the forest floor and from the stream, wherever there is moisture, a lack of oxygen, and a source of nitrate <span class="citation">(<a href="#ref-chapin2011">Chapin III, Matson, and Mooney 2011</a>)</span>. All else being equal, denitrification rate increases with increasing nitrate. It might cause declines in stream export because this is measured at the bottom of the watershed. Unfortunately, our model does not currently include terms for denitrification. Lucky for us, we can add them.</p>
+<p>Let’s model denitrification in both the forest floor and the stream as a first order process (<span class="math inline">\(aX\)</span>). We will assume that denitrification causes loss from the forest floor, which is about 1/4 the total bound pool. <span class="citation">GROFFMAN and TIEDJE (<a href="#ref-groffman:1989st">1989</a>)</span> found that well dranined Michigan forest soils lost 0.5–10 kg N/ha/y. If we take the midpoint of that range, we get 5 kg N/ha/y.</p>
+<p>We’ll assume that denitrification occurs in the stream channel <em>after</em> leaching from the available pool. <span class="citation">Mulholland et al. (<a href="#ref-mulholland:2008">2008</a>)</span> found that about 20% of nitrate entering reference watersheds was denitrified. This means the stream retains about 80% of the nitrogen that gets leached out of the soil and into the stream.</p>
 <p>Here is a new version of our model, with both N deposition and dentrification.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-1" aria-hidden="true" tabindex="-1"></a>bormann.denitr <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
-<span id="cb169-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb169-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
-<span id="cb169-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">### ODEs</span></span>
-<span id="cb169-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Growth = Gains - Losses</span></span>
-<span id="cb169-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## I1 - deposition into the inorganic available pool</span></span>
-<span id="cb169-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-7" aria-hidden="true" tabindex="-1"></a>    <span class="do">## I2 - N fixation</span></span>
-<span id="cb169-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-8" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a1 - plant uptake</span></span>
-<span id="cb169-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a2 - root exudate into the available pool</span></span>
-<span id="cb169-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-10" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a3 - litter fall</span></span>
-<span id="cb169-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-11" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a4 - mineralization</span></span>
-<span id="cb169-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-12" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a5 - is loss from Available to the stream</span></span>
-<span id="cb169-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a6 - is loss from the bound pool to the stream</span></span>
-<span id="cb169-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb169-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">### Adding N deposition</span></span>
-<span id="cb169-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-16" aria-hidden="true" tabindex="-1"></a>    I1.new <span class="ot">&lt;-</span> <span class="fu">ndep.func</span>(t)</span>
-<span id="cb169-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb169-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-18" aria-hidden="true" tabindex="-1"></a>    <span class="do">### Adding denitrification</span></span>
-<span id="cb169-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-19" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a7 is the mass-specific denitrification rate in the forest floor</span></span>
-<span id="cb169-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-20" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a8 is mass-specific denitrification from the stream </span></span>
-<span id="cb169-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-21" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Thus, (1-a8) is rate of N retention in the stream</span></span>
-<span id="cb169-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-22" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb169-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-23" aria-hidden="true" tabindex="-1"></a>    <span class="do">## ODEs</span></span>
-<span id="cb169-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-24" aria-hidden="true" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A <span class="sc">*</span> V  <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> V<span class="sc">/</span>K )</span>
-<span id="cb169-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-25" aria-hidden="true" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> ( I1.new <span class="sc">+</span> a4 <span class="sc">*</span> B ) <span class="sc">-</span> ( a1 <span class="sc">*</span> V <span class="sc">*</span> A <span class="sc">+</span> a5 <span class="sc">*</span> A)</span>
-<span id="cb169-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb169-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-27" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Adding denitrification from the forest floor </span></span>
-<span id="cb169-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-28" aria-hidden="true" tabindex="-1"></a>    <span class="do">## param = a7 * (~1/4 of the bound pool) </span></span>
-<span id="cb169-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-29" aria-hidden="true" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> ( I2 <span class="sc">+</span> a3 <span class="sc">*</span> V ) <span class="sc">-</span>  a4 <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B <span class="sc">-</span> a7 <span class="sc">*</span> B<span class="sc">/</span><span class="dv">4</span></span>
-<span id="cb169-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb169-31"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-31" aria-hidden="true" tabindex="-1"></a>    <span class="do">## loss from the soil to the stream</span></span>
-<span id="cb169-32"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-32" aria-hidden="true" tabindex="-1"></a>    leaching <span class="ot">&lt;-</span> a5<span class="sc">*</span>A <span class="sc">+</span> a6<span class="sc">*</span>B </span>
-<span id="cb169-33"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb169-34"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-34" aria-hidden="true" tabindex="-1"></a>    <span class="do">## export out of the watershed</span></span>
-<span id="cb169-35"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-35" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a8 is loss through dentrification</span></span>
-<span id="cb169-36"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-36" aria-hidden="true" tabindex="-1"></a>    export <span class="ot">&lt;-</span> leaching <span class="sc">-</span> a8<span class="sc">*</span>leaching</span>
-<span id="cb169-37"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb169-38"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># returning a list whose first (and only) element </span></span>
-<span id="cb169-39"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># is a vector of the ODE values</span></span>
-<span id="cb169-40"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>( </span>
-<span id="cb169-41"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb169-42"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>( dV.dt, dA.dt, dB.dt ), <span class="at">I1.new=</span>I1.new, <span class="at">export=</span>export</span>
-<span id="cb169-43"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-43" aria-hidden="true" tabindex="-1"></a>           )</span>
-<span id="cb169-44"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-44" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb169-45"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-45" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb169-46"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-46" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb169-47"><a href="more-on-forcing-functions-using-data-inside-models.html#cb169-47" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-1" tabindex="-1"></a>bormann.denitr <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
+<span id="cb170-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-2" tabindex="-1"></a>  </span>
+<span id="cb170-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-3" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
+<span id="cb170-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-4" tabindex="-1"></a>    <span class="do">### ODEs</span></span>
+<span id="cb170-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-5" tabindex="-1"></a>    <span class="do">## Growth = Gains - Losses</span></span>
+<span id="cb170-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-6" tabindex="-1"></a>    <span class="do">## I1 - deposition into the inorganic available pool</span></span>
+<span id="cb170-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-7" tabindex="-1"></a>    <span class="do">## I2 - N fixation</span></span>
+<span id="cb170-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-8" tabindex="-1"></a>    <span class="do">## a1 - plant uptake</span></span>
+<span id="cb170-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-9" tabindex="-1"></a>    <span class="do">## a2 - root exudate into the available pool</span></span>
+<span id="cb170-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-10" tabindex="-1"></a>    <span class="do">## a3 - litter fall</span></span>
+<span id="cb170-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-11" tabindex="-1"></a>    <span class="do">## a4 - mineralization</span></span>
+<span id="cb170-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-12" tabindex="-1"></a>    <span class="do">## a5 - is loss from Available to the stream</span></span>
+<span id="cb170-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-13" tabindex="-1"></a>    <span class="do">## a6 - is loss from the bound pool to the stream</span></span>
+<span id="cb170-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-14" tabindex="-1"></a>    </span>
+<span id="cb170-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-15" tabindex="-1"></a>    <span class="do">### Adding N deposition</span></span>
+<span id="cb170-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-16" tabindex="-1"></a>    I1.new <span class="ot">&lt;-</span> <span class="fu">ndep.func</span>(t)</span>
+<span id="cb170-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-17" tabindex="-1"></a>    </span>
+<span id="cb170-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-18" tabindex="-1"></a>    <span class="do">### Adding denitrification</span></span>
+<span id="cb170-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-19" tabindex="-1"></a>    <span class="do">## a7 is the mass-specific denitrification rate in the forest floor</span></span>
+<span id="cb170-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-20" tabindex="-1"></a>    <span class="do">## a8 is mass-specific denitrification from the stream </span></span>
+<span id="cb170-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-21" tabindex="-1"></a>    <span class="do">## Thus, (1-a8) is rate of N retention in the stream</span></span>
+<span id="cb170-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-22" tabindex="-1"></a>   </span>
+<span id="cb170-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-23" tabindex="-1"></a>    <span class="do">## ODEs</span></span>
+<span id="cb170-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-24" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A <span class="sc">*</span> V  <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> V<span class="sc">/</span>K )</span>
+<span id="cb170-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-25" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> ( I1.new <span class="sc">+</span> a4 <span class="sc">*</span> B ) <span class="sc">-</span> ( a1 <span class="sc">*</span> V <span class="sc">*</span> A <span class="sc">+</span> a5 <span class="sc">*</span> A)</span>
+<span id="cb170-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-26" tabindex="-1"></a>    </span>
+<span id="cb170-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-27" tabindex="-1"></a>    <span class="do">## Adding denitrification from the forest floor </span></span>
+<span id="cb170-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-28" tabindex="-1"></a>    <span class="do">## param = a7 * (~1/4 of the bound pool) </span></span>
+<span id="cb170-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-29" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> ( I2 <span class="sc">+</span> a3 <span class="sc">*</span> V ) <span class="sc">-</span>  a4 <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B <span class="sc">-</span> a7 <span class="sc">*</span> B<span class="sc">/</span><span class="dv">4</span></span>
+<span id="cb170-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-30" tabindex="-1"></a>    </span>
+<span id="cb170-31"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-31" tabindex="-1"></a>    <span class="do">## loss from the soil to the stream</span></span>
+<span id="cb170-32"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-32" tabindex="-1"></a>    leaching <span class="ot">&lt;-</span> a5<span class="sc">*</span>A <span class="sc">+</span> a6<span class="sc">*</span>B </span>
+<span id="cb170-33"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-33" tabindex="-1"></a>    </span>
+<span id="cb170-34"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-34" tabindex="-1"></a>    <span class="do">## export out of the watershed</span></span>
+<span id="cb170-35"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-35" tabindex="-1"></a>    <span class="do">## a8 is loss through dentrification</span></span>
+<span id="cb170-36"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-36" tabindex="-1"></a>    export <span class="ot">&lt;-</span> leaching <span class="sc">-</span> a8<span class="sc">*</span>leaching</span>
+<span id="cb170-37"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-37" tabindex="-1"></a>    </span>
+<span id="cb170-38"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-38" tabindex="-1"></a>    <span class="co"># returning a list whose first (and only) element </span></span>
+<span id="cb170-39"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-39" tabindex="-1"></a>    <span class="co"># is a vector of the ODE values</span></span>
+<span id="cb170-40"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-40" tabindex="-1"></a>    <span class="fu">return</span>( </span>
+<span id="cb170-41"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-41" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb170-42"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-42" tabindex="-1"></a>        <span class="fu">c</span>( dV.dt, dA.dt, dB.dt ), <span class="at">I1.new=</span>I1.new, <span class="at">export=</span>export</span>
+<span id="cb170-43"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-43" tabindex="-1"></a>           )</span>
+<span id="cb170-44"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-44" tabindex="-1"></a>    )</span>
+<span id="cb170-45"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-45" tabindex="-1"></a>    }</span>
+<span id="cb170-46"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-46" tabindex="-1"></a>  )</span>
+<span id="cb170-47"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-47" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here we add denitrification parameters.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Forest floor denitrification (Groffman et al. 1989)</span></span>
-<span id="cb170-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="do">## total rate / forest floor N</span></span>
-<span id="cb170-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-3" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&quot;a7&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">1100</span></span>
-<span id="cb170-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Stream denitrification (Mulholland et al. 2008)</span></span>
-<span id="cb170-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb170-6" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&quot;a8&quot;</span>] <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># </span></span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-1" tabindex="-1"></a><span class="do">## Forest floor denitrification (Groffman et al. 1989)</span></span>
+<span id="cb171-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-2" tabindex="-1"></a><span class="do">## total rate / forest floor N</span></span>
+<span id="cb171-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-3" tabindex="-1"></a>p[<span class="st">&quot;a7&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">1100</span></span>
+<span id="cb171-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-4" tabindex="-1"></a></span>
+<span id="cb171-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-5" tabindex="-1"></a><span class="do">## Stream denitrification (Mulholland et al. 2008)</span></span>
+<span id="cb171-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-6" tabindex="-1"></a>p[<span class="st">&quot;a8&quot;</span>] <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># </span></span></code></pre></div>
 <p>Next we run the model, combine with our stream export data, and see what we get.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This relies on the data set and functions we made above:</span></span>
-<span id="cb171-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ndep and ndep.func</span></span>
-<span id="cb171-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="do">## times that we want R to return</span></span>
-<span id="cb171-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="do">## just round years</span></span>
-<span id="cb171-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">38</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb171-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-6" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">24</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
-<span id="cb171-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Integrate</span></span>
-<span id="cb171-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-8" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
-<span id="cb171-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ode</span>(<span class="at">y =</span> y0, <span class="at">times =</span> t, <span class="at">func =</span> bormann.denitr, <span class="at">parms =</span> p)</span>
-<span id="cb171-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb171-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-12" aria-hidden="true" tabindex="-1"></a><span class="do">## combine with stream export data</span></span>
-<span id="cb171-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-13" aria-hidden="true" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span></span>
-<span id="cb171-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1978</span> <span class="sc">&amp;</span> factor<span class="sc">==</span> <span class="st">&quot;ann.exp.TN.kg.y&quot;</span>)</span>
-<span id="cb171-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-15" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>export.data <span class="ot">&lt;-</span> exp.data<span class="sc">$</span>value</span>
-<span id="cb171-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-16" aria-hidden="true" tabindex="-1"></a><span class="do">## rearrange to long format and plot</span></span>
-<span id="cb171-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-17" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb171-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>V<span class="sc">:</span>export.data) <span class="sc">%&gt;%</span></span>
-<span id="cb171-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transform</span>(<span class="at">name=</span><span class="fu">factor</span>(name, <span class="at">levels=</span><span class="fu">c</span>(</span>
-<span id="cb171-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;V&quot;</span>, <span class="st">&quot;I1.new&quot;</span>, <span class="st">&quot;export.data&quot;</span>,</span>
-<span id="cb171-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;export&quot;</span>) ) )</span>
-<span id="cb171-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb171-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb171-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-1" tabindex="-1"></a><span class="do">## This relies on the data set and functions we made above:</span></span>
+<span id="cb172-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-2" tabindex="-1"></a><span class="do">## ndep and ndep.func</span></span>
+<span id="cb172-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-3" tabindex="-1"></a><span class="do">## times that we want R to return</span></span>
+<span id="cb172-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-4" tabindex="-1"></a><span class="do">## just round years</span></span>
+<span id="cb172-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-5" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">38</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb172-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-6" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">24</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb172-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-7" tabindex="-1"></a><span class="do">## Integrate</span></span>
+<span id="cb172-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-8" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb172-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-9" tabindex="-1"></a>  <span class="fu">ode</span>(<span class="at">y =</span> y0, <span class="at">times =</span> t, <span class="at">func =</span> bormann.denitr, <span class="at">parms =</span> p)</span>
+<span id="cb172-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-10" tabindex="-1"></a>)</span>
+<span id="cb172-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-11" tabindex="-1"></a></span>
+<span id="cb172-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-12" tabindex="-1"></a><span class="do">## combine with stream export data</span></span>
+<span id="cb172-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-13" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span></span>
+<span id="cb172-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-14" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1978</span> <span class="sc">&amp;</span> factor<span class="sc">==</span> <span class="st">&quot;ann.exp.TN.kg.y&quot;</span>)</span>
+<span id="cb172-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-15" tabindex="-1"></a>out<span class="sc">$</span>export.data <span class="ot">&lt;-</span> exp.data<span class="sc">$</span>value</span>
+<span id="cb172-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-16" tabindex="-1"></a><span class="do">## rearrange to long format and plot</span></span>
+<span id="cb172-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-17" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb172-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-18" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>V<span class="sc">:</span>export.data) <span class="sc">%&gt;%</span></span>
+<span id="cb172-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-19" tabindex="-1"></a>  <span class="fu">transform</span>(<span class="at">name=</span><span class="fu">factor</span>(name, <span class="at">levels=</span><span class="fu">c</span>(</span>
+<span id="cb172-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-20" tabindex="-1"></a>    <span class="st">&quot;V&quot;</span>, <span class="st">&quot;I1.new&quot;</span>, <span class="st">&quot;export.data&quot;</span>,</span>
+<span id="cb172-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-21" tabindex="-1"></a>    <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;export&quot;</span>) ) )</span>
+<span id="cb172-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-22" tabindex="-1"></a></span>
+<span id="cb172-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-23" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb172-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-24" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:denitr"></span>
 <img src="figs/denitr-1.png" alt="Dynamics with N deposition and denitrification in forest floor and stream." width="75%" />
 <p class="caption">
-Figure 9.2: Dynamics with N deposition and denitrification in forest floor and stream.
+Figure 10.2: Dynamics with N deposition and denitrification in forest floor and stream.
 </p>
 </div>
 </div>
-<div id="annual-temperature-as-a-forcing-function" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Annual temperature as a forcing function<a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="annual-temperature-as-a-forcing-function" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Annual temperature as a forcing function<a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We see annual temperatures increasing so it is likely that these are influencing microbial processes associated with ecosystem flux. Increasing temperatures could be driving increases in mineralization, nitrification which could increase stream export if it is not taken up by plants or immobilized in microbial biomass. Increasing temperatures might increase denitrification rates, but like any of these, depends on precipitation as well.</p>
 <p>Below, we use the following steps:</p>
 <ul>
@@ -565,117 +595,117 @@ Figure 9.2: Dynamics with N deposition and denitrification in forest floor and s
 </ul>
 <p>Here we use data on annual temperatures to scale selected rates using the <span class="math inline">\(Q_{10}\)</span> relationship.</p>
 <p>We first make sure that we are modeling years for which we have both N deposition and temperature data. We need to use the same years for temperatures as we did for N deposition, in our <code>ndep</code> data subset.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-1" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">filter</span>(HB.df, factor<span class="sc">==</span> <span class="st">&quot;meandegC&quot;</span> <span class="sc">&amp;</span> </span>
-<span id="cb172-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-2" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">&amp;</span> </span>
-<span id="cb172-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-3" aria-hidden="true" tabindex="-1"></a>                  <span class="do">## year *within* the ndep years</span></span>
-<span id="cb172-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-4" aria-hidden="true" tabindex="-1"></a>                  year <span class="sc">%in%</span> ndep<span class="sc">$</span>year) <span class="sc">%&gt;%</span></span>
-<span id="cb172-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">time =</span> year <span class="sc">-</span> <span class="dv">1979</span> )</span>
-<span id="cb172-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-6" aria-hidden="true" tabindex="-1"></a><span class="do">## the min and max years in our data set</span></span>
-<span id="cb172-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb172-7" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(temps<span class="sc">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-1" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">filter</span>(HB.df, factor<span class="sc">==</span> <span class="st">&quot;meandegC&quot;</span> <span class="sc">&amp;</span> </span>
+<span id="cb173-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-2" tabindex="-1"></a>                  <span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">&amp;</span> </span>
+<span id="cb173-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-3" tabindex="-1"></a>                  <span class="do">## year *within* the ndep years</span></span>
+<span id="cb173-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-4" tabindex="-1"></a>                  year <span class="sc">%in%</span> ndep<span class="sc">$</span>year) <span class="sc">%&gt;%</span></span>
+<span id="cb173-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-5" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">time =</span> year <span class="sc">-</span> <span class="dv">1979</span> )</span>
+<span id="cb173-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-6" tabindex="-1"></a><span class="do">## the min and max years in our data set</span></span>
+<span id="cb173-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb173-7" tabindex="-1"></a><span class="fu">range</span>(temps<span class="sc">$</span>year)</span></code></pre></div>
 <pre><code>## [1] 1979 2012</code></pre>
 <p>Next we can create the function to approximate N deposition for an arbitrary time point. We then plot the data and show the linear interpolation.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb174-1" aria-hidden="true" tabindex="-1"></a>temp.func <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(<span class="at">x =</span> temps[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> temps[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="at">rule =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-1" aria-hidden="true" tabindex="-1"></a>bormann.denitr.temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
-<span id="cb175-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb175-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
-<span id="cb175-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">### ODEs</span></span>
-<span id="cb175-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## We hypothesize that the growth function is all that Bormann et al. included. </span></span>
-<span id="cb175-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Therefore, our logistic inhibition term acts on the entire forest.</span></span>
-<span id="cb175-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-7" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Growth = Gains - Losses</span></span>
-<span id="cb175-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-8" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Rate of change = Growth x Self-inhibition</span></span>
-<span id="cb175-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## I1 - deposition into the inorganic available pool</span></span>
-<span id="cb175-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-10" aria-hidden="true" tabindex="-1"></a>    <span class="do">## I2 - N fixation</span></span>
-<span id="cb175-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-11" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a1 - plant uptake</span></span>
-<span id="cb175-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-12" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a2 - root exudate into the available pool</span></span>
-<span id="cb175-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a3 - litter fall</span></span>
-<span id="cb175-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-14" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a4 - mineralization</span></span>
-<span id="cb175-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a5 - is loss from Available to the stream</span></span>
-<span id="cb175-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-16" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a6 - is loss from the bound pool to the stream</span></span>
-<span id="cb175-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-18" aria-hidden="true" tabindex="-1"></a>    <span class="do">### Adding N deposition</span></span>
-<span id="cb175-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-19" aria-hidden="true" tabindex="-1"></a>    I1.new <span class="ot">&lt;-</span> <span class="fu">ndep.func</span>(t)</span>
-<span id="cb175-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-21" aria-hidden="true" tabindex="-1"></a>    <span class="do">### Adding denitrification</span></span>
-<span id="cb175-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-22" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a7 is the mass-specific denitrification rate in the forest floor</span></span>
-<span id="cb175-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-23" aria-hidden="true" tabindex="-1"></a>    <span class="do">## a8 is mass-specific denitrification from the stream </span></span>
-<span id="cb175-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-24" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Thus, (1-a8) is rate of N retention in the stream</span></span>
-<span id="cb175-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-26" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Use temperatures</span></span>
-<span id="cb175-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-27" aria-hidden="true" tabindex="-1"></a>    <span class="do">## interpolate to get instantaneous temperature</span></span>
-<span id="cb175-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-28" aria-hidden="true" tabindex="-1"></a>    inst.temp <span class="ot">&lt;-</span> <span class="fu">temp.func</span>(t)</span>
-<span id="cb175-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-30" aria-hidden="true" tabindex="-1"></a>    <span class="do">## create a temp multiplier using Q10 = 2 in parameters</span></span>
-<span id="cb175-31"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-31" aria-hidden="true" tabindex="-1"></a>    TempFactor <span class="ot">&lt;-</span> <span class="fu">exp</span>( (inst.temp <span class="sc">-</span> ref.temp)<span class="sc">/</span><span class="dv">10</span> <span class="sc">*</span> <span class="fu">log</span>(Q10) )</span>
-<span id="cb175-32"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-32" aria-hidden="true" tabindex="-1"></a>    a4.new <span class="ot">&lt;-</span> TempFactor <span class="sc">*</span> a4</span>
-<span id="cb175-33"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-33" aria-hidden="true" tabindex="-1"></a>    a7.new <span class="ot">&lt;-</span> TempFactor <span class="sc">*</span> a7</span>
-<span id="cb175-34"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-34" aria-hidden="true" tabindex="-1"></a>    a8.new <span class="ot">&lt;-</span> TempFactor <span class="sc">*</span> a8</span>
-<span id="cb175-35"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-35" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb175-36"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-36" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb175-37"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-37" aria-hidden="true" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A <span class="sc">*</span> V  <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> V<span class="sc">/</span>K )</span>
-<span id="cb175-38"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-38" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-39"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-39" aria-hidden="true" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> ( I1.new <span class="sc">+</span> a4.new <span class="sc">*</span> B ) <span class="sc">-</span> ( a1 <span class="sc">*</span> V <span class="sc">*</span> A <span class="sc">+</span> a5 <span class="sc">*</span> A)</span>
-<span id="cb175-40"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-41"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-41" aria-hidden="true" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> ( I2 <span class="sc">+</span> a3 <span class="sc">*</span> V ) <span class="sc">-</span>  a4.new <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B <span class="sc">-</span> a7.new <span class="sc">*</span> B<span class="sc">/</span><span class="dv">4</span></span>
-<span id="cb175-42"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-42" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-43"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-43" aria-hidden="true" tabindex="-1"></a>    <span class="do">## loss from the soil to the stream</span></span>
-<span id="cb175-44"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-44" aria-hidden="true" tabindex="-1"></a>    leaching <span class="ot">&lt;-</span> a5<span class="sc">*</span>A <span class="sc">+</span> a6<span class="sc">*</span>B </span>
-<span id="cb175-45"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-45" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-46"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-46" aria-hidden="true" tabindex="-1"></a>    <span class="do">## export out of the watershed</span></span>
-<span id="cb175-47"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-47" aria-hidden="true" tabindex="-1"></a>    export <span class="ot">&lt;-</span> leaching <span class="sc">-</span> a8.new<span class="sc">*</span>leaching</span>
-<span id="cb175-48"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-48" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb175-49"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># returning a list whose first (and only) element </span></span>
-<span id="cb175-50"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># is a vector of the ODE values</span></span>
-<span id="cb175-51"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>( </span>
-<span id="cb175-52"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-52" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb175-53"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>( dV.dt, dA.dt, dB.dt ), <span class="at">I1.new=</span>I1.new, <span class="at">export=</span>export</span>
-<span id="cb175-54"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-54" aria-hidden="true" tabindex="-1"></a>           )</span>
-<span id="cb175-55"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-55" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb175-56"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-56" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb175-57"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-57" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb175-58"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-58" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb175-1" tabindex="-1"></a>temp.func <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(<span class="at">x =</span> temps[,<span class="st">&quot;time&quot;</span>], <span class="at">y =</span> temps[,<span class="st">&quot;value&quot;</span>], <span class="at">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="at">rule =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-1" tabindex="-1"></a>bormann.denitr.temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
+<span id="cb176-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-2" tabindex="-1"></a>  </span>
+<span id="cb176-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-3" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
+<span id="cb176-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-4" tabindex="-1"></a>    <span class="do">### ODEs</span></span>
+<span id="cb176-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-5" tabindex="-1"></a>    <span class="do">## We hypothesize that the growth function is all that Bormann et al. included. </span></span>
+<span id="cb176-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-6" tabindex="-1"></a>    <span class="do">## Therefore, our logistic inhibition term acts on the entire forest.</span></span>
+<span id="cb176-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-7" tabindex="-1"></a>    <span class="do">## Growth = Gains - Losses</span></span>
+<span id="cb176-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-8" tabindex="-1"></a>    <span class="do">## Rate of change = Growth x Self-inhibition</span></span>
+<span id="cb176-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-9" tabindex="-1"></a>    <span class="do">## I1 - deposition into the inorganic available pool</span></span>
+<span id="cb176-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-10" tabindex="-1"></a>    <span class="do">## I2 - N fixation</span></span>
+<span id="cb176-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-11" tabindex="-1"></a>    <span class="do">## a1 - plant uptake</span></span>
+<span id="cb176-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-12" tabindex="-1"></a>    <span class="do">## a2 - root exudate into the available pool</span></span>
+<span id="cb176-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-13" tabindex="-1"></a>    <span class="do">## a3 - litter fall</span></span>
+<span id="cb176-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-14" tabindex="-1"></a>    <span class="do">## a4 - mineralization</span></span>
+<span id="cb176-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-15" tabindex="-1"></a>    <span class="do">## a5 - is loss from Available to the stream</span></span>
+<span id="cb176-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-16" tabindex="-1"></a>    <span class="do">## a6 - is loss from the bound pool to the stream</span></span>
+<span id="cb176-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-17" tabindex="-1"></a>    </span>
+<span id="cb176-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-18" tabindex="-1"></a>    <span class="do">### Adding N deposition</span></span>
+<span id="cb176-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-19" tabindex="-1"></a>    I1.new <span class="ot">&lt;-</span> <span class="fu">ndep.func</span>(t)</span>
+<span id="cb176-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-20" tabindex="-1"></a>    </span>
+<span id="cb176-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-21" tabindex="-1"></a>    <span class="do">### Adding denitrification</span></span>
+<span id="cb176-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-22" tabindex="-1"></a>    <span class="do">## a7 is the mass-specific denitrification rate in the forest floor</span></span>
+<span id="cb176-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-23" tabindex="-1"></a>    <span class="do">## a8 is mass-specific denitrification from the stream </span></span>
+<span id="cb176-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-24" tabindex="-1"></a>    <span class="do">## Thus, (1-a8) is rate of N retention in the stream</span></span>
+<span id="cb176-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-25" tabindex="-1"></a>    </span>
+<span id="cb176-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-26" tabindex="-1"></a>    <span class="do">## Use temperatures</span></span>
+<span id="cb176-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-27" tabindex="-1"></a>    <span class="do">## interpolate to get instantaneous temperature</span></span>
+<span id="cb176-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-28" tabindex="-1"></a>    inst.temp <span class="ot">&lt;-</span> <span class="fu">temp.func</span>(t)</span>
+<span id="cb176-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-29" tabindex="-1"></a>    </span>
+<span id="cb176-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-30" tabindex="-1"></a>    <span class="do">## create a temp multiplier using Q10 = 2 in parameters</span></span>
+<span id="cb176-31"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-31" tabindex="-1"></a>    TempFactor <span class="ot">&lt;-</span> <span class="fu">exp</span>( (inst.temp <span class="sc">-</span> ref.temp)<span class="sc">/</span><span class="dv">10</span> <span class="sc">*</span> <span class="fu">log</span>(Q10) )</span>
+<span id="cb176-32"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-32" tabindex="-1"></a>    a4.new <span class="ot">&lt;-</span> TempFactor <span class="sc">*</span> a4</span>
+<span id="cb176-33"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-33" tabindex="-1"></a>    a7.new <span class="ot">&lt;-</span> TempFactor <span class="sc">*</span> a7</span>
+<span id="cb176-34"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-34" tabindex="-1"></a>    a8.new <span class="ot">&lt;-</span> TempFactor <span class="sc">*</span> a8</span>
+<span id="cb176-35"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-35" tabindex="-1"></a>   </span>
+<span id="cb176-36"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-36" tabindex="-1"></a>   </span>
+<span id="cb176-37"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-37" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A <span class="sc">*</span> V  <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> V<span class="sc">/</span>K )</span>
+<span id="cb176-38"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-38" tabindex="-1"></a>    </span>
+<span id="cb176-39"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-39" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> ( I1.new <span class="sc">+</span> a4.new <span class="sc">*</span> B ) <span class="sc">-</span> ( a1 <span class="sc">*</span> V <span class="sc">*</span> A <span class="sc">+</span> a5 <span class="sc">*</span> A)</span>
+<span id="cb176-40"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-40" tabindex="-1"></a></span>
+<span id="cb176-41"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-41" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> ( I2 <span class="sc">+</span> a3 <span class="sc">*</span> V ) <span class="sc">-</span>  a4.new <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B <span class="sc">-</span> a7.new <span class="sc">*</span> B<span class="sc">/</span><span class="dv">4</span></span>
+<span id="cb176-42"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-42" tabindex="-1"></a>    </span>
+<span id="cb176-43"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-43" tabindex="-1"></a>    <span class="do">## loss from the soil to the stream</span></span>
+<span id="cb176-44"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-44" tabindex="-1"></a>    leaching <span class="ot">&lt;-</span> a5<span class="sc">*</span>A <span class="sc">+</span> a6<span class="sc">*</span>B </span>
+<span id="cb176-45"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-45" tabindex="-1"></a>    </span>
+<span id="cb176-46"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-46" tabindex="-1"></a>    <span class="do">## export out of the watershed</span></span>
+<span id="cb176-47"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-47" tabindex="-1"></a>    export <span class="ot">&lt;-</span> leaching <span class="sc">-</span> a8.new<span class="sc">*</span>leaching</span>
+<span id="cb176-48"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-48" tabindex="-1"></a>    </span>
+<span id="cb176-49"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-49" tabindex="-1"></a>    <span class="co"># returning a list whose first (and only) element </span></span>
+<span id="cb176-50"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-50" tabindex="-1"></a>    <span class="co"># is a vector of the ODE values</span></span>
+<span id="cb176-51"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-51" tabindex="-1"></a>    <span class="fu">return</span>( </span>
+<span id="cb176-52"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-52" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb176-53"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-53" tabindex="-1"></a>        <span class="fu">c</span>( dV.dt, dA.dt, dB.dt ), <span class="at">I1.new=</span>I1.new, <span class="at">export=</span>export</span>
+<span id="cb176-54"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-54" tabindex="-1"></a>           )</span>
+<span id="cb176-55"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-55" tabindex="-1"></a>    )</span>
+<span id="cb176-56"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-56" tabindex="-1"></a>    }</span>
+<span id="cb176-57"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-57" tabindex="-1"></a>  )</span>
+<span id="cb176-58"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-58" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here we define <span class="math inline">\(Q_{10}\)</span>.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A common default value is 2</span></span>
-<span id="cb176-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb176-2" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&quot;Q10&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This relies on the data set and functions we made above:</span></span>
-<span id="cb177-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="do">## temps and temp.func</span></span>
-<span id="cb177-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-3" aria-hidden="true" tabindex="-1"></a><span class="do">## times that we want R to return</span></span>
-<span id="cb177-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="do">## just round years for the years in THIS data set</span></span>
-<span id="cb177-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb177-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-6" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">nrow</span>(temps)<span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb177-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-8" aria-hidden="true" tabindex="-1"></a>p[<span class="st">&quot;ref.temp&quot;</span>] <span class="ot">&lt;-</span> <span class="fl">3.5</span> <span class="co"># reference temperature from 1979</span></span>
-<span id="cb177-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-9" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">24</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
-<span id="cb177-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Integrate</span></span>
-<span id="cb177-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-11" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
-<span id="cb177-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ode</span>(<span class="at">y =</span> y0, <span class="at">times =</span> t, <span class="at">func =</span> bormann.denitr.temp, <span class="at">parms =</span> p)</span>
-<span id="cb177-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb177-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-15" aria-hidden="true" tabindex="-1"></a><span class="do">## combine with stream export data</span></span>
-<span id="cb177-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-16" aria-hidden="true" tabindex="-1"></a>exp.data2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(exp.data, year <span class="sc">%in%</span> <span class="dv">1979</span><span class="sc">:</span><span class="dv">2012</span>)</span>
-<span id="cb177-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-17" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>export.data <span class="ot">&lt;-</span> exp.data2<span class="sc">$</span>value</span>
-<span id="cb177-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-19" aria-hidden="true" tabindex="-1"></a><span class="do">## combine with temperature data</span></span>
-<span id="cb177-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-20" aria-hidden="true" tabindex="-1"></a>temp.data <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span></span>
-<span id="cb177-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="dv">1979</span><span class="sc">:</span><span class="dv">2012</span> <span class="sc">&amp;</span>  </span>
-<span id="cb177-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-22" aria-hidden="true" tabindex="-1"></a>           factor <span class="sc">%in%</span> <span class="st">&quot;meandegC&quot;</span>)</span>
-<span id="cb177-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-23" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>temp.data <span class="ot">&lt;-</span> temp.data<span class="sc">$</span>value</span>
-<span id="cb177-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-25" aria-hidden="true" tabindex="-1"></a><span class="do">## rearrange to long format and plot</span></span>
-<span id="cb177-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-26" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb177-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>V<span class="sc">:</span>temp.data)</span>
-<span id="cb177-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb177-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-108-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-1" tabindex="-1"></a><span class="do">## A common default value is 2</span></span>
+<span id="cb177-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb177-2" tabindex="-1"></a>p[<span class="st">&quot;Q10&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-1" tabindex="-1"></a><span class="do">## This relies on the data set and functions we made above:</span></span>
+<span id="cb178-2"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-2" tabindex="-1"></a><span class="do">## temps and temp.func</span></span>
+<span id="cb178-3"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-3" tabindex="-1"></a><span class="do">## times that we want R to return</span></span>
+<span id="cb178-4"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-4" tabindex="-1"></a><span class="do">## just round years for the years in THIS data set</span></span>
+<span id="cb178-5"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb178-6"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-6" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">nrow</span>(temps)<span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb178-7"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-7" tabindex="-1"></a></span>
+<span id="cb178-8"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-8" tabindex="-1"></a>p[<span class="st">&quot;ref.temp&quot;</span>] <span class="ot">&lt;-</span> <span class="fl">3.5</span> <span class="co"># reference temperature from 1979</span></span>
+<span id="cb178-9"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-9" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">24</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb178-10"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-10" tabindex="-1"></a><span class="do">## Integrate</span></span>
+<span id="cb178-11"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-11" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb178-12"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-12" tabindex="-1"></a>  <span class="fu">ode</span>(<span class="at">y =</span> y0, <span class="at">times =</span> t, <span class="at">func =</span> bormann.denitr.temp, <span class="at">parms =</span> p)</span>
+<span id="cb178-13"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-13" tabindex="-1"></a>)</span>
+<span id="cb178-14"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-14" tabindex="-1"></a></span>
+<span id="cb178-15"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-15" tabindex="-1"></a><span class="do">## combine with stream export data</span></span>
+<span id="cb178-16"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-16" tabindex="-1"></a>exp.data2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(exp.data, year <span class="sc">%in%</span> <span class="dv">1979</span><span class="sc">:</span><span class="dv">2012</span>)</span>
+<span id="cb178-17"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-17" tabindex="-1"></a>out<span class="sc">$</span>export.data <span class="ot">&lt;-</span> exp.data2<span class="sc">$</span>value</span>
+<span id="cb178-18"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-18" tabindex="-1"></a></span>
+<span id="cb178-19"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-19" tabindex="-1"></a><span class="do">## combine with temperature data</span></span>
+<span id="cb178-20"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-20" tabindex="-1"></a>temp.data <span class="ot">&lt;-</span> HB.df <span class="sc">%&gt;%</span></span>
+<span id="cb178-21"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-21" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="dv">1979</span><span class="sc">:</span><span class="dv">2012</span> <span class="sc">&amp;</span>  </span>
+<span id="cb178-22"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-22" tabindex="-1"></a>           factor <span class="sc">%in%</span> <span class="st">&quot;meandegC&quot;</span>)</span>
+<span id="cb178-23"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-23" tabindex="-1"></a>out<span class="sc">$</span>temp.data <span class="ot">&lt;-</span> temp.data<span class="sc">$</span>value</span>
+<span id="cb178-24"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-24" tabindex="-1"></a></span>
+<span id="cb178-25"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-25" tabindex="-1"></a><span class="do">## rearrange to long format and plot</span></span>
+<span id="cb178-26"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-26" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb178-27"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-27" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>V<span class="sc">:</span>temp.data)</span>
+<span id="cb178-28"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-28" tabindex="-1"></a></span>
+<span id="cb178-29"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-29" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb178-30"><a href="more-on-forcing-functions-using-data-inside-models.html#cb178-30" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="figs/unnamed-chunk-109-1.png" width="75%" /></p>
 </div>
-<div id="in-fine" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> In fine<a href="more-on-forcing-functions-using-data-inside-models.html#in-fine" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="in-fine" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> In fine<a href="more-on-forcing-functions-using-data-inside-models.html#in-fine" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this chapter, we described inclusion of forcing functions in an ODE model using interpolation. We did not yet answer the question of why stream N declines. One thing we did not do was explore the role of changing pool sizes. How would export respond to increasing pool sizes vs. stable pool sizes?</p>
 
 </div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-chapin2011" class="csl-entry">
 Chapin III, F S, P A Matson, and H A Mooney. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. <span>Springer</span>.
 </div>
@@ -706,42 +736,42 @@ Mulholland, Patrick J., Ashley M. Helton, Geoffrey C. Poole, Robert O. Hall Jr.,
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

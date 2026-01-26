@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Describing a nitrogen budget | A Primer of Ecosystem Modeling - a work in progress</title>
+  <title>4 Describing a nitrogen budget | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Describing a nitrogen budget | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta property="og:title" content="4 Describing a nitrogen budget | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Describing a nitrogen budget | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta name="twitter:title" content="4 Describing a nitrogen budget | A Primer of Ecosystem Modeling - a work in progress" />
   
   <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-04-25" />
+<meta name="date" content="2026-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -124,10 +125,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -164,105 +170,129 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#a-final-suggestion"><i class="fa fa-check"></i><b>1.3</b> A final suggestion</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to ecosystem models</a>
+<li class="chapter" data-level="2" data-path="simple-budgets.html"><a href="simple-budgets.html"><i class="fa fa-check"></i><b>2</b> Simple Budgets</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>2.3</b> What’s an ecosystem model?</a>
+<li class="chapter" data-level="2.1" data-path="simple-budgets.html"><a href="simple-budgets.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="simple-budgets.html"><a href="simple-budgets.html#one-compartment-models"><i class="fa fa-check"></i><b>2.2</b> One-compartment models</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>2.3.1</b> Units of terms</a></li>
-<li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.2</b> Other ideas</a></li>
+<li class="chapter" data-level="2.2.1" data-path="simple-budgets.html"><a href="simple-budgets.html#example-1-lake-phosphorus"><i class="fa fa-check"></i><b>2.2.1</b> Example 1: Lake Phosphorus</a></li>
+<li class="chapter" data-level="2.2.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-2-forest-floor-leaf-litter"><i class="fa fa-check"></i><b>2.2.2</b> Example 2: Forest Floor Leaf Litter</a></li>
+<li class="chapter" data-level="2.2.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-3-pond-water-budget"><i class="fa fa-check"></i><b>2.2.3</b> Example 3: Pond Water Budget</a></li>
+<li class="chapter" data-level="2.2.4" data-path="simple-budgets.html"><a href="simple-budgets.html#example-4-soil-nitrogen-pool"><i class="fa fa-check"></i><b>2.2.4</b> Example 4: Soil Nitrogen Pool</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>2.6</b> Analytical solutions to rate equations</a></li>
+<li class="chapter" data-level="2.3" data-path="simple-budgets.html"><a href="simple-budgets.html#more-complex-one-compartment-models"><i class="fa fa-check"></i><b>2.3</b> More complex one-compartment models</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="simple-budgets.html"><a href="simple-budgets.html#example-5-estuary-nitrogen-cycling"><i class="fa fa-check"></i><b>2.3.1</b> Example 5: Estuary Nitrogen Cycling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-6-tropical-forest-carbon-balance"><i class="fa fa-check"></i><b>2.3.2</b> Example 6: Tropical Forest Carbon Balance</a></li>
+<li class="chapter" data-level="2.3.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-7-urban-stormwater-detention-basin"><i class="fa fa-check"></i><b>2.3.3</b> Example 7: Urban Stormwater Detention Basin</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<li class="chapter" data-level="2.4" data-path="simple-budgets.html"><a href="simple-budgets.html#two-compartment-models"><i class="fa fa-check"></i><b>2.4</b> Two-compartment models</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
-<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
-<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>3.3.1</b> Instantaneous rates</a></li>
-<li class="chapter" data-level="3.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>3.3.2</b> A sign of the times</a></li>
+<li class="chapter" data-level="2.4.1" data-path="simple-budgets.html"><a href="simple-budgets.html#general-template-for-two-compartment-models"><i class="fa fa-check"></i><b>2.4.1</b> General Template for Two-Compartment Models</a></li>
+<li class="chapter" data-level="2.4.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-8-soil-groundwater-nitrogen-system"><i class="fa fa-check"></i><b>2.4.2</b> Example 8: Soil-Groundwater Nitrogen System</a></li>
+<li class="chapter" data-level="2.4.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-9-vegetation-litter-carbon-system"><i class="fa fa-check"></i><b>2.4.3</b> Example 9: Vegetation-Litter Carbon System</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
+<li class="chapter" data-level="2.5" data-path="simple-budgets.html"><a href="simple-budgets.html#answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introduction to ecosystem models</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
-<li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, but in R</a>
+<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>3.1</b> Why models?</a></li>
+<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>3.2</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>3.3</b> What’s an ecosystem model?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>4.2.1</b> Plot one cycle</a></li>
-<li class="chapter" data-level="4.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>4.2.2</b> Average of all nights</a></li>
+<li class="chapter" data-level="3.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>3.3.1</b> Units of terms</a></li>
+<li class="chapter" data-level="3.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>3.3.2</b> Other ideas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> The LakeMetabolizer package</a></li>
+<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>3.4</b> Steps in modeling</a></li>
+<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>3.5</b> An example in R</a></li>
+<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>3.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
+<li class="chapter" data-level="4" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>4</b> Describing a nitrogen budget</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<li class="chapter" data-level="4.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
+<li class="chapter" data-level="4.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>4.2</b> Mathematical forms</a></li>
+<li class="chapter" data-level="4.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>4.3</b> Paramaterization</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="4.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>4.3.1</b> Instantaneous rates</a></li>
+<li class="chapter" data-level="4.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>4.3.2</b> A sign of the times</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>4.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="4.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>4.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
+<li class="chapter" data-level="5" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>5</b> Lake Metabolism</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>6.1</b> Types of Sensitivity</a></li>
-<li class="chapter" data-level="6.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>6.2</b> Local sensitivity</a></li>
-<li class="chapter" data-level="6.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>6.3</b> Assessing sensitivity in a nitrogen budget model</a>
+<li class="chapter" data-level="5.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>5.1</b> Estimating Productivity</a></li>
+<li class="chapter" data-level="5.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>5.2</b> By hand, but in R</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>6.3.1</b> Dynamics of sensitivity in one state variable</a></li>
-<li class="chapter" data-level="6.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>6.3.2</b> Summary of sensitivities in all state variables</a></li>
+<li class="chapter" data-level="5.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>5.2.1</b> Plot one cycle</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>5.2.2</b> Average of all nights</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>6.4</b> Sensitivity in an aquatic ecosystem</a></li>
-<li class="chapter" data-level="6.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>6.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
-<li class="chapter" data-level="6.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>6.6</b> Your turn</a></li>
+<li class="chapter" data-level="5.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>5.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>7</b> Multiple Element Limitation</a>
+<li class="chapter" data-level="6" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>6</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>7.1</b> Rastetter et al. 1997</a>
+<li class="chapter" data-level="6.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>6.1</b> This task</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>7.1.1</b> The model</a></li>
-<li class="chapter" data-level="7.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>7.1.2</b> Parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>7.2</b> Implementing MEL</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>7.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>8</b> Optimization</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>8.2</b> Bormann logistic model</a></li>
-<li class="chapter" data-level="8.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>8.3</b> Fitting a model to data</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>8.3.1</b> Minimization</a></li>
-<li class="chapter" data-level="8.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>8.3.2</b> Creating the objective function</a></li>
-<li class="chapter" data-level="8.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>8.3.3</b> <code>optim()</code></a></li>
-<li class="chapter" data-level="8.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>8.3.4</b> <code>mle2()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>8.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.5</b> Two (or more) parameters at a time</a></li>
-<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.6</b> Other considerations: weighting deviations</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.6.1</b> Variance weighted errors</a></li>
+<li class="chapter" data-level="6.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>6.1.1</b> Create an R script of NPZD</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>9</b> More On Forcing Functions: Using data inside models</a>
+<li class="chapter" data-level="7" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>7</b> Model Sensitivity</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>9.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="9.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>9.2</b> N deposition</a></li>
-<li class="chapter" data-level="9.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>9.3</b> Denitrification</a></li>
-<li class="chapter" data-level="9.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>9.4</b> Annual temperature as a forcing function</a></li>
-<li class="chapter" data-level="9.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>9.5</b> In fine</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>10</b> Appendix: Build a model of your own system</a>
+<li class="chapter" data-level="7.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>7.1</b> Types of Sensitivity</a></li>
+<li class="chapter" data-level="7.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>7.2</b> Local sensitivity</a></li>
+<li class="chapter" data-level="7.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>7.3</b> Assessing sensitivity in a nitrogen budget model</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>10.1</b> Background Readings:</a></li>
-<li class="chapter" data-level="10.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>10.2</b> Steps</a></li>
+<li class="chapter" data-level="7.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>7.3.1</b> Dynamics of sensitivity in one state variable</a></li>
+<li class="chapter" data-level="7.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>7.3.2</b> Summary of sensitivities in all state variables</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="chapter" data-level="7.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>7.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="7.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>7.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
+<li class="chapter" data-level="7.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>7.6</b> Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>8</b> Multiple Element Limitation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>8.1</b> Rastetter et al. 1997</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>8.1.1</b> The model</a></li>
+<li class="chapter" data-level="8.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>8.1.2</b> Parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>8.2</b> Implementing MEL</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>8.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>9</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>9.2</b> Bormann logistic model</a></li>
+<li class="chapter" data-level="9.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>9.3</b> Fitting a model to data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>9.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>9.3.2</b> Creating the objective function</a></li>
+<li class="chapter" data-level="9.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>9.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="9.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>9.3.4</b> <code>mle2()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>9.4</b> Trajectory matching</a></li>
+<li class="chapter" data-level="9.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>9.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="9.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>9.6</b> Other considerations: weighting deviations</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>9.6.1</b> Variance weighted errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>10</b> More On Forcing Functions: Using data inside models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>10.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="10.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>10.2</b> N deposition</a></li>
+<li class="chapter" data-level="10.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>10.3</b> Denitrification</a></li>
+<li class="chapter" data-level="10.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>10.4</b> Annual temperature as a forcing function</a></li>
+<li class="chapter" data-level="10.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>10.5</b> In fine</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>11</b> Appendix: Build a model of your own system</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>11.1</b> Background Readings:</a></li>
+<li class="chapter" data-level="11.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>11.2</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 </ul>
 
       </nav>
@@ -280,8 +310,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="N" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Describing a nitrogen budget<a href="N.html#N" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="N" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Describing a nitrogen budget<a href="N.html#N" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Background Readings:</p>
 <ul>
 <li>pp. 17-35 (Soetaert and Hermann 2009)</li>
@@ -290,20 +320,20 @@ div.csl-indent {
 <div class="figure"><span style="display:block;" id="fig:hbnb"></span>
 <img src="figs/BormannF2.png" alt="*Nitrogen budget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).*" width="100%" />
 <p class="caption">
-Figure 3.1: <em>Nitrogen budget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).</em>
+Figure 4.1: <em>Nitrogen budget for a temperate northern hardwood forest (Hubbard Brook Watershed 6, Bormann et al. 1977).</em>
 </p>
 </div>
 <div class="figure"><span style="display:block;" id="fig:hbnb3"></span>
 <img src="figs/model3.png" alt="*A simpler compartment model for Hubbard Brook Watershed 6, based on Bormann et al. (1977).*" width="75%" />
 <p class="caption">
-Figure 3.2: <em>A simpler compartment model for Hubbard Brook Watershed 6, based on Bormann et al. (1977).</em>
+Figure 4.2: <em>A simpler compartment model for Hubbard Brook Watershed 6, based on Bormann et al. (1977).</em>
 </p>
 </div>
-<div id="getting-started" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Getting started<a href="N.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="getting-started" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Getting started<a href="N.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p>(S&amp;H 15-17) For any ecosystem, we want to start with paper and pencil and <strong>sketch out the pools and the fluxes</strong> that we think are important (see example, Fig. <a href="N.html#fig:hbnb3">3.2</a>). Don’t sweat the details yet – you’ll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation.</p></li>
-<li><p><strong>Write balance equations</strong> (S&amp;H, 3, 17-20). For each flux, identify the underlying biological and physical processes. If you don’t completely know, don’t sweat it. Here are the balance equations for Fig. <a href="N.html#fig:hbnb3">3.2</a>:</p></li>
+<li><p>(S&amp;H 15-17) For any ecosystem, we want to start with paper and pencil and <strong>sketch out the pools and the fluxes</strong> that we think are important (see example, Fig. <a href="N.html#fig:hbnb3">4.2</a>). Don’t sweat the details yet – you’ll revise it anyway. Go ahead an label the compartments and the fluxes with with both biological and physical processes as well as some simple abstract notation.</p></li>
+<li><p><strong>Write balance equations</strong> (S&amp;H, 3, 17-20). For each flux, identify the underlying biological and physical processes. If you don’t completely know, don’t sweat it. Here are the balance equations for Fig. <a href="N.html#fig:hbnb3">4.2</a>:</p></li>
 </ol>
 <p>Rate of change of vegetation = uptake - exudates and through fall - leaf and root litter loss
 <span class="math display">\[\frac{dV}{dt} = f_1 - f_2 - f_3\]</span></p>
@@ -312,7 +342,7 @@ Figure 3.2: <em>A simpler compartment model for Hubbard Brook Watershed 6, based
 <p>Rate of change in the bound pool = net N fixation + leaf and root litter loss - net mineralization - stream export
 <span class="math display">\[\frac{dB}{dt} = I_2 + f_3 - f_4 - E_2\]</span></p>
 <ol start="3" style="list-style-type: decimal">
-<li>Assess the total load or mass budget (S&amp;H, 19-22). For Fig. <a href="N.html#fig:hbnb3">3.2</a>, we have
+<li>Assess the total load or mass budget (S&amp;H, 19-22). For Fig. <a href="N.html#fig:hbnb3">4.2</a>, we have
 <span class="math display">\[\frac{d\left(V+A+B\right)}{dt} = \frac{dV}{dt} + \frac{dA}{dt} + \frac{dB}{dt} = (f_1 - f_2 - f_3) + (I_1 + f_2 + f_4 - f_1 - E_1) + (I_2 + f_3 - f_4 - E_2)\]</span>
 <span class="math display">\[\frac{d\left(V+A+B\right)}{dt} = I_1 + I_2 + f_1 - f_1 + f_2 - f_2 + f_3 - f_3  + f_4 - f_4 - E_1 - E_2\]</span></li>
 </ol>
@@ -321,7 +351,7 @@ From this we see that the total mass budget for this watershed depends simply on
 <ol start="3" style="list-style-type: decimal">
 <li>For each flux, <strong>decide which pools directly influence the flux</strong>. In a forest, the flux of nitrogen from vegetation to soil will depend enormously on the amount of vegetation present as leaves senesce and fall, fine roots die back, and water leaches nutrients out of leaves and bark. The flux is very unlikely to depend directly on the amount of nitrogen already in the soil. In a lake, the flux of phosphorous from the water column into phytoplankton depends on the amounts of both the amount of phytoplankton and the amount of phosphate in the water at any given instant.</li>
 </ol>
-<p>For the vegetation pool in Fig. <a href="N.html#fig:hbnb3">3.2</a>, we see each flux (<span class="math inline">\(f\)</span>) is a <em>Function</em> (<span class="math inline">\(F()\)</span>) of one or two pools:</p>
+<p>For the vegetation pool in Fig. <a href="N.html#fig:hbnb3">4.2</a>, we see each flux (<span class="math inline">\(f\)</span>) is a <em>Function</em> (<span class="math inline">\(F()\)</span>) of one or two pools:</p>
 <ul>
 <li>Uptake: <span class="math inline">\(f_1 = F(V,A)\)</span></li>
 <li>Leaf and root litter, and throughfall: <span class="math inline">\(f_3 = F(V)\)</span></li>
@@ -329,10 +359,10 @@ From this we see that the total mass budget for this watershed depends simply on
 </ul>
 <p>Next, we want to represent these fluxes in a mathematical form.</p>
 </div>
-<div id="mathematical-forms" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Mathematical forms<a href="N.html#mathematical-forms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mathematical-forms" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Mathematical forms<a href="N.html#mathematical-forms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A common starting point for dynamics depending on two pools is the law of <em>mass action</em>. This states that the reaction rate is proportional the product of the pools. In the case of plant uptake of N, which depends on the amounts of N in the available pool and the vegetation pool, this would be <span class="math inline">\(aVA\)</span>, where <span class="math inline">\(a\)</span> is a proportionality constant. In some circumstances, these pools might also have exponents different than one (<span class="math inline">\(aV^1A^1\)</span>), such as <span class="math inline">\(aVA^2\)</span>. This occurs in chemistry when a reaction requires two molecules of “A” for each molecule of “V”. It might occur in ecology if a rate depends differentially on A and B.</p>
-<p>Using the law of mass action for plant uptake, we will describe the fluxes in the simple N budget above (Fig. <a href="N.html#fig:hbnb3">3.2</a>) with the following expressions.</p>
+<p>Using the law of mass action for plant uptake, we will describe the fluxes in the simple N budget above (Fig. <a href="N.html#fig:hbnb3">4.2</a>) with the following expressions.</p>
 <p><span class="math display">\[\begin{align}
 \frac{dV}{dt} &amp;= a_{1}AV - a_{2}V - a_3 V\\
 \frac{dA}{dt} &amp;= I_1 + a_{2}V +  a_{4}B - a_{5}A - a_{1}AV\\
@@ -340,13 +370,14 @@ From this we see that the total mass budget for this watershed depends simply on
 \end{align}\]</span></p>
 <p>Take the time to identify each term and think about the biology or physics that might govern each term.</p>
 </div>
-<div id="paramaterization" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Paramaterization<a href="N.html#paramaterization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Parameteriztion is what we call assigning numerical values to mathematical parameters. Here, we find initial estimates for the parameters in our model. We use the literature for this purpose <span class="citation">(<a href="#ref-bormann1977" role="doc-biblioref">Bormann, Likens, and Melillo 1977</a>)</span>.</p>
+<div id="paramaterization" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Paramaterization<a href="N.html#paramaterization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Parameteriztion is what we call assigning numerical values to mathematical parameters. Here, we find initial estimates for the parameters in our model. We use the literature for this purpose <span class="citation">(<a href="#ref-bormann1977">Bormann, Likens, and Melillo 1977</a>)</span>.</p>
 <p>If we have the data (we do) and relatively simple mathematical forms
 (we do), it is fairly straightforward to estimate parameters. For
 instance, we decided that net mineralization would be directly
-proportional to the size of the organic pool, <span class="math inline">\(B\)</span>, that is, <span class="math inline">\(F_4 = a_4B\)</span>. To calculate the annual incremental rate <span class="math inline">\(a_4\)</span>, we substitute data where we can, and solve what we need.</p>
+proportional to the size of the organic pool, <span class="math inline">\(B\)</span>, that is, <span class="math inline">\(F_4 =
+a_4B\)</span>. To calculate the annual incremental rate <span class="math inline">\(a_4\)</span>, we substitute data where we can, and solve what we need.</p>
 <p>This example shows the <em>loss</em> of N from the bound pool due to net mineralization:
 <span class="math display">\[\begin{align*}
   F_4 &amp;= a_4 B\\
@@ -361,8 +392,8 @@ proportional to the size of the organic pool, <span class="math inline">\(B\)</s
   a_1 &amp;= \frac{79.6}{26\cdot 532}\\
   a_1 &amp;\approx 0.0058
 \end{align*}\]</span></p>
-<div id="instantaneous-rates" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Instantaneous rates<a href="N.html#instantaneous-rates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="instantaneous-rates" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Instantaneous rates<a href="N.html#instantaneous-rates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Continuous differential equations describe <em>instantaneous rates of change through time.</em> To create instantaneous rate constants, we take advantage of a result from calculus. It turns out that, with some reasonable assumptions, the <strong>natural logarithm of the ratio of masses gives us an estimate of an average instantaneous rate</strong>.</p>
 <p>Let <span class="math inline">\(B_0\)</span> be the mass of N in the soil at time 0, and <span class="math inline">\(B_1\)</span> would be the mass one year later if we summed <span class="math inline">\(B\)</span> plus the flux coming out of <span class="math inline">\(B\)</span>:
 <span class="math display">\[B_0=4700 \quad; \quad B_1 = B_0 + F_4 = 4700 - 69.6\]</span>
@@ -371,7 +402,7 @@ The average instantaneous rate, <span class="math inline">\(\alpha_4\)</span> re
 <p>If you compare the annual incremental rate we first calculated to this instantaneous rate, you can see they are quite similar. They would be indistinguishable given the other uncertainties in actually estimating these fluxes and pools. However, that is not always the case.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-8">Table 3.1: </span>Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(dX/ dy\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.
+<span id="tab:unnamed-chunk-8">Table 4.1: </span>Instantaneous rate parameters, variables, units and estimates for a simplified model of Bormann et al. (1977). All fluxes (<span class="math inline">\(dX/ dy\)</span>) are in units of kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-1}\)</span>. Note that calculations should not be included in your final table, but are presented here for clarity and comparison to your own calculations. Also, note that different rates are presented with different signifcant figures; this is not intended to represent best practice, as we do not now the precision of the data we are using. In any model, we will always estimate different parts with different degrees of precision.
 </caption>
 <thead>
 <tr>
@@ -489,8 +520,8 @@ kg ha<span class="math inline">\(^{-1}\)</span> y<span class="math inline">\(^{-
 </tbody>
 </table>
 </div>
-<div id="a-sign-of-the-times" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> A sign of the times<a href="N.html#a-sign-of-the-times" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-sign-of-the-times" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> A sign of the times<a href="N.html#a-sign-of-the-times" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we estimate and use model parameters we need to be very conscious of the sign of the interaction. For instance, when we estimated the <em>loss</em> of N from the bound pool, the number we calculated was a negative number (<span class="math inline">\(a_4=-0.0149\)</span>). When we use negative numbers, should we add them or subtract them?</p>
 <p>Adding negative numbers is the same as subtracting positive numbers. So, if <span class="math inline">\(a_3 = -a_2\)</span>, then these two equations are the same:
 <span class="math display">\[\frac{dX}{dt}=a_1 - a2 \quad ; \quad \frac{dX}{dt}=a_1+a_3\]</span>
@@ -498,38 +529,38 @@ Convince yourself that this is true.</p>
 <p>We just have to be careful of signs.</p>
 <p>Next we estimate the magnitude of each parameter in R. Recall that the <em>absolute value</em> of a number is symbolized with vertical lines <span class="math inline">\(|x|\)</span>. That value is its <em>magnitude</em> and is always positive. In what follows, we will use the absolute value for every parameter. This will allow us to use signs (+, -) in or equations that make intuitive sense to us. In R, the absolute value function is <code>abs()</code>.</p>
 <p><strong>N Uptake by plants</strong> is a positive number.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="N.html#cb8-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">log</span>( (<span class="dv">26</span><span class="sc">*</span><span class="dv">532</span><span class="fl">+79.6</span>) <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="N.html#cb8-1" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">log</span>( (<span class="dv">26</span><span class="sc">*</span><span class="dv">532</span><span class="fl">+79.6</span>) <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>))</span></code></pre></div>
 <p><strong>Throughfall and inorganic exudates</strong> is a loss from vegetation, and therefore a negative number. Therefore, we will use its absolute value.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="N.html#cb9-1" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">6.6</span> <span class="sc">-</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span> ) )</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="N.html#cb9-1" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">6.6</span> <span class="sc">-</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span> ) )</span></code></pre></div>
 <p><strong>Litter, throughfall, organic exudates</strong> is a loss from vegetation, and therefore a negative number. Therefore, we will use its absolute value.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="N.html#cb10-1" aria-hidden="true" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">54.2</span> <span class="sc">-</span> <span class="fl">2.7</span> <span class="sc">-</span> <span class="fl">0.1</span> <span class="sc">-</span> <span class="fl">6.2</span>  ) <span class="sc">/</span> <span class="dv">532</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="N.html#cb10-1" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">54.2</span> <span class="sc">-</span> <span class="fl">2.7</span> <span class="sc">-</span> <span class="fl">0.1</span> <span class="sc">-</span> <span class="fl">6.2</span>  ) <span class="sc">/</span> <span class="dv">532</span>) )</span></code></pre></div>
 <p><strong>Net mineralization</strong> is a loss from the bound pool, and therefore a negative number. Therefore, we will use its absolute value.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="N.html#cb11-1" aria-hidden="true" tabindex="-1"></a>a4 <span class="ot">&lt;-</span>  <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span> <span class="sc">-</span> <span class="fl">69.6</span>) <span class="sc">/</span> <span class="dv">4700</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="N.html#cb11-1" tabindex="-1"></a>a4 <span class="ot">&lt;-</span>  <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span> <span class="sc">-</span> <span class="fl">69.6</span>) <span class="sc">/</span> <span class="dv">4700</span>) )</span></code></pre></div>
 <p><strong>Export from the available pool</strong> is a loss, and therefore a negative number. Therefore, we will use its absolute value.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="N.html#cb12-1" aria-hidden="true" tabindex="-1"></a>a5 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">26</span><span class="fl">-3.9</span>) <span class="sc">/</span><span class="dv">26</span> ) )</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="N.html#cb12-1" tabindex="-1"></a>a5 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">26</span><span class="fl">-3.9</span>) <span class="sc">/</span><span class="dv">26</span> ) )</span></code></pre></div>
 <p><strong>Export from the bound pool</strong> is a loss, and therefore a negative number. Therefore, we will use its absolute value.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="N.html#cb13-1" aria-hidden="true" tabindex="-1"></a>a6 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span><span class="fl">-0.1</span>) <span class="sc">/</span><span class="dv">4700</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="N.html#cb13-1" tabindex="-1"></a>a6 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span><span class="fl">-0.1</span>) <span class="sc">/</span><span class="dv">4700</span>) )</span></code></pre></div>
 <p>Here we create a single vector of all of the parameters, adding imports as well.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="N.html#cb14-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
-<span id="cb14-2"><a href="N.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
-<span id="cb14-3"><a href="N.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
-<span id="cb14-4"><a href="N.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">a1 =</span> a1, <span class="co"># uptake</span></span>
-<span id="cb14-5"><a href="N.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">a2 =</span> a2, <span class="co"># throughfall and inorganic exudates</span></span>
-<span id="cb14-6"><a href="N.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">a3 =</span> a3, <span class="co"># litter, throughfall, organic exudates</span></span>
-<span id="cb14-7"><a href="N.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">a4 =</span> a4, <span class="co"># net mineralization</span></span>
-<span id="cb14-8"><a href="N.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">a5 =</span> a5, <span class="co"># export from available</span></span>
-<span id="cb14-9"><a href="N.html#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">a6 =</span> a6 <span class="co">#export from bound</span></span>
-<span id="cb14-10"><a href="N.html#cb14-10" aria-hidden="true" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
-<span id="cb14-11"><a href="N.html#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="N.html#cb14-12" aria-hidden="true" tabindex="-1"></a>params</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="N.html#cb14-1" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
+<span id="cb14-2"><a href="N.html#cb14-2" tabindex="-1"></a>  <span class="at">i1 =</span> <span class="fl">6.5</span>, <span class="co"># precip</span></span>
+<span id="cb14-3"><a href="N.html#cb14-3" tabindex="-1"></a>  <span class="at">i2 =</span> <span class="fl">14.2</span>, <span class="co"># fixation</span></span>
+<span id="cb14-4"><a href="N.html#cb14-4" tabindex="-1"></a>  <span class="at">a1 =</span> a1, <span class="co"># uptake</span></span>
+<span id="cb14-5"><a href="N.html#cb14-5" tabindex="-1"></a>  <span class="at">a2 =</span> a2, <span class="co"># throughfall and inorganic exudates</span></span>
+<span id="cb14-6"><a href="N.html#cb14-6" tabindex="-1"></a>  <span class="at">a3 =</span> a3, <span class="co"># litter, throughfall, organic exudates</span></span>
+<span id="cb14-7"><a href="N.html#cb14-7" tabindex="-1"></a>  <span class="at">a4 =</span> a4, <span class="co"># net mineralization</span></span>
+<span id="cb14-8"><a href="N.html#cb14-8" tabindex="-1"></a>  <span class="at">a5 =</span> a5, <span class="co"># export from available</span></span>
+<span id="cb14-9"><a href="N.html#cb14-9" tabindex="-1"></a>  <span class="at">a6 =</span> a6 <span class="co">#export from bound</span></span>
+<span id="cb14-10"><a href="N.html#cb14-10" tabindex="-1"></a>) <span class="co"># close parentheses</span></span>
+<span id="cb14-11"><a href="N.html#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="N.html#cb14-12" tabindex="-1"></a>params</span></code></pre></div>
 <pre><code>##           i1           i2           a1           a2           a3           a4 
 ## 6.500000e+00 1.420000e+01 5.738276e-03 1.400742e-02 1.264673e-01 1.491925e-02 
 ##           a5           a6 
 ## 1.625189e-01 2.127682e-05</code></pre>
 </div>
 </div>
-<div id="mathematical-solution" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Mathematical solution<a href="N.html#mathematical-solution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mathematical-solution" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Mathematical solution<a href="N.html#mathematical-solution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <em>mathematical solution</em> is the process of making the
 predictions using our model and our parameters. We <em>solve</em> the
 model. With simple models, we can sometimes find analytical
@@ -537,35 +568,35 @@ solutions. For most ecosystem models, we have to solve the models
 numerically using <em>numerical integration</em>.</p>
 <p>Here we write a function that includes our system of differential
 equations. This will allow R to integrate change through time.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="N.html#cb16-1" aria-hidden="true" tabindex="-1"></a>bormann1 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
-<span id="cb16-2"><a href="N.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
-<span id="cb16-3"><a href="N.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
-<span id="cb16-4"><a href="N.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a1 = uptake</span></span>
-<span id="cb16-5"><a href="N.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
-<span id="cb16-6"><a href="N.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
-<span id="cb16-7"><a href="N.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a4 = net mineralization</span></span>
-<span id="cb16-8"><a href="N.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a5 = export from avail</span></span>
-<span id="cb16-9"><a href="N.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a6 = export from bound</span></span>
-<span id="cb16-10"><a href="N.html#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>( <span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
-<span id="cb16-11"><a href="N.html#cb16-11" aria-hidden="true" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> a1 <span class="sc">*</span> A <span class="sc">*</span> V <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V</span>
-<span id="cb16-12"><a href="N.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> i1 <span class="sc">+</span> a2 <span class="sc">*</span> V <span class="sc">+</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a1 <span class="sc">*</span> A <span class="sc">*</span> V <span class="sc">-</span> a5 <span class="sc">*</span> A </span>
-<span id="cb16-13"><a href="N.html#cb16-13" aria-hidden="true" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> i2 <span class="sc">+</span> a3 <span class="sc">*</span> V <span class="sc">-</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B </span>
-<span id="cb16-14"><a href="N.html#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Here we return a LIST whose first element is the vector of</span></span>
-<span id="cb16-15"><a href="N.html#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
-<span id="cb16-16"><a href="N.html#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># in the same order as the state variables in y</span></span>
-<span id="cb16-17"><a href="N.html#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The second element, total, is the total N in the system</span></span>
-<span id="cb16-18"><a href="N.html#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>( <span class="fu">c</span>(dV.dt, dA.dt, dB.dt), </span>
-<span id="cb16-19"><a href="N.html#cb16-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">total =</span> V <span class="sc">+</span> A <span class="sc">+</span> B </span>
-<span id="cb16-20"><a href="N.html#cb16-20" aria-hidden="true" tabindex="-1"></a>                 )  )})</span>
-<span id="cb16-21"><a href="N.html#cb16-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="N.html#cb16-1" tabindex="-1"></a>bormann1 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
+<span id="cb16-2"><a href="N.html#cb16-2" tabindex="-1"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
+<span id="cb16-3"><a href="N.html#cb16-3" tabindex="-1"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
+<span id="cb16-4"><a href="N.html#cb16-4" tabindex="-1"></a>  <span class="co"># a1 = uptake</span></span>
+<span id="cb16-5"><a href="N.html#cb16-5" tabindex="-1"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
+<span id="cb16-6"><a href="N.html#cb16-6" tabindex="-1"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
+<span id="cb16-7"><a href="N.html#cb16-7" tabindex="-1"></a>  <span class="co"># a4 = net mineralization</span></span>
+<span id="cb16-8"><a href="N.html#cb16-8" tabindex="-1"></a>  <span class="co"># a5 = export from avail</span></span>
+<span id="cb16-9"><a href="N.html#cb16-9" tabindex="-1"></a>  <span class="co"># a6 = export from bound</span></span>
+<span id="cb16-10"><a href="N.html#cb16-10" tabindex="-1"></a>  <span class="fu">with</span>( <span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
+<span id="cb16-11"><a href="N.html#cb16-11" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> a1 <span class="sc">*</span> A <span class="sc">*</span> V <span class="sc">-</span> a2 <span class="sc">*</span> V <span class="sc">-</span> a3 <span class="sc">*</span> V</span>
+<span id="cb16-12"><a href="N.html#cb16-12" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> i1 <span class="sc">+</span> a2 <span class="sc">*</span> V <span class="sc">+</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a1 <span class="sc">*</span> A <span class="sc">*</span> V <span class="sc">-</span> a5 <span class="sc">*</span> A </span>
+<span id="cb16-13"><a href="N.html#cb16-13" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> i2 <span class="sc">+</span> a3 <span class="sc">*</span> V <span class="sc">-</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B </span>
+<span id="cb16-14"><a href="N.html#cb16-14" tabindex="-1"></a>    <span class="co"># Here we return a LIST whose first element is the vector of</span></span>
+<span id="cb16-15"><a href="N.html#cb16-15" tabindex="-1"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
+<span id="cb16-16"><a href="N.html#cb16-16" tabindex="-1"></a>    <span class="co"># in the same order as the state variables in y</span></span>
+<span id="cb16-17"><a href="N.html#cb16-17" tabindex="-1"></a>    <span class="co"># The second element, total, is the total N in the system</span></span>
+<span id="cb16-18"><a href="N.html#cb16-18" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>( <span class="fu">c</span>(dV.dt, dA.dt, dB.dt), </span>
+<span id="cb16-19"><a href="N.html#cb16-19" tabindex="-1"></a>                 <span class="at">total =</span> V <span class="sc">+</span> A <span class="sc">+</span> B </span>
+<span id="cb16-20"><a href="N.html#cb16-20" tabindex="-1"></a>                 )  )})</span>
+<span id="cb16-21"><a href="N.html#cb16-21" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now that we have the function, we tell R what to do with it. We will define the <em>initial state of the system</em>, and then tell R which time point we want it to return.</p>
-<p>The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in <span class="citation">Bormann, Likens, and Melillo (<a href="#ref-bormann1977" role="doc-biblioref">1977</a>)</span>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="N.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## starting values in kg/ha</span></span>
-<span id="cb17-2"><a href="N.html#cb17-2" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span></code></pre></div>
+<p>The initial state of the system is the set of starting values for the state variables. We could choose any values, but I select the values given in <span class="citation">Bormann, Likens, and Melillo (<a href="#ref-bormann1977">1977</a>)</span>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="N.html#cb17-1" tabindex="-1"></a><span class="do">## starting values in kg/ha</span></span>
+<span id="cb17-2"><a href="N.html#cb17-2" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span></code></pre></div>
 <p>Finally, let’s solve the system, and have R return the first 20 years.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="N.html#cb18-1" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb18-2"><a href="N.html#cb18-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial.state, <span class="at">times=</span>time, <span class="at">func=</span>bormann1, <span class="at">parms =</span> params)</span>
-<span id="cb18-3"><a href="N.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(out) <span class="co"># the first 6 lines</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="N.html#cb18-1" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb18-2"><a href="N.html#cb18-2" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial.state, <span class="at">times=</span>time, <span class="at">func=</span>bormann1, <span class="at">parms =</span> params)</span>
+<span id="cb18-3"><a href="N.html#cb18-3" tabindex="-1"></a><span class="fu">head</span>(out) <span class="co"># the first 6 lines</span></span></code></pre></div>
 <pre><code>##      time        V        A        B    total
 ## [1,]    0 532.0000 26.00000 4700.000 5258.000
 ## [2,]    1 536.8480 26.03575 4711.481 5274.364
@@ -574,19 +605,19 @@ equations. This will allow R to integrate change through time.</p>
 ## [5,]    4 549.5990 25.67270 4748.291 5323.562
 ## [6,]    5 553.2241 25.58149 4761.191 5339.996</code></pre>
 <p>Use <code>pivot_longer()</code> and <code>ggplot()</code> to make a graph. We use <code>pivot_longer()</code> gather multiple columns into one with a new name (<code>values_to=kg.N</code>), keeping track of the names of the original columns in a new column (<code>names_to=State.var</code>). We can use <code>pivot_wider()</code> if we ever want to spread those columns back out.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="N.html#cb20-1" aria-hidden="true" tabindex="-1"></a>outL <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="co"># select the data set</span></span>
-<span id="cb20-2"><a href="N.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span>  <span class="co"># make sure it is a data frame and not a matrix</span></span>
-<span id="cb20-3"><a href="N.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## and the rearrange</span></span>
-<span id="cb20-4"><a href="N.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>( <span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
-<span id="cb20-5"><a href="N.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="N.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## plot the dynamics</span></span>
-<span id="cb20-7"><a href="N.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outL, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>kg.N)) <span class="sc">+</span> <span class="co"># select variables to plot</span></span>
-<span id="cb20-8"><a href="N.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="co"># select the form of the graph</span></span>
-<span id="cb20-9"><a href="N.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>) <span class="co"># separate each state variable and plot each on its on scale.</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="N.html#cb20-1" tabindex="-1"></a>outL <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> <span class="co"># select the data set</span></span>
+<span id="cb20-2"><a href="N.html#cb20-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span>  <span class="co"># make sure it is a data frame and not a matrix</span></span>
+<span id="cb20-3"><a href="N.html#cb20-3" tabindex="-1"></a>  <span class="do">## and the rearrange</span></span>
+<span id="cb20-4"><a href="N.html#cb20-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>( <span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
+<span id="cb20-5"><a href="N.html#cb20-5" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="N.html#cb20-6" tabindex="-1"></a><span class="do">## plot the dynamics</span></span>
+<span id="cb20-7"><a href="N.html#cb20-7" tabindex="-1"></a><span class="fu">ggplot</span>(outL, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>kg.N)) <span class="sc">+</span> <span class="co"># select variables to plot</span></span>
+<span id="cb20-8"><a href="N.html#cb20-8" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="co"># select the form of the graph</span></span>
+<span id="cb20-9"><a href="N.html#cb20-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>) <span class="co"># separate each state variable and plot each on its on scale.</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
 <img src="figs/unnamed-chunk-18-1.png" alt="Dynamics of a simple N budget, based on Bormann et al. (1977)." width="75%" />
 <p class="caption">
-Figure 3.3: Dynamics of a simple N budget, based on Bormann et al. (1977).
+Figure 4.3: Dynamics of a simple N budget, based on Bormann et al. (1977).
 </p>
 </div>
 <p>In some ways, we have been moderately successful in our first pass at
@@ -598,8 +629,8 @@ state variables.</p>
 clearly vegetation cannot keep accumulating N indefinitely.</p>
 <p>What are our next steps?</p>
 </div>
-<div id="add-self-limitation" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Add self-limitation<a href="N.html#add-self-limitation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="add-self-limitation" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Add self-limitation<a href="N.html#add-self-limitation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One logical step is to assume that as vegetation eventually gets limited by some factor or resource that is not in our model. If, at first approximation, the vegetation reaches a carrying capacity independent of high resource availability, we can use an approximation suggested by Soetaert and Hermann (2009) for <em>self-limitation</em>,
 <span class="math display">\[f(X)V\left(1-\frac{V}{K}\right)\]</span>
 where <span class="math inline">\(f(X)\)</span> is everything else that regulates mass-specific growth rate.</p>
@@ -613,51 +644,51 @@ If we add self-limitation, we get
 <span class="math display">\[\frac{dV}{dt} = \left(a_{1}A - a_{2} - a_3\right) V \left(1-\frac{V}{K}\right)\]</span>
 where <span class="math inline">\(K\)</span> is the maximum amount of live vegetation that the ecosystem can sustain, in kg,N,ha<span class="math inline">\(^{-1}\)</span>. We don’t know exactly what that is yet, but we may be able to get estimates from the literature. For know we can pretend that it is just a bit more than was there in the mid-1970s, say, <span class="math inline">\(K=600\)</span>.</p>
 <p>Now we rewrite the R function with self-limitation.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="N.html#cb21-1" aria-hidden="true" tabindex="-1"></a>bormann2 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
-<span id="cb21-2"><a href="N.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
-<span id="cb21-3"><a href="N.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
-<span id="cb21-4"><a href="N.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a1 = uptake</span></span>
-<span id="cb21-5"><a href="N.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
-<span id="cb21-6"><a href="N.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
-<span id="cb21-7"><a href="N.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a4 = net mineralization</span></span>
-<span id="cb21-8"><a href="N.html#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a5 = export from avail</span></span>
-<span id="cb21-9"><a href="N.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a6 = export from bound</span></span>
-<span id="cb21-10"><a href="N.html#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>( <span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
-<span id="cb21-11"><a href="N.html#cb21-11" aria-hidden="true" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A  <span class="sc">-</span> a2  <span class="sc">-</span> a3) <span class="sc">*</span> V <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>V<span class="sc">/</span>K)</span>
-<span id="cb21-12"><a href="N.html#cb21-12" aria-hidden="true" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> i1 <span class="sc">+</span> a2 <span class="sc">*</span> V <span class="sc">+</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a1 <span class="sc">*</span> A <span class="sc">*</span> V <span class="sc">-</span> a5 <span class="sc">*</span> A </span>
-<span id="cb21-13"><a href="N.html#cb21-13" aria-hidden="true" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> i2 <span class="sc">+</span> a3 <span class="sc">*</span> V <span class="sc">-</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B </span>
-<span id="cb21-14"><a href="N.html#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
-<span id="cb21-15"><a href="N.html#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
-<span id="cb21-16"><a href="N.html#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># in the same order as the state variables in y</span></span>
-<span id="cb21-17"><a href="N.html#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The second element is the total N in the system</span></span>
-<span id="cb21-18"><a href="N.html#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>( <span class="fu">c</span>(dV.dt, dA.dt, dB.dt), </span>
-<span id="cb21-19"><a href="N.html#cb21-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">total =</span> V <span class="sc">+</span> A <span class="sc">+</span> B </span>
-<span id="cb21-20"><a href="N.html#cb21-20" aria-hidden="true" tabindex="-1"></a>                 )  )})</span>
-<span id="cb21-21"><a href="N.html#cb21-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="N.html#cb21-1" tabindex="-1"></a>bormann2 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, y, p) {</span>
+<span id="cb21-2"><a href="N.html#cb21-2" tabindex="-1"></a>  <span class="co"># time, vector of state variables and parameters must be in this order</span></span>
+<span id="cb21-3"><a href="N.html#cb21-3" tabindex="-1"></a>  <span class="co"># we can use as.list for both the state variables and parameters</span></span>
+<span id="cb21-4"><a href="N.html#cb21-4" tabindex="-1"></a>  <span class="co"># a1 = uptake</span></span>
+<span id="cb21-5"><a href="N.html#cb21-5" tabindex="-1"></a>  <span class="co"># a2 = loss from veg to avail</span></span>
+<span id="cb21-6"><a href="N.html#cb21-6" tabindex="-1"></a>  <span class="co"># a3 = loss from veg to bound</span></span>
+<span id="cb21-7"><a href="N.html#cb21-7" tabindex="-1"></a>  <span class="co"># a4 = net mineralization</span></span>
+<span id="cb21-8"><a href="N.html#cb21-8" tabindex="-1"></a>  <span class="co"># a5 = export from avail</span></span>
+<span id="cb21-9"><a href="N.html#cb21-9" tabindex="-1"></a>  <span class="co"># a6 = export from bound</span></span>
+<span id="cb21-10"><a href="N.html#cb21-10" tabindex="-1"></a>  <span class="fu">with</span>( <span class="fu">as.list</span>( <span class="fu">c</span>(y, p) ), {</span>
+<span id="cb21-11"><a href="N.html#cb21-11" tabindex="-1"></a>    dV.dt <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> A  <span class="sc">-</span> a2  <span class="sc">-</span> a3) <span class="sc">*</span> V <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>V<span class="sc">/</span>K)</span>
+<span id="cb21-12"><a href="N.html#cb21-12" tabindex="-1"></a>    dA.dt <span class="ot">&lt;-</span> i1 <span class="sc">+</span> a2 <span class="sc">*</span> V <span class="sc">+</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a1 <span class="sc">*</span> A <span class="sc">*</span> V <span class="sc">-</span> a5 <span class="sc">*</span> A </span>
+<span id="cb21-13"><a href="N.html#cb21-13" tabindex="-1"></a>    dB.dt <span class="ot">&lt;-</span> i2 <span class="sc">+</span> a3 <span class="sc">*</span> V <span class="sc">-</span> a4 <span class="sc">*</span> B <span class="sc">-</span> a6 <span class="sc">*</span> B </span>
+<span id="cb21-14"><a href="N.html#cb21-14" tabindex="-1"></a>    <span class="co"># Here we return a list whose first element is the vector of</span></span>
+<span id="cb21-15"><a href="N.html#cb21-15" tabindex="-1"></a>    <span class="co"># rates of change for the state variables. The first element must be these rates,</span></span>
+<span id="cb21-16"><a href="N.html#cb21-16" tabindex="-1"></a>    <span class="co"># in the same order as the state variables in y</span></span>
+<span id="cb21-17"><a href="N.html#cb21-17" tabindex="-1"></a>    <span class="co"># The second element is the total N in the system</span></span>
+<span id="cb21-18"><a href="N.html#cb21-18" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>( <span class="fu">c</span>(dV.dt, dA.dt, dB.dt), </span>
+<span id="cb21-19"><a href="N.html#cb21-19" tabindex="-1"></a>                 <span class="at">total =</span> V <span class="sc">+</span> A <span class="sc">+</span> B </span>
+<span id="cb21-20"><a href="N.html#cb21-20" tabindex="-1"></a>                 )  )})</span>
+<span id="cb21-21"><a href="N.html#cb21-21" tabindex="-1"></a>}</span></code></pre></div>
 <p>We can add a new parameter to our vector of parameters, and then solve our new function <code>bormann2</code> for the same time interval, and plot it.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="N.html#cb22-1" aria-hidden="true" tabindex="-1"></a>params[<span class="st">&quot;K&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">600</span></span>
-<span id="cb22-2"><a href="N.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## starting values in kg/ha</span></span>
-<span id="cb22-3"><a href="N.html#cb22-3" aria-hidden="true" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
-<span id="cb22-4"><a href="N.html#cb22-4" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">200</span></span>
-<span id="cb22-5"><a href="N.html#cb22-5" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial.state, <span class="at">times=</span>time, <span class="at">func=</span>bormann2, <span class="at">parms =</span> params)</span>
-<span id="cb22-6"><a href="N.html#cb22-6" aria-hidden="true" tabindex="-1"></a>outL2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> </span>
-<span id="cb22-7"><a href="N.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb22-8"><a href="N.html#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
-<span id="cb22-9"><a href="N.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(outL2, <span class="fu">aes</span>(time, kg.N)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="N.html#cb22-1" tabindex="-1"></a>params[<span class="st">&quot;K&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">600</span></span>
+<span id="cb22-2"><a href="N.html#cb22-2" tabindex="-1"></a><span class="do">## starting values in kg/ha</span></span>
+<span id="cb22-3"><a href="N.html#cb22-3" tabindex="-1"></a>initial.state <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="at">V =</span> <span class="dv">532</span>, <span class="at">A =</span> <span class="dv">26</span>, <span class="at">B =</span> <span class="dv">4700</span>)</span>
+<span id="cb22-4"><a href="N.html#cb22-4" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">200</span></span>
+<span id="cb22-5"><a href="N.html#cb22-5" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial.state, <span class="at">times=</span>time, <span class="at">func=</span>bormann2, <span class="at">parms =</span> params)</span>
+<span id="cb22-6"><a href="N.html#cb22-6" tabindex="-1"></a>outL2 <span class="ot">&lt;-</span> out <span class="sc">%&gt;%</span> </span>
+<span id="cb22-7"><a href="N.html#cb22-7" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="N.html#cb22-8" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;kg.N&quot;</span>)</span>
+<span id="cb22-9"><a href="N.html#cb22-9" tabindex="-1"></a><span class="fu">ggplot</span>(outL2, <span class="fu">aes</span>(time, kg.N)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
 <img src="figs/unnamed-chunk-19-1.png" alt="Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977)." width="75%" />
 <p class="caption">
-Figure 3.4: Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977).
+Figure 4.4: Dynamics of an N budget, assuming density-dependence in vegetation with a fixed carrying capacity (Bormann et al. 1977).
 </p>
 </div>
-<p>Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in <span class="citation">Bormann, Likens, and Melillo (<a href="#ref-bormann1977" role="doc-biblioref">1977</a>)</span> and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.</p>
+<p>Unlike our first model of this system, we see state variables on curved trajectories and perhaps reaching asymptotes. This makes greater intuitive sense - over the short term, it is the same as the simple N budget shown in <span class="citation">Bormann, Likens, and Melillo (<a href="#ref-bormann1977">1977</a>)</span> and it also shows a reasonable longterm trajectory for the vegetation, and the predicted consequences for the available and bound pools.</p>
 <p><strong>Save your own R script of ‘bormann2’</strong></p>
 <p>Make a new script that contains nothing but the <code>bormann2</code> function. Copy the block of text where we define it, paste it into a new R script, and save it as <strong>bormann2.R</strong>. We will use this function in a latter section.</p>
 
 </div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-bormann1977" class="csl-entry">
 Bormann, F. H., G. E. Likens, and J. M. Melillo. 1977. <span>“Nitrogen Budget for a Aggrading Northern Hardwood Forest Ecosystem.”</span> <em>Science</em> 196 (4293): 981–83. <a href="https://doi.org/10.1126/science.196.4293.981">https://doi.org/10.1126/science.196.4293.981</a>.
 </div>
@@ -682,42 +713,42 @@ Bormann, F. H., G. E. Likens, and J. M. Melillo. 1977. <span>“Nitrogen Budget 
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

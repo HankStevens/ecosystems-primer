@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2023-04-25" />
+<meta name="date" content="2026-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="intro.html"/>
+<link rel="next" href="simple-budgets.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,6 +59,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -124,10 +125,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -164,105 +170,129 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-couple-of-useful-citations"><i class="fa fa-check"></i><b>1.2</b> A couple of useful citations</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#a-final-suggestion"><i class="fa fa-check"></i><b>1.3</b> A final suggestion</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to ecosystem models</a>
+<li class="chapter" data-level="2" data-path="simple-budgets.html"><a href="simple-budgets.html"><i class="fa fa-check"></i><b>2</b> Simple Budgets</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>2.1</b> Why models?</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>2.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>2.3</b> What’s an ecosystem model?</a>
+<li class="chapter" data-level="2.1" data-path="simple-budgets.html"><a href="simple-budgets.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="simple-budgets.html"><a href="simple-budgets.html#one-compartment-models"><i class="fa fa-check"></i><b>2.2</b> One-compartment models</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>2.3.1</b> Units of terms</a></li>
-<li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>2.3.2</b> Other ideas</a></li>
+<li class="chapter" data-level="2.2.1" data-path="simple-budgets.html"><a href="simple-budgets.html#example-1-lake-phosphorus"><i class="fa fa-check"></i><b>2.2.1</b> Example 1: Lake Phosphorus</a></li>
+<li class="chapter" data-level="2.2.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-2-forest-floor-leaf-litter"><i class="fa fa-check"></i><b>2.2.2</b> Example 2: Forest Floor Leaf Litter</a></li>
+<li class="chapter" data-level="2.2.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-3-pond-water-budget"><i class="fa fa-check"></i><b>2.2.3</b> Example 3: Pond Water Budget</a></li>
+<li class="chapter" data-level="2.2.4" data-path="simple-budgets.html"><a href="simple-budgets.html#example-4-soil-nitrogen-pool"><i class="fa fa-check"></i><b>2.2.4</b> Example 4: Soil Nitrogen Pool</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>2.4</b> Steps in modeling</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>2.5</b> An example in R</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>2.6</b> Analytical solutions to rate equations</a></li>
+<li class="chapter" data-level="2.3" data-path="simple-budgets.html"><a href="simple-budgets.html#more-complex-one-compartment-models"><i class="fa fa-check"></i><b>2.3</b> More complex one-compartment models</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="simple-budgets.html"><a href="simple-budgets.html#example-5-estuary-nitrogen-cycling"><i class="fa fa-check"></i><b>2.3.1</b> Example 5: Estuary Nitrogen Cycling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-6-tropical-forest-carbon-balance"><i class="fa fa-check"></i><b>2.3.2</b> Example 6: Tropical Forest Carbon Balance</a></li>
+<li class="chapter" data-level="2.3.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-7-urban-stormwater-detention-basin"><i class="fa fa-check"></i><b>2.3.3</b> Example 7: Urban Stormwater Detention Basin</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>3</b> Describing a nitrogen budget</a>
+<li class="chapter" data-level="2.4" data-path="simple-budgets.html"><a href="simple-budgets.html#two-compartment-models"><i class="fa fa-check"></i><b>2.4</b> Two-compartment models</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a></li>
-<li class="chapter" data-level="3.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>3.2</b> Mathematical forms</a></li>
-<li class="chapter" data-level="3.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>3.3</b> Paramaterization</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>3.3.1</b> Instantaneous rates</a></li>
-<li class="chapter" data-level="3.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>3.3.2</b> A sign of the times</a></li>
+<li class="chapter" data-level="2.4.1" data-path="simple-budgets.html"><a href="simple-budgets.html#general-template-for-two-compartment-models"><i class="fa fa-check"></i><b>2.4.1</b> General Template for Two-Compartment Models</a></li>
+<li class="chapter" data-level="2.4.2" data-path="simple-budgets.html"><a href="simple-budgets.html#example-8-soil-groundwater-nitrogen-system"><i class="fa fa-check"></i><b>2.4.2</b> Example 8: Soil-Groundwater Nitrogen System</a></li>
+<li class="chapter" data-level="2.4.3" data-path="simple-budgets.html"><a href="simple-budgets.html#example-9-vegetation-litter-carbon-system"><i class="fa fa-check"></i><b>2.4.3</b> Example 9: Vegetation-Litter Carbon System</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>3.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="3.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>3.5</b> Add self-limitation</a></li>
+<li class="chapter" data-level="2.5" data-path="simple-budgets.html"><a href="simple-budgets.html#answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>4</b> Lake Metabolism</a>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introduction to ecosystem models</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>4.1</b> Estimating Productivity</a></li>
-<li class="chapter" data-level="4.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>4.2</b> By hand, but in R</a>
+<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>3.1</b> Why models?</a></li>
+<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>3.2</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>3.3</b> What’s an ecosystem model?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>4.2.1</b> Plot one cycle</a></li>
-<li class="chapter" data-level="4.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>4.2.2</b> Average of all nights</a></li>
+<li class="chapter" data-level="3.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>3.3.1</b> Units of terms</a></li>
+<li class="chapter" data-level="3.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>3.3.2</b> Other ideas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>4.3</b> The LakeMetabolizer package</a></li>
+<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>3.4</b> Steps in modeling</a></li>
+<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>3.5</b> An example in R</a></li>
+<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>3.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>5</b> NPZD - a simple aquatic ecosystem</a>
+<li class="chapter" data-level="4" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>4</b> Describing a nitrogen budget</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>5.1</b> This task</a>
+<li class="chapter" data-level="4.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
+<li class="chapter" data-level="4.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>4.2</b> Mathematical forms</a></li>
+<li class="chapter" data-level="4.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>4.3</b> Paramaterization</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>5.1.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="4.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>4.3.1</b> Instantaneous rates</a></li>
+<li class="chapter" data-level="4.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>4.3.2</b> A sign of the times</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>4.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="4.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>4.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>6</b> Model Sensitivity</a>
+<li class="chapter" data-level="5" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>5</b> Lake Metabolism</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>6.1</b> Types of Sensitivity</a></li>
-<li class="chapter" data-level="6.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>6.2</b> Local sensitivity</a></li>
-<li class="chapter" data-level="6.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>6.3</b> Assessing sensitivity in a nitrogen budget model</a>
+<li class="chapter" data-level="5.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>5.1</b> Estimating Productivity</a></li>
+<li class="chapter" data-level="5.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>5.2</b> By hand, but in R</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>6.3.1</b> Dynamics of sensitivity in one state variable</a></li>
-<li class="chapter" data-level="6.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>6.3.2</b> Summary of sensitivities in all state variables</a></li>
+<li class="chapter" data-level="5.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>5.2.1</b> Plot one cycle</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>5.2.2</b> Average of all nights</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>6.4</b> Sensitivity in an aquatic ecosystem</a></li>
-<li class="chapter" data-level="6.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>6.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
-<li class="chapter" data-level="6.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>6.6</b> Your turn</a></li>
+<li class="chapter" data-level="5.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>5.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>7</b> Multiple Element Limitation</a>
+<li class="chapter" data-level="6" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>6</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>7.1</b> Rastetter et al. 1997</a>
+<li class="chapter" data-level="6.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>6.1</b> This task</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>7.1.1</b> The model</a></li>
-<li class="chapter" data-level="7.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>7.1.2</b> Parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>7.2</b> Implementing MEL</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>7.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>8</b> Optimization</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>8.2</b> Bormann logistic model</a></li>
-<li class="chapter" data-level="8.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>8.3</b> Fitting a model to data</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>8.3.1</b> Minimization</a></li>
-<li class="chapter" data-level="8.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>8.3.2</b> Creating the objective function</a></li>
-<li class="chapter" data-level="8.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>8.3.3</b> <code>optim()</code></a></li>
-<li class="chapter" data-level="8.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>8.3.4</b> <code>mle2()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>8.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="8.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>8.5</b> Two (or more) parameters at a time</a></li>
-<li class="chapter" data-level="8.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>8.6</b> Other considerations: weighting deviations</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>8.6.1</b> Variance weighted errors</a></li>
+<li class="chapter" data-level="6.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>6.1.1</b> Create an R script of NPZD</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>9</b> More On Forcing Functions: Using data inside models</a>
+<li class="chapter" data-level="7" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>7</b> Model Sensitivity</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>9.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="9.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>9.2</b> N deposition</a></li>
-<li class="chapter" data-level="9.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>9.3</b> Denitrification</a></li>
-<li class="chapter" data-level="9.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>9.4</b> Annual temperature as a forcing function</a></li>
-<li class="chapter" data-level="9.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>9.5</b> In fine</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>10</b> Appendix: Build a model of your own system</a>
+<li class="chapter" data-level="7.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>7.1</b> Types of Sensitivity</a></li>
+<li class="chapter" data-level="7.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>7.2</b> Local sensitivity</a></li>
+<li class="chapter" data-level="7.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>7.3</b> Assessing sensitivity in a nitrogen budget model</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>10.1</b> Background Readings:</a></li>
-<li class="chapter" data-level="10.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>10.2</b> Steps</a></li>
+<li class="chapter" data-level="7.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>7.3.1</b> Dynamics of sensitivity in one state variable</a></li>
+<li class="chapter" data-level="7.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>7.3.2</b> Summary of sensitivities in all state variables</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="chapter" data-level="7.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>7.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="7.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>7.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
+<li class="chapter" data-level="7.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>7.6</b> Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>8</b> Multiple Element Limitation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>8.1</b> Rastetter et al. 1997</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>8.1.1</b> The model</a></li>
+<li class="chapter" data-level="8.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>8.1.2</b> Parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>8.2</b> Implementing MEL</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>8.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>9</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>9.2</b> Bormann logistic model</a></li>
+<li class="chapter" data-level="9.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>9.3</b> Fitting a model to data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>9.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>9.3.2</b> Creating the objective function</a></li>
+<li class="chapter" data-level="9.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>9.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="9.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>9.3.4</b> <code>mle2()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>9.4</b> Trajectory matching</a></li>
+<li class="chapter" data-level="9.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>9.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="9.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>9.6</b> Other considerations: weighting deviations</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>9.6.1</b> Variance weighted errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>10</b> More On Forcing Functions: Using data inside models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>10.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="10.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>10.2</b> N deposition</a></li>
+<li class="chapter" data-level="10.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>10.3</b> Denitrification</a></li>
+<li class="chapter" data-level="10.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>10.4</b> Annual temperature as a forcing function</a></li>
+<li class="chapter" data-level="10.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>10.5</b> In fine</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>11</b> Appendix: Build a model of your own system</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>11.1</b> Background Readings:</a></li>
+<li class="chapter" data-level="11.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>11.2</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 </ul>
 
       </nav>
@@ -283,22 +313,28 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">A Primer of Ecosystem Modeling - a work in progress</h1>
 <p class="author"><em>Hank Stevens, BIO 672</em></p>
-<p class="date"><em>2023-04-25</em></p>
+<p class="date"><em>2026-01-26</em></p>
 </div>
 <div id="prerequisites" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Prerequisites<a href="index.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>For this R primer, you’ll need to read several chapters of <span class="citation">Soetaert and Herman (<a href="#ref-soetaert2009" role="doc-biblioref">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
-<p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation">Chapin III, Matson, and Mooney (<a href="#ref-chapin2011" role="doc-biblioref">2011</a>)</span>.</p>
+<p>For this R primer, you’ll need to read several chapters of <span class="citation">Soetaert and Herman (<a href="#ref-soetaert2009">2009</a>)</span> which are available on the Canvas website. Their book is an excellent source for those interested in ecosystem modeling, especially in aquatic systems. We will use bits of it along with this online text to get a little more comfortable with ecosystem processes and models.</p>
+<p>I also assume that you are reading a book on ecosystem ecology such as <span class="citation">Chapin III, Matson, and Mooney (<a href="#ref-chapin2011">2011</a>)</span>.</p>
 <div id="must-dos" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Must do’s<a href="index.html#must-dos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Read background material as needed.</p>
 <ul>
-<li>Install or update R (v. 4.2.2, as of 2022 January)</li>
-<li>Install or update RStudio (v. 2022.12.0+353, as of 2022 January)</li>
-<li>Install or update selected R packages: ‘deSolve’, ‘tidyverse’, ‘LakeMetabolizer`, ’lubridate’, ‘googlesheets4’. (tidyverse is a collection of packages)</li>
+<li>Install or update R (v. 4.5.2, as of 2026 January)</li>
+<li>Install or update RStudio (v. 2026.01.0+392, as of 2026 January)</li>
+<li>Install or update selected R packages: ‘deSolve’, ‘tidyverse’, ‘LakeMetabolizer`, ’googlesheets4’. (tidyverse is a collection of packages)</li>
 </ul>
 <p>Also, before doing most tasks in this primer, load deSolve and tidyverse with <code>library(deSolve); library(tidyverse)</code>.</p>
-<p>The R <strong>working directory</strong> is the place R automatically looks for files. For simplicity, I will refer to the R <strong>working directory</strong> as <code>Rwork</code>. Therefore, <code>Rwork/data</code> would be a folder or directory called <code>data</code> inside <code>Rwork</code>. At any point in time, you can find out what your working directory is using <code>getwd()</code>. You can set your working directory using <code>setwd("HD/MyStuff/Rwork")</code>, where “HD/MyStuff/Rwork” is the path to what you want your working directory to be. You can also use the “Session” pull-down menu in RStudio.</p>
+<p>The R <strong>working directory</strong> is the place R automatically looks for files. For simplicity, I will refer to the R <strong>working directory</strong> as <code>Rwork</code>. Therefore, <code>Rwork/data</code> would be a folder or directory called <code>data</code> that is inside <code>Rwork</code>. At any point in time, you can find out what your working directory is using <code>getwd()</code>. You can set your working directory using <code>setwd("HD/MyStuff/Rwork")</code>, where “HD/MyStuff/Rwork” is the path to what you want your working directory to be. You can also use the “Session” pull-down menu in RStudio.</p>
+<p>Best practice for file management:</p>
+<ol style="list-style-type: decimal">
+<li>Create a folder for all your R modeling work in Bio 672.</li>
+<li>Put all the files you need for your 672 R modeling in that folder.</li>
+<li>Set the working directory to the “source file” location, that is, the folder where you have put all of your files.</li>
+</ol>
 </div>
 <div id="a-couple-of-useful-citations" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> A couple of useful citations<a href="index.html#a-couple-of-useful-citations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -314,7 +350,7 @@ div.csl-indent {
 </div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-chapin2011" class="csl-entry">
 Chapin III, F S, P A Matson, and H A Mooney. 2011. <em>Principles of Terrestrial Ecosystem Ecology</em>. 2nd edition. <span>Springer</span>.
 </div>
@@ -328,7 +364,7 @@ Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelli
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simple-budgets.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -342,42 +378,42 @@ Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelli
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
