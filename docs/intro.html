@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Introduction to ecosystem models | A Primer of Ecosystem Modeling - a work in progress</title>
+  <title>4 Introduction to ecosystem models | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Introduction to ecosystem models | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta property="og:title" content="4 Introduction to ecosystem models | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Introduction to ecosystem models | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta name="twitter:title" content="4 Introduction to ecosystem models | A Primer of Ecosystem Modeling - a work in progress" />
   
   <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2026-01-26" />
+<meta name="date" content="2026-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simple-budgets.html"/>
+<link rel="prev" href="first-order-compartments.html"/>
 <link rel="next" href="N.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -194,105 +194,126 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="simple-budgets.html"><a href="simple-budgets.html#answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introduction to ecosystem models</a>
+<li class="chapter" data-level="3" data-path="first-order-compartments.html"><a href="first-order-compartments.html"><i class="fa fa-check"></i><b>3</b> Simple Mass-specific Rates</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>3.1</b> Why models?</a></li>
-<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>3.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>3.3</b> What’s an ecosystem model?</a>
+<li class="chapter" data-level="3.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="first-order-compartments.html"><a href="first-order-compartments.html#solving-rate-equations"><i class="fa fa-check"></i><b>3.2</b> Solving rate equations</a></li>
+<li class="chapter" data-level="3.3" data-path="first-order-compartments.html"><a href="first-order-compartments.html#one-compartment-models-1"><i class="fa fa-check"></i><b>3.3</b> One-compartment models</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>3.3.1</b> Units of terms</a></li>
-<li class="chapter" data-level="3.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>3.3.2</b> Other ideas</a></li>
+<li class="chapter" data-level="3.3.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#worked-example-lake-phosphorus-with-flushing"><i class="fa fa-check"></i><b>3.3.1</b> Worked Example: Lake phosphorus with flushing</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>3.4</b> Steps in modeling</a></li>
-<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>3.5</b> An example in R</a></li>
-<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>3.6</b> Analytical solutions to rate equations</a></li>
+<li class="chapter" data-level="3.4" data-path="first-order-compartments.html"><a href="first-order-compartments.html#problems"><i class="fa fa-check"></i><b>3.4</b> Problems</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-1-watershed-nitrogen-loss"><i class="fa fa-check"></i><b>3.4.1</b> Example 1: Watershed Nitrogen Loss</a></li>
+<li class="chapter" data-level="3.4.2" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-2-soil-organic-matter-decomposition"><i class="fa fa-check"></i><b>3.4.2</b> Example 2: Soil Organic Matter Decomposition</a></li>
+<li class="chapter" data-level="3.4.3" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-3-forest-canopy-nitrogen-with-multiple-losses"><i class="fa fa-check"></i><b>3.4.3</b> Example 3: Forest Canopy Nitrogen with Multiple Losses</a></li>
+<li class="chapter" data-level="3.4.4" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-4-stream-dissolved-organic-carbon"><i class="fa fa-check"></i><b>3.4.4</b> Example 4: Stream Dissolved Organic Carbon</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>4</b> Describing a nitrogen budget</a>
+<li class="chapter" data-level="3.5" data-path="first-order-compartments.html"><a href="first-order-compartments.html#two-compartment-models-1"><i class="fa fa-check"></i><b>3.5</b> Two-compartment models</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
-<li class="chapter" data-level="4.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>4.2</b> Mathematical forms</a></li>
-<li class="chapter" data-level="4.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>4.3</b> Paramaterization</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>4.3.1</b> Instantaneous rates</a></li>
-<li class="chapter" data-level="4.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>4.3.2</b> A sign of the times</a></li>
+<li class="chapter" data-level="3.5.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#key-concepts"><i class="fa fa-check"></i><b>3.5.1</b> Key concepts</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>4.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="4.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>4.5</b> Add self-limitation</a></li>
+<li class="chapter" data-level="3.6" data-path="first-order-compartments.html"><a href="first-order-compartments.html#answer-key"><i class="fa fa-check"></i><b>3.6</b> Answer Key</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>5</b> Lake Metabolism</a>
+<li class="chapter" data-level="4" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>4</b> Introduction to ecosystem models</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>5.1</b> Estimating Productivity</a></li>
-<li class="chapter" data-level="5.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>5.2</b> By hand, but in R</a>
+<li class="chapter" data-level="4.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>4.1</b> Why models?</a></li>
+<li class="chapter" data-level="4.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>4.2</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="4.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>4.3</b> What’s an ecosystem model?</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>5.2.1</b> Plot one cycle</a></li>
-<li class="chapter" data-level="5.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>5.2.2</b> Average of all nights</a></li>
+<li class="chapter" data-level="4.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>4.3.1</b> Units of terms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>4.3.2</b> Other ideas</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>5.3</b> The LakeMetabolizer package</a></li>
+<li class="chapter" data-level="4.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>4.4</b> Steps in modeling</a></li>
+<li class="chapter" data-level="4.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>4.5</b> An example in R</a></li>
+<li class="chapter" data-level="4.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>4.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>6</b> NPZD - a simple aquatic ecosystem</a>
+<li class="chapter" data-level="5" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>5</b> Describing a nitrogen budget</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>6.1</b> This task</a>
+<li class="chapter" data-level="5.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>5.1</b> Getting started</a></li>
+<li class="chapter" data-level="5.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>5.2</b> Mathematical forms</a></li>
+<li class="chapter" data-level="5.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>5.3</b> Paramaterization</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>6.1.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="5.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>5.3.1</b> Instantaneous rates</a></li>
+<li class="chapter" data-level="5.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>5.3.2</b> A sign of the times</a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>5.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="5.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>5.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>7</b> Model Sensitivity</a>
+<li class="chapter" data-level="6" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>6</b> Lake Metabolism</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>7.1</b> Types of Sensitivity</a></li>
-<li class="chapter" data-level="7.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>7.2</b> Local sensitivity</a></li>
-<li class="chapter" data-level="7.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>7.3</b> Assessing sensitivity in a nitrogen budget model</a>
+<li class="chapter" data-level="6.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>6.1</b> Estimating Productivity</a></li>
+<li class="chapter" data-level="6.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>6.2</b> By hand, but in R</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>7.3.1</b> Dynamics of sensitivity in one state variable</a></li>
-<li class="chapter" data-level="7.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>7.3.2</b> Summary of sensitivities in all state variables</a></li>
+<li class="chapter" data-level="6.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>6.2.1</b> Plot one cycle</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>6.2.2</b> Average of all nights</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>7.4</b> Sensitivity in an aquatic ecosystem</a></li>
-<li class="chapter" data-level="7.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>7.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
-<li class="chapter" data-level="7.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>7.6</b> Your turn</a></li>
+<li class="chapter" data-level="6.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>6.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>8</b> Multiple Element Limitation</a>
+<li class="chapter" data-level="7" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>7</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>8.1</b> Rastetter et al. 1997</a>
+<li class="chapter" data-level="7.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>7.1</b> This task</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>8.1.1</b> The model</a></li>
-<li class="chapter" data-level="8.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>8.1.2</b> Parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>8.2</b> Implementing MEL</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>8.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
+<li class="chapter" data-level="7.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>7.1.1</b> Create an R script of NPZD</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>9</b> Optimization</a>
+<li class="chapter" data-level="8" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>8</b> Model Sensitivity</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>9.2</b> Bormann logistic model</a></li>
-<li class="chapter" data-level="9.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>9.3</b> Fitting a model to data</a>
+<li class="chapter" data-level="8.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>8.1</b> Types of Sensitivity</a></li>
+<li class="chapter" data-level="8.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>8.2</b> Local sensitivity</a></li>
+<li class="chapter" data-level="8.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>8.3</b> Assessing sensitivity in a nitrogen budget model</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>9.3.1</b> Minimization</a></li>
-<li class="chapter" data-level="9.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>9.3.2</b> Creating the objective function</a></li>
-<li class="chapter" data-level="9.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>9.3.3</b> <code>optim()</code></a></li>
-<li class="chapter" data-level="9.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>9.3.4</b> <code>mle2()</code></a></li>
+<li class="chapter" data-level="8.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>8.3.1</b> Dynamics of sensitivity in one state variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>8.3.2</b> Summary of sensitivities in all state variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>9.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="9.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>9.5</b> Two (or more) parameters at a time</a></li>
-<li class="chapter" data-level="9.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>9.6</b> Other considerations: weighting deviations</a>
+<li class="chapter" data-level="8.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>8.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="8.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>8.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
+<li class="chapter" data-level="8.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>8.6</b> Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>9</b> Multiple Element Limitation</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>9.6.1</b> Variance weighted errors</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>10</b> More On Forcing Functions: Using data inside models</a>
+<li class="chapter" data-level="9.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>9.1</b> Rastetter et al. 1997</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>10.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="10.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>10.2</b> N deposition</a></li>
-<li class="chapter" data-level="10.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>10.3</b> Denitrification</a></li>
-<li class="chapter" data-level="10.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>10.4</b> Annual temperature as a forcing function</a></li>
-<li class="chapter" data-level="10.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>10.5</b> In fine</a></li>
+<li class="chapter" data-level="9.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>9.1.1</b> The model</a></li>
+<li class="chapter" data-level="9.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>9.1.2</b> Parameters</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>11</b> Appendix: Build a model of your own system</a>
+<li class="chapter" data-level="9.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>9.2</b> Implementing MEL</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>11.1</b> Background Readings:</a></li>
-<li class="chapter" data-level="11.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>11.2</b> Steps</a></li>
+<li class="chapter" data-level="9.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>9.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>10</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>10.2</b> Bormann logistic model</a></li>
+<li class="chapter" data-level="10.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>10.3</b> Fitting a model to data</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>10.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="10.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>10.3.2</b> Creating the objective function</a></li>
+<li class="chapter" data-level="10.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>10.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="10.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>10.3.4</b> <code>mle2()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>10.4</b> Trajectory matching</a></li>
+<li class="chapter" data-level="10.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>10.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="10.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>10.6</b> Other considerations: weighting deviations</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>10.6.1</b> Variance weighted errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>11</b> More On Forcing Functions: Using data inside models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>11.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="11.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>11.2</b> N deposition</a></li>
+<li class="chapter" data-level="11.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>11.3</b> Denitrification</a></li>
+<li class="chapter" data-level="11.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>11.4</b> Annual temperature as a forcing function</a></li>
+<li class="chapter" data-level="11.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>11.5</b> In fine</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>12</b> Appendix: Build a model of your own system</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>12.1</b> Background Readings:</a></li>
+<li class="chapter" data-level="12.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>12.2</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>13</b> References</a></li>
 </ul>
 
       </nav>
@@ -310,8 +331,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Introduction to ecosystem models<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="intro" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Introduction to ecosystem models<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Primary source: pp. 1-17, (in Chapters 1, 2 of Soetaert and Hermann 2009)</p>
 <p>In this primer, we’ll cover a few of the very basics of ecosystem modeling. There are several goals I have for you, the reader. I hope that you,</p>
 <ul>
@@ -321,47 +342,47 @@ div.csl-indent {
 <li>write R code to implement ecosystem models.</li>
 </ul>
 <p>To do all this, the following text relies heavily on selected secondary sources especially <span class="citation">Soetaert and Herman (<a href="#ref-soetaert2009">2009</a>)</span> (especially in this chapter and chapter <a href="#Model-Sensitivity"><strong>??</strong></a>) and <span class="citation">Bolker (<a href="#ref-bolker:2008rr">2008</a>)</span>. I also cite selected a few primary sources where appropriate.</p>
-<div id="why-models" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Why models?<a href="intro.html#why-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-models" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Why models?<a href="intro.html#why-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Models help us understand reality because they simplify reality and capture particular phenomena in which we are interested. Useful models capture something useful about the reality we are interested in. One example is a road map - it is a useful simplification of the actual road network. Jorges Luis Borges has a (very) short story of map makers whose map was so detailed that it was the same size as the country it described. Not very useful.</p>
-<p>A useful model captures just what we need. We build and use models to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">3.1</a>). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations <span class="citation">(<a href="#ref-soetaert2009">Soetaert and Herman 2009</a>)</span>.</p>
+<p>A useful model captures just what we need. We build and use models to aid understanding, because, at some level, the model is a quantitative and qualitative explanation for some phenomenon (Fig. <a href="intro.html#fig:SH1-3">4.1</a>). We can use models to test hypotheses, guide experiments, predict dynamics, and manage ecosystems and populations <span class="citation">(<a href="#ref-soetaert2009">Soetaert and Herman 2009</a>)</span>.</p>
 <div class="figure"><span style="display:block;" id="fig:SH1-3"></span>
 <img src="figs/SH_F-1.3.png" alt="*We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).*" width="75%" />
 <p class="caption">
-Figure 3.1: <em>We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).</em>
+Figure 4.1: <em>We use conceptual and mathematical models to interpret reality. (Fig. 1.3 in Soetaert and Hermann, 2009).</em>
 </p>
 </div>
 </div>
-<div id="whats-an-ecosystem" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> What’s an ecosystem?<a href="intro.html#whats-an-ecosystem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-You can find definitions of an ecosystem elsewhere, but in this primer, we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">3.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by <em>fluxes</em>, or flows, which transfer some mass of the element over some period of time. When a transfer come from entirely outside the ecosystem, we refer to it as an <em>import</em>. When the transfer exits the system entirely, we refer to it as an <em>export</em>. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
+<div id="whats-an-ecosystem" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> What’s an ecosystem?<a href="intro.html#whats-an-ecosystem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+You can find definitions of an ecosystem elsewhere, but in this primer, we want to emphasize the abstraction of that ecosystem (Fig. <a href="intro.html#fig:lake">4.2</a>). We will think of an ecosystem as a set of one or more compartments containing some mass of an element of interest, such as carbon or nitrogen. That element is the <em>currency</em> of the ecosystem. These compartments (a.k.a. pools, stocks) are connected by <em>fluxes</em>, or flows, which transfer some mass of the element over some period of time. When a transfer come from entirely outside the ecosystem, we refer to it as an <em>import</em>. When the transfer exits the system entirely, we refer to it as an <em>export</em>. We model or describe an ecosystem as a set of pools or compartments, connected by fluxes, that is, transfers of energy or materials among pools.
 <div class="figure"><span style="display:block;" id="fig:lake"></span>
 <img src="figs/LakeEcosystemCarpenteretal1992.png" alt="*An ecosystem perspective of lake, in terms of phosphorus [@carpenter1992]. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).*" width="75%" />
 <p class="caption">
-Figure 3.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-carpenter1992">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).</em>
+Figure 4.2: <em>An ecosystem perspective of lake, in terms of phosphorus <span class="citation">(<a href="#ref-carpenter1992">Carpenter et al. 1992</a>)</span>. Boxes are ecosystem compartments and the quantities are pools (a.k.a. stocks, units are mass per unit area or volume). Arrows are fluxes (units are mass per unit time).</em>
 </p>
 </div>
-<p>In Fig. <a href="intro.html#fig:lake">3.2</a>, all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools, except dissolved phosphorous, appear to export phosphorous back out. The Dissolved P pool (D) receives fluxes from all the animals in the system, and loses P to seston, which is primarily phytoplankton.</p>
-<p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can slow down or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">3.3</a>).</p>
+<p>In Fig. <a href="intro.html#fig:lake">4.2</a>, all pools are receiving imports from outside the system, represented by arrows coming from the amorphous cloud. All pools, except dissolved phosphorous, appear to export phosphorous back out. The Dissolved P pool (D) receives fluxes from all the animals in the system, and loses P to seston, which is primarily phytoplankton.</p>
+<p>Ecosystem fluxes or flows are influenced by <em>state factors</em> such as temperature, time, or disturbance which act as constraints that can slow down or speed up the fluxes or determine the current states of the variables (Fig. <a href="intro.html#fig:statefactors">4.3</a>).</p>
 <div class="figure"><span style="display:block;" id="fig:statefactors"></span>
 <img src="figs/Chapin_f1-5.png" alt="*The current state of an ecosystem depends on state factors [@chapin2011].*" width="75%" />
 <p class="caption">
-Figure 3.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="#ref-chapin2011">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
+Figure 4.3: <em>The current state of an ecosystem depends on state factors <span class="citation">(<a href="#ref-chapin2011">Chapin III, Matson, and Mooney 2011</a>)</span>.</em>
 </p>
 </div>
 </div>
-<div id="whats-an-ecosystem-model" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> What’s an ecosystem model?<a href="intro.html#whats-an-ecosystem-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="whats-an-ecosystem-model" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> What’s an ecosystem model?<a href="intro.html#whats-an-ecosystem-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You’ve already seen ecosystem models. An ecosystem model consists of the compartments and fluxes we saw above. We refer to the currencies in different compartments as <em>variables</em> because they can vary or change through time. We use mathematical equations and computational controls to represent fluxes between compartments. In the equations, there are constants that we call <em>parameters</em> that control the rate of these fluxes. In principle, variables can usually be observed, whereas we cannot directly observe parameters and have to estimate them.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>The units of the currency of each pool in an ecosystem model must be the same. Those units might be kilograms carbon per hectare (kg C ha<span class="math inline">\(^{-1}\)</span>), milligram phosphorous per cubic meter (mg P m<span class="math inline">\(^{-3}\)</span>), or joules per second per square meter (J s<span class="math inline">\(^{-1}\)</span> m<span class="math inline">\(^{-2}\)</span>). Regardless of the units, they should be the same for each pool in an ecosystem model.</p>
 <p>We can describe an ecosystem using <strong>balance equations</strong> for each pool <span class="citation">(p. 18, <a href="#ref-soetaert2009">Soetaert and Herman 2009</a>)</span>. A balance equation is simply a bookkeeping or budgeting device to keep track of fluxes and estimate parameters:</p>
 <p><span class="math display">\[\mathrm{Change~in~pool} = \mathrm{Sources - Sinks}\]</span>
 This is simply saying that a change in any pool over a period of time results from a difference between inputs and outputs (sources and sinks).</p>
-<p>As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the rate of change of dissolved P in Fig. <a href="intro.html#fig:lake">3.2</a> could look like
+<p>As models increase in complexity, we usually use differential equations, or time derivatives, to represent the balance equation for each pool or state variable in a model. For instance, the rate of change of dissolved P in Fig. <a href="intro.html#fig:lake">4.2</a> could look like
 <span class="math display">\[\frac{dD}{dt} = i + e_HH + e_N N + e_1 F_1 + e_2 F_2 - u_SS\]</span>
 where <span class="math inline">\(D\)</span> is the amount of P in the dissolved form, perhaps in mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>. Parameter <span class="math inline">\(i\)</span> is import, or source, from outside the system (e.g., dust, lake inflow), and <span class="math inline">\(H\)</span>, <span class="math inline">\(N\)</span>, <span class="math inline">\(F_1\)</span>, and <span class="math inline">\(F_2\)</span> are the other pools. The lower case letters are <em>parameters</em> or rate constants that are the mass-specific fluxes. The rate of change of <span class="math inline">\(D\)</span> is a function of imports and fluxes from herbivores (<span class="math inline">\(H\)</span>), invertebrates (<span class="math inline">\(N\)</span>), planktivorous fish (<span class="math inline">\(F_1\)</span>), and piscivorous fish (<span class="math inline">\(F_2\)</span>), minus loss to seston (<span class="math inline">\(S\)</span>).</p>
-<div id="units-of-terms" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Units of terms<a href="intro.html#units-of-terms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="units-of-terms" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Units of terms<a href="intro.html#units-of-terms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Each term in an equation must have units that make sense. The units of the dissolved pool are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>, so the daily flux <span class="math inline">\(dD/dt\)</span> (the lefthand side of the equation) must be mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span> (milligrams per square meter per day). Therefore, <strong>each termin the equation must also have these same units</strong>. For instance, units for <span class="math inline">\(i\)</span> must be mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>. Similarly the units for <span class="math inline">\(e_H H\)</span> must be mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>. Therefore, we can deduce the following.</p>
 <p>Given that units of <span class="math inline">\(e_H H\)</span> must be mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span><span class="math inline">\(\cdot\)</span>d<span class="math inline">\(^{-1}\)</span>, and we know that the units of <span class="math inline">\(H\)</span> are mg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^{-2}\)</span>, then it must be true that the units of <span class="math inline">\(e_H\)</span> are d<span class="math inline">\(^{-1}\)</span>.</p>
 <p><em>A more intuitive way</em> to think about the units of <span class="math inline">\(e_H\)</span> is that it is the amount of P lost from the herbivores per total amount of P in the herbivores, per day. The units for the two amounts cancel out mathematically, and we are left with simply a dimensionless constant “per day”. With the units, we have</p>
@@ -375,13 +396,13 @@ where <span class="math inline">\(D\)</span> is the amount of P in the dissolved
 <p><strong>To review:</strong> variables are quantities that change with time, such as the amount of carbon in the atmosphere, or the amount of phosphorus in the primary producers in a lake. Parameters are (typically) constants in equations that quantify how quickly the variables change. Forcing functions represent state factors that we think of as external to the ecosystem compartments.</p>
 <p>No models apply everywhere, all the time. All models are limited for a specific <em>domain</em> and with specific <em>boundaries</em>. These are the spatial, temporal and conceptual limits on a model.</p>
 </div>
-<div id="other-ideas" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Other ideas<a href="intro.html#other-ideas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="other-ideas" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Other ideas<a href="intro.html#other-ideas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Statistical models</em> (e.g., regression) often describe patterns in natural systems and help test hypotheses. They often represent a mechanistic process, but that is not typically their main goal. <em>Process models</em> (e.g., stock and flow models) also describe patterns in natural systems, but they include more mechanism and seek to describe mechanism and understand process. People sometimes call these <em>mechanistic</em> models.</p>
 <div class="figure"><span style="display:block;" id="fig:anpp"></span>
 <img src="figs/anpp-1.png" alt="*A statistical model of aboveground plant biomass as a function of available soil nitrogen.*" width="75%" />
 <p class="caption">
-Figure 3.4: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
+Figure 4.4: <em>A statistical model of aboveground plant biomass as a function of available soil nitrogen.</em>
 </p>
 </div>
 <p>A <em>theory</em> is a well-supported hierarchical conceptual framework that contains clearly formulated postulates, from which a set of predictions logically follows. <em>Efficient</em> theory <span class="citation">(<a href="#ref-marquet2014">Marquet et al. 2014</a>)</span> is based on first principles, and relies on as few assumptins as possible.</p>
@@ -389,13 +410,13 @@ Figure 3.4: <em>A statistical model of aboveground plant biomass as a function o
 <p><strong>Exercise:</strong> Ask yourself whether a lake is a carbon sink or a source. Draw an appropriate compartment model to address this question. After having done so, ask yourself what assumptions you’ve made about the temporal and spatial scales. What mechanisms have you included? Why?</p>
 </div>
 </div>
-<div id="steps-in-modeling" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Steps in modeling<a href="intro.html#steps-in-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<span class="citation">Soetaert and Herman (<a href="#ref-soetaert2009">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">3.5</a>).
+<div id="steps-in-modeling" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Steps in modeling<a href="intro.html#steps-in-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<span class="citation">Soetaert and Herman (<a href="#ref-soetaert2009">2009</a>)</span> identify a series steps that guides model development and ultimately improve understanding and prediction (Fig. <a href="intro.html#fig:SH1-7">4.5</a>).
 <div class="figure"><span style="display:block;" id="fig:SH1-7"></span>
 <img src="figs/SH_F-1.7a.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" /><img src="figs/SH_F-1.7b.png" alt="*It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).*" width="45%" />
 <p class="caption">
-Figure 3.5: <em>It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).</em>
+Figure 4.5: <em>It is helpful to use a series of steps in improving our models. This was Figure 1.7 in Soetaert and Hermann (2009) but I chopped it in half. Read the left half (top to bottom), then the right half (top bottom).</em>
 </p>
 </div>
 <p>In brief, I paraphrase or plagiarize their steps thus:</p>
@@ -410,8 +431,8 @@ Figure 3.5: <em>It is helpful to use a series of steps in improving our models. 
 </ul>
 <p>Note that this figure contains a loop – after calibration and sensitivity analysis, we loop back the model structure and its parameters. In this class, you will use sensitivity analysis to identify the most interesting or most important parts of your model.</p>
 </div>
-<div id="an-example-in-r" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> An example in R<a href="intro.html#an-example-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="an-example-in-r" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> An example in R<a href="intro.html#an-example-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we create a simple model to illustrate some of what we’ve been describing.</p>
 <p>Consider our lake above, but as a whole – just one big pool of P. We’ll let the imports, <span class="math inline">\(I\)</span>, be constant and independent of the amount of the P in the lake. Our exports will depend on the amount of the P in the system-the more P in the system, to more can be exported. We will assume that a constant fraction, <span class="math inline">\(a\)</span>, is exported,
 <span class="math display">\[\frac{dP}{dt} = I - a P\]</span>
@@ -472,8 +493,8 @@ where the rate of change is mg P / m<span class="math inline">\(^2\)</span> / da
 <p><img src="figs/unnamed-chunk-7-1.png" width="75%" /></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myLake.png&quot;</span>, <span class="at">height=</span><span class="dv">4</span>, <span class="at">width=</span><span class="dv">4</span>)</span></code></pre></div>
 </div>
-<div id="analytical-solutions-to-rate-equations" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Analytical solutions to rate equations<a href="intro.html#analytical-solutions-to-rate-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="analytical-solutions-to-rate-equations" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Analytical solutions to rate equations<a href="intro.html#analytical-solutions-to-rate-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In very simple situations, we can solve the equilibrium by hand. By definition, the equilibrium is a state at which the system stops changing, that is, its rate of change is zero. To find a value of <span class="math inline">\(P\)</span> which is an equilibrium, we set the balance equation equal to zero, and solve for <span class="math inline">\(P\)</span>:
 <span class="math display">\[\frac{dP}{dt} = 0 = I -aP\]</span>
 <span class="math display">\[P^* = \frac{I}{a}\]</span>
@@ -517,7 +538,7 @@ Soetaert, K, and P M J Herman. 2009. <em>A Practical Guide to Ecological Modelli
           </div>
         </div>
       </div>
-<a href="simple-budgets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="first-order-compartments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="N.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

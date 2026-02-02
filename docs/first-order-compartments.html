@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Appendix: Build a model of your own system | A Primer of Ecosystem Modeling - a work in progress</title>
+  <title>3 Simple Mass-specific Rates | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Appendix: Build a model of your own system | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta property="og:title" content="3 Simple Mass-specific Rates | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Appendix: Build a model of your own system | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta name="twitter:title" content="3 Simple Mass-specific Rates | A Primer of Ecosystem Modeling - a work in progress" />
   
   <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="more-on-forcing-functions-using-data-inside-models.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="simple-budgets.html"/>
+<link rel="next" href="intro.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -331,65 +331,358 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-build-a-model-of-your-own-system" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">12</span> Appendix: Build a model of your own system<a href="appendix-build-a-model-of-your-own-system.html#appendix-build-a-model-of-your-own-system" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="background-readings" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Background Readings:<a href="appendix-build-a-model-of-your-own-system.html#background-readings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="first-order-compartments" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Simple Mass-specific Rates<a href="first-order-compartments.html#first-order-compartments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter concerns one and two compartment models with simple mass-specific fluxes.</p>
+<div id="learning-objectives-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Learning Objectives<a href="first-order-compartments.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>This primer: at least chapters 1-3; chapters 5-6, 8-9 are also useful.</li>
-<li>Soetaert and Hermann 2009. All of it is useful, but especially the chapters used in this primer.</li>
+<li>use simple 1- and 2-compartment models to track and predict fates of elements.</li>
+<li>use first order equations to represent inflows and outflows (fluxes) that are constant.</li>
+<li>calculate rates of change of mass in compartments, time to events, and make predictions about future states.</li>
 </ul>
-</div>
-<div id="steps" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Steps<a href="appendix-build-a-model-of-your-own-system.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Key concepts</strong></p>
+<ul>
+<li>First-order kinetics: The rate of a process is proportional to the amount present.</li>
+<li>General form:
+<span class="math display">\[\frac{dX}{dt} = \mathrm{Inputs} - k X\]</span></li>
+</ul>
+<p>where <span class="math inline">\(k\)</span> is the rate constant.</p>
+<p>The units of <span class="math inline">\(k\)</span> are “amount of <span class="math inline">\(X\)</span> transferred per unit time per amount of <span class="math inline">\(X\)</span> in the pool”, or</p>
+<p><span class="math display">\[\mathrm{units}(k) = \frac{\mathrm{units}(X)}{\mathrm{units}(X)} \cdot \frac{1}{\mathrm{units}(t)}\]</span>
+or, which simplifies to,
+<span class="math display">\[\mathrm{units}(k) = \mathrm{units}(t)\]</span></p>
+<p>For instance, imagine the rate water draining out of a bathtub per second is a function of the amount of the water in liters. The units of <span class="math inline">\(k\)</span> would be “liters per liter per second”
+<span class="math display">\[
+\begin{align}
+\mathrm{units}(k) &amp;= \frac{\mathrm{L}}{\mathrm{L} \cdot s}\\
+    &amp;= \frac{1}{s}
+\end{align}
+\]</span></p>
+<p>simplifying to just “per second”.</p>
+<p>The fraction lost per unit time is constant, but the absolute amount lost decreases as the pool size declines.</p>
+<p><strong>More key concepts</strong></p>
+<p>Read the following now, but apply them later as you work through the examples. Don’t sweat these too much to start. They will make more sense as you work through the examples.</p>
 <ol style="list-style-type: decimal">
-<li><strong>Identify the scope</strong> and focus of your model, including,
+<li>STEADY STATE: At steady state, inputs = outputs
+<ul>
+<li>For first-order loss: Input = k*N_ss</li>
+<li>Therefore: N_ss = Input/k</li>
+</ul></li>
+<li>MULTIPLE FIRST-ORDER LOSSES: Rate constants are additive
+<ul>
+<li>k_total = k₁ + k₂ + k₃ + …</li>
+<li>N_ss = Input/k_total</li>
+</ul></li>
+<li>RESIDENCE TIME: Average time a particle spends in the pool
+<ul>
+<li>τ = N_ss/Input = 1/k_total</li>
+<li>Larger k means faster turnover, shorter residence time</li>
+</ul></li>
+<li>APPROACH TO STEADY STATE:
+<ul>
+<li>If N &gt; N_ss: dN/dt &lt; 0 (pool declining toward steady state)</li>
+<li>If N &lt; N_ss: dN/dt &gt; 0 (pool growing toward steady state)</li>
+</ul></li>
+<li>PARTITIONING LOSSES: At steady state, each pathway processes a
+fraction of the input proportional to its rate constant:
+<ul>
+<li>Fraction through pathway i = k_i/k_total</li>
+</ul></li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:one1st"></span>
+<img src="figs/one_compartment.png" alt="A one compartment model." width="50%" />
+<p class="caption">
+Figure 3.1: A one compartment model.
+</p>
+</div>
+<p>For a one-compartment model of element <span class="math inline">\(X\)</span> and first order kinetics, we still have one or more fluxes and out. What is new is that those fluxes are functions of the size of the pool. So we still have the rate of change in the mass of <span class="math inline">\(X\)</span> is
+<span class="math display">\[\frac{dX}{dt} = F_{in} - F_{out}\]</span>,
+and now also where,
+<span class="math display">\[F_{out} = kX\]</span></p>
+<p>where flux units must match, for instance, units(<span class="math inline">\(F_{in}\)</span>) <span class="math inline">\(= units(\)</span>F_{in}<span class="math inline">\() \mathrm{kg\cdot y^{-1}}\)</span>, or kilograms per year, so units(<span class="math inline">\(k\)</span>) = year.</p>
+</div>
+<div id="solving-rate-equations" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Solving rate equations<a href="first-order-compartments.html#solving-rate-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We often want to figure out whether a system is at an equilibrium or might achieve an equilibrium in the future. We call this equilibrium a <em>steady state</em> because the amounts in the pools remain “steady”, or at constant amounts. That is, the state of the system remains constant, steady, unchanging. In other words, <em>the rate of change</em>, <span class="math inline">\(dX/dt\)</span>, <em>is zero</em>.</p>
+<p>In general, we “solve” a rate equation by first setting it equal to zero, and then solving for <span class="math inline">\(X\)</span> (the state variable):</p>
+<p><span class="math display">\[
+\begin{align*}
+\frac{dX}{dt} &amp;= \mathrm{Inputs} - k X\\
+0 &amp;= \mathrm{Inputs} - k X\\
+k X &amp;= \mathrm{Inputs}\\
+X &amp;=  \frac{\mathrm{Inputs}}{k}
+\end{align*}
+\]</span>
+What is this telling us?</p>
+<p>It is telling us that the amount of <span class="math inline">\(X\)</span> will stop changing when <span class="math inline">\(X\)</span> reaches the amount predicted by the fraction <span class="math inline">\(\mathrm{Inputs}/k\)</span>.</p>
+<p>You should work through the units on this to convince yourself the the units in each term are the same.</p>
+<p>To solve a rate equation with constant rates, is either simpler or less intuitive, depending on how you look at it. Essentially, when all the fluxes are constant, the only way we get a steady state is when the inflows are precisely equal to the outflows. Otherwise, a system with constant rates is predicted to forever increase or forever decrease, depending on the balance of inflows and outflows. If you walk through the arithematic we did above, you would find that the only way that the rate equation can equal zero is if the pool is empty (<span class="math inline">\(X=0\)</span>) or <span class="math inline">\(F_{in}=F_{out}\)</span>.</p>
+</div>
+<div id="one-compartment-models-1" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> One-compartment models<a href="first-order-compartments.html#one-compartment-models-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="worked-example-lake-phosphorus-with-flushing" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Worked Example: Lake phosphorus with flushing<a href="first-order-compartments.html#worked-example-lake-phosphorus-with-flushing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A lake receives constant phosphorus input from a wastewater treatment plant but
+loses phosphorus proportional to the amount present due to water outflow.</p>
+<ul>
+<li>Constant input: 100 kg P/year</li>
+<li>First-order loss rate constant: k = 0.4 per year</li>
+</ul>
+<p>The lake currently contains 300 kg P.</p>
+<p>Questions:
+1. Draw a picture of the system.
+1. Write the differential equation for dP/dt
+1. Calculate dP/dt at the current phosphorus level
+1. Is the lake at steady state?
+1. What phosphorus level would represent steady state? (<em>‘Solve’ the differential equation</em>)
+1. Is the lake moving toward or away from steady state?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lakeflushing"></span>
+<img src="figs/lakeP.png" alt="Picgture of a one compartment model of phosphorus in a lake." width="50%" />
+<p class="caption">
+Figure 3.2: Picgture of a one compartment model of phosphorus in a lake.
+</p>
+</div>
+<p><strong>Differential equation</strong>
+<span class="math display">\[\frac{dP}{dt} = I - kP\]</span>
+where <span class="math inline">\(I = 100 \mathrm{kg~P}/y\)</span>, <span class="math inline">\(k=0.4 y^{-1}\)</span>, and the initial state is <span class="math inline">\(P_0 = 300 \mathrm{kg~P}\)</span>.</p>
+<p><strong>dP/dt at the current phosphorus level</strong>
+<span class="math display">\[\frac{dP}{dt} = I - kP_0 = 100-0.4(300)= -20\, \mathrm{kg~P}\cdot y^{-1}\]</span></p>
+<p><strong>Is the lake at steady state?</strong></p>
+<p>The lake <span class="math inline">\(P\)</span> is not at steady state because the current rate of change (at <span class="math inline">\(P=300\)</span>) is nonzero (negative,$ -20, y^{-1}$.</p>
+<p>To determine the amount of phosphorus that would be the steady state, or tequilibrium, we solve <span class="math inline">\(dP/dt = 0\)</span>for <span class="math inline">\(P\)</span>.</p>
+<p><strong>What phosphorus level would represent steady state?</strong></p>
+<p>To answer this question, <strong>we solve the ddifferential equation</strong>. That is, we set the equation equal to zero, and then solve for the state variable, in this case <span class="math inline">\(P\)</span>. Why do we set it to zero? We set it equal to zero because a value of zero means that the rate of change of <span class="math inline">\(P\)</span> is zero - the amount of phosphorus in the lake is not changing and so exists at a steady state.</p>
+<p>By solving for <span class="math inline">\(P\)</span>, we are discovering the value of <span class="math inline">\(P\)</span> when the system is at a steady state.</p>
+<p>To determine the amount of phosphorus that would be the steady state, or the equilibrium, we solve <span class="math inline">\(dP/dt = 0\)</span> for <span class="math inline">\(P\)</span>. Notice that the initial state doesn’t matter.</p>
+<p><span class="math display">\[
+\begin{align*}
+\frac{dP}{dt} &amp;= I - kP\\
+0&amp;= I - kP\\
+kP &amp;= I \\
+P^* &amp;= \frac{I}{k} = \frac{100}{0.4} = 250\,\mathrm{kg~P}
+\end{align*}
+\]</span>
+The star or asterisk on <span class="math inline">\(P^*\)</span> signals that this is an equilibrium or steady state.</p>
+<p><strong>Is the lake moving toward or away from steady state?</strong></p>
+<p>Because the lake <span class="math inline">\(P\)</span> is declining from 300 kg, it is moving toward it’s steady state.</p>
+</div>
+</div>
+<div id="problems" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Problems<a href="first-order-compartments.html#problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example-1-watershed-nitrogen-loss" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Example 1: Watershed Nitrogen Loss<a href="first-order-compartments.html#example-1-watershed-nitrogen-loss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A forested watershed receives nitrogen through atmospheric deposition at a constant rate
+but loses nitrogen through leaching and stream export:</p>
+<ul>
+<li>Constant atmospheric deposition: 7 kg N/ha/year</li>
+<li>Leaching loss rate constant: k = 0.16 per year</li>
+</ul>
+<p>The soil solution currently contains 26 kg N/ha.</p>
+<p>Questions:</p>
 <ol style="list-style-type: lower-alpha">
-<li>state variables (with units),</li>
-<li>spatial boundaries,</li>
-<li>time scale, or temporal boundaries,</li>
-<li>inputs and outputs for the system,</li>
-<li>fluxes between state variables,</li>
-<li>the state variables <em>upon which the fluxes depend</em> (e.g., litterfall from trees to soils depends directly on only trees but not soils); this gives you the <strong>order</strong> of the rate equations.</li>
-</ol></li>
-<li>Create a <strong>budget</strong>, including,
+<li>Draw a picture of the system.</li>
+<li>Write the differential equation for dN/dt</li>
+<li>Calculate dN/dt at the current nitrogen level</li>
+<li>Is the soil solution at steady state?</li>
+<li>What nitrogen level would represent steady state? (<em>‘Solve’ the differential equation</em>)</li>
+<li>Is the soil solution moving toward or away from steady state?</li>
+</ol>
+</div>
+<div id="example-2-soil-organic-matter-decomposition" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Example 2: Soil Organic Matter Decomposition<a href="first-order-compartments.html#example-2-soil-organic-matter-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A soil layer receives organic matter from plant litter at a constant rate but
+decomposes following first-order kinetics.</p>
+<ul>
+<li>Constant litterfall input: 500 g C/m²/year</li>
+<li>Decomposition rate constant: k = 0.25 per year</li>
+</ul>
+<p>The soil currently contains 1,800 g C/m².</p>
+<p>Questions:</p>
 <ol style="list-style-type: lower-alpha">
-<li>amount <em>in</em> each state variable,</li>
-<li><em>annual fluxes between</em> state variables; if you can’t find these in the literature, figure out ways to get very rough approximate estimates.</li>
-</ol></li>
-<li>Write out a model:
+<li>Write the differential equation for dC/dt</li>
+<li>Calculate dC/dt at the current carbon level</li>
+<li>What is the steady-state carbon pool size?</li>
+<li>How much carbon is being lost through decomposition right now?</li>
+<li>At steady state, how much carbon would be lost per year through decomposition?</li>
+</ol>
+</div>
+<div id="example-3-forest-canopy-nitrogen-with-multiple-losses" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Example 3: Forest Canopy Nitrogen with Multiple Losses<a href="first-order-compartments.html#example-3-forest-canopy-nitrogen-with-multiple-losses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A forest canopy receives nitrogen through atmospheric deposition at a constant rate
+but loses nitrogen through multiple first-order processes:</p>
+<ul>
+<li>Constant atmospheric deposition: 8 kg N/ha/year</li>
+<li>Leaching loss rate constant: k₁ = 0.15 per year</li>
+<li>Herbivory loss rate constant: k₂ = 0.08 per year</li>
+<li>Litterfall rate constant: k₃ = 0.35 per year</li>
+</ul>
+<p>The canopy currently contains 120 kg N/ha.</p>
+<p>Questions:</p>
 <ol style="list-style-type: lower-alpha">
-<li><strong>for each flux</strong>, write an <em>explicit mathematical function for each process</em> in that flux (see, e.g., the NPZD model). (You will estimate rate paramters later.)</li>
-<li><strong>for each state variable</strong>, write an <em>explicit rate equation</em> using the functions for the fluxes in the previous step.</li>
-<li><strong>estimate each parameter</strong> in one of these ways:
-<ol style="list-style-type: lower-roman">
-<li>use algebra to calculate instantaneous rates from <em>annual fluxes</em> and the magnitude of the state variables upon which the fluxes depend, or</li>
-<li>if there is an estimate in relevant literature for your particular rate parameter, use that, or</li>
-<li>use both approaches and try them both out.</li>
-</ol></li>
-</ol></li>
-<li><strong>Code the model in R</strong>, including,
+<li>Write the differential equation for dN/dt</li>
+<li>What is the total loss rate constant (k_total)?</li>
+<li>Calculate dN/dt at the current nitrogen level</li>
+<li>Calculate the steady-state nitrogen pool size</li>
+<li>At steady state, how much nitrogen is lost through each pathway annually?</li>
+<li>What percentage of the canopy nitrogen pool turns over each year?</li>
+</ol>
+</div>
+<div id="example-4-stream-dissolved-organic-carbon" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Example 4: Stream Dissolved Organic Carbon<a href="first-order-compartments.html#example-4-stream-dissolved-organic-carbon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A stream reach receives dissolved organic carbon (DOC) from upstream at a constant
+rate, but processes it through multiple pathways:</p>
+<ul>
+<li>Upstream DOC input: 2,400 g C/day</li>
+<li>Microbial respiration rate constant: k₁ = 0.5 per day</li>
+<li>Photodegradation rate constant: k₂ = 0.2 per day</li>
+<li>Downstream export: Flow rate (Q) = 10,000 L/day, Stream volume (V) = 50,000 L
+(Export rate constant k₃ = Q/V)</li>
+</ul>
+<p>The stream currently contains 6,000 g C.</p>
+<p>Questions:</p>
 <ol style="list-style-type: lower-alpha">
-<li>writing an ODE function, a vector of parameters; start with three or four years only.</li>
-<li>run and then troubleshoot the model.</li>
-</ol></li>
-<li>Consider including data from an external source (chap. 9)</li>
-<li><strong>Perform sensitivity analysis</strong> (chap. 6)</li>
-<li>Consider letting R try to fit rate parameters through optimization (chap. 8).</li>
-<li>Present your findings in a simple written form and in a short oral presentation.
+<li>Calculate the export rate constant k₃</li>
+<li>Write the differential equation for dC/dt with all loss terms</li>
+<li>What is the total loss rate constant?</li>
+<li>Calculate dC/dt at the current DOC level</li>
+<li>What is the steady-state DOC pool?</li>
+<li>At steady state, how much carbon exits through each pathway daily?</li>
+<li>What is the residence time of DOC in this stream reach at steady state?
+(Residence time τ = N_ss / F_in)</li>
+</ol>
+</div>
+</div>
+<div id="two-compartment-models-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Two-compartment models<a href="first-order-compartments.html#two-compartment-models-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we couple two compartments with first-order transfer, the rate of transfer between compartments is proportional to the amount in the <em>source</em> compartment.</p>
+<p>General form for two compartments:</p>
+<p><span class="math display">\[
+\begin{align*}
+\frac{dN_1}{dt} &amp;= F_{in} - k_{21}N_1 - k_{1,out}N_1\\
+\frac{dN_2}{dt} &amp;=  k_{21}N_1 - k_{2,out}N_2
+\end{align*}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(k_{21}\)</span> = rate constant for transfer into compartment 2 from compartment 1</li>
+<li><span class="math inline">\(k_{1,out}\)</span> = rate constant for loss from compartment 1 to outside</li>
+<li><span class="math inline">\(k_{2,out}\)</span> = rate constant for loss from compartment 2 to outside</li>
+</ul>
+<p>Note that both rates have a shared term, <span class="math inline">\(k_{21}N_1\)</span>. This is an export from from one compartment and an import into the other, and its rate is proportional to the source.</p>
+<p>At steady state: both <span class="math inline">\(dN_1/dt = 0\)</span> AND <span class="math inline">\(dN_2/dt = 0\)</span>.</p>
+<div id="key-concepts" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Key concepts<a href="first-order-compartments.html#key-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Having connected or <em>coupled</em> compartments allows us to take advantage of several additional concepts.</p>
+<ol style="list-style-type: decimal">
+<li>COUPLED EQUATIONS: With first-order exchange, compartments are mathematically linked. Changes in one affect the other.</li>
+<li>SOLVING FOR STEADY STATE:
+<ul>
+<li>Set both <span class="math inline">\(dN_1/dt = 0\)</span> and <span class="math inline">\(dN_2/dt = 0\)</span>.</li>
+<li>Solve the system of simultaneous equations</li>
+<li>Usually solve one equation for a ratio, then substitute</li>
+</ul></li>
+<li>BIDIRECTIONAL EXCHANGE: When compartments exchange material both ways,
+both differential equations include terms from the other compartment</li>
+<li>MASS BALANCE CHECK: At steady state:
+<ul>
+<li>Total system input = total system output</li>
+<li>Fluxes between compartments must balance</li>
+</ul></li>
+<li>RESIDENCE TIME: More complex with exchange
+<ul>
+<li>Need to account for all inputs to a compartment</li>
+<li>Including both external and internal (exchange) inputs</li>
+</ul></li>
+<li>NET FLUX: With bidirectional exchange, calculate both directions
+then find net = larger flux - smaller flux</li>
+<li>APPROACH TO STEADY STATE: Both compartments move toward their
+steady-state values, but at potentially different rates.</li>
+</ol>
+</div>
+</div>
+<div id="answer-key" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Answer Key<a href="first-order-compartments.html#answer-key" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example 1: Watershed Nitrogen Loss</strong></p>
+<p>A forested watershed receives nitrogen through atmospheric deposition at a constant rate
+but loses nitrogen through leaching and stream export:</p>
+<ul>
+<li>Constant atmospheric deposition: 7 kg N/ha/year</li>
+<li>Leaching loss rate constant: k = 0.16 per year</li>
+</ul>
+<p>The soil solution currently contains 26 kg N/ha.</p>
+<p>Questions:</p>
 <ol style="list-style-type: lower-alpha">
-<li><strong>Five</strong> minute (5 min) presentation should include:
-<ol style="list-style-type: lower-roman">
-<li>Your question.</li>
-<li>Introduction to the ecological system, including the items listed in 1. above related to the scope of your model.</li>
-<li>Clearly labelled model diagram (boxes and arrows)</li>
-<li>Corresponding system of model equations.</li>
-<li>Explanation of parameter estimates.</li>
-<li>Lessons from the sensitivity analysis.</li>
-<li>Findings and conclusions.</li>
-</ol></li>
-<li><strong>One</strong> page written explanation of the model that includes all the elements in your presentation. Use elements of your slides as appropriate.</li>
-</ol></li>
+<li>A picture of the system.</li>
+<li><span class="math inline">\(dN/dt = I_D - kN\)</span></li>
+<li><span class="math inline">\(dN/dt = 7 - 0.16(26) = 2.84\)</span></li>
+<li>The soil solution at steady state is not at steady state, but is increasing.</li>
+<li>What nitrogen level would represent steady state?</li>
+</ol>
+<p><span class="math display">\[
+\begin{align*}
+\frac{dN/dt} = 0 &amp;= I_D - kN\\
+kN &amp;=I_D\\
+N &amp;= \frac{I_D}{k} = 7/0.16 = 43.75
+\end{align*}
+\]</span>
+in units of kg N/ha.</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>The soil solution is moving toward steady state.</li>
+</ol>
+<p><strong>Example 2: Soil Organic Matter</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>dC/dt = 500 - 0.25C</p></li>
+<li><p>dC/dt = 500 - 0.25(1,800) = 500 - 450 = 50 g C/m²/year</p>
+<p>Soil carbon is accumulating</p></li>
+<li><p>At steady state:</p></li>
+</ol>
+<p>0 = 500 - 0.25C_ss
+C_ss = 500/0.25 = 2,000 g C/m²</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Current decomposition rate = k*C = 0.25(1,800) = 450 g C/m²/year</p></li>
+<li><p>At steady state, decomposition must equal input = 500 g C/m²/year
+(Check: 0.25 × 2,000 = 500)</p></li>
+</ol>
+<p><strong>Example 3: Forest Canopy Nitrogen</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>dN/dt = 8 - k₁N - k₂N - k₃N = 8 - (k₁ + k₂ + k₃)N
+dN/dt = 8 - (0.15 + 0.08 + 0.35)N = 8 - 0.58N</p></li>
+<li><p>k_total = 0.15 + 0.08 + 0.35 = 0.58 per year</p></li>
+<li><p>dN/dt = 8 - 0.58(120) = 8 - 69.6 = -61.6 kg N/ha/year
+The canopy is losing nitrogen</p></li>
+<li><p>At steady state: 0 = 8 - 0.58*N_ss
+N_ss = 8/0.58 = 13.8 kg N/ha</p></li>
+<li><p>At steady state (N = 13.8 kg N/ha):</p>
+<ul>
+<li>Leaching: 0.15 × 13.8 = 2.07 kg N/ha/year</li>
+<li>Herbivory: 0.08 × 13.8 = 1.10 kg N/ha/year</li>
+<li>Litterfall: 0.35 × 13.8 = 4.83 kg N/ha/year</li>
+<li>Total: 2.07 + 1.10 + 4.83 = 8.0 kg N/ha/year ✓</li>
+</ul></li>
+<li><p>Turnover rate = k_total = 0.58 per year = 58% per year</p></li>
+</ol>
+<p><strong>Example 4: Stream DOC</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>k₃ = Q/V = 10,000/50,000 = 0.2 per day</p></li>
+<li><p>dC/dt = 2,400 - k₁<em>C - k₂</em>C - k₃<em>C
+dC/dt = 2,400 - (0.5 + 0.2 + 0.2)</em>C
+dC/dt = 2,400 - 0.9*C</p></li>
+<li><p>k_total = 0.5 + 0.2 + 0.2 = 0.9 per day</p></li>
+<li><p>dC/dt = 2,400 - 0.9(6,000) = 2,400 - 5,400 = -3,000 g C/day
+Stream is losing DOC</p></li>
+<li><p>At steady state: 0 = 2,400 - 0.9*C_ss
+C_ss = 2,400/0.9 = 2,667 g C</p></li>
+<li><p>At steady state (C = 2,667 g C):</p>
+<ul>
+<li>Respiration: 0.5 × 2,667 = 1,333 g C/day</li>
+<li>Photodegradation: 0.2 × 2,667 = 533 g C/day</li>
+<li>Export: 0.2 × 2,667 = 533 g C/day</li>
+<li>Total: 1,333 + 533 + 533 = 2,400 g C/day ✓</li>
+</ul></li>
+<li><p>Residence time τ = N_ss / F_in = 2,667 / 2,400 = 1.11 days</p>
+<p>Alternative calculation: τ = 1/k_total = 1/0.9 = 1.11 days</p>
+<p>On average, a carbon atom spends 1.11 days in the stream reach.</p></li>
 </ol>
 
 </div>
@@ -399,8 +692,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="more-on-forcing-functions-using-data-inside-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simple-budgets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

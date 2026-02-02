@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Optimization | A Primer of Ecosystem Modeling - a work in progress</title>
+  <title>10 Optimization | A Primer of Ecosystem Modeling - a work in progress</title>
   <meta name="description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Optimization | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta property="og:title" content="10 Optimization | A Primer of Ecosystem Modeling - a work in progress" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This provides a part of a foundation in understanding ecosystem models." />
   <meta name="github-repo" content="HankStevens/ecosystems-primer" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Optimization | A Primer of Ecosystem Modeling - a work in progress" />
+  <meta name="twitter:title" content="10 Optimization | A Primer of Ecosystem Modeling - a work in progress" />
   
   <meta name="twitter:description" content="This provides a part of a foundation in understanding ecosystem models." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2026-01-26" />
+<meta name="date" content="2026-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,105 +194,126 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="simple-budgets.html"><a href="simple-budgets.html#answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introduction to ecosystem models</a>
+<li class="chapter" data-level="3" data-path="first-order-compartments.html"><a href="first-order-compartments.html"><i class="fa fa-check"></i><b>3</b> Simple Mass-specific Rates</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>3.1</b> Why models?</a></li>
-<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>3.2</b> What’s an ecosystem?</a></li>
-<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>3.3</b> What’s an ecosystem model?</a>
+<li class="chapter" data-level="3.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="first-order-compartments.html"><a href="first-order-compartments.html#solving-rate-equations"><i class="fa fa-check"></i><b>3.2</b> Solving rate equations</a></li>
+<li class="chapter" data-level="3.3" data-path="first-order-compartments.html"><a href="first-order-compartments.html#one-compartment-models-1"><i class="fa fa-check"></i><b>3.3</b> One-compartment models</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>3.3.1</b> Units of terms</a></li>
-<li class="chapter" data-level="3.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>3.3.2</b> Other ideas</a></li>
+<li class="chapter" data-level="3.3.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#worked-example-lake-phosphorus-with-flushing"><i class="fa fa-check"></i><b>3.3.1</b> Worked Example: Lake phosphorus with flushing</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>3.4</b> Steps in modeling</a></li>
-<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>3.5</b> An example in R</a></li>
-<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>3.6</b> Analytical solutions to rate equations</a></li>
+<li class="chapter" data-level="3.4" data-path="first-order-compartments.html"><a href="first-order-compartments.html#problems"><i class="fa fa-check"></i><b>3.4</b> Problems</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-1-watershed-nitrogen-loss"><i class="fa fa-check"></i><b>3.4.1</b> Example 1: Watershed Nitrogen Loss</a></li>
+<li class="chapter" data-level="3.4.2" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-2-soil-organic-matter-decomposition"><i class="fa fa-check"></i><b>3.4.2</b> Example 2: Soil Organic Matter Decomposition</a></li>
+<li class="chapter" data-level="3.4.3" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-3-forest-canopy-nitrogen-with-multiple-losses"><i class="fa fa-check"></i><b>3.4.3</b> Example 3: Forest Canopy Nitrogen with Multiple Losses</a></li>
+<li class="chapter" data-level="3.4.4" data-path="first-order-compartments.html"><a href="first-order-compartments.html#example-4-stream-dissolved-organic-carbon"><i class="fa fa-check"></i><b>3.4.4</b> Example 4: Stream Dissolved Organic Carbon</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>4</b> Describing a nitrogen budget</a>
+<li class="chapter" data-level="3.5" data-path="first-order-compartments.html"><a href="first-order-compartments.html#two-compartment-models-1"><i class="fa fa-check"></i><b>3.5</b> Two-compartment models</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
-<li class="chapter" data-level="4.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>4.2</b> Mathematical forms</a></li>
-<li class="chapter" data-level="4.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>4.3</b> Paramaterization</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>4.3.1</b> Instantaneous rates</a></li>
-<li class="chapter" data-level="4.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>4.3.2</b> A sign of the times</a></li>
+<li class="chapter" data-level="3.5.1" data-path="first-order-compartments.html"><a href="first-order-compartments.html#key-concepts"><i class="fa fa-check"></i><b>3.5.1</b> Key concepts</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>4.4</b> Mathematical solution</a></li>
-<li class="chapter" data-level="4.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>4.5</b> Add self-limitation</a></li>
+<li class="chapter" data-level="3.6" data-path="first-order-compartments.html"><a href="first-order-compartments.html#answer-key"><i class="fa fa-check"></i><b>3.6</b> Answer Key</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>5</b> Lake Metabolism</a>
+<li class="chapter" data-level="4" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>4</b> Introduction to ecosystem models</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>5.1</b> Estimating Productivity</a></li>
-<li class="chapter" data-level="5.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>5.2</b> By hand, but in R</a>
+<li class="chapter" data-level="4.1" data-path="intro.html"><a href="intro.html#why-models"><i class="fa fa-check"></i><b>4.1</b> Why models?</a></li>
+<li class="chapter" data-level="4.2" data-path="intro.html"><a href="intro.html#whats-an-ecosystem"><i class="fa fa-check"></i><b>4.2</b> What’s an ecosystem?</a></li>
+<li class="chapter" data-level="4.3" data-path="intro.html"><a href="intro.html#whats-an-ecosystem-model"><i class="fa fa-check"></i><b>4.3</b> What’s an ecosystem model?</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>5.2.1</b> Plot one cycle</a></li>
-<li class="chapter" data-level="5.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>5.2.2</b> Average of all nights</a></li>
+<li class="chapter" data-level="4.3.1" data-path="intro.html"><a href="intro.html#units-of-terms"><i class="fa fa-check"></i><b>4.3.1</b> Units of terms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="intro.html"><a href="intro.html#other-ideas"><i class="fa fa-check"></i><b>4.3.2</b> Other ideas</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>5.3</b> The LakeMetabolizer package</a></li>
+<li class="chapter" data-level="4.4" data-path="intro.html"><a href="intro.html#steps-in-modeling"><i class="fa fa-check"></i><b>4.4</b> Steps in modeling</a></li>
+<li class="chapter" data-level="4.5" data-path="intro.html"><a href="intro.html#an-example-in-r"><i class="fa fa-check"></i><b>4.5</b> An example in R</a></li>
+<li class="chapter" data-level="4.6" data-path="intro.html"><a href="intro.html#analytical-solutions-to-rate-equations"><i class="fa fa-check"></i><b>4.6</b> Analytical solutions to rate equations</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>6</b> NPZD - a simple aquatic ecosystem</a>
+<li class="chapter" data-level="5" data-path="N.html"><a href="N.html"><i class="fa fa-check"></i><b>5</b> Describing a nitrogen budget</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>6.1</b> This task</a>
+<li class="chapter" data-level="5.1" data-path="N.html"><a href="N.html#getting-started"><i class="fa fa-check"></i><b>5.1</b> Getting started</a></li>
+<li class="chapter" data-level="5.2" data-path="N.html"><a href="N.html#mathematical-forms"><i class="fa fa-check"></i><b>5.2</b> Mathematical forms</a></li>
+<li class="chapter" data-level="5.3" data-path="N.html"><a href="N.html#paramaterization"><i class="fa fa-check"></i><b>5.3</b> Paramaterization</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>6.1.1</b> Create an R script of NPZD</a></li>
+<li class="chapter" data-level="5.3.1" data-path="N.html"><a href="N.html#instantaneous-rates"><i class="fa fa-check"></i><b>5.3.1</b> Instantaneous rates</a></li>
+<li class="chapter" data-level="5.3.2" data-path="N.html"><a href="N.html#a-sign-of-the-times"><i class="fa fa-check"></i><b>5.3.2</b> A sign of the times</a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="N.html"><a href="N.html#mathematical-solution"><i class="fa fa-check"></i><b>5.4</b> Mathematical solution</a></li>
+<li class="chapter" data-level="5.5" data-path="N.html"><a href="N.html#add-self-limitation"><i class="fa fa-check"></i><b>5.5</b> Add self-limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>7</b> Model Sensitivity</a>
+<li class="chapter" data-level="6" data-path="lake-metabolism.html"><a href="lake-metabolism.html"><i class="fa fa-check"></i><b>6</b> Lake Metabolism</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>7.1</b> Types of Sensitivity</a></li>
-<li class="chapter" data-level="7.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>7.2</b> Local sensitivity</a></li>
-<li class="chapter" data-level="7.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>7.3</b> Assessing sensitivity in a nitrogen budget model</a>
+<li class="chapter" data-level="6.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#estimating-productivity"><i class="fa fa-check"></i><b>6.1</b> Estimating Productivity</a></li>
+<li class="chapter" data-level="6.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#by-hand-but-in-r"><i class="fa fa-check"></i><b>6.2</b> By hand, but in R</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>7.3.1</b> Dynamics of sensitivity in one state variable</a></li>
-<li class="chapter" data-level="7.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>7.3.2</b> Summary of sensitivities in all state variables</a></li>
+<li class="chapter" data-level="6.2.1" data-path="lake-metabolism.html"><a href="lake-metabolism.html#plot-one-cycle"><i class="fa fa-check"></i><b>6.2.1</b> Plot one cycle</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lake-metabolism.html"><a href="lake-metabolism.html#average-of-all-nights"><i class="fa fa-check"></i><b>6.2.2</b> Average of all nights</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>7.4</b> Sensitivity in an aquatic ecosystem</a></li>
-<li class="chapter" data-level="7.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>7.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
-<li class="chapter" data-level="7.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>7.6</b> Your turn</a></li>
+<li class="chapter" data-level="6.3" data-path="lake-metabolism.html"><a href="lake-metabolism.html#the-lakemetabolizer-package"><i class="fa fa-check"></i><b>6.3</b> The LakeMetabolizer package</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>8</b> Multiple Element Limitation</a>
+<li class="chapter" data-level="7" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html"><i class="fa fa-check"></i><b>7</b> NPZD - a simple aquatic ecosystem</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>8.1</b> Rastetter et al. 1997</a>
+<li class="chapter" data-level="7.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#this-task"><i class="fa fa-check"></i><b>7.1</b> This task</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>8.1.1</b> The model</a></li>
-<li class="chapter" data-level="8.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>8.1.2</b> Parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>8.2</b> Implementing MEL</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>8.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
+<li class="chapter" data-level="7.1.1" data-path="npzd---a-simple-aquatic-ecosystem.html"><a href="npzd---a-simple-aquatic-ecosystem.html#create-an-r-script-of-npzd"><i class="fa fa-check"></i><b>7.1.1</b> Create an R script of NPZD</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>9</b> Optimization</a>
+<li class="chapter" data-level="8" data-path="model-sensitivity.html"><a href="model-sensitivity.html"><i class="fa fa-check"></i><b>8</b> Model Sensitivity</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>9.2</b> Bormann logistic model</a></li>
-<li class="chapter" data-level="9.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>9.3</b> Fitting a model to data</a>
+<li class="chapter" data-level="8.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#types-of-sensitivity"><i class="fa fa-check"></i><b>8.1</b> Types of Sensitivity</a></li>
+<li class="chapter" data-level="8.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#local-sensitivity"><i class="fa fa-check"></i><b>8.2</b> Local sensitivity</a></li>
+<li class="chapter" data-level="8.3" data-path="model-sensitivity.html"><a href="model-sensitivity.html#assessing-sensitivity-in-a-nitrogen-budget-model"><i class="fa fa-check"></i><b>8.3</b> Assessing sensitivity in a nitrogen budget model</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>9.3.1</b> Minimization</a></li>
-<li class="chapter" data-level="9.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>9.3.2</b> Creating the objective function</a></li>
-<li class="chapter" data-level="9.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>9.3.3</b> <code>optim()</code></a></li>
-<li class="chapter" data-level="9.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>9.3.4</b> <code>mle2()</code></a></li>
+<li class="chapter" data-level="8.3.1" data-path="model-sensitivity.html"><a href="model-sensitivity.html#dynamics-of-sensitivity-in-one-state-variable"><i class="fa fa-check"></i><b>8.3.1</b> Dynamics of sensitivity in one state variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="model-sensitivity.html"><a href="model-sensitivity.html#summary-of-sensitivities-in-all-state-variables"><i class="fa fa-check"></i><b>8.3.2</b> Summary of sensitivities in all state variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>9.4</b> Trajectory matching</a></li>
-<li class="chapter" data-level="9.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>9.5</b> Two (or more) parameters at a time</a></li>
-<li class="chapter" data-level="9.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>9.6</b> Other considerations: weighting deviations</a>
+<li class="chapter" data-level="8.4" data-path="model-sensitivity.html"><a href="model-sensitivity.html#sensitivity-in-an-aquatic-ecosystem"><i class="fa fa-check"></i><b>8.4</b> Sensitivity in an aquatic ecosystem</a></li>
+<li class="chapter" data-level="8.5" data-path="model-sensitivity.html"><a href="model-sensitivity.html#letting-sensitivity-analysis-guide-next-steps"><i class="fa fa-check"></i><b>8.5</b> Letting Sensitivity Analysis Guide Next Steps</a></li>
+<li class="chapter" data-level="8.6" data-path="model-sensitivity.html"><a href="model-sensitivity.html#your-turn"><i class="fa fa-check"></i><b>8.6</b> Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="MEL.html"><a href="MEL.html"><i class="fa fa-check"></i><b>9</b> Multiple Element Limitation</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>9.6.1</b> Variance weighted errors</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>10</b> More On Forcing Functions: Using data inside models</a>
+<li class="chapter" data-level="9.1" data-path="MEL.html"><a href="MEL.html#rastetter-et-al.-1997"><i class="fa fa-check"></i><b>9.1</b> Rastetter et al. 1997</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>10.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="10.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>10.2</b> N deposition</a></li>
-<li class="chapter" data-level="10.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>10.3</b> Denitrification</a></li>
-<li class="chapter" data-level="10.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>10.4</b> Annual temperature as a forcing function</a></li>
-<li class="chapter" data-level="10.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>10.5</b> In fine</a></li>
+<li class="chapter" data-level="9.1.1" data-path="MEL.html"><a href="MEL.html#the-model"><i class="fa fa-check"></i><b>9.1.1</b> The model</a></li>
+<li class="chapter" data-level="9.1.2" data-path="MEL.html"><a href="MEL.html#parameters"><i class="fa fa-check"></i><b>9.1.2</b> Parameters</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>11</b> Appendix: Build a model of your own system</a>
+<li class="chapter" data-level="9.2" data-path="MEL.html"><a href="MEL.html#implementing-mel"><i class="fa fa-check"></i><b>9.2</b> Implementing MEL</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>11.1</b> Background Readings:</a></li>
-<li class="chapter" data-level="11.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>11.2</b> Steps</a></li>
+<li class="chapter" data-level="9.2.1" data-path="MEL.html"><a href="MEL.html#increasing-atmospheric-carbon-with-events-in-ode"><i class="fa fa-check"></i><b>9.2.1</b> Increasing atmospheric carbon with events in <code>ode()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>10</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="optimization.html"><a href="optimization.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="optimization.html"><a href="optimization.html#bormann-logistic-model"><i class="fa fa-check"></i><b>10.2</b> Bormann logistic model</a></li>
+<li class="chapter" data-level="10.3" data-path="optimization.html"><a href="optimization.html#fitting-a-model-to-data"><i class="fa fa-check"></i><b>10.3</b> Fitting a model to data</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="optimization.html"><a href="optimization.html#minimization"><i class="fa fa-check"></i><b>10.3.1</b> Minimization</a></li>
+<li class="chapter" data-level="10.3.2" data-path="optimization.html"><a href="optimization.html#creating-the-objective-function"><i class="fa fa-check"></i><b>10.3.2</b> Creating the objective function</a></li>
+<li class="chapter" data-level="10.3.3" data-path="optimization.html"><a href="optimization.html#optim"><i class="fa fa-check"></i><b>10.3.3</b> <code>optim()</code></a></li>
+<li class="chapter" data-level="10.3.4" data-path="optimization.html"><a href="optimization.html#mle2"><i class="fa fa-check"></i><b>10.3.4</b> <code>mle2()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="optimization.html"><a href="optimization.html#trajectory-matching"><i class="fa fa-check"></i><b>10.4</b> Trajectory matching</a></li>
+<li class="chapter" data-level="10.5" data-path="optimization.html"><a href="optimization.html#two-or-more-parameters-at-a-time"><i class="fa fa-check"></i><b>10.5</b> Two (or more) parameters at a time</a></li>
+<li class="chapter" data-level="10.6" data-path="optimization.html"><a href="optimization.html#other-considerations-weighting-deviations"><i class="fa fa-check"></i><b>10.6</b> Other considerations: weighting deviations</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="optimization.html"><a href="optimization.html#variance-weighted-errors"><i class="fa fa-check"></i><b>10.6.1</b> Variance weighted errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html"><i class="fa fa-check"></i><b>11</b> More On Forcing Functions: Using data inside models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#preliminaries"><i class="fa fa-check"></i><b>11.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="11.2" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#n-deposition"><i class="fa fa-check"></i><b>11.2</b> N deposition</a></li>
+<li class="chapter" data-level="11.3" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#denitrification"><i class="fa fa-check"></i><b>11.3</b> Denitrification</a></li>
+<li class="chapter" data-level="11.4" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#annual-temperature-as-a-forcing-function"><i class="fa fa-check"></i><b>11.4</b> Annual temperature as a forcing function</a></li>
+<li class="chapter" data-level="11.5" data-path="more-on-forcing-functions-using-data-inside-models.html"><a href="more-on-forcing-functions-using-data-inside-models.html#in-fine"><i class="fa fa-check"></i><b>11.5</b> In fine</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html"><i class="fa fa-check"></i><b>12</b> Appendix: Build a model of your own system</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#background-readings"><i class="fa fa-check"></i><b>12.1</b> Background Readings:</a></li>
+<li class="chapter" data-level="12.2" data-path="appendix-build-a-model-of-your-own-system.html"><a href="appendix-build-a-model-of-your-own-system.html#steps"><i class="fa fa-check"></i><b>12.2</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>13</b> References</a></li>
 </ul>
 
       </nav>
@@ -310,11 +331,11 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="optimization" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">9</span> Optimization<a href="optimization.html#optimization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="optimization" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Optimization<a href="optimization.html#optimization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter walks through an example of computational techniques to improve our estimates of ecosystem fluxes.</p>
-<div id="introduction" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Introduction<a href="optimization.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Introduction<a href="optimization.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes we want to find values of parameters by picking those that cause the model output to match observed data as closely as possible. We call this optimization or calibration. Usually calibration refers to the entire modeling process, whereas optimization refers to the computational techniques used to make the model-data match as close as possible.</p>
 <p>In general, the goal of optimization is to minimize the differences between data and a model. Another way to think about this is that we want a model that would maximize the probability that the data could have been generated by that model. This approach is <em>maximum likelihood</em>. That is what we will do here. If you are interested in these topics, I recommend highly a great introduction by Ben Bolker <span class="citation">(<a href="#ref-bolker:2008rr">Bolker 2008</a>)</span>.</p>
 <p>We will use our most recent Bormann model, with self-limiting vegetation, and an axiliary variable for stream export (‘loss’).</p>
@@ -326,8 +347,8 @@ div.csl-indent {
 <span id="cb105-5"><a href="optimization.html#cb105-5" tabindex="-1"></a><span class="fu">library</span>(deSolve) <span class="co"># ODE solver</span></span>
 <span id="cb105-6"><a href="optimization.html#cb105-6" tabindex="-1"></a><span class="fu">library</span>(bbmle) <span class="co"># maximum likelihood estimation (Ben Bolker, MLE)</span></span></code></pre></div>
 </div>
-<div id="bormann-logistic-model" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Bormann logistic model<a href="optimization.html#bormann-logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bormann-logistic-model" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Bormann logistic model<a href="optimization.html#bormann-logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Acquire a copy of <code>BormannLogistic.R</code>.</p>
 <p>The following is code to run the ODE model. First we source the R script to load the model, and then we inspect it to make make sure that it is what we expect.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="optimization.html#cb106-1" tabindex="-1"></a><span class="co"># The next line of code loads and runs a file. It requires that this script</span></span>
@@ -366,20 +387,20 @@ div.csl-indent {
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
 <img src="figs/unnamed-chunk-70-1.png" alt="Our model's output." width="75%" />
 <p class="caption">
-Figure 9.1: Our model’s output.
+Figure 10.1: Our model’s output.
 </p>
 </div>
 </div>
-<div id="fitting-a-model-to-data" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Fitting a model to data<a href="optimization.html#fitting-a-model-to-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fitting-a-model-to-data" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Fitting a model to data<a href="optimization.html#fitting-a-model-to-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When we ‘fit models to data’, we typically use a computational tool to minimize the differences between data and the state variables in our model output. But what are our data, and what and how do we minimize these?</p>
 <ul>
 <li>Do we compare trajectories, or just end points?</li>
 <li>Do we minimize deviations between all state variables and the data, or just those we are confident about?</li>
 <li>Do we keep the deviations so that they are on the original scale of the data, such that large pools carry more weight than small pools? Do we scale them to give each of the state variables more similar weight?</li>
 </ul>
-<div id="minimization" class="section level3 hasAnchor" number="9.3.1">
-<h3><span class="header-section-number">9.3.1</span> Minimization<a href="optimization.html#minimization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="minimization" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Minimization<a href="optimization.html#minimization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In most optimization procedures, we follow a series of steps:</p>
 <ol style="list-style-type: decimal">
 <li>select state variables in our model to compare to observed data,</li>
@@ -392,8 +413,8 @@ Figure 9.1: Our model’s output.
 <p>In our first example, we will compare endpoints of model output for the three state variables (A, V, B) at year 500 to our 1977 snapshot of data from Boprmann et al. (1977).</p>
 <p>We also need to choose one or more parameters to optimize. We will select one that is associated with high sensitivity: mineralization rate, <span class="math inline">\(a_4\)</span>.</p>
 </div>
-<div id="creating-the-objective-function" class="section level3 hasAnchor" number="9.3.2">
-<h3><span class="header-section-number">9.3.2</span> Creating the objective function<a href="optimization.html#creating-the-objective-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="creating-the-objective-function" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Creating the objective function<a href="optimization.html#creating-the-objective-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The point of the objective function is to calculate the difference between model output and data. It needs to generate model output using the parameter(s) of interest, and then calculate a number that quantifies the total difference between the predictions and the data. This calculation can take many forms, but some are more useful than others:</p>
 <ul>
 <li>Sum or mean of the squared deviations,</li>
@@ -458,8 +479,8 @@ and this is the probability density or probability mass for our particular data 
 <p>Next, we use our objective function with <code>optim()</code> to find the value of <code>a4</code> that minimizes the objective function. First, we’ll define the data to which we compare the model. We need to use the same name that we used in the objective function.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="optimization.html#cb112-1" tabindex="-1"></a>observed.data <span class="ot">=</span> <span class="fu">c</span>(<span class="at">V =</span> <span class="dv">532</span>, <span class="at">A=</span><span class="dv">26</span>, <span class="at">B=</span><span class="dv">4700</span>)</span></code></pre></div>
 </div>
-<div id="optim" class="section level3 hasAnchor" number="9.3.3">
-<h3><span class="header-section-number">9.3.3</span> <code>optim()</code><a href="optimization.html#optim" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="optim" class="section level3 hasAnchor" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> <code>optim()</code><a href="optimization.html#optim" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, we use <code>optim</code>, where</p>
 <ul>
 <li><code>par</code> is a named vector of the parameter(s).</li>
@@ -521,8 +542,8 @@ and this is the probability density or probability mass for our particular data 
 <p><img src="figs/unnamed-chunk-78-1.png" width="75%" />
 We can see that with our new value for mineralization, the model now correctly predicts the value of the bound soil nitrogen. This is in part because <span class="math inline">\(B\)</span> has much larger values than (1000s) that either <span class="math inline">\(V\)</span> (100s) or <span class="math inline">\(A\)</span> (10s). At the end of this chapter, we cover the weighting of state variables a little more.</p>
 </div>
-<div id="mle2" class="section level3 hasAnchor" number="9.3.4">
-<h3><span class="header-section-number">9.3.4</span> <code>mle2()</code><a href="optimization.html#mle2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="mle2" class="section level3 hasAnchor" number="10.3.4">
+<h3><span class="header-section-number">10.3.4</span> <code>mle2()</code><a href="optimization.html#mle2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Above, we walked through he use of <code>optim()</code>, but now let’s do something vary similar, but where the output allows us to calculate a confidence interval. We use a function from Bolker’s <code>bbmle</code> package.</p>
 <p>The arguments to <code>mle2()</code> differ from those of <code>optim()</code>. In particular, our parameters that we want to optimize are specified in the <code>start</code> argument, and additional R objects are speified in the <code>data</code> argument. Both of these arguments must be <em>lists</em>. Also, the objective function must return the negative log-likelihood, See <code>?mle2</code> for more information.</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="optimization.html#cb119-1" tabindex="-1"></a>fit.mle <span class="ot">&lt;-</span> <span class="fu">mle2</span>(<span class="at">minuslogl =</span> nll.bormann.mineralization,</span>
@@ -556,8 +577,8 @@ We can see that with our new value for mineralization, the model now correctly p
 <p>These huge differences in uncertainty result in different estimates of mineralization rate. Thus, the more we know, the more we can learn.</p>
 </div>
 </div>
-<div id="trajectory-matching" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Trajectory matching<a href="optimization.html#trajectory-matching" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="trajectory-matching" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Trajectory matching<a href="optimization.html#trajectory-matching" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Up until now, we have compared model output to a data for just a single time point. Here we fit the model to time series, and try to match the trajectory of the model with that of the data, for a single state variable, stream nitrogen export.</p>
 <p>First we read in an environmental data set, and visually inspect the data. I have put my data sets in a subdirectory called, “data”, and so read it in from that directory.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="optimization.html#cb124-1" tabindex="-1"></a><span class="do">## we skip the first 7 lines because those contain metadata</span></span>
@@ -567,7 +588,7 @@ We can see that with our new value for mineralization, the model now correctly p
 <div class="figure"><span style="display:block;" id="fig:HBdata"></span>
 <img src="figs/HBdata-1.png" alt="Hubbard Brook Watershed 6 N export." width="80%" />
 <p class="caption">
-Figure 9.2: Hubbard Brook Watershed 6 N export.
+Figure 10.2: Hubbard Brook Watershed 6 N export.
 </p>
 </div>
 <p>We will use just the export data, so I’ll extract that.</p>
@@ -732,8 +753,8 @@ Figure 9.2: Hubbard Brook Watershed 6 N export.
 <span id="cb144-12"><a href="optimization.html#cb144-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p><img src="figs/unnamed-chunk-89-1.png" width="75%" /></p>
 </div>
-<div id="two-or-more-parameters-at-a-time" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Two (or more) parameters at a time<a href="optimization.html#two-or-more-parameters-at-a-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="two-or-more-parameters-at-a-time" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Two (or more) parameters at a time<a href="optimization.html#two-or-more-parameters-at-a-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we use the same approach, in which we have an objective function, parameters of interest, and data.</p>
 <p>Here is our objective function, and you can see it is not very different. Find and explain the difference.</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="optimization.html#cb145-1" tabindex="-1"></a>nll.bormann.a5.<span class="fl">4.</span>traj <span class="ot">&lt;-</span> <span class="cf">function</span>(a5, a4, data, y0, t, p) {</span>
@@ -801,12 +822,12 @@ Figure 9.2: Hubbard Brook Watershed 6 N export.
 <p><img src="figs/unnamed-chunk-92-1.png" width="75%" /></p>
 <p>Have at it. What can you learn today? What to we most want to know? Can we use the model to make hypotheses about processes that are not even in the model, like denitrification?</p>
 </div>
-<div id="other-considerations-weighting-deviations" class="section level2 hasAnchor" number="9.6">
-<h2><span class="header-section-number">9.6</span> Other considerations: weighting deviations<a href="optimization.html#other-considerations-weighting-deviations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="other-considerations-weighting-deviations" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Other considerations: weighting deviations<a href="optimization.html#other-considerations-weighting-deviations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When we assess more than one state variable at a time, the model fit might be unduly affected by state variables with the largest absolute values. In our case, that might mean that our fits might be determined by how well our model describes the soil pool. Therefore, we might want to at least weight the pools more equally by using the log-transformations of the output and data. This accomplishes two things. First, it weights the variables on a more similar scale. This may not matter for the result with some methods of optimization, but it can. Second, it makes the computation more stable and reliable to use both smaller numbers, and each on a more similar scale. This can make a big difference if you are having trouble getting the optimization to give reliable, repeatable results.</p>
 <p>Another important issue is how confident we are in our observed data. If we believe that we are quite confident in some observations but know we are measuring others with low accuracy, then we can adjust for that uncertainty by using variance-weighted errors.</p>
-<div id="variance-weighted-errors" class="section level3 hasAnchor" number="9.6.1">
-<h3><span class="header-section-number">9.6.1</span> Variance weighted errors<a href="optimization.html#variance-weighted-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="variance-weighted-errors" class="section level3 hasAnchor" number="10.6.1">
+<h3><span class="header-section-number">10.6.1</span> Variance weighted errors<a href="optimization.html#variance-weighted-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can build on this approach by directly weighting the model-data differences by the uncertainty in data data (Soetaert and Hermann, Chap. 4),
 <span class="math display">\[\mathrm{SSE} = \sum_{i = 1}^{n}\frac{\left(m_i - d_i\right)^2}{e_i}\]</span>
 where <span class="math inline">\(i\)</span> is a particular state variable, <span class="math inline">\(m\)</span> is model output, <span class="math inline">\(d\)</span> is data, and <span class="math inline">\(e\)</span> is the observed uncertainty of the data. Often this variance is calculated as the variance (<span class="math inline">\(\sigma^2\)</span>) of the data.</p>
