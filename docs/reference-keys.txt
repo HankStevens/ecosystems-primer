@@ -53,6 +53,7 @@ example-9-vegetation-litter-carbon-system
 answers
 first-order-compartments
 learning-objectives-1
+key-concepts
 solving-rate-equations
 one-compartment-models-1
 worked-example-lake-phosphorus-with-flushing
@@ -62,7 +63,7 @@ example-2-soil-organic-matter-decomposition
 example-3-forest-canopy-nitrogen-with-multiple-losses
 example-4-stream-dissolved-organic-carbon
 two-compartment-models-1
-key-concepts
+key-concepts-for-coupled-compartments
 answer-key
 intro
 why-models
