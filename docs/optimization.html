@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2026-02-16" />
+<meta name="date" content="2026-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -428,8 +428,8 @@ div.csl-indent {
 <span id="cb126-23"><a href="optimization.html#cb126-23" tabindex="-1"></a></span>
 <span id="cb126-24"><a href="optimization.html#cb126-24" tabindex="-1"></a><span class="fu">ggplot</span>(out2, <span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb126-25"><a href="optimization.html#cb126-25" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
-<img src="figs/unnamed-chunk-76-1.png" alt="Our model's output." width="75%" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
+<img src="figs/unnamed-chunk-74-1.png" alt="Our model's output." width="75%" />
 <p class="caption">
 Figure 10.1: Our model’s output.
 </p>
@@ -473,7 +473,7 @@ Figure 10.1: Our model’s output.
 <span id="cb127-2"><a href="optimization.html#cb127-2" tabindex="-1"></a><span class="do">## calculating the probability density for all values </span></span>
 <span id="cb127-3"><a href="optimization.html#cb127-3" tabindex="-1"></a><span class="do">## between 7 and 13 </span></span>
 <span id="cb127-4"><a href="optimization.html#cb127-4" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">m=</span>m, <span class="at">sd=</span>SD), <span class="dv">7</span>, <span class="dv">13</span>, <span class="at">main=</span><span class="st">&quot;our model&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-77-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-75-1.png" width="75%" /></p>
 <p>If we want to know the probability density of <span class="math inline">\(x=9\)</span>, then we can find just that:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="optimization.html#cb128-1" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">9</span>, <span class="at">m=</span>m, <span class="at">sd=</span>SD)</span></code></pre></div>
 <pre><code>## [1] 0.2419707</code></pre>
@@ -583,7 +583,7 @@ and this is the probability density or probability mass for our particular data 
 <span id="cb137-16"><a href="optimization.html#cb137-16" tabindex="-1"></a><span class="fu">ggplot</span>(out.b.long, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>value, <span class="at">colour=</span>run)) <span class="sc">+</span></span>
 <span id="cb137-17"><a href="optimization.html#cb137-17" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>our.data), <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb137-18"><a href="optimization.html#cb137-18" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variable, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) </span></code></pre></div>
-<p><img src="figs/unnamed-chunk-84-1.png" width="75%" />
+<p><img src="figs/unnamed-chunk-82-1.png" width="75%" />
 We can see that with our new value for mineralization, the model now correctly predicts the value of the bound soil nitrogen. This is in part because <span class="math inline">\(B\)</span> has much larger values than (1000s) that either <span class="math inline">\(V\)</span> (100s) or <span class="math inline">\(A\)</span> (10s). At the end of this chapter, we cover the weighting of state variables a little more.</p>
 </div>
 <div id="mle2" class="section level3 hasAnchor" number="10.3.4">
@@ -613,7 +613,7 @@ We can see that with our new value for mineralization, the model now correctly p
 <p>Now we calculate the likelihood profile of the parameter, and a 95% confidence interval.</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="optimization.html#cb140-1" tabindex="-1"></a>llh.profile <span class="ot">&lt;-</span> <span class="fu">profile</span>(fit.mle)</span>
 <span id="cb140-2"><a href="optimization.html#cb140-2" tabindex="-1"></a><span class="fu">plot</span>(llh.profile)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-86-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-84-1.png" width="75%" /></p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="optimization.html#cb141-1" tabindex="-1"></a><span class="fu">confint</span>(llh.profile)</span></code></pre></div>
 <pre><code>##      2.5 %     97.5 % 
 ## 0.01774460 0.01859578</code></pre>
@@ -762,7 +762,7 @@ Figure 10.2: Hubbard Brook Watershed 6 N export.
 <span id="cb159-5"><a href="optimization.html#cb159-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, </span>
 <span id="cb159-6"><a href="optimization.html#cb159-6" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&#39;original&#39;</span>, <span class="st">&#39;fitted&#39;</span>, <span class="st">&#39;data&#39;</span>),</span>
 <span id="cb159-7"><a href="optimization.html#cb159-7" tabindex="-1"></a>       <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-93-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-91-1.png" width="75%" /></p>
 <p>This shows us the model tends to underestimate at first, and then consistently over estimate over time.</p>
 <p>So,…what do we make of this? Why might this make sense?</p>
 <p>A couple of things to consider when matching trajectories in data and models:</p>
@@ -775,7 +775,7 @@ Figure 10.2: Hubbard Brook Watershed 6 N export.
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="optimization.html#cb160-1" tabindex="-1"></a><span class="do">## or the deviations over time (fitted - data)</span></span>
 <span id="cb160-2"><a href="optimization.html#cb160-2" tabindex="-1"></a>devs <span class="ot">&lt;-</span> out.a5<span class="sc">$</span>loss <span class="sc">-</span> data.subset<span class="sc">$</span>value</span>
 <span id="cb160-3"><a href="optimization.html#cb160-3" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>out.a5<span class="sc">$</span>time, <span class="at">y=</span>devs) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() </span></code></pre></div>
-<p><img src="figs/unnamed-chunk-94-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-92-1.png" width="75%" /></p>
 <p>If we want to check the effect of this we plot both sets of ouput and the data, we see the differences among all three. This time, we’ll take advantage of ggplot2 graphics.</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="optimization.html#cb161-1" tabindex="-1"></a><span class="do">## add a new column</span></span>
 <span id="cb161-2"><a href="optimization.html#cb161-2" tabindex="-1"></a><span class="do">## this will repeat the label for all rows of the data frame</span></span>
@@ -795,7 +795,7 @@ Figure 10.2: Hubbard Brook Watershed 6 N export.
 <span id="cb163-10"><a href="optimization.html#cb163-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb163-11"><a href="optimization.html#cb163-11" tabindex="-1"></a>  <span class="do">## separate each state variable in its own subfigure with its own scale</span></span>
 <span id="cb163-12"><a href="optimization.html#cb163-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-95-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-93-1.png" width="75%" /></p>
 </div>
 <div id="two-or-more-parameters-at-a-time" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> Two (or more) parameters at a time<a href="optimization.html#two-or-more-parameters-at-a-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -863,7 +863,7 @@ Figure 10.2: Hubbard Brook Watershed 6 N export.
 <span id="cb169-5"><a href="optimization.html#cb169-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, </span>
 <span id="cb169-6"><a href="optimization.html#cb169-6" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&#39;original&#39;</span>, <span class="st">&#39;fitted&#39;</span>, <span class="st">&#39;data&#39;</span>),</span>
 <span id="cb169-7"><a href="optimization.html#cb169-7" tabindex="-1"></a>       <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-98-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-96-1.png" width="75%" /></p>
 <p>Have at it. What can you learn today? What to we most want to know? Can we use the model to make hypotheses about processes that are not even in the model, like denitrification?</p>
 </div>
 <div id="other-considerations-weighting-deviations" class="section level2 hasAnchor" number="10.6">
@@ -937,7 +937,7 @@ where <span class="math inline">\(i\)</span> is a particular state variable, <sp
 <span id="cb176-18"><a href="optimization.html#cb176-18" tabindex="-1"></a><span class="fu">ggplot</span>(out.b.long, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>value, <span class="at">colour=</span>run)) <span class="sc">+</span></span>
 <span id="cb176-19"><a href="optimization.html#cb176-19" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb176-20"><a href="optimization.html#cb176-20" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variable, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>) </span></code></pre></div>
-<p><img src="figs/unnamed-chunk-103-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-101-1.png" width="75%" /></p>
 <p>Notice now that the fit to the bound pool does not dominate the fit.</p>
 
 </div>

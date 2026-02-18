@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2026-02-16" />
+<meta name="date" content="2026-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -530,11 +530,11 @@ where the rate of change is mg P / m<span class="math inline">\(^2\)</span> / da
 <p>Pictures are informative, so here we plot the result.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" tabindex="-1"></a><span class="do">## simple graph of the time series</span></span>
 <span id="cb5-2"><a href="intro.html#cb5-2" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-8-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-6-1.png" width="75%" /></p>
 <p>We can also use <code>ggplot2</code> to make a pretty graph, and then save it.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out) <span class="co"># re-classify the data set</span></span>
 <span id="cb6-2"><a href="intro.html#cb6-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>out2, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>P)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-9-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-7-1.png" width="75%" /></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;myLake.png&quot;</span>, <span class="at">height=</span><span class="dv">4</span>, <span class="at">width=</span><span class="dv">4</span>)</span></code></pre></div>
 </div>
 <div id="analytical-solutions-to-rate-equations" class="section level2 hasAnchor" number="4.6">

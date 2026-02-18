@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2026-02-16" />
+<meta name="date" content="2026-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -519,10 +519,11 @@ Figure 5.2: <em>A simpler compartment model for Hubbard Brook Watershed 6, based
 - I₁ = 6.5 kg N ha⁻¹ y⁻¹ (precipitation)
 - I₂ = 14.2 kg N ha⁻¹ y⁻¹ (fixation)</p>
 <p><strong>For first-order fluxes:</strong></p>
-<p>A common starting point for dynamics depending on pool sizes is the <strong>law of mass action</strong>. This states that the reaction rate is proportional to the amount of substrate present.</p>
+<p>A common starting point for dynamics depending on pool sizes is the <strong>law of mass action</strong>. This states that the reaction rate is proportional to the amount of substrate present in a single pool.</p>
 <p>For a flux depending on one pool: <strong>flux = k × Pool</strong></p>
+<p><strong>For second-order fluxes:</strong></p>
+<p>A flux is <em>second-order</em> when a rate is proportional to either two pools (<span class="math inline">\(XY\)</span>), or to the the square of one pool (<span class="math inline">\(X^2\)</span>). This still relies ofn the law of <strong>law of mass action</strong>.</p>
 <p>For a flux depending on two pools: <strong>flux = k × Pool₁ × Pool₂</strong></p>
-<p>In some circumstances, these pools might have exponents different than one (k × Pool₁^m × Pool₂^n), such as when multiple molecules must interact, but we’ll start with simple mass action.</p>
 <p>Using mass action kinetics, we express the fluxes in our N budget (Fig. <a href="N.html#fig:hbnb3">5.2</a>) as:</p>
 <ul>
 <li><strong>f₁</strong> (uptake): depends on both A and V → f₁ = a₁ × A × V</li>
@@ -645,37 +646,37 @@ dB/dt = ... - a₄*B  # subtract explicitly in equation</code></pre>
 <div id="calculating-all-parameters-in-r" class="section level2 hasAnchor" number="5.11">
 <h2><span class="header-section-number">5.11</span> Calculating All Parameters in R<a href="N.html#calculating-all-parameters-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now let’s calculate all our parameters systematically. Following our sign convention, we’ll compute absolute values and use the instantaneous rate approach (logarithmic method).</p>
-<p><strong>N Uptake by plants</strong> - a gain to vegetation, so we calculate how much the pool would grow:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="N.html#cb10-1" tabindex="-1"></a><span class="co"># Current state: V = 532, A = 26</span></span>
-<span id="cb10-2"><a href="N.html#cb10-2" tabindex="-1"></a><span class="co"># Annual uptake flux: 79.6 kg N/ha/y</span></span>
-<span id="cb10-3"><a href="N.html#cb10-3" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">log</span>( (<span class="dv">26</span><span class="sc">*</span><span class="dv">532</span> <span class="sc">+</span> <span class="fl">79.6</span>) <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>))</span>
-<span id="cb10-4"><a href="N.html#cb10-4" tabindex="-1"></a>a1</span></code></pre></div>
-<pre><code>## [1] 0.005738276</code></pre>
 <p><strong>Throughfall and inorganic exudates</strong> - a loss from vegetation, so we use absolute value:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="N.html#cb12-1" tabindex="-1"></a><span class="co"># Annual flux from V to A: 6.6 + 0.8 = 7.4 kg N/ha/y</span></span>
-<span id="cb12-2"><a href="N.html#cb12-2" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">6.6</span> <span class="sc">-</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span> ) )</span>
-<span id="cb12-3"><a href="N.html#cb12-3" tabindex="-1"></a>a2</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="N.html#cb10-1" tabindex="-1"></a><span class="co"># Annual flux from V to A: 6.6 + 0.8 = 7.4 kg N/ha/y</span></span>
+<span id="cb10-2"><a href="N.html#cb10-2" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">6.6</span> <span class="sc">-</span> <span class="fl">0.8</span>) <span class="sc">/</span> <span class="dv">532</span> ) )</span>
+<span id="cb10-3"><a href="N.html#cb10-3" tabindex="-1"></a>a2</span></code></pre></div>
 <pre><code>## [1] 0.01400742</code></pre>
 <p><strong>Litter, throughfall, organic exudates</strong> - a loss from vegetation to bound pool:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="N.html#cb14-1" tabindex="-1"></a><span class="co"># Annual flux from V to B: 54.2 + 2.7 + 0.1 + 6.2 = 63.2 kg N/ha/y</span></span>
-<span id="cb14-2"><a href="N.html#cb14-2" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">54.2</span> <span class="sc">-</span> <span class="fl">2.7</span> <span class="sc">-</span> <span class="fl">0.1</span> <span class="sc">-</span> <span class="fl">6.2</span>) <span class="sc">/</span> <span class="dv">532</span>) )</span>
-<span id="cb14-3"><a href="N.html#cb14-3" tabindex="-1"></a>a3</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="N.html#cb12-1" tabindex="-1"></a><span class="co"># Annual flux from V to B: 54.2 + 2.7 + 0.1 + 6.2 = 63.2 kg N/ha/y</span></span>
+<span id="cb12-2"><a href="N.html#cb12-2" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">532</span> <span class="sc">-</span> <span class="fl">54.2</span> <span class="sc">-</span> <span class="fl">2.7</span> <span class="sc">-</span> <span class="fl">0.1</span> <span class="sc">-</span> <span class="fl">6.2</span>) <span class="sc">/</span> <span class="dv">532</span>) )</span>
+<span id="cb12-3"><a href="N.html#cb12-3" tabindex="-1"></a>a3</span></code></pre></div>
 <pre><code>## [1] 0.1264673</code></pre>
 <p><strong>Net mineralization</strong> - a loss from the bound pool:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="N.html#cb16-1" tabindex="-1"></a><span class="co"># Annual flux from B to A: 69.6 kg N/ha/y</span></span>
-<span id="cb16-2"><a href="N.html#cb16-2" tabindex="-1"></a>a4 <span class="ot">&lt;-</span>  <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span> <span class="sc">-</span> <span class="fl">69.6</span>) <span class="sc">/</span> <span class="dv">4700</span>) )</span>
-<span id="cb16-3"><a href="N.html#cb16-3" tabindex="-1"></a>a4</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="N.html#cb14-1" tabindex="-1"></a><span class="co"># Annual flux from B to A: 69.6 kg N/ha/y</span></span>
+<span id="cb14-2"><a href="N.html#cb14-2" tabindex="-1"></a>a4 <span class="ot">&lt;-</span>  <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span> <span class="sc">-</span> <span class="fl">69.6</span>) <span class="sc">/</span> <span class="dv">4700</span>) )</span>
+<span id="cb14-3"><a href="N.html#cb14-3" tabindex="-1"></a>a4</span></code></pre></div>
 <pre><code>## [1] 0.01491925</code></pre>
 <p><strong>Export from the available pool</strong> - a loss:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="N.html#cb18-1" tabindex="-1"></a><span class="co"># Annual export: 3.9 kg N/ha/y</span></span>
-<span id="cb18-2"><a href="N.html#cb18-2" tabindex="-1"></a>a5 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">26</span> <span class="sc">-</span> <span class="fl">3.9</span>) <span class="sc">/</span> <span class="dv">26</span> ) )</span>
-<span id="cb18-3"><a href="N.html#cb18-3" tabindex="-1"></a>a5</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="N.html#cb16-1" tabindex="-1"></a><span class="co"># Annual export: 3.9 kg N/ha/y</span></span>
+<span id="cb16-2"><a href="N.html#cb16-2" tabindex="-1"></a>a5 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">26</span> <span class="sc">-</span> <span class="fl">3.9</span>) <span class="sc">/</span> <span class="dv">26</span> ) )</span>
+<span id="cb16-3"><a href="N.html#cb16-3" tabindex="-1"></a>a5</span></code></pre></div>
 <pre><code>## [1] 0.1625189</code></pre>
 <p><strong>Export from the bound pool</strong> - a loss:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="N.html#cb20-1" tabindex="-1"></a><span class="co"># Annual export: 0.1 kg N/ha/y (very small)</span></span>
-<span id="cb20-2"><a href="N.html#cb20-2" tabindex="-1"></a>a6 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span> <span class="sc">-</span> <span class="fl">0.1</span>) <span class="sc">/</span> <span class="dv">4700</span>) )</span>
-<span id="cb20-3"><a href="N.html#cb20-3" tabindex="-1"></a>a6</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="N.html#cb18-1" tabindex="-1"></a><span class="co"># Annual export: 0.1 kg N/ha/y (very small)</span></span>
+<span id="cb18-2"><a href="N.html#cb18-2" tabindex="-1"></a>a6 <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">log</span>( (<span class="dv">4700</span> <span class="sc">-</span> <span class="fl">0.1</span>) <span class="sc">/</span> <span class="dv">4700</span>) )</span>
+<span id="cb18-3"><a href="N.html#cb18-3" tabindex="-1"></a>a6</span></code></pre></div>
 <pre><code>## [1] 2.127682e-05</code></pre>
+<p><strong>N Uptake by plants</strong> - a gain to vegetation that depends on both the source ($<span class="math inline">\() and sink (\)</span>V<span class="math inline">\(), making it a second order rate. This makes the rate more difficult to approximate, because the flux simply moves from one pool (\)</span>A<span class="math inline">\() to the other (\)</span>V<span class="math inline">\() and does not leave completely. Therefore, we will fall back on the incremental approach. In this case, the rate depends on the *product* of the the two pools (\)</span>AV$).</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="N.html#cb20-1" tabindex="-1"></a><span class="co"># Current state: V = 532, A = 26</span></span>
+<span id="cb20-2"><a href="N.html#cb20-2" tabindex="-1"></a><span class="co"># Annual uptake flux: 79.6 kg N/ha/y</span></span>
+<span id="cb20-3"><a href="N.html#cb20-3" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fl">79.6</span> <span class="sc">/</span> (<span class="dv">26</span> <span class="sc">*</span> <span class="dv">532</span>)</span>
+<span id="cb20-4"><a href="N.html#cb20-4" tabindex="-1"></a>a1</span></code></pre></div>
+<pre><code>## [1] 0.005754772</code></pre>
 <p>Now we create a single vector of all parameters, including the constant inputs:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="N.html#cb22-1" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>( </span>
 <span id="cb22-2"><a href="N.html#cb22-2" tabindex="-1"></a>  <span class="at">i1 =</span> <span class="fl">6.5</span>,   <span class="co"># bulk precipitation (kg N/ha/y)</span></span>
@@ -691,12 +692,12 @@ dB/dt = ... - a₄*B  # subtract explicitly in equation</code></pre>
 <span id="cb22-12"><a href="N.html#cb22-12" tabindex="-1"></a><span class="co"># Display with nice formatting</span></span>
 <span id="cb22-13"><a href="N.html#cb22-13" tabindex="-1"></a><span class="fu">round</span>(params, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##       i1       i2       a1       a2       a3       a4       a5       a6 
-##  6.50000 14.20000  0.00574  0.01401  0.12647  0.01492  0.16252  0.00002</code></pre>
+##  6.50000 14.20000  0.00575  0.01401  0.12647  0.01492  0.16252  0.00002</code></pre>
 <div id="parameter-table-with-biological-interpretation" class="section level3 hasAnchor" number="5.11.1">
 <h3><span class="header-section-number">5.11.1</span> Parameter Table with Biological Interpretation<a href="N.html#parameter-table-with-biological-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-17">Table 5.1: </span><span id="tab:unnamed-chunk-17">Table 5.2: </span>Parameters for simplified Hubbard Brook N budget model (Bormann et al. 1977). Values are instantaneous rate constants calculated using the logarithmic method. Note that a₆ is very small because export from the bound pool is minimal.
+<span id="tab:unnamed-chunk-15">Table 5.1: </span><span id="tab:unnamed-chunk-15">Table 5.2: </span>Parameters for simplified Hubbard Brook N budget model (Bormann et al. 1977). Values are instantaneous rate constants calculated using the logarithmic method. Note that a₆ is very small because export from the bound pool is minimal.
 </caption>
 <thead>
 <tr>
@@ -960,11 +961,11 @@ y⁻¹
 <span id="cb25-11"><a href="N.html#cb25-11" tabindex="-1"></a><span class="fu">head</span>(out)</span></code></pre></div>
 <pre><code>##      time        V        A        B    total
 ## [1,]    0 532.0000 26.00000 4700.000 5258.000
-## [2,]    1 536.8480 26.03575 4711.481 5274.364
-## [3,]    2 541.4532 25.90139 4723.389 5290.744
-## [4,]    3 545.6897 25.77859 4735.675 5307.144
-## [5,]    4 549.5990 25.67270 4748.291 5323.562
-## [6,]    5 553.2241 25.58149 4761.191 5339.996</code></pre>
+## [2,]    1 536.9206 25.96500 4711.487 5274.373
+## [3,]    2 541.5310 25.82774 4723.405 5290.764
+## [4,]    3 545.7697 25.70512 4735.701 5307.176
+## [5,]    4 549.6810 25.59949 4748.326 5323.606
+## [6,]    5 553.3077 25.50854 4761.236 5340.052</code></pre>
 <p><strong>What’s happening here:</strong></p>
 <ul>
 <li><code>ode()</code> starts at year 0 with our initial state</li>
@@ -986,8 +987,8 @@ y⁻¹
 <span id="cb27-11"><a href="N.html#cb27-11" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Nitrogen (kg N/ha)&quot;</span>,</span>
 <span id="cb27-12"><a href="N.html#cb27-12" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Hubbard Brook N Budget Dynamics&quot;</span>) <span class="sc">+</span></span>
 <span id="cb27-13"><a href="N.html#cb27-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="figs/unnamed-chunk-19-1.png" alt="Dynamics of a simple N budget model based on Bormann et al. (1977). Each panel shows one compartment over 20 years." width="75%" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="figs/unnamed-chunk-17-1.png" alt="Dynamics of a simple N budget model based on Bormann et al. (1977). Each panel shows one compartment over 20 years." width="75%" />
 <p class="caption">
 Figure 5.3: Dynamics of a simple N budget model based on Bormann et al. (1977). Each panel shows one compartment over 20 years.
 </p>
@@ -1037,7 +1038,7 @@ Figure 5.3: Dynamics of a simple N budget model based on Bormann et al. (1977).
 <span id="cb34-6"><a href="N.html#cb34-6" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="N.html#cb34-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Predicted avg accumulation from model:&quot;</span>, <span class="fu">round</span>(avg_accumulation, <span class="dv">2</span>), <span class="st">&quot;kg N/ha/y</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 
-## Predicted avg accumulation from model: 16.47 kg N/ha/y</code></pre>
+## Predicted avg accumulation from model: 16.48 kg N/ha/y</code></pre>
 <p>The model’s accumulation rate is slightly less than inputs minus initial outputs because as pools change, export rates also change. This is correct behavior!</p>
 </div>
 </div>
@@ -1143,8 +1144,8 @@ Figure 5.3: Dynamics of a simple N budget model based on Bormann et al. (1977).
 <span id="cb39-9"><a href="N.html#cb39-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Nitrogen (kg N/ha)&quot;</span>,</span>
 <span id="cb39-10"><a href="N.html#cb39-10" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Self-Limited N Budget (K = 600)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb39-11"><a href="N.html#cb39-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
-<img src="figs/unnamed-chunk-23-1.png" alt="Dynamics of N budget with density-dependent vegetation growth. The system approaches equilibrium over ~150 years." width="75%" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="figs/unnamed-chunk-21-1.png" alt="Dynamics of N budget with density-dependent vegetation growth. The system approaches equilibrium over ~150 years." width="75%" />
 <p class="caption">
 Figure 5.4: Dynamics of N budget with density-dependent vegetation growth. The system approaches equilibrium over ~150 years.
 </p>

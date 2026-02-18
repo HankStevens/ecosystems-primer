@@ -23,7 +23,7 @@
 <meta name="author" content="Hank Stevens, BIO 672" />
 
 
-<meta name="date" content="2026-02-16" />
+<meta name="date" content="2026-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -636,8 +636,8 @@ Figure 8.2: <em>Relative responses of the available N pool to a one percent chan
 <span id="cb105-2"><a href="model-sensitivity.html#cb105-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="st">&quot;V&quot;</span><span class="sc">:</span><span class="st">&quot;total&quot;</span>)</span>
 <span id="cb105-3"><a href="model-sensitivity.html#cb105-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b1L, <span class="fu">aes</span>(<span class="at">x=</span>parameters, <span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
 <span id="cb105-4"><a href="model-sensitivity.html#cb105-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-58"></span>
-<img src="figs/unnamed-chunk-58-1.png" alt="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*" width="75%" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-56"></span>
+<img src="figs/unnamed-chunk-56-1.png" alt="*Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.*" width="75%" />
 <p class="caption">
 Figure 8.3: <em>Model output is more sensitive to some parameters than others. In addition, different state variables are respond differently to different parameters. Note that the y-axis differs among the state variables.</em>
 </p>
@@ -655,7 +655,7 @@ Figure 8.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb106-10"><a href="model-sensitivity.html#cb106-10" tabindex="-1"></a>   }) )</span>
 <span id="cb106-11"><a href="model-sensitivity.html#cb106-11" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p=</span>b1<span class="sc">$</span>deviation.summary<span class="sc">$</span>parameters, <span class="at">rmse=</span><span class="fu">as.numeric</span>(rmse.SV))</span>
 <span id="cb106-12"><a href="model-sensitivity.html#cb106-12" tabindex="-1"></a><span class="fu">qplot</span>(p, rmse, <span class="at">data=</span>rmse, <span class="at">geom=</span><span class="st">&quot;col&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-59-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-57-1.png" width="75%" /></p>
 <p>So,…into what should we direct our effort? What data do we want most want to collect? These sensitivities are likely to help us direct our attention where it would be most useful.</p>
 </div>
 </div>
@@ -696,7 +696,7 @@ Figure 8.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb108-4"><a href="model-sensitivity.html#cb108-4" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb108-5"><a href="model-sensitivity.html#cb108-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>time, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb108-6"><a href="model-sensitivity.html#cb108-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(time, value)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-61-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-59-1.png" width="75%" /></p>
 <p>Next we check model sensitivity.</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="model-sensitivity.html#cb109-1" tabindex="-1"></a>outf <span class="ot">&lt;-</span> <span class="fu">sens_fig</span>(<span class="st">&quot;DIN&quot;</span>, <span class="at">y.initial=</span>state, </span>
 <span id="cb109-2"><a href="model-sensitivity.html#cb109-2" tabindex="-1"></a>                <span class="at">times=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">func=</span>NPZD, <span class="at">parms=</span>parameters,</span>
@@ -713,7 +713,7 @@ Figure 8.3: <em>Model output is more sensitive to some parameters than others. I
 ## [1] 10</code></pre>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="model-sensitivity.html#cb111-1" tabindex="-1"></a><span class="fu">ggplot</span>(outf, <span class="fu">aes</span>(Time, y, <span class="at">colour=</span>Perturbation)) <span class="sc">+</span> </span>
 <span id="cb111-2"><a href="model-sensitivity.html#cb111-2" tabindex="-1"></a>   <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Parameter, <span class="at">scales=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-62-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-60-1.png" width="75%" /></p>
 <p>In this figure, we see that sensitivity varies through time. For most parameters, it can be small at some times and quite large at other times. We can see how sensitivity can depend to a huge degree on the time points at which we evaluate that sensitivity.</p>
 <p>Here we summarize those across time.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="model-sensitivity.html#cb112-1" tabindex="-1"></a><span class="co"># args(sensitivity)</span></span>
@@ -758,7 +758,7 @@ Figure 8.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb113-2"><a href="model-sensitivity.html#cb113-2" tabindex="-1"></a><span class="do">## let Phytoplankton be x, and vary between 0 and 6 mmolN/m3</span></span>
 <span id="cb113-3"><a href="model-sensitivity.html#cb113-3" tabindex="-1"></a><span class="do">## because that is the approximate range we see in the dynamics</span></span>
 <span id="cb113-4"><a href="model-sensitivity.html#cb113-4" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">6</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-63-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-61-1.png" width="75%" /></p>
 <p>If we increase or decrease the half saturation constant, what will we see?</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="model-sensitivity.html#cb114-1" tabindex="-1"></a>ksGr <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb114-2"><a href="model-sensitivity.html#cb114-2" tabindex="-1"></a><span class="co"># let Phytoplankton vary more</span></span>
@@ -766,7 +766,7 @@ Figure 8.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb114-4"><a href="model-sensitivity.html#cb114-4" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr[<span class="dv">2</span>] <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">10</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
 <span id="cb114-5"><a href="model-sensitivity.html#cb114-5" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">/</span>(ksGr[<span class="dv">3</span>] <span class="sc">+</span> x), <span class="dv">0</span>, <span class="dv">10</span>,  <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
 <span id="cb114-6"><a href="model-sensitivity.html#cb114-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend=</span><span class="fu">paste</span>(ksGr), <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-64-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-62-1.png" width="75%" /></p>
 <p>Given this range, is there some basis for selecting one of these? Recall that this is multiplied by the maximum grazing rate (and zooplankton); therefore, we might want to ask ourselves how that maximum rate was determined. For instance, was it estimated at moderate phytoplankton concentrations or when phytoplankton were truly unlimited? If we have some data from the literature suggesting particular values, we might use these as maxima and minima, or we might go beyond them.</p>
 <p>Sometimes, all we have is a guess. If a parameter appears to be important, then we might simply pick a value and then double it and halve it, or investigate 10-fold increases. Here we do the former.</p>
 <ul>
@@ -809,7 +809,7 @@ Figure 8.3: <em>Model output is more sensitive to some parameters than others. I
 <span id="cb115-33"><a href="model-sensitivity.html#cb115-33" tabindex="-1"></a>out.all <span class="sc">%&gt;%</span> </span>
 <span id="cb115-34"><a href="model-sensitivity.html#cb115-34" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>PHYTO<span class="sc">:</span>TotalN, <span class="at">names_to=</span><span class="st">&quot;State.var&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb115-35"><a href="model-sensitivity.html#cb115-35" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(time, value, <span class="at">colour=</span><span class="fu">as.factor</span>(ksGrazing))) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>State.var, <span class="at">scale=</span><span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figs/unnamed-chunk-65-1.png" width="75%" /></p>
+<p><img src="figs/unnamed-chunk-63-1.png" width="75%" /></p>
 <p>Well, then… . Aren’t you glad you tried that!</p>
 </div>
 <div id="your-turn" class="section level2 hasAnchor" number="8.6">
